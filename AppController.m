@@ -16,6 +16,12 @@ struct KSApplication {
     ProcessSerialNumber psn;
 };
 
+enum KSConfigurationNameOptions {
+    kConfigNew      = 1,
+    kConfigRename   = 2,
+    kConfigCancel   = -1,
+};
+
 EventHotKeyRef ToggleBroadcastingHotKeyRef;
 EventHotKeyRef QuitAppHotKeyRef;
 
@@ -94,6 +100,15 @@ BOOL previousDockState;
     if (hideDock == YES) {
         [dockPreferences setAutohide:YES];
     }
+    
+    NSArray* configurations = [[NSUserDefaults standardUserDefaults] arrayForKey:@"Configurations"];
+    int idx = 0;
+    for (NSString* config in configurations) {
+        [configurationsPopUp insertItemWithTitle:config atIndex:idx];
+        ++idx;
+    }
+    [configurationsPopUp selectItemAtIndex:0];
+    [self configurationSelectionChanged:self];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
@@ -133,10 +148,33 @@ BOOL previousDockState;
     KSChangeBroadcastingTo(false);
 }
 
+-(BOOL)configurationsPopUpIsEmpty {
+    // The two items are: the seperator and 'New...'
+    if (([configurationsPopUp numberOfItems] - [configurationsPopUp indexOfSelectedItem]) <= 2)
+        return YES;
+    else
+        return NO;
+}
+
 -(IBAction)renameCurrentConfiguration:(id)sender {
-    if (([configurationsPopUp numberOfItems] - [configurationsPopUp indexOfSelectedItem]) > 2) {
+    if ([self configurationsPopUpIsEmpty] == NO) {
         [configurationNameField setStringValue:[[configurationsPopUp selectedItem] title]];
         [NSApp beginSheet:configurationNamePanel modalForWindow:plexerPanel modalDelegate:self didEndSelector:@selector(configurationNameEnded:code:context:) contextInfo:NULL];
+    }
+}
+
+-(IBAction)removeCurrentConfiguration:(id)sender {
+    if ([self configurationsPopUpIsEmpty] == NO) {
+        NSMutableArray* configurations = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"Configurations"] mutableCopy];
+        [configurations removeObject:[configurationsPopUp titleOfSelectedItem]];
+        [[NSUserDefaults standardUserDefaults] setObject:configurations forKey:@"Configurations"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+
+        int idx = [configurationsPopUp indexOfSelectedItem];
+        [configurationsPopUp removeItemAtIndex:idx];
+        --idx;
+        if (idx < 0) idx = 0;
+        [configurationsPopUp selectItemAtIndex:idx];
     }
 }
 
@@ -149,27 +187,96 @@ BOOL previousDockState;
     [configurationNameField setStringValue:@""];
     [sheet orderOut:self];
     
-    if (choice == 1) {
+    if (choice == kConfigNew) {
         [configurationsPopUp insertItemWithTitle:configurationName atIndex:([configurationsPopUp numberOfItems] - 2)];
         [configurationsPopUp selectItemAtIndex:([configurationsPopUp numberOfItems] - 3)];
+        
+        NSArray* theArray = [[NSUserDefaults standardUserDefaults] arrayForKey:@"Configurations"];
+        NSMutableArray* configurations = [[NSMutableArray alloc] init];
+        [configurations addObjectsFromArray:theArray];
+        [configurations addObject:configurationName];
+        [[NSUserDefaults standardUserDefaults] setObject:configurations forKey:@"Configurations"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
-    else if (choice == 2) {
+    else if (choice == kConfigRename) {
+        NSMutableArray* configurations = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"Configurations"] mutableCopy];
+        [configurations removeObject:[[configurationsPopUp selectedItem] title]];
+        [configurations addObject:configurationName];
+        [[NSUserDefaults standardUserDefaults] setObject:configurations forKey:@"Configurations"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
         [[configurationsPopUp selectedItem] setTitle:configurationName];
     }
-    else {
-        [configurationsPopUp selectItemAtIndex:([configurationsPopUp numberOfItems] - 2)];
+    else if (choice == kConfigCancel) {
+        // If there aren't any items in the list, then we want to remove selection from 'New...'
+        if ([self configurationsPopUpIsEmpty] == YES)
+            [configurationsPopUp selectItemAtIndex:0];
     }
 }
 
 -(IBAction)cancelConfigurationNameSheet:(id)sender {
-    [NSApp endSheet:configurationNamePanel returnCode:-1];
+    [NSApp endSheet:configurationNamePanel returnCode:kConfigCancel];
 }
 
 -(IBAction)closeConfigurationNameSheet:(id)sender {
-    if (([configurationsPopUp numberOfItems] - [configurationsPopUp indexOfSelectedItem]) > 2)
-        [NSApp endSheet:configurationNamePanel returnCode:2];
+    if ([[configurationNameField stringValue] isEqualToString:@""])
+        return;
+    
+    if ([self configurationsPopUpIsEmpty] == NO)
+        [NSApp endSheet:configurationNamePanel returnCode:kConfigRename];
     else
-        [NSApp endSheet:configurationNamePanel returnCode:1];
+        [NSApp endSheet:configurationNamePanel returnCode:kConfigNew];
 }
+
+-(IBAction)configurationSelectionChanged:(id)sender {
+    NSDictionary* settings = [[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"ConfigurationSettings"] objectForKey:[configurationsPopUp titleOfSelectedItem]];
+    
+    [autoHideDockBox setState:(int)[settings objectForKey:@"AutoHideDock"]];
+    [saveWindowSizeBox setState:(int)[settings objectForKey:@"SaveWindowPositions"]];
+    [moveWindowsNearMenuBarBox setState:(int)[settings objectForKey:@"AdjustWindowsNearMenuBar"]];
+}
+
+-(IBAction)toggleAutoHideDock:(id)sender {
+    NSMutableDictionary* settings = [[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"ConfigurationSettings"] mutableCopy];
+    if (settings == nil)
+        settings = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* config = [[settings objectForKey:[configurationsPopUp titleOfSelectedItem]] mutableCopy];
+    if (config == nil)
+        config = [[NSMutableDictionary alloc] init];
+
+    [config setValue:[NSNumber numberWithInt:[autoHideDockBox state]] forKey:@"AutoHideDock"];
+    [settings setValue:config forKey:[configurationsPopUp titleOfSelectedItem]];
+    [[NSUserDefaults standardUserDefaults] setValue:settings forKey:@"ConfigurationSettings"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(IBAction)toggleSaveWindowPositions:(id)sender {
+    NSMutableDictionary* settings = [[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"ConfigurationSettings"] mutableCopy];
+    if (settings == nil)
+        settings = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* config = [[settings objectForKey:[configurationsPopUp titleOfSelectedItem]] mutableCopy];
+    if (config == nil)
+        config = [[NSMutableDictionary alloc] init];
+    
+    [config setValue:[NSNumber numberWithInt:[saveWindowSizeBox state]] forKey:@"SaveWindowPositions"];
+    [settings setValue:config forKey:[configurationsPopUp titleOfSelectedItem]];
+    [[NSUserDefaults standardUserDefaults] setValue:settings forKey:@"ConfigurationSettings"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(IBAction)toggleMoveWindowNearMenuBar:(id)sender {
+    NSMutableDictionary* settings = [[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"ConfigurationSettings"] mutableCopy];
+    if (settings == nil)
+        settings = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* config = [[settings objectForKey:[configurationsPopUp titleOfSelectedItem]] mutableCopy];
+    if (config == nil)
+        config = [[NSMutableDictionary alloc] init];
+    
+    [config setValue:[NSNumber numberWithInt:[moveWindowsNearMenuBarBox state]] forKey:@"AdjustWindowsNearMenuBar"];
+    [settings setValue:config forKey:[configurationsPopUp titleOfSelectedItem]];
+    [[NSUserDefaults standardUserDefaults] setValue:settings forKey:@"ConfigurationSettings"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 
 @end

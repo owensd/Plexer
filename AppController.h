@@ -25,6 +25,10 @@
     IBOutlet NSPanel* configurationNamePanel;
     IBOutlet NSTextField* configurationNameField;
     
+    IBOutlet BWTransparentCheckbox* saveWindowSizeBox;
+    IBOutlet BWTransparentCheckbox* moveWindowsNearMenuBarBox;
+    IBOutlet BWTransparentCheckbox* autoHideDockBox;
+    
     BOOL broadcasting;
 }
 
@@ -37,8 +41,15 @@
 -(IBAction)changeQuitAppHotKey:(id)sender;
 
 -(IBAction)renameCurrentConfiguration:(id)sender;
+-(IBAction)removeCurrentConfiguration:(id)sender;
 -(IBAction)addNewConfiguration:(id)sender;
 -(IBAction)cancelConfigurationNameSheet:(id)sender;
 -(IBAction)closeConfigurationNameSheet:(id)sender;
+
+-(IBAction)configurationSelectionChanged:(id)sender;
+
+-(IBAction)toggleAutoHideDock:(id)sender;
+-(IBAction)toggleSaveWindowPositions:(id)sender;
+-(IBAction)toggleMoveWindowNearMenuBar:(id)sender;
 
 @end
