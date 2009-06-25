@@ -31,12 +31,19 @@
     
     IBOutlet NSPanel* infoPanel;
     IBOutlet NSTextField* infoPanelMessage;
+    IBOutlet BWTransparentButton* infoPanelButton;
+    IBOutlet BWTransparentTableView* applicationsTableView;
     
     BOOL broadcasting;
+    NSMutableArray* applications;
 }
+
+@property (retain) NSArray* applications;
 
 @property (readonly) BOOL broadcasting;
 -(void)setBroadcasting:(BOOL)broadcasting;
+
+-(void)insertApplication:(ProcessSerialNumber*)psn;
 
 -(IBAction)startPlexing:(id)sender;
 -(IBAction)stopPlexing:(id)sender;
@@ -61,5 +68,6 @@
 -(IBAction)changeSwitchToAppKey:(id)sender;
 
 -(IBAction)addApplication:(id)sender;
+-(IBAction)removeApplication:(id)sender;
 
 @end

@@ -29,6 +29,8 @@ EventHotKeyRef QuitAppHotKeyRef;
 EventHotKeyID ToggleBroadcastingHotKey = { 'kiad', 1 };
 EventHotKeyID QuitHotKey = { 'kiad', 2 };
 
+EventHandlerRef AddApplicationEventHandlerRef;
+
 
 OSStatus HotKeyEventHandler(EventHandlerCallRef inRef, EventRef inEvent, void* inRefcon) {
     AppController* controller = (AppController*)inRefcon;
@@ -51,10 +53,27 @@ OSStatus HotKeyEventHandler(EventHandlerCallRef inRef, EventRef inEvent, void* i
     return noErr;
 }
 
+static OSStatus AddApplicationEventHandler(EventHandlerCallRef inRef, EventRef inEvent, void* inRefcon) {
+    AppController* controller = (AppController*)inRefcon;
+    
+    UInt32 eventKind = GetEventKind(inEvent);
+    ProcessSerialNumber psn;
+    CFStringRef processName = NULL;
+    pid_t pid = 0;
+    
+    GetEventParameter(inEvent, kEventParamProcessID, typeProcessSerialNumber, NULL, sizeof(ProcessSerialNumber), NULL, &psn);
+    CopyProcessName(&psn, &processName);
+    
+    //AXUIElementRef element = AXUIElementCreateApplication(pid);
+    [controller insertApplication:&psn];
+
+    return noErr;
+}
+
 @implementation AppController
 BOOL previousDockState;
 
-@synthesize broadcasting;
+@synthesize broadcasting, applications;
 
 -(void)setBroadcasting:(BOOL)isBroadcasting {
     broadcasting = isBroadcasting;
@@ -114,6 +133,8 @@ BOOL previousDockState;
     }
     [configurationsPopUp selectItemAtIndex:0];
     [self configurationSelectionChanged:self];
+    
+    //[applicationsTableView registerForDraggedTypes:[NSArray arrayWithObject:@"NSString"]];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
@@ -216,6 +237,7 @@ BOOL previousDockState;
         if ([name isEqualToString:configurationName]) {
             [infoPanel setTitle:@"Invalid Name"];
             [infoPanelMessage setStringValue:@"There is already a configuration with this name!"];
+            [infoPanelButton setTitle:@"OK"];
             
             [sheet orderOut:self];
             [NSApp beginSheet:infoPanel modalForWindow:plexerPanel modalDelegate:self didEndSelector:@selector(infoPanelEnded:code:context:) contextInfo:NULL];
@@ -287,7 +309,11 @@ BOOL previousDockState;
     
     SystemEventsApplication* systemEventsApplication = [SBApplication applicationWithBundleIdentifier:@"com.apple.systemevents"];
     SystemEventsDockPreferencesObject* dockPreferences = [systemEventsApplication dockPreferences];
-    [dockPreferences setAutohide:[autoHideDockBox state]];    
+    [dockPreferences setAutohide:[autoHideDockBox state]];
+    
+    [applications release];
+    applications = [[[NSMutableArray alloc] initWithArray:[[settings objectForKey:@"Applications"] componentsSeparatedByString:@":"]] retain];
+    [applicationsTableView reloadData];
 }
 
 -(IBAction)toggleAutoHideDock:(id)sender {
@@ -344,12 +370,141 @@ BOOL previousDockState;
 }
 
 -(IBAction)addApplication:(id)sender {
-    [infoPanelMessage setStringValue:@"Please click on the application you wish to add."];
+    [infoPanelMessage setStringValue:@"Please click on the application(s) you wish to add."];
+    [infoPanelButton setTitle:@"Done"];
     [NSApp beginSheet:infoPanel modalForWindow:plexerPanel modalDelegate:self didEndSelector:@selector(addApplicationDidEnd:code:context:) contextInfo:NULL];
+    
+    EventTypeSpec kAppEvents[] = {
+        { kEventClassApplication, kEventAppFrontSwitched },
+    };
+    
+    InstallApplicationEventHandler(AddApplicationEventHandler, GetEventTypeCount(kAppEvents), kAppEvents, self, &AddApplicationEventHandlerRef);
+}
+
+-(IBAction)removeApplication:(id)sender {
+    int idx = [applicationsTableView selectedRow];
+    if (idx >= 0) {
+        [applications removeObjectAtIndex:idx];
+        [applicationsTableView reloadData];
+        
+        --idx;
+        if (idx < 0) idx = 0;
+        [applicationsTableView selectRow:idx byExtendingSelection:NO];
+        
+        NSMutableDictionary* settings = [[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"ConfigurationSettings"] mutableCopy];
+        NSMutableDictionary* config = [[settings objectForKey:[configurationsPopUp titleOfSelectedItem]] mutableCopy];
+        if (config == nil) config = [[NSMutableDictionary alloc] init];
+        
+        NSString* appSetting = [applications componentsJoinedByString:@":"];
+        [config setValue:appSetting forKey:@"Applications"];
+        [settings setValue:config forKey:[configurationsPopUp titleOfSelectedItem]];
+        [[NSUserDefaults standardUserDefaults] setValue:settings forKey:@"ConfigurationSettings"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
 }
 
 -(void)addApplicationDidEnd:(NSPanel*)sheet code:(int)choice context:(void*)v {
     [sheet orderOut:self];
+    RemoveEventHandler(AddApplicationEventHandlerRef);
 }
+
+-(void)insertApplication:(ProcessSerialNumber*)psn {
+    FSRef fsRef;
+    GetProcessBundleLocation(psn, &fsRef);
+    
+    CFURLRef url = CFURLCreateFromFSRef(kCFAllocatorDefault, &fsRef);
+    NSString* path = (NSString*)CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
+    CFRelease(url);
+    
+    ProcessSerialNumber currentPSN;
+    GetCurrentProcess(&currentPSN);
+    GetProcessBundleLocation(&currentPSN, &fsRef);
+    url = CFURLCreateFromFSRef(kCFAllocatorDefault, &fsRef);
+    NSString* currentPath = (NSString*)CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
+    CFRelease(url);
+    
+    // Don't add ourself or any duplicates.
+    if ([path isEqualToString:currentPath] == YES)
+        return;
+    
+    if (applications == nil)
+        applications = [[[NSMutableArray alloc] init] retain];
+    
+    for (NSString* str in applications) {
+        if ([str isEqualToString:path] == YES)
+            return;
+    }
+    
+    [applications addObject:(NSString*)path];
+    [applicationsTableView reloadData];
+    
+    NSMutableDictionary* settings = [[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"ConfigurationSettings"] mutableCopy];
+    NSMutableDictionary* config = [[settings objectForKey:[configurationsPopUp titleOfSelectedItem]] mutableCopy];
+    if (config == nil) config = [[NSMutableDictionary alloc] init];
+    
+    NSString* appSetting = [applications componentsJoinedByString:@":"];
+    [config setValue:appSetting forKey:@"Applications"];
+    [settings setValue:config forKey:[configurationsPopUp titleOfSelectedItem]];
+    [[NSUserDefaults standardUserDefaults] setValue:settings forKey:@"ConfigurationSettings"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+
+// ---------------------------------------------------------------
+// Data source methods for the table views.
+
+-(NSInteger)numberOfRowsInTableView:(NSTableView*)aTableView {
+    if ([aTableView isEqual:applicationsTableView] == YES) {
+        return [applications count];
+    }
+    
+    return 0;
+}
+
+-(id)tableView:(NSTableView*)aTableView objectValueForTableColumn:(NSTableColumn*)aTableColumn row:(NSInteger)rowIndex {
+    if ([aTableView isEqual:applicationsTableView] == YES) {
+        if ([[aTableColumn identifier] isEqualToString:@"position"] == YES)
+            return [NSString stringWithFormat:@"%d", (rowIndex + 1)];
+        else if ([[aTableColumn identifier] isEqualToString:@"title"] == YES) {
+            NSLog(@"Returning friendly name for '@'", [applications objectAtIndex:rowIndex]);
+            NSString* str = [[applications objectAtIndex:rowIndex] stringByDeletingPathExtension];            
+            return  [[str pathComponents] lastObject];
+        }
+        else
+            return [applications objectAtIndex:rowIndex];
+    }
+    
+    return nil;
+}
+
+//-(BOOL)tableView:(NSTableView*)aTableView writeRowsWithIndexes:(NSIndexSet*)rowIndexes toPasteboard:(NSPasteboard*)pboard {
+//    if ([aTableView isEqual:applicationsTableView] == YES) {
+//        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:rowIndexes];
+//        [pboard declareTypes:[NSArray arrayWithObject:@"NSString"] owner:self];
+//        [pboard setData:data forType:@"NSString"];
+//        
+//        return YES;
+//    }
+//    
+//    return NO;
+//}
+//
+//-(NSDragOperation)tableView:(NSTableView*)tv validateDrop:(id <NSDraggingInfo>)info proposedRow:(int)row proposedDropOperation:(NSTableViewDropOperation)op {
+//    NSLog(@"validate Drop");
+//    return NSDragOperationEvery;
+//}
+//
+//- (BOOL)tableView:(NSTableView *)aTableView acceptDrop:(id <NSDraggingInfo>)info row:(int)row dropOperation:(NSTableViewDropOperation)operation
+//{
+//    NSPasteboard* pboard = [info draggingPasteboard];
+//    NSData* rowData = [pboard dataForType:@"NSString"];
+//    NSIndexSet* rowIndexes = [NSKeyedUnarchiver unarchiveObjectWithData:rowData];
+//    int dragRow = [rowIndexes firstIndex];
+//    
+//    [applications insertObject:(NSString*)rowData atIndex:row];
+//    [aTableView reloadData];
+//    
+//    return YES;
+//}
 
 @end
