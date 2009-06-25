@@ -29,6 +29,9 @@
     IBOutlet BWTransparentCheckbox* moveWindowsNearMenuBarBox;
     IBOutlet BWTransparentCheckbox* autoHideDockBox;
     
+    IBOutlet NSPanel* infoPanel;
+    IBOutlet NSTextField* infoPanelMessage;
+    
     BOOL broadcasting;
 }
 
@@ -51,5 +54,12 @@
 -(IBAction)toggleAutoHideDock:(id)sender;
 -(IBAction)toggleSaveWindowPositions:(id)sender;
 -(IBAction)toggleMoveWindowNearMenuBar:(id)sender;
+
+-(IBAction)dismissInfoPanel:(id)sender;
+
+-(IBAction)changeSwitchBetweenAppsKey:(id)sender;
+-(IBAction)changeSwitchToAppKey:(id)sender;
+
+-(IBAction)addApplication:(id)sender;
 
 @end
