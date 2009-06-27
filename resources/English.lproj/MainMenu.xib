@@ -8,7 +8,8 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="627"/>
+			<integer value="628"/>
+			<integer value="496"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1631,7 +1632,7 @@
 									<int key="NSsFlags">1</int>
 									<reference key="NSTarget" ref="645546389"/>
 									<string key="NSAction">_doScroller:</string>
-									<double key="NSCurValue">4.219409e-03</double>
+									<double key="NSCurValue">7.249712e-03</double>
 									<double key="NSPercent">5.714286e-01</double>
 								</object>
 							</object>
@@ -1979,9 +1980,6 @@
 			<object class="NSCustomObject" id="46162279">
 				<string key="NSClassName">SUUpdater</string>
 			</object>
-			<object class="NSUserDefaultsController" id="916143856">
-				<bool key="NSSharedInstance">YES</bool>
-			</object>
 			<object class="NSWindowTemplate" id="102295453">
 				<int key="NSWindowStyleMask">8211</int>
 				<int key="NSWindowBacking">2</int>
@@ -2152,6 +2150,12 @@
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
 				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
 			</object>
+			<object class="NSCustomObject" id="658352619">
+				<string key="NSClassName">KSGeneralSettingsController</string>
+			</object>
+			<object class="NSCustomObject" id="806865451">
+				<string key="NSClassName">KSConfigurationSettingsController</string>
+			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<object class="NSMutableArray" key="connectionRecords">
@@ -2245,108 +2249,12 @@
 					<int key="connectionID">573</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">checkForUpdates:</string>
-						<reference key="source" ref="46162279"/>
-						<reference key="destination" ref="504129994"/>
-					</object>
-					<int key="connectionID">583</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.SUEnableAutomaticChecks</string>
-						<reference key="source" ref="741271712"/>
-						<reference key="destination" ref="916143856"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="741271712"/>
-							<reference key="NSDestination" ref="916143856"/>
-							<string key="NSLabel">value: values.SUEnableAutomaticChecks</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.SUEnableAutomaticChecks</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">726</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">selectedTag: values.TogglePlexingKeyCode</string>
-						<reference key="source" ref="374181799"/>
-						<reference key="destination" ref="916143856"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="374181799"/>
-							<reference key="NSDestination" ref="916143856"/>
-							<string key="NSLabel">selectedTag: values.TogglePlexingKeyCode</string>
-							<string key="NSBinding">selectedTag</string>
-							<string key="NSKeyPath">values.TogglePlexingKeyCode</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSNullPlaceholder</string>
-								<real value="0.000000e+00" key="NS.object.0"/>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">728</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">selectedTag: values.QuitPlexerKeyCode</string>
-						<reference key="source" ref="536690641"/>
-						<reference key="destination" ref="916143856"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="536690641"/>
-							<reference key="NSDestination" ref="916143856"/>
-							<string key="NSLabel">selectedTag: values.QuitPlexerKeyCode</string>
-							<string key="NSBinding">selectedTag</string>
-							<string key="NSKeyPath">values.QuitPlexerKeyCode</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSNullPlaceholder</string>
-								<real value="0.000000e+00" key="NS.object.0"/>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">729</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">save:</string>
-						<reference key="source" ref="916143856"/>
-						<reference key="destination" ref="741271712"/>
-					</object>
-					<int key="connectionID">732</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">save:</string>
-						<reference key="source" ref="916143856"/>
-						<reference key="destination" ref="536690641"/>
-					</object>
-					<int key="connectionID">736</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">changeTogglePlexingHotKey:</string>
-						<reference key="source" ref="72426231"/>
-						<reference key="destination" ref="374181799"/>
-					</object>
-					<int key="connectionID">737</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">configurationsPopUp</string>
 						<reference key="source" ref="72426231"/>
 						<reference key="destination" ref="411166652"/>
 					</object>
 					<int key="connectionID">817</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">renameCurrentConfiguration:</string>
-						<reference key="source" ref="72426231"/>
-						<reference key="destination" ref="104177466"/>
-					</object>
-					<int key="connectionID">819</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
@@ -2397,22 +2305,6 @@
 					<int key="connectionID">843</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">configurationSelectionChanged:</string>
-						<reference key="source" ref="72426231"/>
-						<reference key="destination" ref="411166652"/>
-					</object>
-					<int key="connectionID">889</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">removeCurrentConfiguration:</string>
-						<reference key="source" ref="72426231"/>
-						<reference key="destination" ref="850079417"/>
-					</object>
-					<int key="connectionID">892</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">saveWindowSizeBox</string>
 						<reference key="source" ref="72426231"/>
@@ -2435,78 +2327,6 @@
 						<reference key="destination" ref="226661986"/>
 					</object>
 					<int key="connectionID">895</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">toggleSaveWindowPositions:</string>
-						<reference key="source" ref="72426231"/>
-						<reference key="destination" ref="789549677"/>
-					</object>
-					<int key="connectionID">896</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">toggleMoveWindowNearMenuBar:</string>
-						<reference key="source" ref="72426231"/>
-						<reference key="destination" ref="749774581"/>
-					</object>
-					<int key="connectionID">897</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">toggleAutoHideDock:</string>
-						<reference key="source" ref="72426231"/>
-						<reference key="destination" ref="226661986"/>
-					</object>
-					<int key="connectionID">898</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">changeSwitchBetweenAppsKey:</string>
-						<reference key="source" ref="72426231"/>
-						<reference key="destination" ref="276707688"/>
-					</object>
-					<int key="connectionID">910</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">changeSwitchToAppKey:</string>
-						<reference key="source" ref="72426231"/>
-						<reference key="destination" ref="503628120"/>
-					</object>
-					<int key="connectionID">911</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">selectedTag: values.SwitchBetweenAppsModifierCode</string>
-						<reference key="source" ref="276707688"/>
-						<reference key="destination" ref="916143856"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="276707688"/>
-							<reference key="NSDestination" ref="916143856"/>
-							<string key="NSLabel">selectedTag: values.SwitchBetweenAppsModifierCode</string>
-							<string key="NSBinding">selectedTag</string>
-							<string key="NSKeyPath">values.SwitchBetweenAppsModifierCode</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">913</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">selectedTag: values.SwitchToAppModifierCode</string>
-						<reference key="source" ref="503628120"/>
-						<reference key="destination" ref="916143856"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="503628120"/>
-							<reference key="NSDestination" ref="916143856"/>
-							<string key="NSLabel">selectedTag: values.SwitchToAppModifierCode</string>
-							<string key="NSBinding">selectedTag</string>
-							<string key="NSKeyPath">values.SwitchToAppModifierCode</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">915</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -2541,14 +2361,6 @@
 					<int key="connectionID">931</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">addApplication:</string>
-						<reference key="source" ref="72426231"/>
-						<reference key="destination" ref="739828423"/>
-					</object>
-					<int key="connectionID">932</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">applicationsTableView</string>
 						<reference key="source" ref="72426231"/>
@@ -2565,14 +2377,6 @@
 					<int key="connectionID">936</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">removeApplication:</string>
-						<reference key="source" ref="72426231"/>
-						<reference key="destination" ref="692343744"/>
-					</object>
-					<int key="connectionID">941</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">infoPanelButton</string>
 						<reference key="source" ref="72426231"/>
@@ -2581,36 +2385,156 @@
 					<int key="connectionID">942</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">addKeys:</string>
-						<reference key="source" ref="72426231"/>
-						<reference key="destination" ref="1047405410"/>
-					</object>
-					<int key="connectionID">949</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">removeKeys:</string>
-						<reference key="source" ref="72426231"/>
-						<reference key="destination" ref="100188796"/>
-					</object>
-					<int key="connectionID">950</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">changeKeyOptionSelected:</string>
-						<reference key="source" ref="72426231"/>
-						<reference key="destination" ref="753650197"/>
-					</object>
-					<int key="connectionID">951</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">updater</string>
 						<reference key="source" ref="72426231"/>
 						<reference key="destination" ref="46162279"/>
 					</object>
 					<int key="connectionID">952</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">changeBroadcastingKey:</string>
+						<reference key="source" ref="658352619"/>
+						<reference key="destination" ref="374181799"/>
+					</object>
+					<int key="connectionID">963</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">changeSwitchBetweenApplicationsModifier:</string>
+						<reference key="source" ref="658352619"/>
+						<reference key="destination" ref="276707688"/>
+					</object>
+					<int key="connectionID">964</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">changeQuitAppKey:</string>
+						<reference key="source" ref="658352619"/>
+						<reference key="destination" ref="536690641"/>
+					</object>
+					<int key="connectionID">965</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">changeSwitchToAppModifier:</string>
+						<reference key="source" ref="658352619"/>
+						<reference key="destination" ref="503628120"/>
+					</object>
+					<int key="connectionID">966</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">changeAutomaticallyCheckForUpdatesSetting:</string>
+						<reference key="source" ref="658352619"/>
+						<reference key="destination" ref="741271712"/>
+					</object>
+					<int key="connectionID">967</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">checkForUpdates:</string>
+						<reference key="source" ref="46162279"/>
+						<reference key="destination" ref="504129994"/>
+					</object>
+					<int key="connectionID">968</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">changeSelectedConfiguration:</string>
+						<reference key="source" ref="806865451"/>
+						<reference key="destination" ref="411166652"/>
+					</object>
+					<int key="connectionID">970</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">removeSelectedConfiguration:</string>
+						<reference key="source" ref="806865451"/>
+						<reference key="destination" ref="850079417"/>
+					</object>
+					<int key="connectionID">971</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">renameSelectedConfiguration:</string>
+						<reference key="source" ref="806865451"/>
+						<reference key="destination" ref="104177466"/>
+					</object>
+					<int key="connectionID">972</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">changeSaveWindowPositionAndLayoutSetting:</string>
+						<reference key="source" ref="806865451"/>
+						<reference key="destination" ref="789549677"/>
+					</object>
+					<int key="connectionID">973</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">changeToggleDockHidingSetting:</string>
+						<reference key="source" ref="806865451"/>
+						<reference key="destination" ref="226661986"/>
+					</object>
+					<int key="connectionID">974</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">changeMoveWindowsNearMenuBarSetting:</string>
+						<reference key="source" ref="806865451"/>
+						<reference key="destination" ref="749774581"/>
+					</object>
+					<int key="connectionID">975</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">changeSelectedKeyOption:</string>
+						<reference key="source" ref="806865451"/>
+						<reference key="destination" ref="753650197"/>
+					</object>
+					<int key="connectionID">976</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">addKeyOptionKey:</string>
+						<reference key="source" ref="806865451"/>
+						<reference key="destination" ref="1047405410"/>
+					</object>
+					<int key="connectionID">977</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">launchApplications:</string>
+						<reference key="source" ref="806865451"/>
+						<reference key="destination" ref="961758492"/>
+					</object>
+					<int key="connectionID">979</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">removeApplication:</string>
+						<reference key="source" ref="806865451"/>
+						<reference key="destination" ref="692343744"/>
+					</object>
+					<int key="connectionID">981</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">removeKeyOptionKey:</string>
+						<reference key="source" ref="806865451"/>
+						<reference key="destination" ref="100188796"/>
+					</object>
+					<int key="connectionID">982</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">addApplication:</string>
+						<reference key="source" ref="806865451"/>
+						<reference key="destination" ref="739828423"/>
+					</object>
+					<int key="connectionID">983</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -2892,11 +2816,7 @@
 						<int key="objectID">582</int>
 						<reference key="object" ref="46162279"/>
 						<reference key="parent" ref="1049"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">590</int>
-						<reference key="object" ref="916143856"/>
-						<reference key="parent" ref="1049"/>
+						<string key="objectName">Sparkle Updater</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">627</int>
@@ -3987,6 +3907,18 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 						<reference key="object" ref="936535223"/>
 						<reference key="parent" ref="413497376"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">962</int>
+						<reference key="object" ref="658352619"/>
+						<reference key="parent" ref="1049"/>
+						<string key="objectName">General Settings Controller</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">969</int>
+						<reference key="object" ref="806865451"/>
+						<reference key="parent" ref="1049"/>
+						<string key="objectName">Configuration Settings Controller</string>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -4061,7 +3993,6 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 					<string>527.IBPluginDependency</string>
 					<string>574.IBPluginDependency</string>
 					<string>582.IBPluginDependency</string>
-					<string>590.IBPluginDependency</string>
 					<string>627.IBEditorWindowLastContentRect</string>
 					<string>627.IBWindowTemplateEditedContentRect</string>
 					<string>627.NSWindowTemplate.visibleAtLaunch</string>
@@ -4232,6 +4163,8 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 					<string>945.IBPluginDependency</string>
 					<string>946.IBPluginDependency</string>
 					<string>948.IBPluginDependency</string>
+					<string>962.IBPluginDependency</string>
+					<string>969.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -4303,9 +4236,8 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{678, 62}, {596, 319}}</string>
-					<string>{{678, 62}, {596, 319}}</string>
+					<string>{{1208, 112}, {596, 319}}</string>
+					<string>{{1208, 112}, {596, 319}}</string>
 					<boolean value="YES" id="5"/>
 					<reference ref="5"/>
 					<boolean value="NO" id="6"/>
@@ -4476,6 +4408,8 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 					<string>com.brandonwalkin.BWToolkit</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.brandonwalkin.BWToolkit</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -4498,7 +4432,7 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">961</int>
+			<int key="maxID">983</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -4598,8 +4532,99 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">AppController.h</string>
+						<string key="minorKey">src/controllers/KSAppController.h</string>
 					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">KSConfigurationSettingsController</string>
+					<string key="superclassName">NSWindowController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSMutableArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>addApplication:</string>
+							<string>addKeyOptionKey:</string>
+							<string>changeMoveWindowsNearMenuBarSetting:</string>
+							<string>changeSaveWindowPositionAndLayoutSetting:</string>
+							<string>changeSelectedConfiguration:</string>
+							<string>changeSelectedKeyOption:</string>
+							<string>changeToggleDockHidingSetting:</string>
+							<string>launchApplications:</string>
+							<string>removeApplication:</string>
+							<string>removeKeyOptionKey:</string>
+							<string>removeSelectedConfiguration:</string>
+							<string>renameSelectedConfiguration:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">src/controllers/KSConfigurationSettingsController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">KSGeneralSettingsController</string>
+					<string key="superclassName">NSWindowController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSMutableArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>changeAutomaticallyCheckForUpdatesSetting:</string>
+							<string>changeBroadcastingKey:</string>
+							<string>changeQuitAppKey:</string>
+							<string>changeSwitchBetweenApplicationsModifier:</string>
+							<string>changeSwitchToAppModifier:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">src/controllers/KSGeneralSettingsController.h</string>
+					</object>
+				</object>
+			</object>
+			<object class="NSMutableArray" key="referencedPartialClassDescriptionsV3.1+">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="725197588">
+						<string key="majorKey">IBDocumentRelativeSource</string>
+						<string key="minorKey">../../../../../Downloads/Sparkle 1/Sparkle.framework/Headers/SUUpdater.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">SUUpdater</string>
+					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">checkForUpdates:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">delegate</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<reference key="sourceIdentifier" ref="725197588"/>
 				</object>
 			</object>
 		</object>

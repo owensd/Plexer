@@ -11,4 +11,19 @@
 
 @implementation KSGeneralSettingsController
 
+-(IBAction)changeBroadcastingKey:(id)sender {
+}
+
+-(IBAction)changeSwitchBetweenApplicationsModifier:(id)sender {
+}
+
+-(IBAction)changeQuitAppKey:(id)sender {
+}
+
+-(IBAction)changeSwitchToAppModifier:(id)sender {
+}
+
+-(IBAction)changeAutomaticallyCheckForUpdatesSetting:(id)sender {
+}
+
 @end

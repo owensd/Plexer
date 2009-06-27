@@ -40,6 +40,9 @@
 		7DA6EB560FF619C50028CA3B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7DA6EB550FF619C50028CA3B /* InfoPlist.strings */; };
 		7DA6EB5E0FF61A5F0028CA3B /* KSAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DA6EB5D0FF61A5F0028CA3B /* KSAppController.m */; };
 		7DA6EB670FF61BD30028CA3B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DA6EB660FF61BD30028CA3B /* MainMenu.xib */; };
+		7DA6EBA60FF626420028CA3B /* InfoAlertPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DA6EBA50FF626420028CA3B /* InfoAlertPanel.xib */; };
+		7DA6EBAD0FF626B40028CA3B /* ConfigurationNamePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DA6EBAC0FF626B40028CA3B /* ConfigurationNamePanel.xib */; };
+		7DA6EBB00FF626E60028CA3B /* KSConfigurationSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DA6EBAF0FF626E60028CA3B /* KSConfigurationSettingsController.m */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -102,6 +105,10 @@
 		7DA0A8840FF0AFB5006503FC /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = ../../../Library/Frameworks/BWToolkitFramework.framework; sourceTree = SOURCE_ROOT; };
 		7DA6EB5C0FF61A5F0028CA3B /* KSAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSAppController.h; sourceTree = "<group>"; };
 		7DA6EB5D0FF61A5F0028CA3B /* KSAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSAppController.m; sourceTree = "<group>"; };
+		7DA6EBA20FF626330028CA3B /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/InfoAlertPanel.xib; sourceTree = "<group>"; };
+		7DA6EBA70FF626820028CA3B /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/ConfigurationNamePanel.xib; sourceTree = "<group>"; };
+		7DA6EBAE0FF626E60028CA3B /* KSConfigurationSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSConfigurationSettingsController.h; sourceTree = "<group>"; };
+		7DA6EBAF0FF626E60028CA3B /* KSConfigurationSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSConfigurationSettingsController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Plexer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plexer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -193,6 +200,8 @@
 				7D8D33C60FEF8B3E00912722 /* plexercast.xml */,
 				7D8D32A80FEF54A000912722 /* dsa_pub.pem */,
 				7D8D321E0FEF48D900912722 /* version.xcconfig */,
+				7DA6EBA50FF626420028CA3B /* InfoAlertPanel.xib */,
+				7DA6EBAC0FF626B40028CA3B /* ConfigurationNamePanel.xib */,
 			);
 			path = resources;
 			sourceTree = "<group>";
@@ -225,6 +234,8 @@
 				7DA6EB5D0FF61A5F0028CA3B /* KSAppController.m */,
 				7D1D67590FF6105C0013EEB0 /* KSGeneralSettingsController.h */,
 				7D1D675A0FF6105C0013EEB0 /* KSGeneralSettingsController.m */,
+				7DA6EBAE0FF626E60028CA3B /* KSConfigurationSettingsController.h */,
+				7DA6EBAF0FF626E60028CA3B /* KSConfigurationSettingsController.m */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -303,6 +314,8 @@
 				7D8D300D0FEE045300912722 /* System Events.app in Resources */,
 				7D8D321F0FEF48D900912722 /* version.xcconfig in Resources */,
 				7D8D32A90FEF54A000912722 /* dsa_pub.pem in Resources */,
+				7DA6EBA60FF626420028CA3B /* InfoAlertPanel.xib in Resources */,
+				7DA6EBAD0FF626B40028CA3B /* ConfigurationNamePanel.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,6 +362,7 @@
 				7D1D67530FF60B410013EEB0 /* KSConfiguration.m in Sources */,
 				7D1D675B0FF6105C0013EEB0 /* KSGeneralSettingsController.m in Sources */,
 				7DA6EB5E0FF61A5F0028CA3B /* KSAppController.m in Sources */,
+				7DA6EBB00FF626E60028CA3B /* KSConfigurationSettingsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,6 +383,22 @@
 				1DDD58150DA1D0A300B32029 /* English */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		7DA6EBA50FF626420028CA3B /* InfoAlertPanel.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7DA6EBA20FF626330028CA3B /* English */,
+			);
+			name = InfoAlertPanel.xib;
+			sourceTree = "<group>";
+		};
+		7DA6EBAC0FF626B40028CA3B /* ConfigurationNamePanel.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7DA6EBA70FF626820028CA3B /* English */,
+			);
+			name = ConfigurationNamePanel.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
