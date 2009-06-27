@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <BWToolkitFramework/BWToolkitFramework.h>
+#import <Sparkle/Sparkle.h>
 
 
 @interface AppController : NSObject {
@@ -36,7 +37,13 @@
     
     BOOL broadcasting;
     NSMutableArray* applications;
+    
+    IBOutlet SUUpdater* updater;
+    
+    BOOL applicationConfigurationEnabled;
 }
+
+@property BOOL applicationConfigurationEnabled;
 
 @property (retain) NSArray* applications;
 
@@ -69,5 +76,9 @@
 
 -(IBAction)addApplication:(id)sender;
 -(IBAction)removeApplication:(id)sender;
+
+-(IBAction)addKeys:(id)sender;
+-(IBAction)removeKeys:(id)sender;
+-(IBAction)changeKeyOptionSelected:(id)sender;
 
 @end

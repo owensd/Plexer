@@ -6,7 +6,7 @@
 //  Copyright 2009 Kiad Software. All rights reserved.
 //
 
-#import "AppController.h"
+#import "KSAppController.h"
 #import <Carbon/Carbon.h>
 #import "EventHandling.h"
 #import "System Events.h"
@@ -31,6 +31,7 @@ EventHotKeyID QuitHotKey = { 'kiad', 2 };
 
 EventHandlerRef AddApplicationEventHandlerRef;
 
+CFMachPortRef AddKeyEventTap;
 
 OSStatus HotKeyEventHandler(EventHandlerCallRef inRef, EventRef inEvent, void* inRefcon) {
     AppController* controller = (AppController*)inRefcon;
@@ -53,18 +54,22 @@ OSStatus HotKeyEventHandler(EventHandlerCallRef inRef, EventRef inEvent, void* i
     return noErr;
 }
 
+CGEventRef AddKeyEventHandler(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon) {
+    NSLog(@"in the key tap.");
+    
+    return NULL;
+}
+
+
 static OSStatus AddApplicationEventHandler(EventHandlerCallRef inRef, EventRef inEvent, void* inRefcon) {
     AppController* controller = (AppController*)inRefcon;
-    
-    UInt32 eventKind = GetEventKind(inEvent);
+
     ProcessSerialNumber psn;
     CFStringRef processName = NULL;
-    pid_t pid = 0;
     
     GetEventParameter(inEvent, kEventParamProcessID, typeProcessSerialNumber, NULL, sizeof(ProcessSerialNumber), NULL, &psn);
     CopyProcessName(&psn, &processName);
     
-    //AXUIElementRef element = AXUIElementCreateApplication(pid);
     [controller insertApplication:&psn];
 
     return noErr;
@@ -73,7 +78,7 @@ static OSStatus AddApplicationEventHandler(EventHandlerCallRef inRef, EventRef i
 @implementation AppController
 BOOL previousDockState;
 
-@synthesize broadcasting, applications;
+@synthesize broadcasting, applications, applicationConfigurationEnabled;
 
 -(void)setBroadcasting:(BOOL)isBroadcasting {
     broadcasting = isBroadcasting;
@@ -82,14 +87,16 @@ BOOL previousDockState;
 -(IBAction)changeTogglePlexingHotKey:(id)sender {
     UnregisterEventHotKey(ToggleBroadcastingHotKeyRef);
     int togglePlexingKeyCode = [(NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:@"TogglePlexingKeyCode"] intValue];
-    RegisterEventHotKey(togglePlexingKeyCode, 0, ToggleBroadcastingHotKey, GetApplicationEventTarget(), 0, &ToggleBroadcastingHotKeyRef);
+    if (togglePlexingKeyCode != -1)
+        RegisterEventHotKey(togglePlexingKeyCode, 0, ToggleBroadcastingHotKey, GetApplicationEventTarget(), 0, &ToggleBroadcastingHotKeyRef);
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 -(IBAction)changeQuitAppHotKey:(id)sender {
     UnregisterEventHotKey(QuitAppHotKeyRef);
     int quitKeyCode = [(NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:@"QuitPlexerKeyCode"] intValue];
-    RegisterEventHotKey(quitKeyCode, 0, QuitHotKey, GetApplicationEventTarget(), 0, &QuitAppHotKeyRef);
+    if (quitKeyCode != -1)
+        RegisterEventHotKey(quitKeyCode, 0, QuitHotKey, GetApplicationEventTarget(), 0, &QuitAppHotKeyRef);
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -102,6 +109,9 @@ BOOL previousDockState;
 }
 
 -(void)awakeFromNib {
+    if ([updater automaticallyChecksForUpdates] == YES)
+        [updater checkForUpdatesInBackground];
+    
     statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength] retain];
     
     NSBundle* bundle = [NSBundle mainBundle];
@@ -129,6 +139,7 @@ BOOL previousDockState;
     int idx = 0;
     for (NSString* config in configurations) {
         [configurationsPopUp insertItemWithTitle:config atIndex:idx];
+        [configurationsPopUp itemAtIndex:idx].tag = 1;
         ++idx;
     }
     [configurationsPopUp selectItemAtIndex:0];
@@ -249,6 +260,7 @@ BOOL previousDockState;
     if (choice == kConfigNew) {
         [configurationsPopUp insertItemWithTitle:configurationName atIndex:([configurationsPopUp numberOfItems] - 2)];
         [configurationsPopUp selectItemAtIndex:([configurationsPopUp numberOfItems] - 3)];
+        [configurationsPopUp selectedItem].tag = 1;
         
         NSArray* theArray = [[NSUserDefaults standardUserDefaults] arrayForKey:@"Configurations"];
         NSMutableArray* configurations = [[NSMutableArray alloc] init];
@@ -314,6 +326,8 @@ BOOL previousDockState;
     [applications release];
     applications = [[[NSMutableArray alloc] initWithArray:[[settings objectForKey:@"Applications"] componentsSeparatedByString:@":"]] retain];
     [applicationsTableView reloadData];
+    
+    applicationConfigurationEnabled = [self configurationsPopUpIsEmpty];
 }
 
 -(IBAction)toggleAutoHideDock:(id)sender {
@@ -447,6 +461,28 @@ BOOL previousDockState;
     [settings setValue:config forKey:[configurationsPopUp titleOfSelectedItem]];
     [[NSUserDefaults standardUserDefaults] setValue:settings forKey:@"ConfigurationSettings"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(IBAction)addKeys:(id)sender {
+    [infoPanelMessage setStringValue:@"Press the key with any modifier you wish to add."];
+    [infoPanelButton setTitle:@"Done"];
+    [NSApp beginSheet:infoPanel modalForWindow:plexerPanel modalDelegate:self didEndSelector:@selector(addKeyDidEnd:code:context:) contextInfo:NULL];
+
+    ProcessSerialNumber psn;
+    GetCurrentProcess(&psn);
+    
+    AddKeyEventTap = CGEventTapCreateForPSN(&psn, kCGHeadInsertEventTap, kCGEventTapOptionListenOnly, kCGEventKeyDown, AddKeyEventHandler, self);
+}
+
+-(void)addKeyDidEnd:(NSPanel*)sheet code:(int)choice context:(void*)v {
+    [sheet orderOut:self];
+    CFRelease(AddKeyEventTap);
+}
+
+-(IBAction)removeKeys:(id)sender {
+}
+
+-(IBAction)changeKeyOptionSelected:(id)sender {
 }
 
 

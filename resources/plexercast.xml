@@ -7,6 +7,51 @@
         <language>en</language>
 
 		<item>
+			<title>Version 0.3.2</title>
+			<sparkle:releaseNotesLink>http://www.kiadsoftware.com/apps/plexer/release-notes.html#version-0.3.2</sparkle:releaseNotesLink>
+			<pubDate>Fri, 26 Jun 2009 00:51:02 -0700</pubDate>
+			<enclosure
+				url="http://www.kiadsoftware.com/apps/plexer/files/Plexer 0.3.2.zip"
+				sparkle:version="348"
+				sparkle:shortVersionString="0.3.2"
+				type="application/octet-stream"
+				length="2492755"
+				sparkle:dsaSignature="MC0CFFt4DcYMhM394TLbcSWNqte4VDMWAhUAhkxaZ9amlb4v6srJkl0mIcdKkCU="
+			/>
+			<sparkle:minimumSystemVersion>10.5.0</sparkle:minimumSystemVersion>
+		</item>
+        
+		<item>
+			<title>Version 0.3.1</title>
+			<sparkle:releaseNotesLink>http://www.kiadsoftware.com/apps/plexer/release-notes.html#version-0.3.1</sparkle:releaseNotesLink>
+			<pubDate>Fri, 26 Jun 2009 00:32:14 -0700</pubDate>
+			<enclosure
+				url="http://www.kiadsoftware.com/apps/plexer/files/Plexer 0.3.1.zip"
+				sparkle:version="345"
+				sparkle:shortVersionString="0.3.1"
+				type="application/octet-stream"
+				length="2492541"
+				sparkle:dsaSignature="MC4CFQCC7x5eAl0n/Dx7qE4FiJ2V8xWUjAIVAJkQ92LsFL6/ZrKQvnQpVOXKTfkl"
+			/>
+			<sparkle:minimumSystemVersion>10.5.0</sparkle:minimumSystemVersion>
+		</item>
+        
+		<item>
+			<title>Version 0.3.0</title>
+			<sparkle:releaseNotesLink>http://www.kiadsoftware.com/apps/plexer/release-notes.html#version-0.3.0</sparkle:releaseNotesLink>
+			<pubDate>Fri, 26 Jun 2009 00:01:09 -0700</pubDate>
+			<enclosure
+				url="http://www.kiadsoftware.com/apps/plexer/files/Plexer 0.3.0.zip"
+				sparkle:version="341"
+				sparkle:shortVersionString="0.3.0"
+				type="application/octet-stream"
+				length="2492525"
+				sparkle:dsaSignature="MC0CFAqi9UhmYmfKix7qWujX3UMJym+gAhUAudQj6Q9S4zIdFbHr+GNKAPyqbEQ="
+			/>
+			<sparkle:minimumSystemVersion>10.5.0</sparkle:minimumSystemVersion>
+		</item>
+        
+		<item>
 			<title>Version 0.2.0</title>
 			<sparkle:releaseNotesLink>http://www.kiadsoftware.com/apps/plexer/release-notes.html#version-0.2.0</sparkle:releaseNotesLink>
 			<pubDate>Tue, 23 Jun 2009 02:54:45 -0700</pubDate>
