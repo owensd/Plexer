@@ -14,6 +14,16 @@
 -(void)awakeFromNib {
 }
 
+
+// ------------------------------------------------------
+// Sparkle delegate methods
+// ------------------------------------------------------
+
+// We never want the user to be prompted by the Sparkle UI to automatically check for updates.
+-(BOOL)updaterShouldPromptForPermissionToCheckForUpdates:(SUUpdater*)bundle {
+    return NO;
+}
+
 @end
 
 

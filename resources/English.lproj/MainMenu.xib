@@ -1111,28 +1111,28 @@
 									<string key="NSAction">_popUpItemAction:</string>
 									<int key="NSTag">-1</int>
 									<reference key="NSTarget" ref="1013959701"/>
-									<object class="NSMenu" key="NSSubmenu" id="939180088">
+									<object class="NSMenu" key="NSSubmenu" id="943124986">
 										<string key="NSTitle"/>
 										<object class="NSMutableArray" key="NSMenuItems">
 											<bool key="EncodedWithXMLCoder">YES</bool>
-											<object class="NSMenuItem" id="611666126">
-												<reference key="NSMenu" ref="939180088"/>
+											<object class="NSMenuItem" id="570687710">
+												<reference key="NSMenu" ref="943124986"/>
 												<string key="NSTitle">Item 1</string>
 												<string key="NSKeyEquiv"/>
 												<int key="NSMnemonicLoc">2147483647</int>
 												<reference key="NSOnImage" ref="743316579"/>
 												<reference key="NSMixedImage" ref="820313031"/>
 											</object>
-											<object class="NSMenuItem" id="327967935">
-												<reference key="NSMenu" ref="939180088"/>
+											<object class="NSMenuItem" id="958718042">
+												<reference key="NSMenu" ref="943124986"/>
 												<string key="NSTitle">Item 2</string>
 												<string key="NSKeyEquiv"/>
 												<int key="NSMnemonicLoc">2147483647</int>
 												<reference key="NSOnImage" ref="743316579"/>
 												<reference key="NSMixedImage" ref="820313031"/>
 											</object>
-											<object class="NSMenuItem" id="252146447">
-												<reference key="NSMenu" ref="939180088"/>
+											<object class="NSMenuItem" id="416392719">
+												<reference key="NSMenu" ref="943124986"/>
 												<string key="NSTitle">Item 3</string>
 												<string key="NSKeyEquiv"/>
 												<int key="NSMnemonicLoc">2147483647</int>
@@ -2185,7 +2185,7 @@
 			<object class="NSCustomObject" id="806865451">
 				<string key="NSClassName">KSConfigurationSettingsController</string>
 			</object>
-			<object class="NSCustomObject" id="505344247">
+			<object class="NSCustomObject" id="827034566">
 				<string key="NSClassName">KSUserSettings</string>
 			</object>
 		</object>
@@ -2388,7 +2388,7 @@
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">userSettings</string>
 						<reference key="source" ref="806865451"/>
-						<reference key="destination" ref="505344247"/>
+						<reference key="destination" ref="827034566"/>
 					</object>
 					<int key="connectionID">985</int>
 				</object>
@@ -2396,7 +2396,7 @@
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">userSettings</string>
 						<reference key="source" ref="658352619"/>
-						<reference key="destination" ref="505344247"/>
+						<reference key="destination" ref="827034566"/>
 					</object>
 					<int key="connectionID">986</int>
 				</object>
@@ -2596,10 +2596,10 @@
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: automaticallyCheckForUpdates</string>
 						<reference key="source" ref="741271712"/>
-						<reference key="destination" ref="505344247"/>
+						<reference key="destination" ref="827034566"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="741271712"/>
-							<reference key="NSDestination" ref="505344247"/>
+							<reference key="NSDestination" ref="827034566"/>
 							<string key="NSLabel">value: automaticallyCheckForUpdates</string>
 							<string key="NSBinding">value</string>
 							<string key="NSKeyPath">automaticallyCheckForUpdates</string>
@@ -2612,10 +2612,10 @@
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">selectedTag: quitAppKeyCode</string>
 						<reference key="source" ref="536690641"/>
-						<reference key="destination" ref="505344247"/>
+						<reference key="destination" ref="827034566"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="536690641"/>
-							<reference key="NSDestination" ref="505344247"/>
+							<reference key="NSDestination" ref="827034566"/>
 							<string key="NSLabel">selectedTag: quitAppKeyCode</string>
 							<string key="NSBinding">selectedTag</string>
 							<string key="NSKeyPath">quitAppKeyCode</string>
@@ -2628,10 +2628,10 @@
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">selectedTag: switchToAppKeyCode</string>
 						<reference key="source" ref="503628120"/>
-						<reference key="destination" ref="505344247"/>
+						<reference key="destination" ref="827034566"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="503628120"/>
-							<reference key="NSDestination" ref="505344247"/>
+							<reference key="NSDestination" ref="827034566"/>
 							<string key="NSLabel">selectedTag: switchToAppKeyCode</string>
 							<string key="NSBinding">selectedTag</string>
 							<string key="NSKeyPath">switchToAppKeyCode</string>
@@ -2644,10 +2644,10 @@
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">selectedTag: switchBetweenAppsKeyCode</string>
 						<reference key="source" ref="276707688"/>
-						<reference key="destination" ref="505344247"/>
+						<reference key="destination" ref="827034566"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="276707688"/>
-							<reference key="NSDestination" ref="505344247"/>
+							<reference key="NSDestination" ref="827034566"/>
 							<string key="NSLabel">selectedTag: switchBetweenAppsKeyCode</string>
 							<string key="NSBinding">selectedTag</string>
 							<string key="NSKeyPath">switchBetweenAppsKeyCode</string>
@@ -2660,10 +2660,10 @@
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">selectedTag: toggleBroadcastingKeyCode</string>
 						<reference key="source" ref="374181799"/>
-						<reference key="destination" ref="505344247"/>
+						<reference key="destination" ref="827034566"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="374181799"/>
-							<reference key="NSDestination" ref="505344247"/>
+							<reference key="NSDestination" ref="827034566"/>
 							<string key="NSLabel">selectedTag: toggleBroadcastingKeyCode</string>
 							<string key="NSBinding">selectedTag</string>
 							<string key="NSKeyPath">toggleBroadcastingKeyCode</string>
@@ -2671,6 +2671,14 @@
 						</object>
 					</object>
 					<int key="connectionID">1048</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="46162279"/>
+						<reference key="destination" ref="72426231"/>
+					</object>
+					<int key="connectionID">1049</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -3436,7 +3444,7 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 						<reference key="object" ref="914632284"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="939180088"/>
+							<reference ref="943124986"/>
 						</object>
 						<reference key="parent" ref="36615889"/>
 					</object>
@@ -4061,34 +4069,34 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">984</int>
-						<reference key="object" ref="505344247"/>
+						<reference key="object" ref="827034566"/>
 						<reference key="parent" ref="1049"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">992</int>
-						<reference key="object" ref="939180088"/>
+						<reference key="object" ref="943124986"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="611666126"/>
-							<reference ref="327967935"/>
-							<reference ref="252146447"/>
+							<reference ref="570687710"/>
+							<reference ref="958718042"/>
+							<reference ref="416392719"/>
 						</object>
 						<reference key="parent" ref="914632284"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">993</int>
-						<reference key="object" ref="611666126"/>
-						<reference key="parent" ref="939180088"/>
+						<reference key="object" ref="570687710"/>
+						<reference key="parent" ref="943124986"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">994</int>
-						<reference key="object" ref="327967935"/>
-						<reference key="parent" ref="939180088"/>
+						<reference key="object" ref="958718042"/>
+						<reference key="parent" ref="943124986"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">995</int>
-						<reference key="object" ref="252146447"/>
-						<reference key="parent" ref="939180088"/>
+						<reference key="object" ref="416392719"/>
+						<reference key="parent" ref="943124986"/>
 					</object>
 				</object>
 			</object>
@@ -4613,7 +4621,7 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1048</int>
+			<int key="maxID">1049</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

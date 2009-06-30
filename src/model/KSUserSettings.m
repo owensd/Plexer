@@ -52,7 +52,7 @@ NSString* AutomaticallyCheckForUpdates = @"SUEnableAutomaticChecks";
 }
 
 -(BOOL)automaticallyCheckForUpdates {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:SwitchToAppKeyCode];
+    return [[NSUserDefaults standardUserDefaults] boolForKey:AutomaticallyCheckForUpdates];
 }
 -(void)setAutomaticallyCheckForUpdates:(BOOL)keyCode {
     [[NSUserDefaults standardUserDefaults] setBool:keyCode forKey:AutomaticallyCheckForUpdates];
