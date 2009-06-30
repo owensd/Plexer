@@ -16,9 +16,9 @@
     NSArray*  roundRobinKeys;
 }
 
-@property NSString* name;
-@property NSArray* applications;
-@property NSArray* blackListKeys;
-@property NSArray* roundRobinKeys;
+@property (copy) NSString* name;
+@property (retain) NSArray* applications;
+@property (retain) NSArray* blackListKeys;
+@property (retain) NSArray* roundRobinKeys;
 
 @end

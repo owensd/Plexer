@@ -8,10 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 #import <BWToolkitFramework/BWToolkitFramework.h>
+#import "KSUserSettings.h"
 
 
 @interface KSGeneralSettingsController : NSWindowController {
-    
+    IBOutlet KSUserSettings* userSettings;
 }
 
 -(IBAction)changeBroadcastingKey:(id)sender;

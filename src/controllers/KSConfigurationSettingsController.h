@@ -7,11 +7,18 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+#import <BWToolkitFramework/BWToolkitFramework.h>
+#import "KSUserSettings.h"
 
 @interface KSConfigurationSettingsController : NSWindowController {
-
+    IBOutlet KSUserSettings* userSettings;
+    IBOutlet BWTransparentPopUpButton* configurationsPopUp;
+    
+    BOOL configurationSelected;
 }
+
+@property (assign) KSUserSettings* userSettings;
+@property (assign) BOOL configurationSelected;
 
 -(IBAction)changeSelectedConfiguration:(id)sender;
 -(IBAction)renameSelectedConfiguration:(id)sender;

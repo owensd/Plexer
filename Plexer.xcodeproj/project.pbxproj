@@ -27,7 +27,12 @@
 		7D1D67470FF602640013EEB0 /* KSUserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1D67460FF602640013EEB0 /* KSUserSettings.m */; };
 		7D1D67530FF60B410013EEB0 /* KSConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1D67520FF60B410013EEB0 /* KSConfiguration.m */; };
 		7D1D675B0FF6105C0013EEB0 /* KSGeneralSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1D675A0FF6105C0013EEB0 /* KSGeneralSettingsController.m */; };
+		7D57A18E0FF88A2E00F601C7 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D57A18D0FF88A2E00F601C7 /* BWToolkitFramework.framework */; };
 		7D5D61970FE4C37B00347A73 /* EventHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D5D61960FE4C37B00347A73 /* EventHandling.m */; };
+		7D5DEAD80FF9E3E4005AB679 /* BWToolkitFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D57A18D0FF88A2E00F601C7 /* BWToolkitFramework.framework */; };
+		7D5DEB860FF9E974005AB679 /* InfoAlertPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DA6EBA50FF626420028CA3B /* InfoAlertPanel.xib */; };
+		7D5DEB920FF9E998005AB679 /* ConfigurationNamePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DA6EBAC0FF626B40028CA3B /* ConfigurationNamePanel.xib */; };
+		7D5DEBB30FF9EB60005AB679 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D5DEBB10FF9EB60005AB679 /* MainMenu.xib */; };
 		7D8D2FCA0FEDFD3200912722 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D8D2FC90FEDFD3200912722 /* ScriptingBridge.framework */; };
 		7D8D300D0FEE045300912722 /* System Events.app in Resources */ = {isa = PBXBuildFile; fileRef = 7D8D300C0FEE045300912722 /* System Events.app */; };
 		7D8D321F0FEF48D900912722 /* version.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 7D8D321E0FEF48D900912722 /* version.xcconfig */; };
@@ -35,13 +40,8 @@
 		7D8D33570FEF77A800912722 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D8D33560FEF77A800912722 /* Sparkle.framework */; };
 		7D8D33C90FEF8C2B00912722 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D8D33560FEF77A800912722 /* Sparkle.framework */; };
 		7DA0A82D0FF0A00D006503FC /* PreferencePanes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DA0A82C0FF0A00D006503FC /* PreferencePanes.framework */; };
-		7DA0A8850FF0AFB5006503FC /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DA0A8840FF0AFB5006503FC /* BWToolkitFramework.framework */; };
-		7DA0A88A0FF0AFC8006503FC /* BWToolkitFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7DA0A8840FF0AFB5006503FC /* BWToolkitFramework.framework */; };
 		7DA6EB560FF619C50028CA3B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7DA6EB550FF619C50028CA3B /* InfoPlist.strings */; };
 		7DA6EB5E0FF61A5F0028CA3B /* KSAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DA6EB5D0FF61A5F0028CA3B /* KSAppController.m */; };
-		7DA6EB670FF61BD30028CA3B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DA6EB660FF61BD30028CA3B /* MainMenu.xib */; };
-		7DA6EBA60FF626420028CA3B /* InfoAlertPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DA6EBA50FF626420028CA3B /* InfoAlertPanel.xib */; };
-		7DA6EBAD0FF626B40028CA3B /* ConfigurationNamePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DA6EBAC0FF626B40028CA3B /* ConfigurationNamePanel.xib */; };
 		7DA6EBB00FF626E60028CA3B /* KSConfigurationSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DA6EBAF0FF626E60028CA3B /* KSConfigurationSettingsController.m */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -68,7 +68,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				7DA0A88A0FF0AFC8006503FC /* BWToolkitFramework.framework in CopyFiles */,
+				7D5DEAD80FF9E3E4005AB679 /* BWToolkitFramework.framework in CopyFiles */,
 				7D8D33570FEF77A800912722 /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -79,7 +79,6 @@
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
-		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; explicitFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -92,8 +91,10 @@
 		7D1D67520FF60B410013EEB0 /* KSConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSConfiguration.m; sourceTree = "<group>"; };
 		7D1D67590FF6105C0013EEB0 /* KSGeneralSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSGeneralSettingsController.h; sourceTree = "<group>"; };
 		7D1D675A0FF6105C0013EEB0 /* KSGeneralSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSGeneralSettingsController.m; sourceTree = "<group>"; };
+		7D57A18D0FF88A2E00F601C7 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = ../../../Library/Frameworks/BWToolkitFramework.framework; sourceTree = SOURCE_ROOT; };
 		7D5D61950FE4C37B00347A73 /* EventHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventHandling.h; sourceTree = "<group>"; };
 		7D5D61960FE4C37B00347A73 /* EventHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventHandling.m; sourceTree = "<group>"; };
+		7D5DEBB20FF9EB60005AB679 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		7D8D2FC90FEDFD3200912722 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = /System/Library/Frameworks/ScriptingBridge.framework; sourceTree = "<absolute>"; };
 		7D8D300C0FEE045300912722 /* System Events.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; name = "System Events.app"; path = "/System/Library/CoreServices/System Events.app"; sourceTree = "<absolute>"; };
 		7D8D321E0FEF48D900912722 /* version.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = version.xcconfig; sourceTree = "<group>"; };
@@ -102,7 +103,6 @@
 		7D8D33C60FEF8B3E00912722 /* plexercast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = plexercast.xml; sourceTree = "<group>"; };
 		7D90C6CE0FF2087E0042969C /* Plexer_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plexer_Prefix.pch; sourceTree = "<group>"; };
 		7DA0A82C0FF0A00D006503FC /* PreferencePanes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PreferencePanes.framework; path = /System/Library/Frameworks/PreferencePanes.framework; sourceTree = "<absolute>"; };
-		7DA0A8840FF0AFB5006503FC /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = ../../../Library/Frameworks/BWToolkitFramework.framework; sourceTree = SOURCE_ROOT; };
 		7DA6EB5C0FF61A5F0028CA3B /* KSAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSAppController.h; sourceTree = "<group>"; };
 		7DA6EB5D0FF61A5F0028CA3B /* KSAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSAppController.m; sourceTree = "<group>"; };
 		7DA6EBA20FF626330028CA3B /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/InfoAlertPanel.xib; sourceTree = "<group>"; };
@@ -123,7 +123,7 @@
 				7D1D59370FDFB9AE00EB29CD /* Carbon.framework in Frameworks */,
 				7D8D2FCA0FEDFD3200912722 /* ScriptingBridge.framework in Frameworks */,
 				7DA0A82D0FF0A00D006503FC /* PreferencePanes.framework in Frameworks */,
-				7DA0A8850FF0AFB5006503FC /* BWToolkitFramework.framework in Frameworks */,
+				7D57A18E0FF88A2E00F601C7 /* BWToolkitFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,6 +142,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7D57A18D0FF88A2E00F601C7 /* BWToolkitFramework.framework */,
 				7DA0A82C0FF0A00D006503FC /* PreferencePanes.framework */,
 				7D8D33560FEF77A800912722 /* Sparkle.framework */,
 				7D1D59360FDFB9AE00EB29CD /* Carbon.framework */,
@@ -196,10 +197,10 @@
 				7DA6EB680FF61CD70028CA3B /* images */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				7DA6EB550FF619C50028CA3B /* InfoPlist.strings */,
-				7DA6EB660FF61BD30028CA3B /* MainMenu.xib */,
 				7D8D33C60FEF8B3E00912722 /* plexercast.xml */,
 				7D8D32A80FEF54A000912722 /* dsa_pub.pem */,
 				7D8D321E0FEF48D900912722 /* version.xcconfig */,
+				7D5DEBB10FF9EB60005AB679 /* MainMenu.xib */,
 				7DA6EBA50FF626420028CA3B /* InfoAlertPanel.xib */,
 				7DA6EBAC0FF626B40028CA3B /* ConfigurationNamePanel.xib */,
 			);
@@ -209,7 +210,6 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7DA0A8840FF0AFB5006503FC /* BWToolkitFramework.framework */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
@@ -308,14 +308,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DA6EB560FF619C50028CA3B /* InfoPlist.strings in Resources */,
-				7DA6EB670FF61BD30028CA3B /* MainMenu.xib in Resources */,
 				7D1D582C0FDFA0CD00EB29CD /* Plexer_OFF.png in Resources */,
 				7D1D582D0FDFA0CD00EB29CD /* Plexer_ON.png in Resources */,
 				7D8D300D0FEE045300912722 /* System Events.app in Resources */,
 				7D8D321F0FEF48D900912722 /* version.xcconfig in Resources */,
 				7D8D32A90FEF54A000912722 /* dsa_pub.pem in Resources */,
-				7DA6EBA60FF626420028CA3B /* InfoAlertPanel.xib in Resources */,
-				7DA6EBAD0FF626B40028CA3B /* ConfigurationNamePanel.xib in Resources */,
+				7D5DEB860FF9E974005AB679 /* InfoAlertPanel.xib in Resources */,
+				7D5DEB920FF9E998005AB679 /* ConfigurationNamePanel.xib in Resources */,
+				7D5DEBB30FF9EB60005AB679 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,20 +369,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		7D5DEBB10FF9EB60005AB679 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7D5DEBB20FF9EB60005AB679 /* English */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
 		7DA6EB550FF619C50028CA3B /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				089C165DFE840E0CC02AAC07 /* English */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		7DA6EB660FF61BD30028CA3B /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1DDD58150DA1D0A300B32029 /* English */,
-			);
-			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 		7DA6EBA50FF626420028CA3B /* InfoAlertPanel.xib */ = {
@@ -488,7 +488,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
