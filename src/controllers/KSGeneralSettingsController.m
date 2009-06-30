@@ -12,6 +12,7 @@
 @implementation KSGeneralSettingsController
 
 -(IBAction)changeBroadcastingKey:(id)sender {
+    [userSettings setToggleBroadcastingKeyCode:[sender selectedTag]];
 }
 
 -(IBAction)changeSwitchBetweenApplicationsModifier:(id)sender {

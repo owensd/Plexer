@@ -25,7 +25,5 @@
 @property (assign) BOOL automaticallyCheckForUpdates;
 @property (retain) NSArray* configurations;
 
--(void)saveData;
--(void)loadData;
 
 @end
