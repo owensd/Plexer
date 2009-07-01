@@ -21,15 +21,15 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		7D1425110FFB504D00708F8B /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1425100FFB504D00708F8B /* BWToolkitFramework.framework */; };
+		7D1425140FFB505A00708F8B /* BWToolkitFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D1425100FFB504D00708F8B /* BWToolkitFramework.framework */; };
 		7D1D582C0FDFA0CD00EB29CD /* Plexer_OFF.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D1D582A0FDFA0CD00EB29CD /* Plexer_OFF.png */; };
 		7D1D582D0FDFA0CD00EB29CD /* Plexer_ON.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D1D582B0FDFA0CD00EB29CD /* Plexer_ON.png */; };
 		7D1D59370FDFB9AE00EB29CD /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1D59360FDFB9AE00EB29CD /* Carbon.framework */; };
 		7D1D67470FF602640013EEB0 /* KSUserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1D67460FF602640013EEB0 /* KSUserSettings.m */; };
 		7D1D67530FF60B410013EEB0 /* KSConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1D67520FF60B410013EEB0 /* KSConfiguration.m */; };
 		7D1D675B0FF6105C0013EEB0 /* KSGeneralSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1D675A0FF6105C0013EEB0 /* KSGeneralSettingsController.m */; };
-		7D57A18E0FF88A2E00F601C7 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D57A18D0FF88A2E00F601C7 /* BWToolkitFramework.framework */; };
 		7D5D61970FE4C37B00347A73 /* EventHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D5D61960FE4C37B00347A73 /* EventHandling.m */; };
-		7D5DEAD80FF9E3E4005AB679 /* BWToolkitFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D57A18D0FF88A2E00F601C7 /* BWToolkitFramework.framework */; };
 		7D5DEB860FF9E974005AB679 /* InfoAlertPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DA6EBA50FF626420028CA3B /* InfoAlertPanel.xib */; };
 		7D5DEB920FF9E998005AB679 /* ConfigurationNamePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DA6EBAC0FF626B40028CA3B /* ConfigurationNamePanel.xib */; };
 		7D5DEBB30FF9EB60005AB679 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D5DEBB10FF9EB60005AB679 /* MainMenu.xib */; };
@@ -68,7 +68,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				7D5DEAD80FF9E3E4005AB679 /* BWToolkitFramework.framework in CopyFiles */,
+				7D1425140FFB505A00708F8B /* BWToolkitFramework.framework in CopyFiles */,
 				7D8D33570FEF77A800912722 /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -82,6 +82,7 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		7D1425100FFB504D00708F8B /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = ../../../Library/Frameworks/BWToolkitFramework.framework; sourceTree = SOURCE_ROOT; };
 		7D1D582A0FDFA0CD00EB29CD /* Plexer_OFF.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Plexer_OFF.png; sourceTree = "<group>"; };
 		7D1D582B0FDFA0CD00EB29CD /* Plexer_ON.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Plexer_ON.png; sourceTree = "<group>"; };
 		7D1D59360FDFB9AE00EB29CD /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
@@ -91,7 +92,6 @@
 		7D1D67520FF60B410013EEB0 /* KSConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSConfiguration.m; sourceTree = "<group>"; };
 		7D1D67590FF6105C0013EEB0 /* KSGeneralSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSGeneralSettingsController.h; sourceTree = "<group>"; };
 		7D1D675A0FF6105C0013EEB0 /* KSGeneralSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSGeneralSettingsController.m; sourceTree = "<group>"; };
-		7D57A18D0FF88A2E00F601C7 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = ../../../Library/Frameworks/BWToolkitFramework.framework; sourceTree = SOURCE_ROOT; };
 		7D5D61950FE4C37B00347A73 /* EventHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventHandling.h; sourceTree = "<group>"; };
 		7D5D61960FE4C37B00347A73 /* EventHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventHandling.m; sourceTree = "<group>"; };
 		7D5DEBB20FF9EB60005AB679 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -123,7 +123,7 @@
 				7D1D59370FDFB9AE00EB29CD /* Carbon.framework in Frameworks */,
 				7D8D2FCA0FEDFD3200912722 /* ScriptingBridge.framework in Frameworks */,
 				7DA0A82D0FF0A00D006503FC /* PreferencePanes.framework in Frameworks */,
-				7D57A18E0FF88A2E00F601C7 /* BWToolkitFramework.framework in Frameworks */,
+				7D1425110FFB504D00708F8B /* BWToolkitFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,7 +142,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7D57A18D0FF88A2E00F601C7 /* BWToolkitFramework.framework */,
+				7D1425100FFB504D00708F8B /* BWToolkitFramework.framework */,
 				7DA0A82C0FF0A00D006503FC /* PreferencePanes.framework */,
 				7D8D33560FEF77A800912722 /* Sparkle.framework */,
 				7D1D59360FDFB9AE00EB29CD /* Carbon.framework */,
@@ -473,7 +473,7 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -487,7 +487,8 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
