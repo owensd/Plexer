@@ -23,6 +23,7 @@
 /* Begin PBXBuildFile section */
 		7D1425110FFB504D00708F8B /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1425100FFB504D00708F8B /* BWToolkitFramework.framework */; };
 		7D1425140FFB505A00708F8B /* BWToolkitFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D1425100FFB504D00708F8B /* BWToolkitFramework.framework */; };
+		7D1425640FFB535000708F8B /* release-notes.html in Resources */ = {isa = PBXBuildFile; fileRef = 7D1425630FFB535000708F8B /* release-notes.html */; };
 		7D1D582C0FDFA0CD00EB29CD /* Plexer_OFF.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D1D582A0FDFA0CD00EB29CD /* Plexer_OFF.png */; };
 		7D1D582D0FDFA0CD00EB29CD /* Plexer_ON.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D1D582B0FDFA0CD00EB29CD /* Plexer_ON.png */; };
 		7D1D59370FDFB9AE00EB29CD /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1D59360FDFB9AE00EB29CD /* Carbon.framework */; };
@@ -83,6 +84,7 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		7D1425100FFB504D00708F8B /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = ../../../Library/Frameworks/BWToolkitFramework.framework; sourceTree = SOURCE_ROOT; };
+		7D1425630FFB535000708F8B /* release-notes.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "release-notes.html"; sourceTree = "<group>"; };
 		7D1D582A0FDFA0CD00EB29CD /* Plexer_OFF.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Plexer_OFF.png; sourceTree = "<group>"; };
 		7D1D582B0FDFA0CD00EB29CD /* Plexer_ON.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Plexer_ON.png; sourceTree = "<group>"; };
 		7D1D59360FDFB9AE00EB29CD /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
@@ -203,6 +205,7 @@
 				7D5DEBB10FF9EB60005AB679 /* MainMenu.xib */,
 				7DA6EBA50FF626420028CA3B /* InfoAlertPanel.xib */,
 				7DA6EBAC0FF626B40028CA3B /* ConfigurationNamePanel.xib */,
+				7D1425630FFB535000708F8B /* release-notes.html */,
 			);
 			path = resources;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				7D5DEB860FF9E974005AB679 /* InfoAlertPanel.xib in Resources */,
 				7D5DEB920FF9E998005AB679 /* ConfigurationNamePanel.xib in Resources */,
 				7D5DEBB30FF9EB60005AB679 /* MainMenu.xib in Resources */,
+				7D1425640FFB535000708F8B /* release-notes.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,7 +351,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "set -o errexit\n\n[ $BUILD_STYLE = Release ] || { echo Distribution target requires \"'Release'\" build style; false; }\n\nVERSION=$(defaults read \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info\" CFBundleShortVersionString)\nINTERNAL_VERSION=$(defaults read \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info\" CFBundleVersion)\nDOWNLOAD_BASE_URL=\"http://www.kiadsoftware.com/apps/plexer/files\"\nRELEASENOTES_URL=\"http://www.kiadsoftware.com/apps/plexer/release-notes.html#version-$VERSION\"\n\nARCHIVE_FILENAME=\"$PROJECT_NAME $VERSION.zip\"\nDOWNLOAD_URL=\"$DOWNLOAD_BASE_URL/$ARCHIVE_FILENAME\"\nKEYCHAIN_PRIVKEY_NAME=\"Plexer Private Key\"\n\nWD=$PWD\ncd \"$BUILT_PRODUCTS_DIR\"\nrm -f \"$PROJECT_NAME\"*.zip\nzip -qr \"$ARCHIVE_FILENAME\" \"$PROJECT_NAME.app\"\n\nSIZE=$(stat -f %z \"$ARCHIVE_FILENAME\")\nPUBDATE=$(date +\"%a, %d %b %G %T %z\")\nSIGNATURE=$(\n\topenssl dgst -sha1 -binary < \"$ARCHIVE_FILENAME\" \\\n\t| openssl dgst -dss1 -sign <(security find-generic-password -g -s \"$KEYCHAIN_PRIVKEY_NAME\" 2>&1 1>/dev/null | perl -pe '($_) = /\"(.+)\"/; s/\\\\012/\\n/g') \\\n\t| openssl enc -base64\n)\n\n[ $SIGNATURE ] || { echo Unable to load signing private key with name \"'$KEYCHAIN_PRIVKEY_NAME'\" from keychain; false; }\n\ncat <<EOF\n\t\t<item>\n\t\t\t<title>Version $VERSION</title>\n\t\t\t<sparkle:releaseNotesLink>$RELEASENOTES_URL</sparkle:releaseNotesLink>\n\t\t\t<pubDate>$PUBDATE</pubDate>\n\t\t\t<enclosure\n\t\t\t\turl=\"$DOWNLOAD_URL\"\n\t\t\t\tsparkle:version=\"$INTERNAL_VERSION\"\n\t\t\t\tsparkle:shortVersionString=\"$VERSION\"\n\t\t\t\ttype=\"application/octet-stream\"\n\t\t\t\tlength=\"$SIZE\"\n\t\t\t\tsparkle:dsaSignature=\"$SIGNATURE\"\n\t\t\t/>\n\t\t\t<sparkle:minimumSystemVersion>10.5.0</sparkle:minimumSystemVersion>\n\t\t</item>\nEOF\n\necho scp \"'$PROJECT_DIR/build/Release/$ARCHIVE_FILENAME'\" owensd_kiad@ssh.phx.nearlyfreespeech.net:apps/plexer/files/\necho scp \"'$PROJECT_DIR/plexercast.xml'\" owensd_kiad@ssh.phx.nearlyfreespeech.net:apps/plexer/plexercast.xml";
+			shellScript = "set -o errexit\n\n[ $BUILD_STYLE = Release ] || { echo Distribution target requires \"'Release'\" build style; false; }\n\nVERSION=$(defaults read \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info\" CFBundleShortVersionString)\nINTERNAL_VERSION=$(defaults read \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info\" CFBundleVersion)\nDOWNLOAD_BASE_URL=\"http://www.kiadsoftware.com/apps/plexer/files\"\nRELEASENOTES_URL=\"http://www.kiadsoftware.com/apps/plexer/release-notes.html#version-$VERSION\"\n\nARCHIVE_FILENAME=\"$PROJECT_NAME $VERSION.zip\"\nDOWNLOAD_URL=\"$DOWNLOAD_BASE_URL/$ARCHIVE_FILENAME\"\nKEYCHAIN_PRIVKEY_NAME=\"Plexer Private Key\"\n\nWD=$PWD\ncd \"$BUILT_PRODUCTS_DIR\"\nrm -f \"$PROJECT_NAME\"*.zip\nzip -qr \"$ARCHIVE_FILENAME\" \"$PROJECT_NAME.app\"\n\nSIZE=$(stat -f %z \"$ARCHIVE_FILENAME\")\nPUBDATE=$(date +\"%a, %d %b %G %T %z\")\nSIGNATURE=$(\n\topenssl dgst -sha1 -binary < \"$ARCHIVE_FILENAME\" \\\n\t| openssl dgst -dss1 -sign <(security find-generic-password -g -s \"$KEYCHAIN_PRIVKEY_NAME\" 2>&1 1>/dev/null | perl -pe '($_) = /\"(.+)\"/; s/\\\\012/\\n/g') \\\n\t| openssl enc -base64\n)\n\n[ $SIGNATURE ] || { echo Unable to load signing private key with name \"'$KEYCHAIN_PRIVKEY_NAME'\" from keychain; false; }\n\ncat <<EOF\n\t\t<item>\n\t\t\t<title>Version $VERSION</title>\n\t\t\t<sparkle:releaseNotesLink>$RELEASENOTES_URL</sparkle:releaseNotesLink>\n\t\t\t<pubDate>$PUBDATE</pubDate>\n\t\t\t<enclosure\n\t\t\t\turl=\"$DOWNLOAD_URL\"\n\t\t\t\tsparkle:version=\"$INTERNAL_VERSION\"\n\t\t\t\tsparkle:shortVersionString=\"$VERSION\"\n\t\t\t\ttype=\"application/octet-stream\"\n\t\t\t\tlength=\"$SIZE\"\n\t\t\t\tsparkle:dsaSignature=\"$SIGNATURE\"\n\t\t\t/>\n\t\t\t<sparkle:minimumSystemVersion>10.5.0</sparkle:minimumSystemVersion>\n\t\t</item>\nEOF\n\necho scp \"'$PROJECT_DIR/build/Release/$ARCHIVE_FILENAME'\" owensd_kiad@ssh.phx.nearlyfreespeech.net:apps/plexer/files/\necho scp \"'$PROJECT_DIR/plexercast.xml'\" owensd_kiad@ssh.phx.nearlyfreespeech.net:apps/plexer/plexercast.xml\necho scp \"'$PROJECT_DIR/release-notes.html'\" owensd_kiad@ssh.phx.nearlyfreespeech.net:apps/plexer/release-notes.html";
 		};
 /* End PBXShellScriptBuildPhase section */
 
