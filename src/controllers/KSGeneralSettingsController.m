@@ -11,20 +11,11 @@
 
 @implementation KSGeneralSettingsController
 
--(IBAction)changeBroadcastingKey:(id)sender {
-    [userSettings setToggleBroadcastingKeyCode:[sender selectedTag]];
-}
-
--(IBAction)changeSwitchBetweenApplicationsModifier:(id)sender {
-}
-
--(IBAction)changeQuitAppKey:(id)sender {
-}
-
--(IBAction)changeSwitchToAppModifier:(id)sender {
-}
-
--(IBAction)changeAutomaticallyCheckForUpdatesSetting:(id)sender {
+-(IBAction)changeShowInMenuBar:(id)sender {
+    if ([sender state] == NSOnState)
+        [appController showStatusItem];
+    else
+        [appController hideStatusItem];
 }
 
 @end

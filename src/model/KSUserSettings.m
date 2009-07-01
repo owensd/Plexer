@@ -16,37 +16,60 @@ NSString* QuitAppKeyCode = @"QuitAppKeyCode";
 NSString* SwitchBetweenAppsKeyCode = @"SwitchBetweenAppsKeyCode";
 NSString* SwitchToAppKeyCode = @"SwitchToAppKeyCode";
 NSString* AutomaticallyCheckForUpdates = @"SUEnableAutomaticChecks";
+NSString* ShowInMenuBar = @"ShowInMenuBar";
 
 @synthesize configurations;
 
+-(id)init {
+    if (self = [super init]) {
+        toggleBroadcastingKeyCode = -1;
+        quitAppKeyCode = -1;
+        switchBetweenAppsKeyCode = -1;
+        switchToAppKeyCode = -1;
+    }
+    return self;
+}
+
 -(NSInteger)toggleBroadcastingKeyCode {
-    return [[NSUserDefaults standardUserDefaults] integerForKey:ToggleBroadcastingKeyCode];
+    if (toggleBroadcastingKeyCode == -1)
+        toggleBroadcastingKeyCode = [[NSUserDefaults standardUserDefaults] integerForKey:ToggleBroadcastingKeyCode];
+    return toggleBroadcastingKeyCode;
 }
 -(void)setToggleBroadcastingKeyCode:(NSInteger)keyCode {
+    toggleBroadcastingKeyCode = keyCode;
     [[NSUserDefaults standardUserDefaults] setInteger:keyCode forKey:ToggleBroadcastingKeyCode];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 -(NSInteger)quitAppKeyCode {
-    return [[NSUserDefaults standardUserDefaults] integerForKey:QuitAppKeyCode];
+    if (quitAppKeyCode == -1)
+        quitAppKeyCode = [[NSUserDefaults standardUserDefaults] integerForKey:QuitAppKeyCode];
+    return quitAppKeyCode;
 }
 -(void)setQuitAppKeyCode:(NSInteger)keyCode {
+    quitAppKeyCode = keyCode;
     [[NSUserDefaults standardUserDefaults] setInteger:keyCode forKey:QuitAppKeyCode];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 -(NSInteger)switchBetweenAppsKeyCode {
-    return [[NSUserDefaults standardUserDefaults] integerForKey:SwitchBetweenAppsKeyCode];
+    if (switchBetweenAppsKeyCode == -1)
+        switchBetweenAppsKeyCode = [[NSUserDefaults standardUserDefaults] integerForKey:SwitchBetweenAppsKeyCode];
+    return switchBetweenAppsKeyCode;
 }
 -(void)setSwitchBetweenAppsKeyCode:(NSInteger)keyCode {
+    switchBetweenAppsKeyCode = keyCode;
     [[NSUserDefaults standardUserDefaults] setInteger:keyCode forKey:SwitchBetweenAppsKeyCode];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 -(NSInteger)switchToAppKeyCode {
-    return [[NSUserDefaults standardUserDefaults] integerForKey:SwitchToAppKeyCode];
+    if (switchToAppKeyCode == -1)
+        switchToAppKeyCode = [[NSUserDefaults standardUserDefaults] integerForKey:SwitchToAppKeyCode];
+    return switchToAppKeyCode;
 }
 -(void)setSwitchToAppKeyCode:(NSInteger)keyCode {
+    switchToAppKeyCode = keyCode;
     [[NSUserDefaults standardUserDefaults] setInteger:keyCode forKey:SwitchToAppKeyCode];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
@@ -56,6 +79,14 @@ NSString* AutomaticallyCheckForUpdates = @"SUEnableAutomaticChecks";
 }
 -(void)setAutomaticallyCheckForUpdates:(BOOL)keyCode {
     [[NSUserDefaults standardUserDefaults] setBool:keyCode forKey:AutomaticallyCheckForUpdates];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(BOOL)showInMenuBar {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:ShowInMenuBar];
+}
+-(void)setShowInMenuBar:(BOOL)showInMenu {
+    [[NSUserDefaults standardUserDefaults] setBool:showInMenu forKey:ShowInMenuBar];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

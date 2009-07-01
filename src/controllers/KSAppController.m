@@ -9,11 +9,140 @@
 #import "KSAppController.h"
 #import "System Events.h"
 
+CFMachPortRef keyEventTapRef = NULL;
+CFMachPortRef appEventTapRef = NULL;
+CFRunLoopSourceRef runLoopSourceRef = NULL;
+CFRunLoopRef runLoopRef = NULL;
+
+CGEventRef KeyEventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon);
+
 @implementation KSAppController
 
--(void)awakeFromNib {
+NSStatusItem* statusItem = nil;
+NSImage* statusImageOn = nil;
+NSImage* statusImageOff = nil;
+
+
+@synthesize broadcasting;
+-(void)setBroadcasting:(BOOL)broadcast {
+    broadcasting = broadcast;
+    if (broadcasting == YES)
+        [statusItem setImage:statusImageOn];
+    else
+        [statusItem setImage:statusImageOff];
 }
 
+-(KSUserSettings*)userSettings {
+    return userSettings;
+}
+
+-(void)createStatusItem {   
+    statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength] retain];
+    
+    [statusItem setImage:statusImageOff];
+    [statusItem setMenu:statusItemMenu];
+    [statusItem setHighlightMode:YES];
+}
+
+-(void)createStatusItemWithPathForImage:(NSString*)onImagePath pathForOffImage:(NSString*)offImagePath {
+    NSBundle* bundle = [NSBundle mainBundle];
+    statusImageOn = [[[NSImage alloc] initWithContentsOfFile:[bundle pathForImageResource:onImagePath]] retain];
+    statusImageOff = [[[NSImage alloc] initWithContentsOfFile:[bundle pathForImageResource:offImagePath]] retain];
+    
+    if ([userSettings showInMenuBar] == YES)
+        [self createStatusItem];
+}
+
+-(void)awakeFromNib {
+    self.broadcasting = false;
+    
+    [self createStatusItemWithPathForImage:@"Plexer_ON.png" pathForOffImage:@"Plexer_OFF.png"];
+    [self createEventTaps];
+}
+
+-(void)applicationWillTerminate:(NSNotification*)aNotification {
+    CFMachPortInvalidate(keyEventTapRef);
+//    CFMachPortInvalidate(appEventTapRef);
+    CFRelease(keyEventTapRef);
+//    CFRelease(appEventTapRef);
+    CFRelease(runLoopSourceRef);
+}
+
+-(IBAction)showPreferences:(id)sender {
+    [preferencesWindow makeKeyAndOrderFront:self];
+}
+
+-(IBAction)startBroadcasting:(id)sender {
+    self.broadcasting = !self.broadcasting;
+}
+
+-(IBAction)stopBroadcasting:(id)sender {
+    self.broadcasting = !self.broadcasting;
+}
+
+-(void)showStatusItem {
+    [self createStatusItem];
+}
+
+-(void)hideStatusItem {
+    [[NSStatusBar systemStatusBar] removeStatusItem:statusItem];
+    [statusItem release];
+}
+
+
+// ------------------------------------------------------
+// Event tap methods
+// ------------------------------------------------------
+
+-(void)createEventTaps {
+    keyEventTapRef = CGEventTapCreate(kCGSessionEventTap, kCGHeadInsertEventTap, kCGEventTapOptionListenOnly, CGEventMaskBit(kCGEventKeyDown) | CGEventMaskBit(kCGEventKeyUp) | CGEventMaskBit(kCGEventFlagsChanged), KeyEventTapCallback, self);
+    
+    if (keyEventTapRef == NULL) {
+        NSLog(@"There was an error creating the event tap.");
+        exit(1);
+    }
+    
+    runLoopSourceRef = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, keyEventTapRef, 0);
+    if (runLoopSourceRef == NULL) {
+        NSLog(@"There was an error creating the run loop source.");
+        exit(1);
+    }
+    
+    runLoopRef = [[NSRunLoop currentRunLoop] getCFRunLoop];
+    if (runLoopRef == NULL) {
+        NSLog(@"There was an error retrieving the current run loop.");
+        exit(1);
+    }
+    
+    CFRunLoopAddSource(runLoopRef, runLoopSourceRef, kCFRunLoopDefaultMode);
+}
+
+CGEventRef KeyEventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon) {
+    KSAppController* controller = (KSAppController*)refcon;
+    
+    CGKeyCode keyCode = (CGKeyCode)CGEventGetIntegerValueField(event, kCGKeyboardEventKeycode);
+
+    if (type == kCGEventKeyUp) {
+        NSLog(@"The %d key was released.", keyCode);
+    }
+    else if (type == kCGEventKeyDown) {
+        NSLog(@"The %d key was pressed.", keyCode);
+
+        if (keyCode == [[controller userSettings] toggleBroadcastingKeyCode])
+            controller.broadcasting = !controller.broadcasting;
+        if (keyCode == [[controller userSettings] quitAppKeyCode])
+            [[NSApplication sharedApplication] terminate:nil];
+    }
+    else if (type == kCGEventFlagsChanged) {
+        NSLog(@"The %d flags changed.", keyCode);
+    }
+    
+    return event;
+}
+
+CGEventRef AppEventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon) {
+    return event;
+}
 
 // ------------------------------------------------------
 // Sparkle delegate methods

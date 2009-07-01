@@ -10,12 +10,11 @@
 
 
 @interface KSUserSettings : NSObject {
-    NSInteger   toggleBroadcastingKeyCode;
-    NSInteger   quitAppKeyCode;
-    NSInteger   switchBetweenAppsKeyCode;
-    NSInteger   switchToAppKeyCode;
-    BOOL        automaticallyCheckForUpdates;
-    NSArray*    configurations;
+    NSInteger toggleBroadcastingKeyCode;
+    NSInteger quitAppKeyCode;
+    NSInteger switchBetweenAppsKeyCode;
+    NSInteger switchToAppKeyCode;
+    NSArray*  configurations;
 }
 
 @property (assign) NSInteger toggleBroadcastingKeyCode;
@@ -23,6 +22,7 @@
 @property (assign) NSInteger switchBetweenAppsKeyCode;
 @property (assign) NSInteger switchToAppKeyCode;
 @property (assign) BOOL automaticallyCheckForUpdates;
+@property (assign) BOOL showInMenuBar;
 @property (retain) NSArray* configurations;
 
 

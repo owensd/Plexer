@@ -8,17 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 #import <BWToolkitFramework/BWToolkitFramework.h>
-#import "KSUserSettings.h"
+#import "KSAppController.h"
 
 
 @interface KSGeneralSettingsController : NSWindowController {
-    IBOutlet KSUserSettings* userSettings;
+    IBOutlet KSAppController* appController;
 }
 
--(IBAction)changeBroadcastingKey:(id)sender;
--(IBAction)changeSwitchBetweenApplicationsModifier:(id)sender;
--(IBAction)changeQuitAppKey:(id)sender;
--(IBAction)changeSwitchToAppModifier:(id)sender;
--(IBAction)changeAutomaticallyCheckForUpdatesSetting:(id)sender;
+-(IBAction)changeShowInMenuBar:(id)sender;
 
 @end
