@@ -8,9 +8,9 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="454"/>
 			<integer value="627"/>
 			<integer value="496"/>
-			<integer value="454"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -417,6 +417,7 @@
 									<reference key="NSOnImage" ref="743316579"/>
 									<reference key="NSMixedImage" ref="820313031"/>
 									<string key="NSAction">_popUpItemAction:</string>
+									<int key="NSTag">-1</int>
 									<reference key="NSTarget" ref="636631314"/>
 								</object>
 								<bool key="NSMenuItemRespectAlignment">YES</bool>
@@ -769,6 +770,7 @@
 									<reference key="NSOnImage" ref="743316579"/>
 									<reference key="NSMixedImage" ref="820313031"/>
 									<string key="NSAction">_popUpItemAction:</string>
+									<int key="NSTag">-1</int>
 									<reference key="NSTarget" ref="570357490"/>
 								</object>
 								<bool key="NSMenuItemRespectAlignment">YES</bool>
@@ -2014,6 +2016,7 @@
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
 				<string key="NSMaxSize">{596, 384}</string>
+				<string key="NSFrameAutosaveName">PlexerPreferences</string>
 			</object>
 			<object class="NSCustomObject" id="46162279">
 				<string key="NSClassName">SUUpdater</string>

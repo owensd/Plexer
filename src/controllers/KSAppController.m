@@ -54,6 +54,10 @@ NSImage* statusImageOff = nil;
 }
 
 -(void)awakeFromNib {
+    // Sparkle doesn't automatically check for updates on startup so we manually do it here.
+    if ([updater automaticallyChecksForUpdates] == YES)
+        [updater checkForUpdatesInBackground];
+
     self.broadcasting = false;
     
     [self createStatusItemWithPathForImage:@"Plexer_ON.png" pathForOffImage:@"Plexer_OFF.png"];
