@@ -16,6 +16,7 @@
     IBOutlet NSWindow* preferencesWindow;
     IBOutlet NSMenu* statusItemMenu;
     IBOutlet KSUserSettings* userSettings;
+    IBOutlet SUUpdater* updater;
     
     BOOL broadcasting;
 }
