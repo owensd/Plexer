@@ -32,7 +32,8 @@
 -(void)showStatusItem;
 -(void)hideStatusItem;
 
--(void)createEventTaps;
+-(void)registerEventTaps;
+-(void)registerApplicationEventHandler;
 -(KSUserSettings*)userSettings;
 
 @end

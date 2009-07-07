@@ -115,6 +115,18 @@ NSString* Configurations = @"Configurations";
     }
 }
 
+-(void)renameConfigurationWithName:(NSString*)oldName toName:(NSString*)newName {
+    for (int idx = 0; idx < [configurations count]; ++idx) {
+        KSConfiguration* config = [configurations objectAtIndex:idx];
+        if ([[config name] isEqualTo:oldName] == YES) {
+            [config setName:newName];
+            [configurations insertObject:config atIndex:idx];
+            [configurations removeObjectAtIndex:(idx + 1)];
+            [self serialize];
+            break;
+        }
+    }}
+
 -(NSArray*)configurations {
     return configurations;
 }

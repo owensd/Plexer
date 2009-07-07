@@ -52,6 +52,15 @@
     }
 }
 
+-(void)didEndRenameConfiguration:(NSPanel*)sheet code:(int)choice context:(void*)v {
+    [sheet orderOut:configurationNamePanel];
+    
+    if (choice == kConfigOk) {
+        [userSettings renameConfigurationWithName:(NSString*)v toName:configurationName];
+        [configurationsPopUp removeItemWithTitle:(NSString*)v];
+    }
+}
+
 
 -(IBAction)changeSelectedConfiguration:(id)sender {
     [self willChangeValueForKey:@"configurationSelected"];
@@ -59,6 +68,14 @@
 }
 
 -(IBAction)renameSelectedConfiguration:(id)sender {
+    self.configurationName = [configurationsPopUp titleOfSelectedItem];
+    
+    [configurationNamePanel setTitle:@"Rename Configuration"];
+    [NSApp beginSheet:configurationNamePanel
+       modalForWindow:preferencesPanel
+        modalDelegate:self
+       didEndSelector:@selector(didEndRenameConfiguration:code:context:)
+          contextInfo:[configurationsPopUp titleOfSelectedItem]];
 }
 
 -(IBAction)removeSelectedConfiguration:(id)sender {
@@ -87,12 +104,15 @@
         else if ([[error domain] isEqualTo:@"KS_CONFIGURATION_NAME_EMPTY"] == YES)
             message = @"A configuration name cannot be empty.";
         
+        void* data = NULL;
+        if ([[configurationNamePanel title] hasPrefix:@"Rename"])
+            data = [configurationsPopUp titleOfSelectedItem];
         [infoPanelController showPanelWithTitle:@"Invalid Configuration Name"
                                         message:message
                                      buttonText:@"OK"
                                        delegate:self
                                  didEndSelector:@selector(invalidConfigurationSheetDidEnd:code:context:)
-                                    contextInfo:NULL];
+                                    contextInfo:data];
         return;
     }
     
@@ -107,11 +127,16 @@
 
 -(void)invalidConfigurationSheetDidEnd:(NSPanel*)sheet code:(int)choice context:(void*)v {
     [sheet orderOut:[infoPanelController window]];
+    
+    SEL selector = @selector(didEndNewConfiguration:code:context:);
+    if (v != NULL)
+        selector = @selector(didEndRenameConfiguration:code:context:);
+    
     [NSApp beginSheet:configurationNamePanel
        modalForWindow:preferencesPanel
         modalDelegate:self
-       didEndSelector:@selector(didEndNewConfiguration:code:context:)
-          contextInfo:NULL];
+       didEndSelector:selector
+          contextInfo:v];
 }
 
 -(BOOL)validateConfigurationName:(id *)ioValue error:(NSError **)outError {

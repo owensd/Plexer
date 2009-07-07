@@ -27,6 +27,7 @@
 
 -(void)addConfigurationWithName:(NSString*)name;
 -(void)removeConfigurationWithName:(NSString*)name;
+-(void)renameConfigurationWithName:(NSString*)oldName toName:(NSString*)newName;
 -(NSArray*)configurations;
 
 -(void)load;

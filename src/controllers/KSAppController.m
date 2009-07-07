@@ -8,13 +8,16 @@
 
 #import "KSAppController.h"
 #import "System Events.h"
+#import <Carbon/Carbon.h>
 
 CFMachPortRef keyEventTapRef = NULL;
-CFMachPortRef appEventTapRef = NULL;
 CFRunLoopSourceRef runLoopSourceRef = NULL;
 CFRunLoopRef runLoopRef = NULL;
 
 CGEventRef KeyEventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon);
+
+EventHandlerRef AddApplicationEventHandlerRef;
+
 
 @implementation KSAppController
 
@@ -61,7 +64,8 @@ NSImage* statusImageOff = nil;
     self.broadcasting = false;
     
     [self createStatusItemWithPathForImage:@"Plexer_ON.png" pathForOffImage:@"Plexer_OFF.png"];
-    [self createEventTaps];
+    [self registerEventTaps];
+    [self registerApplicationEventHandler];
     
     [configurationsController loadConfigurations];
 }
@@ -100,7 +104,7 @@ NSImage* statusImageOff = nil;
 // Event tap methods
 // ------------------------------------------------------
 
--(void)createEventTaps {
+-(void)registerEventTaps {
     keyEventTapRef = CGEventTapCreate(kCGSessionEventTap, kCGHeadInsertEventTap, kCGEventTapOptionListenOnly, CGEventMaskBit(kCGEventKeyDown) | CGEventMaskBit(kCGEventKeyUp) | CGEventMaskBit(kCGEventFlagsChanged), KeyEventTapCallback, self);
     
     if (keyEventTapRef == NULL) {
@@ -149,6 +153,37 @@ CGEventRef KeyEventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventR
 CGEventRef AppEventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon) {
     return event;
 }
+
+
+// ------------------------------------------------------
+// Application event handlers and related methods
+// ------------------------------------------------------
+
+static OSStatus AddApplicationEventHandler(EventHandlerCallRef inRef, EventRef inEvent, void* inRefcon) {
+    NSLog(@"Application switched to foreground.");
+    //AppController* controller = (AppController*)inRefcon;
+    
+    ProcessSerialNumber psn;
+    CFStringRef processName = NULL;
+    
+    GetEventParameter(inEvent, kEventParamProcessID, typeProcessSerialNumber, NULL, sizeof(ProcessSerialNumber), NULL, &psn);
+    CopyProcessName(&psn, &processName);
+    
+    //[controller insertApplication:&psn];
+    
+    return noErr;
+}
+
+-(void)registerApplicationEventHandler {
+    
+    EventTypeSpec kAppEvents[] = {
+        { kEventClassApplication, kEventAppFrontSwitched },
+    };
+    
+    InstallApplicationEventHandler(AddApplicationEventHandler, GetEventTypeCount(kAppEvents), kAppEvents, self, &AddApplicationEventHandlerRef);
+}
+
+
 
 // ------------------------------------------------------
 // Sparkle delegate methods
@@ -229,257 +264,7 @@ CGEventRef AppEventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventR
 //@implementation AppController
 //BOOL previousDockState;
 //
-//@synthesize broadcasting, applications, applicationConfigurationEnabled;
-//
-//-(void)setBroadcasting:(BOOL)isBroadcasting {
-//    broadcasting = isBroadcasting;
-//}
-//
-//-(IBAction)changeTogglePlexingHotKey:(id)sender {
-//    UnregisterEventHotKey(ToggleBroadcastingHotKeyRef);
-//    int togglePlexingKeyCode = [(NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:@"TogglePlexingKeyCode"] intValue];
-//    if (togglePlexingKeyCode != -1)
-//        RegisterEventHotKey(togglePlexingKeyCode, 0, ToggleBroadcastingHotKey, GetApplicationEventTarget(), 0, &ToggleBroadcastingHotKeyRef);
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-//}
-//
-//-(IBAction)changeQuitAppHotKey:(id)sender {
-//    UnregisterEventHotKey(QuitAppHotKeyRef);
-//    int quitKeyCode = [(NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:@"QuitPlexerKeyCode"] intValue];
-//    if (quitKeyCode != -1)
-//        RegisterEventHotKey(quitKeyCode, 0, QuitHotKey, GetApplicationEventTarget(), 0, &QuitAppHotKeyRef);
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-//}
-//
-//-(IBAction)changeSwitchBetweenAppsKey:(id)sender {
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-//}
-//
-//-(IBAction)changeSwitchToAppKey:(id)sender {
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-//}
-//
-//-(void)awakeFromNib {
-//    if ([updater automaticallyChecksForUpdates] == YES)
-//        [updater checkForUpdatesInBackground];
-//    
-//    statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength] retain];
-//    
-//    NSBundle* bundle = [NSBundle mainBundle];
-//    statusImageOn = [[NSImage alloc] initWithContentsOfFile:[bundle pathForImageResource:@"Plexer_ON.png"]];
-//    statusImageOff = [[NSImage alloc] initWithContentsOfFile:[bundle pathForImageResource:@"Plexer_OFF.png"]];
-//    
-//    [statusItem setImage:statusImageOff];
-//    [statusItem setMenu:statusMenu];
-//    [statusItem setHighlightMode:YES];
-//    
-//    KSRegisterEventHandlers();
-//    
-//    EventTypeSpec kHotKeyEvent = { kEventClassKeyboard, kEventHotKeyPressed };
-//    InstallApplicationEventHandler(HotKeyEventHandler, 1, &kHotKeyEvent, self, NULL);
-//
-//    // Setup the hotkeys.
-//    [self changeTogglePlexingHotKey:self];
-//    [self changeQuitAppHotKey:self];
-//
-//    SystemEventsApplication* systemEventsApplication = [SBApplication applicationWithBundleIdentifier:@"com.apple.systemevents"];
-//    SystemEventsDockPreferencesObject* dockPreferences = [systemEventsApplication dockPreferences];
-//    previousDockState = [dockPreferences autohide];
-//    
-//    NSArray* configurations = [[NSUserDefaults standardUserDefaults] arrayForKey:@"Configurations"];
-//    int idx = 0;
-//    for (NSString* config in configurations) {
-//        [configurationsPopUp insertItemWithTitle:config atIndex:idx];
-//        [configurationsPopUp itemAtIndex:idx].tag = 1;
-//        ++idx;
-//    }
-//    [configurationsPopUp selectItemAtIndex:0];
-//    [self configurationSelectionChanged:self];
-//    
-//    //[applicationsTableView registerForDraggedTypes:[NSArray arrayWithObject:@"NSString"]];
-//}
-//
-//- (void)applicationWillTerminate:(NSNotification *)aNotification {
-//    // be sure that any changes are written out.
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-//
-//    // Make sure that we always restore the user's dock state.
-//    SystemEventsApplication* systemEventsApplication = [SBApplication applicationWithBundleIdentifier:@"com.apple.systemevents"];
-//    SystemEventsDockPreferencesObject* dockPreferences = [systemEventsApplication dockPreferences];
-//    [dockPreferences setAutohide:previousDockState];
-//    
-//    KSCleanUp();
-//    UnregisterEventHotKey(ToggleBroadcastingHotKeyRef);
-//    UnregisterEventHotKey(QuitAppHotKeyRef);
-//    
-//    [statusItem release];
-//    
-//    // Shutdown the application.
-//    [[NSApplication sharedApplication] stop:[NSApplication sharedApplication]];
-//    
-//    [super dealloc];
-//}
-//
-//-(IBAction)startPlexing:(id)sender {
-//    [statusItem setImage:statusImageOn];
-//    [startPlexingItem setHidden:YES];
-//    [stopPlexingItem setHidden:NO];
-//    [self setBroadcasting:YES];
-//    KSChangeBroadcastingTo(true);
-//}
-//
-//-(IBAction)stopPlexing:(id)sender {
-//    [statusItem setImage:statusImageOff];
-//    [startPlexingItem setHidden:NO];
-//    [stopPlexingItem setHidden:YES];
-//    [self setBroadcasting:NO];
-//    KSChangeBroadcastingTo(false);
-//}
-//
-//-(BOOL)configurationsPopUpIsEmpty {
-//    // The two items are: the seperator and 'New...'
-//    if ([configurationsPopUp numberOfItems] == 2)
-//        return YES;
-//    else
-//        return NO;
-//}
-//
-//-(IBAction)renameCurrentConfiguration:(id)sender {
-//    NSLog(@"Configuration being renamed from '%@'", [configurationsPopUp titleOfSelectedItem]);
-//    if ([self configurationsPopUpIsEmpty] == NO) {
-//        [configurationNameField setStringValue:[configurationsPopUp titleOfSelectedItem]];
-//        [NSApp beginSheet:configurationNamePanel modalForWindow:plexerPanel modalDelegate:self didEndSelector:@selector(configurationNameEnded:code:context:) contextInfo:NULL];
-//    }
-//}
-//
-//-(IBAction)removeCurrentConfiguration:(id)sender {
-//    if ([self configurationsPopUpIsEmpty] == NO) {
-//        NSString* configurationName = [configurationsPopUp titleOfSelectedItem];
-//        NSMutableArray* configurations = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"Configurations"] mutableCopy];
-//        [configurations removeObject:configurationName];
-//        [[NSUserDefaults standardUserDefaults] setObject:configurations forKey:@"Configurations"];
-//
-//        NSMutableDictionary* settings = [[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"ConfigurationSettings"] mutableCopy];
-//        [settings removeObjectForKey:configurationName];
-//        [[NSUserDefaults standardUserDefaults] setValue:settings forKey:@"ConfigurationSettings"];
-//
-//        [[NSUserDefaults standardUserDefaults] synchronize];
-//
-//        int idx = [configurationsPopUp indexOfSelectedItem];
-//        [configurationsPopUp removeItemAtIndex:idx];
-//        --idx;
-//        if (idx < 0) idx = 0;
-//        [configurationsPopUp selectItemAtIndex:idx];
-//    }
-//}
-//
-//-(IBAction)addNewConfiguration:(id)sender {
-//    [NSApp beginSheet:configurationNamePanel modalForWindow:plexerPanel modalDelegate:self didEndSelector:@selector(configurationNameEnded:code:context:) contextInfo:NULL];
-//}
-//
-//-(void)infoPanelEnded:(NSPanel*)sheet code:(int)choice context:(void*)v {
-//    [sheet orderOut:self];
-//    [NSApp beginSheet:configurationNamePanel modalForWindow:plexerPanel modalDelegate:self didEndSelector:@selector(configurationNameEnded:code:context:) contextInfo:NULL];
-//}
-//
-//-(void)configurationNameEnded:(NSPanel*)sheet code:(int)choice context:(void*)v {
-//    if (choice == kConfigCancel) {
-//        // If there aren't any items in the list, then we want to remove selection from 'New...'
-//        if ([self configurationsPopUpIsEmpty] == YES)
-//            [configurationsPopUp selectItemAtIndex:0];
-//
-//        [sheet orderOut:self];
-//        return;
-//    }
-//    
-//    NSString* configurationName = [configurationNameField stringValue];
-//    
-//    // Determine if the name already exists.
-//    for (NSString* name in [[NSUserDefaults standardUserDefaults] stringArrayForKey:@"Configurations"]) {
-//        if ([name isEqualToString:configurationName]) {
-//            [infoPanel setTitle:@"Invalid Name"];
-//            [infoPanelMessage setStringValue:@"There is already a configuration with this name!"];
-//            [infoPanelButton setTitle:@"OK"];
-//            
-//            [sheet orderOut:self];
-//            [NSApp beginSheet:infoPanel modalForWindow:plexerPanel modalDelegate:self didEndSelector:@selector(infoPanelEnded:code:context:) contextInfo:NULL];
-//            
-//            return;
-//        }
-//    }
-//    
-//    if (choice == kConfigNew) {
-//        [configurationsPopUp insertItemWithTitle:configurationName atIndex:([configurationsPopUp numberOfItems] - 2)];
-//        [configurationsPopUp selectItemAtIndex:([configurationsPopUp numberOfItems] - 3)];
-//        [configurationsPopUp selectedItem].tag = 1;
-//        
-//        NSArray* theArray = [[NSUserDefaults standardUserDefaults] arrayForKey:@"Configurations"];
-//        NSMutableArray* configurations = [[NSMutableArray alloc] init];
-//        [configurations addObjectsFromArray:theArray];
-//        [configurations addObject:configurationName];
-//        [[NSUserDefaults standardUserDefaults] setObject:configurations forKey:@"Configurations"];
-//        [[NSUserDefaults standardUserDefaults] synchronize];
-//    }
-//    else if (choice == kConfigRename) {
-//        NSString* originalName = [configurationsPopUp titleOfSelectedItem];
-//        
-//        NSMutableArray* configurations = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"Configurations"] mutableCopy];
-//        [configurations removeObject:originalName];
-//        [configurations addObject:configurationName];
-//        [[NSUserDefaults standardUserDefaults] setObject:configurations forKey:@"Configurations"];
-//        [[NSUserDefaults standardUserDefaults] synchronize];
-//        
-//        [[configurationsPopUp selectedItem] setTitle:configurationName];
-//        NSLog(@"Configuration renamed from '%@' to '%@'", originalName, [configurationsPopUp titleOfSelectedItem]);
-//
-//        NSLog(@"Resetting all of the configuration values for the new key.");
-//        NSMutableDictionary* settings = [[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"ConfigurationSettings"] mutableCopy];
-//        NSDictionary* config = [settings objectForKey:originalName];
-//        
-//        [settings removeObjectForKey:originalName];
-//        [settings setValue:config forKey:[configurationsPopUp titleOfSelectedItem]];
-//        NSLog(@"Adding the config settings for '%@'", [configurationsPopUp titleOfSelectedItem]);
-//        [[NSUserDefaults standardUserDefaults] setValue:settings forKey:@"ConfigurationSettings"];
-//        [[NSUserDefaults standardUserDefaults] synchronize];
-//    }
-//     
-//    
-//    [configurationNameField setStringValue:@""];
-//    [sheet orderOut:self];
-//}
-//
-//-(IBAction)cancelConfigurationNameSheet:(id)sender {
-//    [NSApp endSheet:configurationNamePanel returnCode:kConfigCancel];
-//}
-//
-//-(IBAction)closeConfigurationNameSheet:(id)sender {
-//    if ([[configurationNameField stringValue] isEqualToString:@""])
-//        return;
-//    
-//    if ([self configurationsPopUpIsEmpty] == NO)
-//        [NSApp endSheet:configurationNamePanel returnCode:kConfigRename];
-//    else
-//        [NSApp endSheet:configurationNamePanel returnCode:kConfigNew];
-//}
-//
-//-(IBAction)configurationSelectionChanged:(id)sender {
-//    NSLog(@"Title of selected item is: '%@'", [configurationsPopUp titleOfSelectedItem]);
-//    NSDictionary* settings = [[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"ConfigurationSettings"] objectForKey:[configurationsPopUp titleOfSelectedItem]];
-//    
-//    [autoHideDockBox setState:[[settings objectForKey:@"AutoHideDock"] intValue]];
-//    [saveWindowSizeBox setState:[[settings objectForKey:@"SaveWindowPositions"] intValue]];
-//    [moveWindowsNearMenuBarBox setState:[[settings objectForKey:@"AdjustWindowsNearMenuBar"] intValue]];
-//    
-//    SystemEventsApplication* systemEventsApplication = [SBApplication applicationWithBundleIdentifier:@"com.apple.systemevents"];
-//    SystemEventsDockPreferencesObject* dockPreferences = [systemEventsApplication dockPreferences];
-//    [dockPreferences setAutohide:[autoHideDockBox state]];
-//    
-//    [applications release];
-//    applications = [[[NSMutableArray alloc] initWithArray:[[settings objectForKey:@"Applications"] componentsSeparatedByString:@":"]] retain];
-//    [applicationsTableView reloadData];
-//    
-//    applicationConfigurationEnabled = [self configurationsPopUpIsEmpty];
-//}
+
 //
 //-(IBAction)toggleAutoHideDock:(id)sender {
 //    NSLog(@"Toggling autohide for '%@'", [configurationsPopUp titleOfSelectedItem]);
