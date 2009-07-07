@@ -20,10 +20,10 @@ enum KSConfigurationNameOptions {
 @interface KSConfigurationSettingsController : NSWindowController {
     IBOutlet KSUserSettings* userSettings;
     IBOutlet BWTransparentPopUpButton* configurationsPopUp;
-    IBOutlet KSInfoPanelController* infoPanelController;
     
     IBOutlet NSWindow* preferencesPanel;
     IBOutlet NSWindow* configurationNamePanel;
+    IBOutlet KSInfoPanelController* infoPanelController;
     NSString* configurationName;
 }
 

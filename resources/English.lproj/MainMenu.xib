@@ -8,9 +8,10 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="821"/>
-			<integer value="627"/>
 			<integer value="496"/>
+			<integer value="627"/>
+			<integer value="821"/>
+			<integer value="900"/>
 			<integer value="454"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -2145,12 +2146,12 @@
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{196, 405}, {366, 105}}</string>
 				<int key="NSWTFlags">603979776</int>
-				<string key="NSWindowTitle">Window</string>
+				<string key="NSWindowTitle">Info Panel</string>
 				<string key="NSWindowClass">NSPanel</string>
 				<nil key="NSViewClass"/>
 				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
 				<object class="NSView" key="NSWindowView" id="841141279">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2192,6 +2193,7 @@
 						</object>
 					</object>
 					<string key="NSFrameSize">{366, 105}</string>
+					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
 				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
@@ -2653,14 +2655,6 @@
 					<int key="connectionID">1058</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">preferencesWindow</string>
-						<reference key="source" ref="72426231"/>
-						<reference key="destination" ref="227348696"/>
-					</object>
-					<int key="connectionID">1059</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">showPreferences:</string>
 						<reference key="source" ref="72426231"/>
@@ -2786,27 +2780,11 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">infoPanelController</string>
-						<reference key="source" ref="806865451"/>
-						<reference key="destination" ref="438216521"/>
-					</object>
-					<int key="connectionID">1092</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">infoPanel</string>
 						<reference key="source" ref="438216521"/>
 						<reference key="destination" ref="388846971"/>
 					</object>
 					<int key="connectionID">1093</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">infoPanelTextField</string>
-						<reference key="source" ref="438216521"/>
-						<reference key="destination" ref="462820029"/>
-					</object>
-					<int key="connectionID">1094</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -2899,6 +2877,46 @@
 						<reference key="destination" ref="806865451"/>
 					</object>
 					<int key="connectionID">1116</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">preferencesWindow</string>
+						<reference key="source" ref="72426231"/>
+						<reference key="destination" ref="388846971"/>
+					</object>
+					<int key="connectionID">1117</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">infoPanelController</string>
+						<reference key="source" ref="806865451"/>
+						<reference key="destination" ref="438216521"/>
+					</object>
+					<int key="connectionID">1120</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">infoPanelTextField</string>
+						<reference key="source" ref="438216521"/>
+						<reference key="destination" ref="462820029"/>
+					</object>
+					<int key="connectionID">1121</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="388846971"/>
+						<reference key="destination" ref="438216521"/>
+					</object>
+					<int key="connectionID">1122</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">okPressed:</string>
+						<reference key="source" ref="438216521"/>
+						<reference key="destination" ref="688656797"/>
+					</object>
+					<int key="connectionID">1123</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -4104,7 +4122,6 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 							<reference ref="841141279"/>
 						</object>
 						<reference key="parent" ref="1049"/>
-						<string key="objectName">InfoPanel</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">900</int>
@@ -4783,8 +4800,8 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.brandonwalkin.BWToolkit</string>
 					<string>com.brandonwalkin.BWToolkit</string>
-					<string>{{680, 558}, {366, 105}}</string>
-					<string>{{680, 558}, {366, 105}}</string>
+					<string>{{812, 525}, {366, 105}}</string>
+					<string>{{812, 525}, {366, 105}}</string>
 					<reference ref="6"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.brandonwalkin.BWToolkit</string>
@@ -4837,7 +4854,7 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1116</int>
+			<int key="maxID">1123</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -4969,6 +4986,10 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 				<object class="IBPartialClassDescription">
 					<string key="className">KSInfoPanelController</string>
 					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">okPressed:</string>
+						<string key="NS.object.0">id</string>
+					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">

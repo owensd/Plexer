@@ -42,7 +42,6 @@
         modalDelegate:self
        didEndSelector:@selector(didEndNewConfiguration:code:context:)
           contextInfo:NULL];
-    
 }
 
 -(void)didEndNewConfiguration:(NSPanel*)sheet code:(int)choice context:(void*)v {
@@ -80,8 +79,20 @@
 -(IBAction)okConfiguration:(id)sender {
     NSError* error = nil;
     if ([self validateConfigurationName:&configurationName error:&error] == NO) {
-        // Handle the validatation error.
+        [NSApp endSheet:configurationNamePanel];
         
+        NSString* message = [error domain];
+        if ([[error domain] isEqualTo:@"KS_DUPLICATE_CONFIGURATION_NAME"] == YES)
+            message = @"A configuration with this name already exists.";
+        else if ([[error domain] isEqualTo:@"KS_CONFIGURATION_NAME_EMPTY"] == YES)
+            message = @"A configuration name cannot be empty.";
+        
+        [infoPanelController showPanelWithTitle:@"Invalid Configuration Name"
+                                        message:message
+                                     buttonText:@"OK"
+                                       delegate:self
+                                 didEndSelector:@selector(invalidConfigurationSheetDidEnd:code:context:)
+                                    contextInfo:NULL];
         return;
     }
     
@@ -92,6 +103,15 @@
     [self didChangeValueForKey:@"configurationSelected"];
     
     [NSApp endSheet:configurationNamePanel returnCode:kConfigOk];
+}
+
+-(void)invalidConfigurationSheetDidEnd:(NSPanel*)sheet code:(int)choice context:(void*)v {
+    [sheet orderOut:[infoPanelController window]];
+    [NSApp beginSheet:configurationNamePanel
+       modalForWindow:preferencesPanel
+        modalDelegate:self
+       didEndSelector:@selector(didEndNewConfiguration:code:context:)
+          contextInfo:NULL];
 }
 
 -(BOOL)validateConfigurationName:(id *)ioValue error:(NSError **)outError {
@@ -162,6 +182,11 @@
 }
 
 -(IBAction)removeKeyOptionKey:(id)sender {
+}
+
+
+
+-(IBAction)okInfo:(id)sender {
 }
 
 

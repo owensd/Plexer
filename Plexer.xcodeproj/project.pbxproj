@@ -38,6 +38,7 @@
 		7D8D32A90FEF54A000912722 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 7D8D32A80FEF54A000912722 /* dsa_pub.pem */; };
 		7D8D33570FEF77A800912722 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D8D33560FEF77A800912722 /* Sparkle.framework */; };
 		7D8D33C90FEF8C2B00912722 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D8D33560FEF77A800912722 /* Sparkle.framework */; };
+		7D91321B10032F3700F24C41 /* KSInfoPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D91321A10032F3700F24C41 /* KSInfoPanelController.m */; };
 		7DA0A82D0FF0A00D006503FC /* PreferencePanes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DA0A82C0FF0A00D006503FC /* PreferencePanes.framework */; };
 		7DA6EB560FF619C50028CA3B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7DA6EB550FF619C50028CA3B /* InfoPlist.strings */; };
 		7DA6EB5E0FF61A5F0028CA3B /* KSAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DA6EB5D0FF61A5F0028CA3B /* KSAppController.m */; };
@@ -102,6 +103,8 @@
 		7D8D33560FEF77A800912722 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = "/Users/owensd/Downloads/Sparkle 1/Sparkle.framework"; sourceTree = "<absolute>"; };
 		7D8D33C60FEF8B3E00912722 /* plexercast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = plexercast.xml; sourceTree = "<group>"; };
 		7D90C6CE0FF2087E0042969C /* Plexer_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plexer_Prefix.pch; sourceTree = "<group>"; };
+		7D91321910032F3700F24C41 /* KSInfoPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSInfoPanelController.h; sourceTree = "<group>"; };
+		7D91321A10032F3700F24C41 /* KSInfoPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSInfoPanelController.m; sourceTree = "<group>"; };
 		7DA0A82C0FF0A00D006503FC /* PreferencePanes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PreferencePanes.framework; path = /System/Library/Frameworks/PreferencePanes.framework; sourceTree = "<absolute>"; };
 		7DA6EB5C0FF61A5F0028CA3B /* KSAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSAppController.h; sourceTree = "<group>"; };
 		7DA6EB5D0FF61A5F0028CA3B /* KSAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSAppController.m; sourceTree = "<group>"; };
@@ -233,6 +236,8 @@
 				7D1D675A0FF6105C0013EEB0 /* KSGeneralSettingsController.m */,
 				7DA6EBAE0FF626E60028CA3B /* KSConfigurationSettingsController.h */,
 				7DA6EBAF0FF626E60028CA3B /* KSConfigurationSettingsController.m */,
+				7D91321910032F3700F24C41 /* KSInfoPanelController.h */,
+				7D91321A10032F3700F24C41 /* KSInfoPanelController.m */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -359,6 +364,7 @@
 				7D1D675B0FF6105C0013EEB0 /* KSGeneralSettingsController.m in Sources */,
 				7DA6EB5E0FF61A5F0028CA3B /* KSAppController.m in Sources */,
 				7DA6EBB00FF626E60028CA3B /* KSConfigurationSettingsController.m in Sources */,
+				7D91321B10032F3700F24C41 /* KSInfoPanelController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
