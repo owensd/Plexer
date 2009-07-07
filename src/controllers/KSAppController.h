@@ -10,6 +10,7 @@
 #import <BWToolkitFramework/BWToolkitFramework.h>
 #import <Sparkle/Sparkle.h>
 #import "KSUserSettings.h"
+#import "KSConfigurationSettingsController.h"
 
 
 @interface KSAppController : NSObject {
@@ -17,6 +18,7 @@
     IBOutlet NSMenu* statusItemMenu;
     IBOutlet KSUserSettings* userSettings;
     IBOutlet SUUpdater* updater;
+    IBOutlet KSConfigurationSettingsController* configurationsController;
     
     BOOL broadcasting;
 }

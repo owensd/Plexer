@@ -62,6 +62,8 @@ NSImage* statusImageOff = nil;
     
     [self createStatusItemWithPathForImage:@"Plexer_ON.png" pathForOffImage:@"Plexer_OFF.png"];
     [self createEventTaps];
+    
+    [configurationsController loadConfigurations];
 }
 
 -(void)applicationWillTerminate:(NSNotification*)aNotification {

@@ -8,7 +8,8 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="628"/>
+			<integer value="821"/>
+			<integer value="627"/>
 			<integer value="496"/>
 			<integer value="454"/>
 		</object>
@@ -1143,6 +1144,7 @@
 											<reference key="NSOnImage" ref="743316579"/>
 											<reference key="NSMixedImage" ref="820313031"/>
 											<string key="NSAction">_popUpItemAction:</string>
+											<int key="NSTag">-2</int>
 											<reference key="NSTarget" ref="1013959701"/>
 										</object>
 									</object>
@@ -2027,13 +2029,13 @@
 				<int key="NSWindowStyleMask">8211</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{196, 392}, {323, 118}}</string>
-				<int key="NSWTFlags">603980800</int>
+				<int key="NSWTFlags">1677722624</int>
 				<string key="NSWindowTitle">Configuration Name</string>
 				<string key="NSWindowClass">NSPanel</string>
 				<nil key="NSViewClass"/>
 				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
 				<object class="NSView" key="NSWindowView" id="169862847">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2133,6 +2135,7 @@
 						</object>
 					</object>
 					<string key="NSFrameSize">{323, 118}</string>
+					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
 				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
@@ -2154,12 +2157,12 @@
 						<object class="NSTextField" id="462820029">
 							<reference key="NSNextResponder" ref="841141279"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{17, 71}, {332, 14}}</string>
+							<string key="NSFrame">{{17, 46}, {332, 39}}</string>
 							<reference key="NSSuperview" ref="841141279"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BWTransparentTextFieldCell" key="NSCell" id="188609119">
-								<int key="NSCellFlags">68288064</int>
-								<int key="NSCellFlags2">272761856</int>
+								<int key="NSCellFlags">67239424</int>
+								<int key="NSCellFlags2">272760832</int>
 								<string key="NSContents">Label</string>
 								<reference key="NSSupport" ref="747750801"/>
 								<reference key="NSControlView" ref="462820029"/>
@@ -2201,6 +2204,9 @@
 			</object>
 			<object class="NSCustomObject" id="834973589">
 				<string key="NSClassName">KSUserSettings</string>
+			</object>
+			<object class="NSCustomObject" id="438216521">
+				<string key="NSClassName">KSInfoPanelController</string>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -2269,22 +2275,6 @@
 						<reference key="destination" ref="504129994"/>
 					</object>
 					<int key="connectionID">968</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">removeSelectedConfiguration:</string>
-						<reference key="source" ref="806865451"/>
-						<reference key="destination" ref="850079417"/>
-					</object>
-					<int key="connectionID">971</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">renameSelectedConfiguration:</string>
-						<reference key="source" ref="806865451"/>
-						<reference key="destination" ref="104177466"/>
-					</object>
-					<int key="connectionID">972</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
@@ -2357,14 +2347,6 @@
 						<reference key="destination" ref="739828423"/>
 					</object>
 					<int key="connectionID">983</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">userSettings</string>
-						<reference key="source" ref="806865451"/>
-						<reference key="destination" ref="834973589"/>
-					</object>
-					<int key="connectionID">985</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -2769,6 +2751,154 @@
 						<reference key="destination" ref="46162279"/>
 					</object>
 					<int key="connectionID">1085</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">userSettings</string>
+						<reference key="source" ref="806865451"/>
+						<reference key="destination" ref="834973589"/>
+					</object>
+					<int key="connectionID">1086</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">createNewConfiguration:</string>
+						<reference key="source" ref="806865451"/>
+						<reference key="destination" ref="1031292502"/>
+					</object>
+					<int key="connectionID">1087</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">removeSelectedConfiguration:</string>
+						<reference key="source" ref="806865451"/>
+						<reference key="destination" ref="850079417"/>
+					</object>
+					<int key="connectionID">1088</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">renameSelectedConfiguration:</string>
+						<reference key="source" ref="806865451"/>
+						<reference key="destination" ref="104177466"/>
+					</object>
+					<int key="connectionID">1089</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">infoPanelController</string>
+						<reference key="source" ref="806865451"/>
+						<reference key="destination" ref="438216521"/>
+					</object>
+					<int key="connectionID">1092</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">infoPanel</string>
+						<reference key="source" ref="438216521"/>
+						<reference key="destination" ref="388846971"/>
+					</object>
+					<int key="connectionID">1093</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">infoPanelTextField</string>
+						<reference key="source" ref="438216521"/>
+						<reference key="destination" ref="462820029"/>
+					</object>
+					<int key="connectionID">1094</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">infoPanelButton</string>
+						<reference key="source" ref="438216521"/>
+						<reference key="destination" ref="688656797"/>
+					</object>
+					<int key="connectionID">1095</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">parentWindow</string>
+						<reference key="source" ref="438216521"/>
+						<reference key="destination" ref="227348696"/>
+					</object>
+					<int key="connectionID">1096</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">showPreferences:</string>
+						<reference key="source" ref="72426231"/>
+						<reference key="destination" ref="970135363"/>
+					</object>
+					<int key="connectionID">1097</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">configurationNamePanel</string>
+						<reference key="source" ref="806865451"/>
+						<reference key="destination" ref="102295453"/>
+					</object>
+					<int key="connectionID">1104</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">preferencesPanel</string>
+						<reference key="source" ref="806865451"/>
+						<reference key="destination" ref="227348696"/>
+					</object>
+					<int key="connectionID">1107</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">okConfiguration:</string>
+						<reference key="source" ref="806865451"/>
+						<reference key="destination" ref="6806776"/>
+					</object>
+					<int key="connectionID">1108</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">cancelConfiguration:</string>
+						<reference key="source" ref="806865451"/>
+						<reference key="destination" ref="528490468"/>
+					</object>
+					<int key="connectionID">1109</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: configurationName</string>
+						<reference key="source" ref="892622026"/>
+						<reference key="destination" ref="806865451"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="892622026"/>
+							<reference key="NSDestination" ref="806865451"/>
+							<string key="NSLabel">value: configurationName</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">configurationName</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSContinuouslyUpdatesValue</string>
+								<boolean value="YES" key="NS.object.0" id="5"/>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1112</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="102295453"/>
+						<reference key="destination" ref="806865451"/>
+					</object>
+					<int key="connectionID">1113</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">configurationsController</string>
+						<reference key="source" ref="72426231"/>
+						<reference key="destination" ref="806865451"/>
+					</object>
+					<int key="connectionID">1116</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -4179,6 +4309,11 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 						<reference key="object" ref="693240387"/>
 						<reference key="parent" ref="342035516"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1091</int>
+						<reference key="object" ref="438216521"/>
+						<reference key="parent" ref="1049"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -4190,6 +4325,7 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 					<string>-3.IBPluginDependency</string>
 					<string>1052.IBPluginDependency</string>
 					<string>1053.IBPluginDependency</string>
+					<string>1091.IBPluginDependency</string>
 					<string>420.IBPluginDependency</string>
 					<string>454.IBEditorWindowLastContentRect</string>
 					<string>454.IBPluginDependency</string>
@@ -4424,6 +4560,7 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 					<string>962.IBPluginDependency</string>
 					<string>969.IBPluginDependency</string>
 					<string>984.IBPluginDependency</string>
+					<string>992.IBEditorWindowLastContentRect</string>
 					<string>992.IBPluginDependency</string>
 					<string>993.IBPluginDependency</string>
 					<string>994.IBPluginDependency</string>
@@ -4436,6 +4573,7 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 					<string>com.apple.InterfaceBuilderKit</string>
 					<string>com.brandonwalkin.BWToolkit</string>
 					<string>com.brandonwalkin.BWToolkit</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{493, 481}, {234, 103}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -4499,7 +4637,7 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{1208, 112}, {596, 319}}</string>
 					<string>{{1208, 112}, {596, 319}}</string>
-					<boolean value="YES" id="5"/>
+					<reference ref="5"/>
 					<reference ref="5"/>
 					<boolean value="NO" id="6"/>
 					<string>{596, 365}</string>
@@ -4605,8 +4743,8 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 					<string>com.brandonwalkin.BWToolkit</string>
 					<string>com.brandonwalkin.BWToolkit</string>
 					<string>com.brandonwalkin.BWToolkit</string>
-					<string>{{925, 616}, {323, 118}}</string>
-					<string>{{925, 616}, {323, 118}}</string>
+					<string>{{780, 661}, {323, 118}}</string>
+					<string>{{780, 661}, {323, 118}}</string>
 					<reference ref="6"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.brandonwalkin.BWToolkit</string>
@@ -4672,6 +4810,7 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>{{1623, 275}, {99, 63}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -4698,7 +4837,7 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1085</int>
+			<int key="maxID">1116</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -4725,6 +4864,7 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>configurationsController</string>
 							<string>preferencesWindow</string>
 							<string>statusItemMenu</string>
 							<string>updater</string>
@@ -4732,6 +4872,7 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>KSConfigurationSettingsController</string>
 							<string>NSWindow</string>
 							<string>NSMenu</string>
 							<string>SUUpdater</string>
@@ -4752,12 +4893,15 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>addApplication:</string>
 							<string>addKeyOptionKey:</string>
+							<string>cancelConfiguration:</string>
 							<string>changeMoveWindowsNearMenuBarSetting:</string>
 							<string>changeSaveWindowPositionAndLayoutSetting:</string>
 							<string>changeSelectedConfiguration:</string>
 							<string>changeSelectedKeyOption:</string>
 							<string>changeToggleDockHidingSetting:</string>
+							<string>createNewConfiguration:</string>
 							<string>launchApplications:</string>
+							<string>okConfiguration:</string>
 							<string>removeApplication:</string>
 							<string>removeKeyOptionKey:</string>
 							<string>removeSelectedConfiguration:</string>
@@ -4777,18 +4921,27 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>configurationNamePanel</string>
 							<string>configurationsPopUp</string>
+							<string>infoPanelController</string>
+							<string>preferencesPanel</string>
 							<string>userSettings</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSWindow</string>
 							<string>BWTransparentPopUpButton</string>
+							<string>KSInfoPanelController</string>
+							<string>NSWindow</string>
 							<string>KSUserSettings</string>
 						</object>
 					</object>
@@ -4811,6 +4964,31 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">src/controllers/KSGeneralSettingsController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">KSInfoPanelController</string>
+					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSMutableArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>infoPanel</string>
+							<string>infoPanelButton</string>
+							<string>infoPanelTextField</string>
+							<string>parentWindow</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSWindow</string>
+							<string>BWTransparentButton</string>
+							<string>NSTextField</string>
+							<string>NSWindow</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">src/controllers/KSInfoPanelController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

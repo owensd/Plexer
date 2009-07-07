@@ -17,8 +17,7 @@ NSString* SwitchBetweenAppsKeyCode = @"SwitchBetweenAppsKeyCode";
 NSString* SwitchToAppKeyCode = @"SwitchToAppKeyCode";
 NSString* AutomaticallyCheckForUpdates = @"SUEnableAutomaticChecks";
 NSString* ShowInMenuBar = @"ShowInMenuBar";
-
-@synthesize configurations;
+NSString* Configurations = @"Configurations";
 
 -(id)init {
     if (self = [super init]) {
@@ -26,6 +25,7 @@ NSString* ShowInMenuBar = @"ShowInMenuBar";
         quitAppKeyCode = -1;
         switchBetweenAppsKeyCode = -1;
         switchToAppKeyCode = -1;
+        configurations = [[[NSMutableArray alloc] init] retain];
     }
     return self;
 }
@@ -88,6 +88,45 @@ NSString* ShowInMenuBar = @"ShowInMenuBar";
 -(void)setShowInMenuBar:(BOOL)showInMenu {
     [[NSUserDefaults standardUserDefaults] setBool:showInMenu forKey:ShowInMenuBar];
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(void)serialize {
+    NSMutableDictionary* configurationDictionary = [[NSMutableDictionary alloc] init];
+    for (KSConfiguration* config in configurations) {
+        [configurationDictionary setObject:[config configurationAsDictionary] forKey:[config name]];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:configurationDictionary forKey:Configurations];
+    [[NSUserDefaults standardUserDefaults] synchronize];    
+}
+
+-(void)addConfigurationWithName:(NSString*)name {
+    [configurations addObject:[KSConfiguration withName:name]];
+    [self serialize];
+}
+
+-(void)removeConfigurationWithName:(NSString*)name {
+    for (int idx = 0; idx < [configurations count]; ++idx) {
+        if ([[[configurations objectAtIndex:idx] name] isEqualTo:name] == YES) {
+            [configurations removeObjectAtIndex:idx];
+            [self serialize];
+            break;
+        }
+    }
+}
+
+-(NSArray*)configurations {
+    return configurations;
+}
+
+-(void)load {
+    [configurations release];
+    configurations = [[[NSMutableArray alloc] init] retain];
+    
+    NSDictionary* configurationData = [[NSUserDefaults standardUserDefaults] dictionaryForKey:Configurations];
+    for (NSDictionary* data in [configurationData allValues]) {
+        [configurations addObject:[KSConfiguration fromDictionary:data]];
+    }
 }
 
 @end

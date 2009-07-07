@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "KSConfiguration.h"
 
 
 @interface KSUserSettings : NSObject {
@@ -14,7 +15,7 @@
     NSInteger quitAppKeyCode;
     NSInteger switchBetweenAppsKeyCode;
     NSInteger switchToAppKeyCode;
-    NSArray*  configurations;
+    NSMutableArray* configurations;
 }
 
 @property (assign) NSInteger toggleBroadcastingKeyCode;
@@ -23,7 +24,12 @@
 @property (assign) NSInteger switchToAppKeyCode;
 @property (assign) BOOL automaticallyCheckForUpdates;
 @property (assign) BOOL showInMenuBar;
-@property (retain) NSArray* configurations;
 
+-(void)addConfigurationWithName:(NSString*)name;
+-(void)removeConfigurationWithName:(NSString*)name;
+-(NSArray*)configurations;
+
+-(void)load;
+-(void)serialize;
 
 @end

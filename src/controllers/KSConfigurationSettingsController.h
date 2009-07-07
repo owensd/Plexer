@@ -9,20 +9,35 @@
 #import <Cocoa/Cocoa.h>
 #import <BWToolkitFramework/BWToolkitFramework.h>
 #import "KSUserSettings.h"
+#import "KSInfoPanelController.h"
+
+enum KSConfigurationNameOptions {
+    kConfigCancel   = -1,
+    kConfigOk      = 0,
+};
+
 
 @interface KSConfigurationSettingsController : NSWindowController {
     IBOutlet KSUserSettings* userSettings;
     IBOutlet BWTransparentPopUpButton* configurationsPopUp;
+    IBOutlet KSInfoPanelController* infoPanelController;
     
-    BOOL configurationSelected;
+    IBOutlet NSWindow* preferencesPanel;
+    IBOutlet NSWindow* configurationNamePanel;
+    NSString* configurationName;
 }
 
 @property (assign) KSUserSettings* userSettings;
-@property (assign) BOOL configurationSelected;
+@property (readonly) BOOL configurationSelected;
+@property (assign) NSString* configurationName;
 
+-(IBAction)createNewConfiguration:(id)sender;
 -(IBAction)changeSelectedConfiguration:(id)sender;
 -(IBAction)renameSelectedConfiguration:(id)sender;
 -(IBAction)removeSelectedConfiguration:(id)sender;
+-(IBAction)cancelConfiguration:(id)sender;
+-(IBAction)okConfiguration:(id)sender;
+-(BOOL)validateConfigurationName:(id *)ioValue error:(NSError **)outError;
 
 -(IBAction)changeSaveWindowPositionAndLayoutSetting:(id)sender;
 -(IBAction)changeToggleDockHidingSetting:(id)sedner;
@@ -35,5 +50,7 @@
 -(IBAction)changeSelectedKeyOption:(id)sender;
 -(IBAction)addKeyOptionKey:(id)sender;
 -(IBAction)removeKeyOptionKey:(id)sender;
+
+-(void)loadConfigurations;
 
 @end

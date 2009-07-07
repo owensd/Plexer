@@ -21,4 +21,9 @@
 @property (retain) NSArray* blackListKeys;
 @property (retain) NSArray* roundRobinKeys;
 
++(KSConfiguration*)withName:(NSString*)name;
++(KSConfiguration*)fromDictionary:(NSDictionary*)data;
+
+-(NSDictionary*)configurationAsDictionary;
+
 @end
