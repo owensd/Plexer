@@ -166,7 +166,20 @@ NSString* Configurations = @"Configurations";
     NSLog(@"Application '%@' was added.", path);
 }
 
--(void)removeApplication:(ProcessSerialNumber*)psn forConfiguration:(NSString*)name {
+-(void)removeApplicationAtIndex:(NSInteger)idx forConfiguration:(NSString*)name {
+    KSConfiguration* config = [configurations valueForKey:name];
+    NSMutableArray* newApplications = [NSMutableArray arrayWithArray:[config applications]];
+    
+    // Make sure that 'Applications' doesn't end up being an empty string. That will cause an
+    // empty item to be loaded.
+    if ([newApplications count] == 1)
+        config.applications = nil;
+    else {
+        [newApplications removeObjectAtIndex:idx];
+        config.applications = newApplications;
+    }
+    
+    [self serialize];
 }
 
 

@@ -31,7 +31,7 @@
 -(NSDictionary*)configurations;
 
 -(void)addApplication:(ProcessSerialNumber*)psn forConfiguration:(NSString*)name;
--(void)removeApplication:(ProcessSerialNumber*)psn forConfiguration:(NSString*)name;
+-(void)removeApplicationAtIndex:(NSInteger)idx forConfiguration:(NSString*)name;
 
 -(void)load;
 -(void)serialize;

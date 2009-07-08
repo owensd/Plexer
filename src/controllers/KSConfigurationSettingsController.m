@@ -14,7 +14,7 @@ EventHandlerRef AddApplicationEventHandlerRef;
 
 
 @implementation KSConfigurationSettingsController
-@synthesize userSettings, configurationName, configurationsPopUp;
+@synthesize userSettings, configurationName, configurationsPopUp, applicationsTableView;
 
 
 -(BOOL)configurationSelected {
@@ -68,6 +68,7 @@ EventHandlerRef AddApplicationEventHandlerRef;
 -(IBAction)changeSelectedConfiguration:(id)sender {
     [self willChangeValueForKey:@"configurationSelected"];
     [self didChangeValueForKey:@"configurationSelected"];
+    [applicationsTableView reloadData];
 }
 
 -(IBAction)renameSelectedConfiguration:(id)sender {
@@ -210,6 +211,8 @@ EventHandlerRef AddApplicationEventHandlerRef;
 }
 
 -(IBAction)removeApplication:(id)sender {
+    [userSettings removeApplicationAtIndex:[applicationsTableView selectedRow] forConfiguration:[configurationsPopUp titleOfSelectedItem]];
+    [applicationsTableView reloadData];
 }
 
 -(IBAction)launchApplications:(id)sender {
@@ -238,6 +241,8 @@ static OSStatus AddApplicationEventHandler(EventHandlerCallRef inRef, EventRef i
     GetEventParameter(inEvent, kEventParamProcessID, typeProcessSerialNumber, NULL, sizeof(ProcessSerialNumber), NULL, &psn);
     [[controller userSettings] addApplication:&psn forConfiguration:[[controller configurationsPopUp] titleOfSelectedItem]];
     
+    [[controller applicationsTableView] reloadData];
+
     return noErr;
 }
 

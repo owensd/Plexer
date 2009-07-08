@@ -32,6 +32,7 @@
 		7D1D675B0FF6105C0013EEB0 /* KSGeneralSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1D675A0FF6105C0013EEB0 /* KSGeneralSettingsController.m */; };
 		7D5D61970FE4C37B00347A73 /* EventHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D5D61960FE4C37B00347A73 /* EventHandling.m */; };
 		7D5DEBB30FF9EB60005AB679 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D5DEBB10FF9EB60005AB679 /* MainMenu.xib */; };
+		7D7B312F100479ED00AF62EF /* KSApplicationsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7B312E100479ED00AF62EF /* KSApplicationsDataSource.m */; };
 		7D8D2FCA0FEDFD3200912722 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D8D2FC90FEDFD3200912722 /* ScriptingBridge.framework */; };
 		7D8D300D0FEE045300912722 /* System Events.app in Resources */ = {isa = PBXBuildFile; fileRef = 7D8D300C0FEE045300912722 /* System Events.app */; };
 		7D8D321F0FEF48D900912722 /* version.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 7D8D321E0FEF48D900912722 /* version.xcconfig */; };
@@ -96,6 +97,8 @@
 		7D5D61950FE4C37B00347A73 /* EventHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventHandling.h; sourceTree = "<group>"; };
 		7D5D61960FE4C37B00347A73 /* EventHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventHandling.m; sourceTree = "<group>"; };
 		7D5DEBB20FF9EB60005AB679 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		7D7B312D100479ED00AF62EF /* KSApplicationsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSApplicationsDataSource.h; sourceTree = "<group>"; };
+		7D7B312E100479ED00AF62EF /* KSApplicationsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSApplicationsDataSource.m; sourceTree = "<group>"; };
 		7D8D2FC90FEDFD3200912722 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = /System/Library/Frameworks/ScriptingBridge.framework; sourceTree = "<absolute>"; };
 		7D8D300C0FEE045300912722 /* System Events.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; name = "System Events.app"; path = "/System/Library/CoreServices/System Events.app"; sourceTree = "<absolute>"; };
 		7D8D321E0FEF48D900912722 /* version.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = version.xcconfig; sourceTree = "<group>"; };
@@ -238,6 +241,8 @@
 				7DA6EBAF0FF626E60028CA3B /* KSConfigurationSettingsController.m */,
 				7D91321910032F3700F24C41 /* KSInfoPanelController.h */,
 				7D91321A10032F3700F24C41 /* KSInfoPanelController.m */,
+				7D7B312D100479ED00AF62EF /* KSApplicationsDataSource.h */,
+				7D7B312E100479ED00AF62EF /* KSApplicationsDataSource.m */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -365,6 +370,7 @@
 				7DA6EB5E0FF61A5F0028CA3B /* KSAppController.m in Sources */,
 				7DA6EBB00FF626E60028CA3B /* KSConfigurationSettingsController.m in Sources */,
 				7D91321B10032F3700F24C41 /* KSInfoPanelController.m in Sources */,
+				7D7B312F100479ED00AF62EF /* KSApplicationsDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
