@@ -27,9 +27,10 @@ enum KSConfigurationNameOptions {
     NSString* configurationName;
 }
 
-@property (assign) KSUserSettings* userSettings;
+@property (retain) KSUserSettings* userSettings;
 @property (readonly) BOOL configurationSelected;
-@property (assign) NSString* configurationName;
+@property (copy) NSString* configurationName;
+@property (retain) BWTransparentPopUpButton* configurationsPopUp;
 
 -(IBAction)createNewConfiguration:(id)sender;
 -(IBAction)changeSelectedConfiguration:(id)sender;

@@ -91,7 +91,11 @@ NSString* Configurations = @"Configurations";
 }
 
 -(void)serialize {
-    [[NSUserDefaults standardUserDefaults] setObject:configurations forKey:Configurations];
+    NSDictionary* configData = [[NSMutableDictionary alloc] init];
+    for (KSConfiguration* config in [configurations allValues]) {
+        [configData setValue:[config configurationAsDictionary] forKey:[config name]];
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:configData forKey:Configurations];
     [[NSUserDefaults standardUserDefaults] synchronize];    
 }
 
@@ -129,11 +133,40 @@ NSString* Configurations = @"Configurations";
     }
 }
 
--(void)addApplication:(NSString*)processName forConfiguration:(NSString*)config {
+-(void)addApplication:(ProcessSerialNumber*)psn forConfiguration:(NSString*)name {
+    FSRef fsRef;
+    GetProcessBundleLocation(psn, &fsRef);
     
+    CFURLRef url = CFURLCreateFromFSRef(kCFAllocatorDefault, &fsRef);
+    NSString* path = (NSString*)CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
+    CFRelease(url);
+    
+    ProcessSerialNumber currentPSN;
+    GetCurrentProcess(&currentPSN);
+    GetProcessBundleLocation(&currentPSN, &fsRef);
+    url = CFURLCreateFromFSRef(kCFAllocatorDefault, &fsRef);
+    NSString* currentPath = (NSString*)CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
+    CFRelease(url);
+    
+    // Don't add ourself to the list.
+    if ([path isEqualToString:currentPath] == YES)
+        return;
+    
+    KSConfiguration* config = [configurations valueForKey:name];
+    for (NSString* appPath in [config applications]) {
+        if ([path isEqualToString:appPath] == YES)
+            return;     // That application already exists - DON'T ADD IT!.
+    }
+    NSMutableArray* newApplications = [NSMutableArray arrayWithArray:[config applications]];
+    [newApplications addObject:path];
+    config.applications = newApplications;
+    
+    [self serialize];
+    
+    NSLog(@"Application '%@' was added.", path);
 }
 
--(void)removeApplication:(NSString*)processName forConfiguration:(NSString*)config {
+-(void)removeApplication:(ProcessSerialNumber*)psn forConfiguration:(NSString*)name {
 }
 
 

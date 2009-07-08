@@ -11,9 +11,9 @@
 
 @interface KSConfiguration : NSObject {
     NSString* name;
-    NSArray*  applications;
-    NSArray*  blackListKeys;
-    NSArray*  roundRobinKeys;
+    NSArray* applications;
+    NSArray* blackListKeys;
+    NSMutableArray* roundRobinKeys;
 }
 
 @property (copy) NSString* name;

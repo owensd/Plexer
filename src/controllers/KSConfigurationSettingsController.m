@@ -14,7 +14,7 @@ EventHandlerRef AddApplicationEventHandlerRef;
 
 
 @implementation KSConfigurationSettingsController
-@synthesize userSettings, configurationName;
+@synthesize userSettings, configurationName, configurationsPopUp;
 
 
 -(BOOL)configurationSelected {
@@ -235,12 +235,8 @@ static OSStatus AddApplicationEventHandler(EventHandlerCallRef inRef, EventRef i
     KSConfigurationSettingsController* controller = (KSConfigurationSettingsController*)inRefcon;
     
     ProcessSerialNumber psn;
-    CFStringRef processName = NULL;
-    
     GetEventParameter(inEvent, kEventParamProcessID, typeProcessSerialNumber, NULL, sizeof(ProcessSerialNumber), NULL, &psn);
-    CopyProcessName(&psn, &processName);
-    
-    [[controller userSettings] addApplication:processName];
+    [[controller userSettings] addApplication:&psn forConfiguration:[[controller configurationsPopUp] titleOfSelectedItem]];
     
     return noErr;
 }

@@ -30,8 +30,8 @@
 -(void)renameConfigurationWithName:(NSString*)oldName toName:(NSString*)newName;
 -(NSDictionary*)configurations;
 
--(void)addApplication:(NSString*)processName forConfiguration:(NSString*)config;
--(void)removeApplication:(NSString*)processName forConfiguration:(NSString*)config;
+-(void)addApplication:(ProcessSerialNumber*)psn forConfiguration:(NSString*)name;
+-(void)removeApplication:(ProcessSerialNumber*)psn forConfiguration:(NSString*)name;
 
 -(void)load;
 -(void)serialize;
