@@ -53,4 +53,7 @@ enum KSConfigurationNameOptions {
 
 -(void)loadConfigurations;
 
+-(void)registerApplicationEventHandler;
+-(void)unregisterApplicationEventHandler;
+
 @end

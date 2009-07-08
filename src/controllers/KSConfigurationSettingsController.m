@@ -8,6 +8,9 @@
 
 #import "KSConfigurationSettingsController.h"
 #import "KSConfiguration.h"
+#import <Carbon/Carbon.h>
+
+EventHandlerRef AddApplicationEventHandlerRef;
 
 
 @implementation KSConfigurationSettingsController
@@ -20,7 +23,7 @@
 
 -(void)loadConfigurations {
     [userSettings load];
-    for (KSConfiguration* config in [userSettings configurations]) {
+    for (KSConfiguration* config in [[userSettings configurations] allValues]) {
         [configurationsPopUp insertItemWithTitle:[config name] atIndex:([configurationsPopUp numberOfItems] - 2)];
     }
     [configurationsPopUp selectItemAtIndex:0];
@@ -191,6 +194,19 @@
 
 
 -(IBAction)addApplication:(id)sender {
+    [self registerApplicationEventHandler];
+    [infoPanelController showPanelWithTitle:@"Add Application"
+                                    message:@"Bring the applications you wish to add to the foreground. When you are finished, press the 'Done' button."
+                                 buttonText:@"Done"
+                                   delegate:self
+                             didEndSelector:@selector(addApplicationsSheetDidEnd:code:context:)
+                                contextInfo:NULL];
+    
+}
+
+-(void)addApplicationsSheetDidEnd:(NSPanel*)sheet code:(int)choice context:(void*)v {
+    [sheet orderOut:[infoPanelController window]];
+    [self unregisterApplicationEventHandler];
 }
 
 -(IBAction)removeApplication:(id)sender {
@@ -210,9 +226,35 @@
 }
 
 
+// ------------------------------------------------------
+// Application event handlers and related methods
+// ------------------------------------------------------
 
--(IBAction)okInfo:(id)sender {
+static OSStatus AddApplicationEventHandler(EventHandlerCallRef inRef, EventRef inEvent, void* inRefcon) {
+    NSLog(@"Application switched to foreground.");
+    KSConfigurationSettingsController* controller = (KSConfigurationSettingsController*)inRefcon;
+    
+    ProcessSerialNumber psn;
+    CFStringRef processName = NULL;
+    
+    GetEventParameter(inEvent, kEventParamProcessID, typeProcessSerialNumber, NULL, sizeof(ProcessSerialNumber), NULL, &psn);
+    CopyProcessName(&psn, &processName);
+    
+    [[controller userSettings] addApplication:processName];
+    
+    return noErr;
 }
 
+-(void)registerApplicationEventHandler {
+    EventTypeSpec kAppEvents[] = {
+        { kEventClassApplication, kEventAppFrontSwitched },
+    };
+    
+    InstallApplicationEventHandler(AddApplicationEventHandler, GetEventTypeCount(kAppEvents), kAppEvents, self, &AddApplicationEventHandlerRef);
+}
+
+-(void)unregisterApplicationEventHandler {
+    RemoveEventHandler(AddApplicationEventHandlerRef);
+}
 
 @end

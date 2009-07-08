@@ -15,7 +15,7 @@
     NSInteger quitAppKeyCode;
     NSInteger switchBetweenAppsKeyCode;
     NSInteger switchToAppKeyCode;
-    NSMutableArray* configurations;
+    NSMutableDictionary* configurations;
 }
 
 @property (assign) NSInteger toggleBroadcastingKeyCode;
@@ -28,7 +28,10 @@
 -(void)addConfigurationWithName:(NSString*)name;
 -(void)removeConfigurationWithName:(NSString*)name;
 -(void)renameConfigurationWithName:(NSString*)oldName toName:(NSString*)newName;
--(NSArray*)configurations;
+-(NSDictionary*)configurations;
+
+-(void)addApplication:(NSString*)processName forConfiguration:(NSString*)config;
+-(void)removeApplication:(NSString*)processName forConfiguration:(NSString*)config;
 
 -(void)load;
 -(void)serialize;

@@ -16,8 +16,6 @@ CFRunLoopRef runLoopRef = NULL;
 
 CGEventRef KeyEventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon);
 
-EventHandlerRef AddApplicationEventHandlerRef;
-
 
 @implementation KSAppController
 
@@ -63,11 +61,10 @@ NSImage* statusImageOff = nil;
 
     self.broadcasting = false;
     
-    [self createStatusItemWithPathForImage:@"Plexer_ON.png" pathForOffImage:@"Plexer_OFF.png"];
-    [self registerEventTaps];
-    [self registerApplicationEventHandler];
-    
     [configurationsController loadConfigurations];
+
+    [self createStatusItemWithPathForImage:@"Plexer_ON.png" pathForOffImage:@"Plexer_OFF.png"];
+    [self registerEventTaps];    
 }
 
 -(void)applicationWillTerminate:(NSNotification*)aNotification {
@@ -155,33 +152,7 @@ CGEventRef AppEventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventR
 }
 
 
-// ------------------------------------------------------
-// Application event handlers and related methods
-// ------------------------------------------------------
 
-static OSStatus AddApplicationEventHandler(EventHandlerCallRef inRef, EventRef inEvent, void* inRefcon) {
-    NSLog(@"Application switched to foreground.");
-    //AppController* controller = (AppController*)inRefcon;
-    
-    ProcessSerialNumber psn;
-    CFStringRef processName = NULL;
-    
-    GetEventParameter(inEvent, kEventParamProcessID, typeProcessSerialNumber, NULL, sizeof(ProcessSerialNumber), NULL, &psn);
-    CopyProcessName(&psn, &processName);
-    
-    //[controller insertApplication:&psn];
-    
-    return noErr;
-}
-
--(void)registerApplicationEventHandler {
-    
-    EventTypeSpec kAppEvents[] = {
-        { kEventClassApplication, kEventAppFrontSwitched },
-    };
-    
-    InstallApplicationEventHandler(AddApplicationEventHandler, GetEventTypeCount(kAppEvents), kAppEvents, self, &AddApplicationEventHandlerRef);
-}
 
 
 

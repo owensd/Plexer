@@ -19,7 +19,7 @@ NSString* Applications = @"Applications";
 
 +(KSConfiguration*)withName:(NSString*)name {
     KSConfiguration* config = [[KSConfiguration alloc] init];
-    [config setName:name];
+    config.name = name;
     config.blackListKeys = nil;
     config.roundRobinKeys = nil;
     config.applications = nil;

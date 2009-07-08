@@ -25,7 +25,7 @@ NSString* Configurations = @"Configurations";
         quitAppKeyCode = -1;
         switchBetweenAppsKeyCode = -1;
         switchToAppKeyCode = -1;
-        configurations = [[[NSMutableArray alloc] init] retain];
+        configurations = [[[NSMutableDictionary alloc] init] retain];
     }
     return self;
 }
@@ -91,54 +91,50 @@ NSString* Configurations = @"Configurations";
 }
 
 -(void)serialize {
-    NSMutableDictionary* configurationDictionary = [[NSMutableDictionary alloc] init];
-    for (KSConfiguration* config in configurations) {
-        [configurationDictionary setObject:[config configurationAsDictionary] forKey:[config name]];
-    }
-    
-    [[NSUserDefaults standardUserDefaults] setObject:configurationDictionary forKey:Configurations];
+    [[NSUserDefaults standardUserDefaults] setObject:configurations forKey:Configurations];
     [[NSUserDefaults standardUserDefaults] synchronize];    
 }
 
 -(void)addConfigurationWithName:(NSString*)name {
-    [configurations addObject:[KSConfiguration withName:name]];
+    [configurations setValue:[KSConfiguration withName:name] forKey:name];
     [self serialize];
 }
 
 -(void)removeConfigurationWithName:(NSString*)name {
-    for (int idx = 0; idx < [configurations count]; ++idx) {
-        if ([[[configurations objectAtIndex:idx] name] isEqualTo:name] == YES) {
-            [configurations removeObjectAtIndex:idx];
-            [self serialize];
-            break;
-        }
-    }
+    [configurations removeObjectForKey:name];
+    [self serialize];
 }
 
 -(void)renameConfigurationWithName:(NSString*)oldName toName:(NSString*)newName {
-    for (int idx = 0; idx < [configurations count]; ++idx) {
-        KSConfiguration* config = [configurations objectAtIndex:idx];
-        if ([[config name] isEqualTo:oldName] == YES) {
-            [config setName:newName];
-            [configurations insertObject:config atIndex:idx];
-            [configurations removeObjectAtIndex:(idx + 1)];
-            [self serialize];
-            break;
-        }
-    }}
+    KSConfiguration* config = [configurations valueForKey:oldName];
+    [config setName:newName];
+    
+    [configurations removeObjectForKey:oldName];
+    [configurations setValue:config forKey:newName];
+    [self serialize];
+}
 
--(NSArray*)configurations {
+-(NSDictionary*)configurations {
     return configurations;
 }
 
 -(void)load {
     [configurations release];
-    configurations = [[[NSMutableArray alloc] init] retain];
+    configurations = [[[NSMutableDictionary alloc] init] retain];
     
-    NSDictionary* configurationData = [[NSUserDefaults standardUserDefaults] dictionaryForKey:Configurations];
-    for (NSDictionary* data in [configurationData allValues]) {
-        [configurations addObject:[KSConfiguration fromDictionary:data]];
+    NSDictionary* data = [[NSUserDefaults standardUserDefaults] dictionaryForKey:Configurations];
+    for (NSDictionary* configData in [data allValues]) {
+        KSConfiguration* config = [KSConfiguration fromDictionary:configData]; 
+        [configurations setValue:config forKey:[config name]];
     }
 }
+
+-(void)addApplication:(NSString*)processName forConfiguration:(NSString*)config {
+    
+}
+
+-(void)removeApplication:(NSString*)processName forConfiguration:(NSString*)config {
+}
+
 
 @end
