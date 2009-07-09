@@ -10,14 +10,14 @@
 #import "System Events.h"
 #import <Carbon/Carbon.h>
 
+
+@implementation KSAppController
+
 CFMachPortRef keyEventTapRef = NULL;
 CFRunLoopSourceRef runLoopSourceRef = NULL;
 CFRunLoopRef runLoopRef = NULL;
 
 CGEventRef KeyEventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon);
-
-
-@implementation KSAppController
 
 NSStatusItem* statusItem = nil;
 NSImage* statusImageOn = nil;
@@ -69,9 +69,7 @@ NSImage* statusImageOff = nil;
 
 -(void)applicationWillTerminate:(NSNotification*)aNotification {
     CFMachPortInvalidate(keyEventTapRef);
-//    CFMachPortInvalidate(appEventTapRef);
     CFRelease(keyEventTapRef);
-//    CFRelease(appEventTapRef);
     CFRelease(runLoopSourceRef);
 }
 
@@ -146,11 +144,6 @@ CGEventRef KeyEventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventR
     
     return event;
 }
-
-CGEventRef AppEventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon) {
-    return event;
-}
-
 
 
 

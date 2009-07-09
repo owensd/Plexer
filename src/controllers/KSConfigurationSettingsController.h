@@ -20,10 +20,12 @@ enum KSConfigurationNameOptions {
 @interface KSConfigurationSettingsController : NSWindowController {
     IBOutlet KSUserSettings* userSettings;
     IBOutlet BWTransparentPopUpButton* configurationsPopUp;
+    IBOutlet BWTransparentPopUpButton* keyOptionsPopUp;
     
     IBOutlet NSWindow* preferencesPanel;
     IBOutlet NSWindow* configurationNamePanel;
     IBOutlet NSTableView* applicationsTableView;
+    IBOutlet NSTableView* keyOptionsTableView;
     IBOutlet KSInfoPanelController* infoPanelController;
     NSString* configurationName;
 }
@@ -32,7 +34,9 @@ enum KSConfigurationNameOptions {
 @property (readonly) BOOL configurationSelected;
 @property (copy) NSString* configurationName;
 @property (retain) BWTransparentPopUpButton* configurationsPopUp;
+@property (retain) BWTransparentPopUpButton* keyOptionsPopUp;
 @property (retain) NSTableView* applicationsTableView;
+@property (retain) NSTableView* keyOptionsTableView;
 
 -(IBAction)createNewConfiguration:(id)sender;
 -(IBAction)changeSelectedConfiguration:(id)sender;
@@ -58,5 +62,7 @@ enum KSConfigurationNameOptions {
 
 -(void)registerApplicationEventHandler;
 -(void)unregisterApplicationEventHandler;
+-(void)registerKeyboardEventTap;
+-(void)unregisterKeyboardEventTap;
 
 @end

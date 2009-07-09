@@ -30,6 +30,7 @@
 		7D1D67470FF602640013EEB0 /* KSUserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1D67460FF602640013EEB0 /* KSUserSettings.m */; };
 		7D1D67530FF60B410013EEB0 /* KSConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1D67520FF60B410013EEB0 /* KSConfiguration.m */; };
 		7D1D675B0FF6105C0013EEB0 /* KSGeneralSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1D675A0FF6105C0013EEB0 /* KSGeneralSettingsController.m */; };
+		7D2776B91005E4D90040C050 /* KSKeyOptionsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2776B81005E4D90040C050 /* KSKeyOptionsDataSource.m */; };
 		7D5D61970FE4C37B00347A73 /* EventHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D5D61960FE4C37B00347A73 /* EventHandling.m */; };
 		7D5DEBB30FF9EB60005AB679 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D5DEBB10FF9EB60005AB679 /* MainMenu.xib */; };
 		7D7B312F100479ED00AF62EF /* KSApplicationsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7B312E100479ED00AF62EF /* KSApplicationsDataSource.m */; };
@@ -94,6 +95,8 @@
 		7D1D67520FF60B410013EEB0 /* KSConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSConfiguration.m; sourceTree = "<group>"; };
 		7D1D67590FF6105C0013EEB0 /* KSGeneralSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSGeneralSettingsController.h; sourceTree = "<group>"; };
 		7D1D675A0FF6105C0013EEB0 /* KSGeneralSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSGeneralSettingsController.m; sourceTree = "<group>"; };
+		7D2776B71005E4D90040C050 /* KSKeyOptionsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSKeyOptionsDataSource.h; sourceTree = "<group>"; };
+		7D2776B81005E4D90040C050 /* KSKeyOptionsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSKeyOptionsDataSource.m; sourceTree = "<group>"; };
 		7D5D61950FE4C37B00347A73 /* EventHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventHandling.h; sourceTree = "<group>"; };
 		7D5D61960FE4C37B00347A73 /* EventHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventHandling.m; sourceTree = "<group>"; };
 		7D5DEBB20FF9EB60005AB679 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -243,6 +246,8 @@
 				7D91321A10032F3700F24C41 /* KSInfoPanelController.m */,
 				7D7B312D100479ED00AF62EF /* KSApplicationsDataSource.h */,
 				7D7B312E100479ED00AF62EF /* KSApplicationsDataSource.m */,
+				7D2776B71005E4D90040C050 /* KSKeyOptionsDataSource.h */,
+				7D2776B81005E4D90040C050 /* KSKeyOptionsDataSource.m */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -371,6 +376,7 @@
 				7DA6EBB00FF626E60028CA3B /* KSConfigurationSettingsController.m in Sources */,
 				7D91321B10032F3700F24C41 /* KSInfoPanelController.m in Sources */,
 				7D7B312F100479ED00AF62EF /* KSApplicationsDataSource.m in Sources */,
+				7D2776B91005E4D90040C050 /* KSKeyOptionsDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

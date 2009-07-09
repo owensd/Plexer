@@ -9,12 +9,17 @@
 #import "KSConfigurationSettingsController.h"
 #import "KSConfiguration.h"
 #import <Carbon/Carbon.h>
+#import "System Events.h"
+
+@implementation KSConfigurationSettingsController
+@synthesize userSettings, configurationName, configurationsPopUp, applicationsTableView, keyOptionsPopUp, keyOptionsTableView;
 
 EventHandlerRef AddApplicationEventHandlerRef;
 
-
-@implementation KSConfigurationSettingsController
-@synthesize userSettings, configurationName, configurationsPopUp, applicationsTableView;
+CFMachPortRef configKeyEventTapRef = NULL;
+CFRunLoopSourceRef configRunLoopSourceRef = NULL;
+CFRunLoopRef configRunLoopRef = NULL;
+CGEventRef ConfigKeyEventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon);
 
 
 -(BOOL)configurationSelected {
@@ -69,6 +74,7 @@ EventHandlerRef AddApplicationEventHandlerRef;
     [self willChangeValueForKey:@"configurationSelected"];
     [self didChangeValueForKey:@"configurationSelected"];
     [applicationsTableView reloadData];
+    [keyOptionsTableView reloadData];
 }
 
 -(IBAction)renameSelectedConfiguration:(id)sender {
@@ -202,7 +208,6 @@ EventHandlerRef AddApplicationEventHandlerRef;
                                    delegate:self
                              didEndSelector:@selector(addApplicationsSheetDidEnd:code:context:)
                                 contextInfo:NULL];
-    
 }
 
 -(void)addApplicationsSheetDidEnd:(NSPanel*)sheet code:(int)choice context:(void*)v {
@@ -220,12 +225,89 @@ EventHandlerRef AddApplicationEventHandlerRef;
 
 
 -(IBAction)changeSelectedKeyOption:(id)sender {
+    [keyOptionsTableView reloadData];
 }
 
 -(IBAction)addKeyOptionKey:(id)sender {
+    [self registerKeyboardEventTap];
+    [infoPanelController showPanelWithTitle:@"Add Key"
+                                    message:@"Press the keys you whish to add to the key options list. When you are finished, press the 'Done' button."
+                                 buttonText:@"Done"
+                                   delegate:self
+                             didEndSelector:@selector(addKeySheetDidEnd:code:context:)
+                                contextInfo:NULL];    
 }
 
+-(void)addKeySheetDidEnd:(NSPanel*)sheet code:(int)choice context:(void*)v {
+    [sheet orderOut:[infoPanelController window]];
+    [self unregisterKeyboardEventTap];
+}
+
+-(void)registerKeyboardEventTap {
+    configKeyEventTapRef = CGEventTapCreate(kCGSessionEventTap, kCGHeadInsertEventTap, kCGEventTapOptionDefault, CGEventMaskBit(kCGEventKeyDown) | CGEventMaskBit(kCGEventKeyUp) | CGEventMaskBit(kCGEventFlagsChanged), ConfigKeyEventTapCallback, self);
+    
+    if (configKeyEventTapRef == NULL) {
+        NSLog(@"There was an error creating the event tap.");
+        exit(1);
+    }
+    
+    configRunLoopSourceRef = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, configKeyEventTapRef, 0);
+    if (configRunLoopSourceRef == NULL) {
+        NSLog(@"There was an error creating the run loop source.");
+        exit(1);
+    }
+    
+    configRunLoopRef = [[NSRunLoop currentRunLoop] getCFRunLoop];
+    if (configRunLoopRef == NULL) {
+        NSLog(@"There was an error retrieving the current run loop.");
+        exit(1);
+    }
+    
+    CFRunLoopAddSource(configRunLoopRef, configRunLoopSourceRef, kCFRunLoopDefaultMode);
+}
+
+-(void)unregisterKeyboardEventTap {
+    CFMachPortInvalidate(configKeyEventTapRef);
+    CFRelease(configKeyEventTapRef);
+    CFRelease(configRunLoopSourceRef);
+}
+
+CGEventRef ConfigKeyEventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon) {
+    static CGKeyCode modifiers = 0;
+    
+    KSConfigurationSettingsController* controller = (KSConfigurationSettingsController*)refcon;
+    
+    CGKeyCode keyCode = (CGKeyCode)CGEventGetIntegerValueField(event, kCGKeyboardEventKeycode);
+
+    
+    if (type == kCGEventKeyUp) {
+        NSLog(@"The %d key was released.", keyCode);
+    }
+    else if (type == kCGEventKeyDown) {
+        NSLog(@"The %d key was pressed.", keyCode);
+        
+        if ([[[controller keyOptionsPopUp] titleOfSelectedItem] isEqualToString:@"Blacklist"] == YES) {
+            [[controller userSettings] addBlackListKey:((modifiers << 16) | keyCode) forConfiguration:[[controller configurationsPopUp] titleOfSelectedItem]];
+            [[controller keyOptionsTableView] reloadData];
+        }
+    }
+    else if (type == kCGEventFlagsChanged) {
+        NSLog(@"The %d flags changed.", keyCode);
+        modifiers = keyCode;
+    }
+    
+    if (keyCode == kVK_Escape)
+        return event;
+    else
+        return NULL;
+}
+
+
 -(IBAction)removeKeyOptionKey:(id)sender {
+    if ([[keyOptionsPopUp titleOfSelectedItem] isEqualToString:@"Blacklist"] == YES) {
+        [userSettings removeBlackListKeyAtIndex:[keyOptionsTableView selectedRow] forConfiguration:[configurationsPopUp titleOfSelectedItem]];
+        [keyOptionsTableView reloadData];
+    }
 }
 
 

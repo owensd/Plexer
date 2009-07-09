@@ -182,5 +182,36 @@ NSString* Configurations = @"Configurations";
     [self serialize];
 }
 
+-(void)addBlackListKey:(NSInteger)keyCode forConfiguration:(NSString*)name {
+    KSConfiguration* config = [configurations valueForKey:name];
+    for (NSNumber* aKeyCode in [config blackListKeys]) {
+        if ([aKeyCode integerValue] == keyCode)
+            return;     // That key code already exists - DON'T ADD IT!.
+    }
+    NSMutableArray* newKeyCodes = [NSMutableArray arrayWithArray:[config blackListKeys]];
+    [newKeyCodes addObject:[NSNumber numberWithInteger:keyCode]];
+    config.blackListKeys = newKeyCodes;
+    
+    [self serialize];
+    
+    NSLog(@"Black list key code '%d' was added.", keyCode);    
+}
+
+-(void)removeBlackListKeyAtIndex:(NSInteger)idx forConfiguration:(NSString*)name {
+    KSConfiguration* config = [configurations valueForKey:name];
+    NSMutableArray* newKeyCodes = [NSMutableArray arrayWithArray:[config blackListKeys]];
+    
+    // Make sure that 'BlackListKeys' doesn't end up being an empty string. That will cause an
+    // empty item to be loaded.
+    if ([newKeyCodes count] == 1)
+        config.blackListKeys = nil;
+    else {
+        [newKeyCodes removeObjectAtIndex:idx];
+        config.blackListKeys = newKeyCodes;
+    }
+    
+    [self serialize];
+}
+
 
 @end
