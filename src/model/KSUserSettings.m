@@ -18,6 +18,8 @@ NSString* SwitchToAppKeyCode = @"SwitchToAppKeyCode";
 NSString* AutomaticallyCheckForUpdates = @"SUEnableAutomaticChecks";
 NSString* ShowInMenuBar = @"ShowInMenuBar";
 NSString* Configurations = @"Configurations";
+NSString* KeyCode = @"KeyCode";
+NSString* Modifiers = @"Modifiers";
 
 -(id)init {
     if (self = [super init]) {
@@ -182,14 +184,17 @@ NSString* Configurations = @"Configurations";
     [self serialize];
 }
 
--(void)addBlackListKey:(NSInteger)keyCode forConfiguration:(NSString*)name {
+-(void)addBlackListKey:(NSInteger)keyCode withModifiers:(NSInteger)flags forConfiguration:(NSString*)name {
     KSConfiguration* config = [configurations valueForKey:name];
-    for (NSNumber* aKeyCode in [config blackListKeys]) {
-        if ([aKeyCode integerValue] == keyCode)
+    for (NSDictionary* aKeyCode in [config blackListKeys]) {
+        if ([[aKeyCode valueForKey:KeyCode] integerValue] == keyCode &&
+            [[aKeyCode valueForKey:Modifiers] integerValue] == flags)
             return;     // That key code already exists - DON'T ADD IT!.
     }
     NSMutableArray* newKeyCodes = [NSMutableArray arrayWithArray:[config blackListKeys]];
-    [newKeyCodes addObject:[NSNumber numberWithInteger:keyCode]];
+    NSDictionary* theKeyCode = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:keyCode], KeyCode,
+                                                                          [NSNumber numberWithInt:flags], Modifiers, nil];
+    [newKeyCodes addObject:theKeyCode];
     config.blackListKeys = newKeyCodes;
     
     [self serialize];

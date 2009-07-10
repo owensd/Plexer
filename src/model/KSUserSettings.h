@@ -33,7 +33,7 @@
 -(void)addApplication:(ProcessSerialNumber*)psn forConfiguration:(NSString*)name;
 -(void)removeApplicationAtIndex:(NSInteger)idx forConfiguration:(NSString*)name;
 
--(void)addBlackListKey:(NSInteger)keyCode forConfiguration:(NSString*)name;
+-(void)addBlackListKey:(NSInteger)keyCode withModifiers:(NSInteger)flags forConfiguration:(NSString*)name;
 -(void)removeBlackListKeyAtIndex:(NSInteger)idx forConfiguration:(NSString*)name;
 
 -(void)load;

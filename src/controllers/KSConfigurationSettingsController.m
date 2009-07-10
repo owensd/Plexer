@@ -35,6 +35,9 @@ CGEventRef ConfigKeyEventTapCallback(CGEventTapProxy proxy, CGEventType type, CG
 
     [self willChangeValueForKey:@"configurationSelected"];
     [self didChangeValueForKey:@"configurationSelected"];
+
+    [applicationsTableView reloadData];
+    [keyOptionsTableView reloadData];
 }
 
 // ----------------------------------------------------
@@ -216,8 +219,10 @@ CGEventRef ConfigKeyEventTapCallback(CGEventTapProxy proxy, CGEventType type, CG
 }
 
 -(IBAction)removeApplication:(id)sender {
-    [userSettings removeApplicationAtIndex:[applicationsTableView selectedRow] forConfiguration:[configurationsPopUp titleOfSelectedItem]];
-    [applicationsTableView reloadData];
+    if ([applicationsTableView selectedRow] >= 0) {
+        [userSettings removeApplicationAtIndex:[applicationsTableView selectedRow] forConfiguration:[configurationsPopUp titleOfSelectedItem]];
+        [applicationsTableView reloadData];
+    }
 }
 
 -(IBAction)launchApplications:(id)sender {
@@ -273,27 +278,22 @@ CGEventRef ConfigKeyEventTapCallback(CGEventTapProxy proxy, CGEventType type, CG
 }
 
 CGEventRef ConfigKeyEventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon) {
-    static CGKeyCode modifiers = 0;
-    
     KSConfigurationSettingsController* controller = (KSConfigurationSettingsController*)refcon;
     
     CGKeyCode keyCode = (CGKeyCode)CGEventGetIntegerValueField(event, kCGKeyboardEventKeycode);
-
     
     if (type == kCGEventKeyUp) {
         NSLog(@"The %d key was released.", keyCode);
     }
     else if (type == kCGEventKeyDown) {
         NSLog(@"The %d key was pressed.", keyCode);
-        
+        CGEventFlags flags = CGEventGetFlags(event);
+
         if ([[[controller keyOptionsPopUp] titleOfSelectedItem] isEqualToString:@"Blacklist"] == YES) {
-            [[controller userSettings] addBlackListKey:((modifiers << 16) | keyCode) forConfiguration:[[controller configurationsPopUp] titleOfSelectedItem]];
+            [[controller userSettings] addBlackListKey:keyCode withModifiers:flags forConfiguration:[[controller configurationsPopUp] titleOfSelectedItem]];
             [[controller keyOptionsTableView] reloadData];
+            [[controller keyOptionsTableView] scrollRowToVisible:([[controller keyOptionsTableView] numberOfRows] - 1)];
         }
-    }
-    else if (type == kCGEventFlagsChanged) {
-        NSLog(@"The %d flags changed.", keyCode);
-        modifiers = keyCode;
     }
     
     if (keyCode == kVK_Escape)
@@ -305,8 +305,18 @@ CGEventRef ConfigKeyEventTapCallback(CGEventTapProxy proxy, CGEventType type, CG
 
 -(IBAction)removeKeyOptionKey:(id)sender {
     if ([[keyOptionsPopUp titleOfSelectedItem] isEqualToString:@"Blacklist"] == YES) {
-        [userSettings removeBlackListKeyAtIndex:[keyOptionsTableView selectedRow] forConfiguration:[configurationsPopUp titleOfSelectedItem]];
-        [keyOptionsTableView reloadData];
+        if ([keyOptionsTableView selectedRow] >= 0) {
+
+            // This isn't the most efficient way to do this, but the code is cleaner.
+            NSMutableIndexSet* selectedRows = [[keyOptionsTableView selectedRowIndexes] mutableCopy];
+            NSUInteger firstIndex = [selectedRows firstIndex];
+            while ([selectedRows count] > 0) {
+                [userSettings removeBlackListKeyAtIndex:[selectedRows lastIndex] forConfiguration:[configurationsPopUp titleOfSelectedItem]];
+                [selectedRows removeIndex:[selectedRows lastIndex]];
+            }
+            [keyOptionsTableView reloadData];
+            [keyOptionsTableView selectRow:firstIndex byExtendingSelection:NO];
+        }
     }
 }
 
