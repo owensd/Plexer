@@ -218,5 +218,15 @@ NSString* Modifiers = @"Modifiers";
     [self serialize];
 }
 
+-(void)setDockHidingEnabled:(BOOL)enabled forConfiguration:(NSString*)name {
+    KSConfiguration* config = [configurations valueForKey:name];
+    [config setDockHidingEnabled:enabled];
+    [self serialize];
+}
+
+-(BOOL)dockHidingEnabledForConfiguration:(NSString*)name {
+    KSConfiguration* config = [configurations valueForKey:name];
+    return [config dockHidingEnabled];
+}
 
 @end

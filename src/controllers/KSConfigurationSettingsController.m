@@ -78,6 +78,11 @@ CGEventRef ConfigKeyEventTapCallback(CGEventTapProxy proxy, CGEventType type, CG
     [self didChangeValueForKey:@"configurationSelected"];
     [applicationsTableView reloadData];
     [keyOptionsTableView reloadData];
+    
+    [enableDockHidingCheckbox setState:[userSettings dockHidingEnabledForConfiguration:[configurationsPopUp titleOfSelectedItem]]];
+    SystemEventsApplication* systemEventsApplication = [SBApplication applicationWithBundleIdentifier:@"com.apple.systemevents"];
+    SystemEventsDockPreferencesObject* dockPreferences = [systemEventsApplication dockPreferences];
+    [dockPreferences setAutohide:[userSettings dockHidingEnabledForConfiguration:[configurationsPopUp titleOfSelectedItem]]];
 }
 
 -(IBAction)renameSelectedConfiguration:(id)sender {
@@ -167,8 +172,8 @@ CGEventRef ConfigKeyEventTapCallback(CGEventTapProxy proxy, CGEventType type, CG
     }
     
     // Validate that the configuration name doesn't already exist.
-    for (KSConfiguration* config in [userSettings configurations]) {
-        if ([[config name] isEqualToString:name] == YES) {
+    for (NSString* key in [[userSettings configurations] allKeys]) {
+        if ([key isEqualToString:name] == YES) {
             *outError = [[NSError alloc] initWithDomain:@"KS_DUPLICATE_CONFIGURATION_NAME" code:-100 userInfo:nil];
             return NO;
         }
@@ -196,7 +201,12 @@ CGEventRef ConfigKeyEventTapCallback(CGEventTapProxy proxy, CGEventType type, CG
 -(IBAction)changeSaveWindowPositionAndLayoutSetting:(id)sender {
 }
 
--(IBAction)changeToggleDockHidingSetting:(id)sedner {
+-(IBAction)changeToggleDockHidingSetting:(id)sender {
+    [userSettings setDockHidingEnabled:![userSettings dockHidingEnabledForConfiguration:[configurationsPopUp titleOfSelectedItem]] forConfiguration:[configurationsPopUp titleOfSelectedItem]];
+
+    SystemEventsApplication* systemEventsApplication = [SBApplication applicationWithBundleIdentifier:@"com.apple.systemevents"];
+    SystemEventsDockPreferencesObject* dockPreferences = [systemEventsApplication dockPreferences];
+    [dockPreferences setAutohide:[userSettings dockHidingEnabledForConfiguration:[configurationsPopUp titleOfSelectedItem]]];
 }
 
 -(IBAction)changeMoveWindowsNearMenuBarSetting:(id)sender {

@@ -12,10 +12,11 @@ NSString* Name = @"Name";
 NSString* BlackListKeys = @"BlackListKeys";
 NSString* RoundRobinKeys = @"RoundRobinKeys";
 NSString* Applications = @"Applications";
+NSString* DockHidingEnabled = @"DockHidingEnabled";
 
 @implementation KSConfiguration
 
-@synthesize name, applications, blackListKeys, roundRobinKeys;
+@synthesize name, applications, blackListKeys, roundRobinKeys, dockHidingEnabled;
 
 +(KSConfiguration*)withName:(NSString*)name {
     KSConfiguration* config = [[KSConfiguration alloc] init];
@@ -23,6 +24,7 @@ NSString* Applications = @"Applications";
     config.blackListKeys = nil;
     config.roundRobinKeys = nil;
     config.applications = nil;
+    config.dockHidingEnabled = NO;
     
     return config;
 }
@@ -38,6 +40,7 @@ NSString* Applications = @"Applications";
     config.blackListKeys = blKeys;
     config.roundRobinKeys = [[data valueForKey:RoundRobinKeys] componentsSeparatedByString:@":"];
     config.applications = [[data valueForKey:Applications] componentsSeparatedByString:@":"];
+    config.dockHidingEnabled = [[data valueForKey:DockHidingEnabled] intValue];
     
     return config;
 }
@@ -58,6 +61,7 @@ NSString* Applications = @"Applications";
         [aDictionary setValue:[roundRobinKeys componentsJoinedByString:@":"] forKey:RoundRobinKeys];
     if (applications != nil)
         [aDictionary setValue:[applications componentsJoinedByString:@":"] forKey:Applications];
+    [aDictionary setValue:[NSNumber numberWithInt:dockHidingEnabled] forKey:DockHidingEnabled];
     
     return aDictionary;
 }

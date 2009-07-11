@@ -39,4 +39,7 @@
 -(void)load;
 -(void)serialize;
 
+-(void)setDockHidingEnabled:(BOOL)enabled forConfiguration:(NSString*)name;
+-(BOOL)dockHidingEnabledForConfiguration:(NSString*)name;
+
 @end

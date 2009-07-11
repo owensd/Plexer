@@ -23,6 +23,8 @@ NSStatusItem* statusItem = nil;
 NSImage* statusImageOn = nil;
 NSImage* statusImageOff = nil;
 
+BOOL dockAutoHide;
+
 
 @synthesize broadcasting;
 -(void)setBroadcasting:(BOOL)broadcast {
@@ -55,6 +57,12 @@ NSImage* statusImageOff = nil;
 }
 
 -(void)awakeFromNib {
+    // Save the user's dock state.
+    SystemEventsApplication* systemEventsApplication = [SBApplication applicationWithBundleIdentifier:@"com.apple.systemevents"];
+    SystemEventsDockPreferencesObject* dockPreferences = [systemEventsApplication dockPreferences];
+    dockAutoHide = [dockPreferences autohide];
+    
+    
     // Sparkle doesn't automatically check for updates on startup so we manually do it here.
     if ([userSettings automaticallyCheckForUpdates] == YES)
         [updater checkForUpdatesInBackground];
@@ -71,6 +79,10 @@ NSImage* statusImageOff = nil;
     CFMachPortInvalidate(keyEventTapRef);
     CFRelease(keyEventTapRef);
     CFRelease(runLoopSourceRef);
+
+    SystemEventsApplication* systemEventsApplication = [SBApplication applicationWithBundleIdentifier:@"com.apple.systemevents"];
+    SystemEventsDockPreferencesObject* dockPreferences = [systemEventsApplication dockPreferences];
+    [dockPreferences setAutohide:dockAutoHide];
 }
 
 -(IBAction)showPreferences:(id)sender {

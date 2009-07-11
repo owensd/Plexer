@@ -10,7 +10,7 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="496"/>
 			<integer value="454"/>
-			<integer value="774"/>
+			<integer value="628"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1286,7 +1286,7 @@
 												</object>
 											</object>
 											<double key="NSRowHeight">2.000000e+01</double>
-											<int key="NSTvFlags">1587544064</int>
+											<int key="NSTvFlags">1589641216</int>
 											<int key="NSColumnAutoresizingStyle">4</int>
 											<int key="NSDraggingSourceMaskForLocal">15</int>
 											<int key="NSDraggingSourceMaskForNonLocal">0</int>
@@ -1660,8 +1660,8 @@
 						</object>
 						<object class="BWTransparentCheckbox" id="789549677">
 							<reference key="NSNextResponder" ref="328619837"/>
-							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{31, 17}, {186, 18}}</string>
+							<int key="NSvFlags">-2147483380</int>
+							<string key="NSFrame">{{168, 17}, {186, 18}}</string>
 							<reference key="NSSuperview" ref="328619837"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BWTransparentCheckboxCell" key="NSCell" id="615928348">
@@ -1685,7 +1685,7 @@
 						</object>
 						<object class="BWTransparentCheckbox" id="749774581">
 							<reference key="NSNextResponder" ref="328619837"/>
-							<int key="NSvFlags">268</int>
+							<int key="NSvFlags">-2147483380</int>
 							<string key="NSFrame">{{364, 17}, {198, 18}}</string>
 							<reference key="NSSuperview" ref="328619837"/>
 							<bool key="NSEnabled">YES</bool>
@@ -1711,14 +1711,14 @@
 						<object class="BWTransparentCheckbox" id="226661986">
 							<reference key="NSNextResponder" ref="328619837"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{225, 17}, {133, 18}}</string>
+							<string key="NSFrame">{{18, 17}, {133, 18}}</string>
 							<reference key="NSSuperview" ref="328619837"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BWTransparentCheckboxCell" key="NSCell" id="677060920">
-								<int key="NSCellFlags">-2080244224</int>
+								<int key="NSCellFlags">67239424</int>
 								<int key="NSCellFlags2">131072</int>
 								<object class="NSAttributedString" key="NSContents">
-									<string key="NSString">Toggle Dock hiding</string>
+									<string key="NSString">Enable Dock hiding</string>
 									<reference key="NSAttributes" ref="991880538"/>
 								</object>
 								<reference key="NSSupport" ref="747750801"/>
@@ -2034,7 +2034,7 @@
 				<nil key="NSViewClass"/>
 				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
 				<object class="NSView" key="NSWindowView" id="169862847">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2043,6 +2043,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{223, 10}, {81, 28}}</string>
 							<reference key="NSSuperview" ref="169862847"/>
+							<reference key="NSWindow"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BWTransparentButtonCell" key="NSCell" id="466742147">
 								<int key="NSCellFlags">67239424</int>
@@ -2063,6 +2064,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{136, 10}, {81, 28}}</string>
 							<reference key="NSSuperview" ref="169862847"/>
+							<reference key="NSWindow"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BWTransparentButtonCell" key="NSCell" id="919316730">
 								<int key="NSCellFlags">67239424</int>
@@ -2083,6 +2085,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{17, 84}, {252, 14}}</string>
 							<reference key="NSSuperview" ref="169862847"/>
+							<reference key="NSWindow"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BWTransparentTextFieldCell" key="NSCell" id="278510459">
 								<int key="NSCellFlags">68288064</int>
@@ -2099,6 +2102,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{17, 62}, {121, 14}}</string>
 							<reference key="NSSuperview" ref="169862847"/>
+							<reference key="NSWindow"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BWTransparentTextFieldCell" key="NSCell" id="453717661">
 								<int key="NSCellFlags">68288064</int>
@@ -2115,6 +2119,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{143, 59}, {160, 19}}</string>
 							<reference key="NSSuperview" ref="169862847"/>
+							<reference key="NSWindow"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="843457238">
 								<int key="NSCellFlags">-1804468671</int>
@@ -2134,6 +2139,8 @@
 						</object>
 					</object>
 					<string key="NSFrameSize">{323, 118}</string>
+					<reference key="NSSuperview"/>
+					<reference key="NSWindow"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
 				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
@@ -2148,7 +2155,7 @@
 				<nil key="NSViewClass"/>
 				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
 				<object class="NSView" key="NSWindowView" id="841141279">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2157,6 +2164,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{17, 46}, {332, 39}}</string>
 							<reference key="NSSuperview" ref="841141279"/>
+							<reference key="NSWindow"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BWTransparentTextFieldCell" key="NSCell" id="188609119">
 								<int key="NSCellFlags">67239424</int>
@@ -2173,6 +2181,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{266, 10}, {81, 28}}</string>
 							<reference key="NSSuperview" ref="841141279"/>
+							<reference key="NSWindow"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BWTransparentButtonCell" key="NSCell" id="322955665">
 								<int key="NSCellFlags">67239424</int>
@@ -2190,6 +2199,8 @@
 						</object>
 					</object>
 					<string key="NSFrameSize">{366, 105}</string>
+					<reference key="NSSuperview"/>
+					<reference key="NSWindow"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
 				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
@@ -2919,14 +2930,6 @@
 					<int key="connectionID">1122</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">okPressed:</string>
-						<reference key="source" ref="438216521"/>
-						<reference key="destination" ref="688656797"/>
-					</object>
-					<int key="connectionID">1123</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">dataSource</string>
 						<reference key="source" ref="77251252"/>
@@ -3021,6 +3024,22 @@
 						<reference key="destination" ref="521581320"/>
 					</object>
 					<int key="connectionID">1144</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">okPressed:</string>
+						<reference key="source" ref="438216521"/>
+						<reference key="destination" ref="688656797"/>
+					</object>
+					<int key="connectionID">1145</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">enableDockHidingCheckbox</string>
+						<reference key="source" ref="806865451"/>
+						<reference key="destination" ref="226661986"/>
+					</object>
+					<int key="connectionID">1146</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -3331,13 +3350,13 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 							<reference ref="692343744"/>
 							<reference ref="961758492"/>
 							<reference ref="645546389"/>
-							<reference ref="789549677"/>
 							<reference ref="749774581"/>
-							<reference ref="226661986"/>
 							<reference ref="741271712"/>
 							<reference ref="342035516"/>
 							<reference ref="1047405410"/>
 							<reference ref="100188796"/>
+							<reference ref="226661986"/>
+							<reference ref="789549677"/>
 						</object>
 						<reference key="parent" ref="227348696"/>
 					</object>
@@ -4469,6 +4488,8 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 					<string>1091.IBPluginDependency</string>
 					<string>1124.IBPluginDependency</string>
 					<string>1130.IBPluginDependency</string>
+					<string>1141.IBPluginDependency</string>
+					<string>1142.IBPluginDependency</string>
 					<string>420.IBPluginDependency</string>
 					<string>454.IBEditorWindowLastContentRect</string>
 					<string>454.IBPluginDependency</string>
@@ -4716,6 +4737,8 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 					<string>com.apple.InterfaceBuilderKit</string>
 					<string>com.brandonwalkin.BWToolkit</string>
 					<string>com.brandonwalkin.BWToolkit</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -4982,7 +5005,7 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1144</int>
+			<int key="maxID">1146</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -5099,6 +5122,7 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 							<string>applicationsTableView</string>
 							<string>configurationNamePanel</string>
 							<string>configurationsPopUp</string>
+							<string>enableDockHidingCheckbox</string>
 							<string>infoPanelController</string>
 							<string>keyOptionsPopUp</string>
 							<string>keyOptionsTableView</string>
@@ -5110,6 +5134,7 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 							<string>NSTableView</string>
 							<string>NSWindow</string>
 							<string>BWTransparentPopUpButton</string>
+							<string>BWTransparentCheckbox</string>
 							<string>KSInfoPanelController</string>
 							<string>BWTransparentPopUpButton</string>
 							<string>NSTableView</string>

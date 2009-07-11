@@ -27,6 +27,7 @@ enum KSConfigurationNameOptions {
     IBOutlet NSTableView* applicationsTableView;
     IBOutlet NSTableView* keyOptionsTableView;
     IBOutlet KSInfoPanelController* infoPanelController;
+    IBOutlet BWTransparentCheckbox* enableDockHidingCheckbox;
     NSString* configurationName;
 }
 
@@ -47,7 +48,7 @@ enum KSConfigurationNameOptions {
 -(BOOL)validateConfigurationName:(id *)ioValue error:(NSError **)outError;
 
 -(IBAction)changeSaveWindowPositionAndLayoutSetting:(id)sender;
--(IBAction)changeToggleDockHidingSetting:(id)sedner;
+-(IBAction)changeToggleDockHidingSetting:(id)sender;
 -(IBAction)changeMoveWindowsNearMenuBarSetting:(id)sender;
 
 -(IBAction)addApplication:(id)sender;

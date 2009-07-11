@@ -14,12 +14,14 @@
     NSArray* applications;
     NSArray* blackListKeys;
     NSMutableArray* roundRobinKeys;
+    BOOL dockHidingEnabled;
 }
 
 @property (copy) NSString* name;
 @property (retain) NSArray* applications;
 @property (retain) NSArray* blackListKeys;
 @property (retain) NSArray* roundRobinKeys;
+@property (assign) BOOL dockHidingEnabled;
 
 +(KSConfiguration*)withName:(NSString*)name;
 +(KSConfiguration*)fromDictionary:(NSDictionary*)data;
