@@ -21,9 +21,12 @@
     IBOutlet KSConfigurationSettingsController* configurationsController;
     
     BOOL broadcasting;
+    NSArray* applications;
 }
 
 @property (assign, getter=isBroadcasting) BOOL broadcasting;
+@property (retain) NSArray* applications;
+@property (retain) KSConfigurationSettingsController* configurationsController;
 
 -(IBAction)showPreferences:(id)sender;
 -(IBAction)startBroadcasting:(id)sender;

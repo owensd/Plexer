@@ -29,6 +29,8 @@ enum KSConfigurationNameOptions {
     IBOutlet KSInfoPanelController* infoPanelController;
     IBOutlet BWTransparentCheckbox* enableDockHidingCheckbox;
     NSString* configurationName;
+    
+    IBOutlet id appController;
 }
 
 @property (retain) KSUserSettings* userSettings;

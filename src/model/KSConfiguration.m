@@ -32,12 +32,14 @@ NSString* DockHidingEnabled = @"DockHidingEnabled";
 +(KSConfiguration*)fromDictionary:(NSDictionary*)data {
     KSConfiguration* config = [[KSConfiguration alloc] init];
     config.name = [data valueForKey:Name];
-    NSMutableArray* blKeys = [[NSMutableArray alloc] init];
-    for (NSString* keyInfo in [[data valueForKey:BlackListKeys] componentsSeparatedByString:@":"]) {
-        NSArray* keyInfoComponents = [keyInfo componentsSeparatedByString:@","];
-        [blKeys addObject:[NSDictionary dictionaryWithObjectsAndKeys:[keyInfoComponents objectAtIndex:0], @"KeyCode", [keyInfoComponents objectAtIndex:1], @"Modifiers", nil]];
+    if ([[data valueForKey:BlackListKeys] length] > 0) {
+        NSMutableArray* blKeys = [[NSMutableArray alloc] init];
+        for (NSString* keyInfo in [[data valueForKey:BlackListKeys] componentsSeparatedByString:@":"]) {
+            NSArray* keyInfoComponents = [keyInfo componentsSeparatedByString:@","];
+            [blKeys addObject:[NSDictionary dictionaryWithObjectsAndKeys:[keyInfoComponents objectAtIndex:0], @"KeyCode", [keyInfoComponents objectAtIndex:1], @"Modifiers", nil]];
+        }
+        config.blackListKeys = blKeys;
     }
-    config.blackListKeys = blKeys;
     config.roundRobinKeys = [[data valueForKey:RoundRobinKeys] componentsSeparatedByString:@":"];
     config.applications = [[data valueForKey:Applications] componentsSeparatedByString:@":"];
     config.dockHidingEnabled = [[data valueForKey:DockHidingEnabled] intValue];
@@ -50,7 +52,7 @@ NSString* DockHidingEnabled = @"DockHidingEnabled";
     NSMutableDictionary* aDictionary = [[NSMutableDictionary alloc] init];
     
     [aDictionary setObject:name forKey:Name];
-    if (blackListKeys != nil) {
+    if (blackListKeys != nil && [blackListKeys count] > 0) {
         NSMutableArray* keys = [[NSMutableArray alloc] init];
         for (NSDictionary* keyInfo in blackListKeys) {
             [keys addObject:[NSString stringWithFormat:@"%d,%d", [[keyInfo valueForKey:@"KeyCode"] integerValue], [[keyInfo valueForKey:@"Modifiers"] integerValue]]];

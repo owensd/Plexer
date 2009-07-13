@@ -10,12 +10,15 @@
 #import "System Events.h"
 #import <Carbon/Carbon.h>
 
+static OSStatus AddApplicationEventHandler(EventHandlerCallRef inRef, EventRef inEvent, void* inRefcon);
 
 @implementation KSAppController
 
 CFMachPortRef keyEventTapRef = NULL;
 CFRunLoopSourceRef runLoopSourceRef = NULL;
 CFRunLoopRef runLoopRef = NULL;
+
+EventHandlerRef AddApplicationEventHandlerRef;
 
 CGEventRef KeyEventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon);
 
@@ -26,7 +29,7 @@ NSImage* statusImageOff = nil;
 BOOL dockAutoHide;
 
 
-@synthesize broadcasting;
+@synthesize broadcasting, applications, configurationsController;
 -(void)setBroadcasting:(BOOL)broadcast {
     broadcasting = broadcast;
     if (broadcasting == YES)
@@ -61,7 +64,6 @@ BOOL dockAutoHide;
     SystemEventsApplication* systemEventsApplication = [SBApplication applicationWithBundleIdentifier:@"com.apple.systemevents"];
     SystemEventsDockPreferencesObject* dockPreferences = [systemEventsApplication dockPreferences];
     dockAutoHide = [dockPreferences autohide];
-    
     
     // Sparkle doesn't automatically check for updates on startup so we manually do it here.
     if ([userSettings automaticallyCheckForUpdates] == YES)
@@ -132,6 +134,14 @@ BOOL dockAutoHide;
     }
     
     CFRunLoopAddSource(runLoopRef, runLoopSourceRef, kCFRunLoopDefaultMode);
+
+
+    EventTypeSpec kAppEvents[] = {
+        { kEventClassApplication, kEventAppFrontSwitched },
+        { kEventClassApplication, kEventAppLaunched },
+    };
+    
+    InstallApplicationEventHandler(AddApplicationEventHandler, GetEventTypeCount(kAppEvents), kAppEvents, self, &AddApplicationEventHandlerRef);
 }
 
 CGEventRef KeyEventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon) {
@@ -139,25 +149,90 @@ CGEventRef KeyEventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventR
     
     CGKeyCode keyCode = (CGKeyCode)CGEventGetIntegerValueField(event, kCGKeyboardEventKeycode);
 
-    if (type == kCGEventKeyUp) {
-        NSLog(@"The %d key was released.", keyCode);
-    }
-    else if (type == kCGEventKeyDown) {
+    if (type == kCGEventKeyDown) {
         NSLog(@"The %d key was pressed.", keyCode);
 
-        if (keyCode == [[controller userSettings] toggleBroadcastingKeyCode])
+        if (keyCode == [[controller userSettings] toggleBroadcastingKeyCode]) {
             controller.broadcasting = !controller.broadcasting;
-        if (keyCode == [[controller userSettings] quitAppKeyCode])
+            return NULL;
+        }
+        if (keyCode == [[controller userSettings] quitAppKeyCode]) {
             [[NSApplication sharedApplication] terminate:nil];
+            return NULL;
+        }
     }
-    else if (type == kCGEventFlagsChanged) {
-        NSLog(@"The %d flags changed.", keyCode);
+        
+    if ([controller isBroadcasting] == NO)
+        return event;
+    
+    CGEventFlags flags = CGEventGetFlags(event);
+
+   // NSArray* blackListKeys = [[[[controller userSettings] configurations] valueForKey:[[[controller configurationsController] configurationsPopUp] titleOfSelectedItem]] blackListKeys];
+//    for (NSDictionary* key in blackListKeys) {
+//        if ([[key valueForKey:@"KeyCode"] intValue] == keyCode &&
+//            [[key valueForKey:@"Modifiers"] intValue] == flags)
+//            return event;
+//    }
+    
+    // We have the key so let's broadcast it to all of our applications!
+    ProcessSerialNumber currentPSN;
+    pid_t currentPID;
+    GetCurrentProcess(&currentPSN);
+    GetProcessPID(&currentPSN, &currentPID);
+    
+    
+    for (NSApplication* app in [controller applications]) {
+        pid_t pid = [[app valueForKey:@"NSApplicationProcessIdentifier"] intValue];
+        AXUIElementRef appRef = AXUIElementCreateApplication(pid);
+        if (currentPID != pid) {
+            switch (type) {
+                case kCGEventKeyDown:
+                    //CGEventPostToPSN(&psn, CGEventCreateKeyboardEvent(NULL, flags, true));
+                    //CGEventPostToPSN(&psn, CGEventCreateKeyboardEvent(NULL, keyCode, true));
+                    AXUIElementPostKeyboardEvent(appRef, 0, flags, true);
+                    AXUIElementPostKeyboardEvent(appRef, 0, keyCode, true);
+                    //[app sendEvent:[NSEvent eventWithCGEvent:event]];
+                    break;
+                    
+                case kEventRawKeyUp:
+                    //CGEventPostToPSN(&psn, CGEventCreateKeyboardEvent(NULL, keyCode, false));
+                    //CGEventPostToPSN(&psn, CGEventCreateKeyboardEvent(NULL, flags, false));
+//                    [app sendEvent:[NSEvent eventWithCGEvent:event]];
+                    AXUIElementPostKeyboardEvent(appRef, 0, keyCode, false);
+                    AXUIElementPostKeyboardEvent(appRef, 0, flags, false);
+                  break;
+            }
+        }
     }
     
     return event;
 }
 
 
+static OSStatus AddApplicationEventHandler(EventHandlerCallRef inRef, EventRef inEvent, void* inRefcon) {
+    KSAppController* controller = (KSAppController*)inRefcon;
+
+    ProcessSerialNumber psn;
+    
+    GetEventParameter(inEvent, kEventParamProcessID, typeProcessSerialNumber, NULL, sizeof(ProcessSerialNumber), NULL, &psn);
+    
+    NSMutableArray* apps = ([controller applications] == nil) ? [[NSMutableArray alloc] init] : [[controller applications] mutableCopy];
+    KSConfiguration* config = [[[[controller configurationsController] userSettings] configurations] valueForKey:[[[controller configurationsController] configurationsPopUp] titleOfSelectedItem]];
+    for (NSApplication* app in [[NSWorkspace sharedWorkspace] launchedApplications]) {
+        NSString* appPath = [app valueForKey:@"NSApplicationPath"];
+        if ([[config applications] containsObject:appPath] == YES && [apps containsObject:app] == NO) {
+            [apps addObject:app];
+            NSLog(@"Application added on startup: %@", app);
+            break;
+        }
+    }
+    
+    [controller setApplications:apps];
+    NSLog(@"There are now %d apps being watched.", [apps count]);
+    NSLog(@"The applications are %@", apps);
+
+    return noErr;
+}
 
 
 

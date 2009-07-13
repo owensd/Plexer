@@ -60,6 +60,10 @@ CGEventRef ConfigKeyEventTapCallback(CGEventTapProxy proxy, CGEventType type, CG
     
     if (choice == kConfigOk) {
         [userSettings addConfigurationWithName:configurationName];
+        [enableDockHidingCheckbox setState:NSOffState];
+        SystemEventsApplication* systemEventsApplication = [SBApplication applicationWithBundleIdentifier:@"com.apple.systemevents"];
+        SystemEventsDockPreferencesObject* dockPreferences = [systemEventsApplication dockPreferences];
+        [dockPreferences setAutohide:[userSettings dockHidingEnabledForConfiguration:[configurationsPopUp titleOfSelectedItem]]];
     }
 }
 
@@ -83,6 +87,19 @@ CGEventRef ConfigKeyEventTapCallback(CGEventTapProxy proxy, CGEventType type, CG
     SystemEventsApplication* systemEventsApplication = [SBApplication applicationWithBundleIdentifier:@"com.apple.systemevents"];
     SystemEventsDockPreferencesObject* dockPreferences = [systemEventsApplication dockPreferences];
     [dockPreferences setAutohide:[userSettings dockHidingEnabledForConfiguration:[configurationsPopUp titleOfSelectedItem]]];
+    
+    // Change the list of applications being watched.
+    NSMutableArray* applications = [[NSMutableArray alloc] init];
+    KSConfiguration* config = [[userSettings configurations] valueForKey:[configurationsPopUp titleOfSelectedItem]];
+    
+    NSWorkspace* workspace = [NSWorkspace sharedWorkspace];
+    NSArray* applicationsInConfig = [config applications];
+    for (NSApplication* runningApp in [workspace launchedApplications]) {
+        NSString* appPath = [runningApp valueForKey:@"NSApplicationPath"];
+        if ([applicationsInConfig containsObject:appPath] == YES)
+            [applications addObject:runningApp];
+    }
+    [appController setApplications:applications];
 }
 
 -(IBAction)renameSelectedConfiguration:(id)sender {
