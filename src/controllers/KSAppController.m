@@ -8,9 +8,9 @@
 
 #import "KSAppController.h"
 #import "System Events.h"
-#import <Carbon/Carbon.h>
 
 static OSStatus AddApplicationEventHandler(EventHandlerCallRef inRef, EventRef inEvent, void* inRefcon);
+void KSFocusFirstWindowOfPid(pid_t pid);
 
 @implementation KSAppController
 
@@ -27,6 +27,9 @@ NSImage* statusImageOn = nil;
 NSImage* statusImageOff = nil;
 
 BOOL dockAutoHide;
+
+ProcessSerialNumber currentPSN;
+pid_t currentPID = -1;
 
 
 @synthesize broadcasting, applications, configurationsController;
@@ -144,14 +147,14 @@ BOOL dockAutoHide;
     InstallApplicationEventHandler(AddApplicationEventHandler, GetEventTypeCount(kAppEvents), kAppEvents, self, &AddApplicationEventHandlerRef);
 }
 
+
 CGEventRef KeyEventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon) {
     KSAppController* controller = (KSAppController*)refcon;
     
     CGKeyCode keyCode = (CGKeyCode)CGEventGetIntegerValueField(event, kCGKeyboardEventKeycode);
+    CGEventFlags flags = CGEventGetFlags(event);
 
     if (type == kCGEventKeyDown) {
-        NSLog(@"The %d key was pressed.", keyCode);
-
         if (keyCode == [[controller userSettings] toggleBroadcastingKeyCode]) {
             controller.broadcasting = !controller.broadcasting;
             return NULL;
@@ -161,50 +164,33 @@ CGEventRef KeyEventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventR
             return NULL;
         }
     }
-        
-    if ([controller isBroadcasting] == NO)
+    
+    // We only broadcast keys if one of our apps is focused. Otherwise we'd get silly things like
+    // keys being sent to the game when we are typing in skype, for example.
+    // This is denoted by the currentPID being equal to -1; this is set in the app handler.
+    NSLog(@"currentPID = %d", currentPID);
+    if (currentPID == -1)
         return event;
     
-    CGEventFlags flags = CGEventGetFlags(event);
-
-   // NSArray* blackListKeys = [[[[controller userSettings] configurations] valueForKey:[[[controller configurationsController] configurationsPopUp] titleOfSelectedItem]] blackListKeys];
-//    for (NSDictionary* key in blackListKeys) {
-//        if ([[key valueForKey:@"KeyCode"] intValue] == keyCode &&
-//            [[key valueForKey:@"Modifiers"] intValue] == flags)
-//            return event;
-//    }
-    
-    // We have the key so let's broadcast it to all of our applications!
-    ProcessSerialNumber currentPSN;
-    pid_t currentPID;
-    GetCurrentProcess(&currentPSN);
-    GetProcessPID(&currentPSN, &currentPID);
-    
-    
-    for (NSApplication* app in [controller applications]) {
-        pid_t pid = [[app valueForKey:@"NSApplicationProcessIdentifier"] intValue];
-        AXUIElementRef appRef = AXUIElementCreateApplication(pid);
-        if (currentPID != pid) {
-            switch (type) {
-                case kCGEventKeyDown:
-                    //CGEventPostToPSN(&psn, CGEventCreateKeyboardEvent(NULL, flags, true));
-                    //CGEventPostToPSN(&psn, CGEventCreateKeyboardEvent(NULL, keyCode, true));
-                    AXUIElementPostKeyboardEvent(appRef, 0, flags, true);
-                    AXUIElementPostKeyboardEvent(appRef, 0, keyCode, true);
-                    //[app sendEvent:[NSEvent eventWithCGEvent:event]];
-                    break;
-                    
-                case kEventRawKeyUp:
-                    //CGEventPostToPSN(&psn, CGEventCreateKeyboardEvent(NULL, keyCode, false));
-                    //CGEventPostToPSN(&psn, CGEventCreateKeyboardEvent(NULL, flags, false));
-//                    [app sendEvent:[NSEvent eventWithCGEvent:event]];
-                    AXUIElementPostKeyboardEvent(appRef, 0, keyCode, false);
-                    AXUIElementPostKeyboardEvent(appRef, 0, flags, false);
-                  break;
-            }
-        }
+    // NOTE: Is this too slow? May need to optimize this section of code.
+    NSArray* blackListKeys = [[[[controller userSettings] configurations] valueForKey:[[[controller configurationsController] configurationsPopUp] titleOfSelectedItem]] blackListKeys];
+    for (NSDictionary* key in blackListKeys) {
+        if ([[key valueForKey:@"KeyCode"] intValue] == keyCode &&
+            [[key valueForKey:@"Modifiers"] intValue] == flags)
+            return event;
     }
     
+    // Broacast the keys to our apps, but be sure not to send it to ourself!
+    for (NSApplication* app in [controller applications]) {
+        pid_t pid = [[app valueForKey:@"NSApplicationProcessIdentifier"] intValue];
+        ProcessSerialNumber psn;
+        GetProcessForPID(pid, &psn);
+
+        if (currentPID != pid) {
+            CGEventPostToPSN(&psn, event);
+        }
+    }
+        
     return event;
 }
 
@@ -212,18 +198,34 @@ CGEventRef KeyEventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventR
 static OSStatus AddApplicationEventHandler(EventHandlerCallRef inRef, EventRef inEvent, void* inRefcon) {
     KSAppController* controller = (KSAppController*)inRefcon;
 
-    ProcessSerialNumber psn;
+    // cache this for faster lookup in our keyboard tap.
+    GetFrontProcess(&currentPSN);
     
+    // cache this for faster lookup in our keyboard tap. However, set the
+    // currentPID to -1 until we know that one of our apps being watched is focused.
+    pid_t frontPID;
+    GetProcessPID(&currentPSN, &frontPID);
+    currentPID = -1;
+    
+    ProcessSerialNumber psn;
     GetEventParameter(inEvent, kEventParamProcessID, typeProcessSerialNumber, NULL, sizeof(ProcessSerialNumber), NULL, &psn);
     
     NSMutableArray* apps = ([controller applications] == nil) ? [[NSMutableArray alloc] init] : [[controller applications] mutableCopy];
     KSConfiguration* config = [[[[controller configurationsController] userSettings] configurations] valueForKey:[[[controller configurationsController] configurationsPopUp] titleOfSelectedItem]];
     for (NSApplication* app in [[NSWorkspace sharedWorkspace] launchedApplications]) {
         NSString* appPath = [app valueForKey:@"NSApplicationPath"];
-        if ([[config applications] containsObject:appPath] == YES && [apps containsObject:app] == NO) {
-            [apps addObject:app];
-            NSLog(@"Application added on startup: %@", app);
-            break;
+        if ([[config applications] containsObject:appPath] == YES) {
+            pid_t pid = [[app valueForKey:@"NSApplicationProcessIdentifier"] intValue];
+            KSFocusFirstWindowOfPid(pid);
+            
+            if (frontPID == pid)
+                currentPID = pid;
+            
+            if ([apps containsObject:app] == NO) {
+                [apps addObject:app];
+                NSLog(@"Application added on startup: %@", app);
+                break;
+            }
         }
     }
     
@@ -234,6 +236,32 @@ static OSStatus AddApplicationEventHandler(EventHandlerCallRef inRef, EventRef i
     return noErr;
 }
 
+// There is a bug that stops keystrokes from getting to the window
+// on OS X 10.5.6+.
+void KSFocusFirstWindowOfPid(pid_t pid) {
+	AXUIElementRef appRef = AXUIElementCreateApplication(pid);
+	
+	CFArrayRef windowRefs;
+	AXUIElementCopyAttributeValues(appRef, kAXWindowsAttribute, 0, 255, &windowRefs);
+	if (!windowRefs) return;
+	
+	for (int idx = 0; idx < CFArrayGetCount(windowRefs); ++idx) {
+		AXUIElementRef windowRef = (AXUIElementRef)CFArrayGetValueAtIndex(windowRefs, idx);
+		CFStringRef title = NULL;
+		AXUIElementCopyAttributeValue(windowRef, kAXTitleAttribute, (const void**)&title);
+		
+        if (CFStringGetLength(title) != 0) {
+            AXUIElementSetAttributeValue(windowRef, kAXFocusedAttribute, kCFBooleanTrue);
+            break;
+        }
+        
+        CFRelease(title);
+	}    
+    
+	AXUIElementSetAttributeValue(appRef, kAXFocusedApplicationAttribute, kCFBooleanTrue);
+	CFRelease(windowRefs);
+	CFRelease(appRef);
+}
 
 
 // ------------------------------------------------------

@@ -31,7 +31,8 @@
 		7D1D67530FF60B410013EEB0 /* KSConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1D67520FF60B410013EEB0 /* KSConfiguration.m */; };
 		7D1D675B0FF6105C0013EEB0 /* KSGeneralSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1D675A0FF6105C0013EEB0 /* KSGeneralSettingsController.m */; };
 		7D2776B91005E4D90040C050 /* KSKeyOptionsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2776B81005E4D90040C050 /* KSKeyOptionsDataSource.m */; };
-		7D5D61970FE4C37B00347A73 /* EventHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D5D61960FE4C37B00347A73 /* EventHandling.m */; };
+		7D4AA8FB10106A4F008D33C1 /* demo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D4AA8FA10106A4F008D33C1 /* demo.png */; };
+		7D4AA93F1010783E008D33C1 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 7D4AA93E1010783E008D33C1 /* icon.icns */; };
 		7D5DEBB30FF9EB60005AB679 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D5DEBB10FF9EB60005AB679 /* MainMenu.xib */; };
 		7D7B312F100479ED00AF62EF /* KSApplicationsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7B312E100479ED00AF62EF /* KSApplicationsDataSource.m */; };
 		7D8D2FCA0FEDFD3200912722 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D8D2FC90FEDFD3200912722 /* ScriptingBridge.framework */; };
@@ -97,6 +98,8 @@
 		7D1D675A0FF6105C0013EEB0 /* KSGeneralSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSGeneralSettingsController.m; sourceTree = "<group>"; };
 		7D2776B71005E4D90040C050 /* KSKeyOptionsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSKeyOptionsDataSource.h; sourceTree = "<group>"; };
 		7D2776B81005E4D90040C050 /* KSKeyOptionsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSKeyOptionsDataSource.m; sourceTree = "<group>"; };
+		7D4AA8FA10106A4F008D33C1 /* demo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = demo.png; sourceTree = "<group>"; };
+		7D4AA93E1010783E008D33C1 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		7D5D61950FE4C37B00347A73 /* EventHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventHandling.h; sourceTree = "<group>"; };
 		7D5D61960FE4C37B00347A73 /* EventHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventHandling.m; sourceTree = "<group>"; };
 		7D5DEBB20FF9EB60005AB679 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -266,6 +269,8 @@
 		7DA6EB680FF61CD70028CA3B /* images */ = {
 			isa = PBXGroup;
 			children = (
+				7D4AA93E1010783E008D33C1 /* icon.icns */,
+				7D4AA8FA10106A4F008D33C1 /* demo.png */,
 				7D1D582A0FDFA0CD00EB29CD /* Plexer_OFF.png */,
 				7D1D582B0FDFA0CD00EB29CD /* Plexer_ON.png */,
 			);
@@ -327,6 +332,8 @@
 				7D8D32A90FEF54A000912722 /* dsa_pub.pem in Resources */,
 				7D5DEBB30FF9EB60005AB679 /* MainMenu.xib in Resources */,
 				7D1425640FFB535000708F8B /* release-notes.html in Resources */,
+				7D4AA8FB10106A4F008D33C1 /* demo.png in Resources */,
+				7D4AA93F1010783E008D33C1 /* icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,7 +375,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
-				7D5D61970FE4C37B00347A73 /* EventHandling.m in Sources */,
 				7D1D67470FF602640013EEB0 /* KSUserSettings.m in Sources */,
 				7D1D67530FF60B410013EEB0 /* KSConfiguration.m in Sources */,
 				7D1D675B0FF6105C0013EEB0 /* KSGeneralSettingsController.m in Sources */,
@@ -485,7 +491,7 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;

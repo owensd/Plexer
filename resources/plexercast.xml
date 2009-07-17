@@ -7,6 +7,36 @@
         <language>en</language>
 
 		<item>
+			<title>Version 0.6</title>
+			<sparkle:releaseNotesLink>http://www.kiadsoftware.com/apps/plexer/release-notes.html#version-0.6</sparkle:releaseNotesLink>
+			<pubDate>Fri, 17 Jul 2009 02:35:41 -0700</pubDate>
+			<enclosure
+				url="http://www.kiadsoftware.com/apps/plexer/files/Plexer 0.6.zip"
+				sparkle:version="1042"
+				sparkle:shortVersionString="0.6"
+				type="application/octet-stream"
+				length="2742332"
+				sparkle:dsaSignature="MC0CFQCGSn209OS9c3vgzrSo3PoXq59Y4gIUFbD6qgF7bfRHNQ+DwHcvGK4Xx6o="
+			/>
+			<sparkle:minimumSystemVersion>10.5.0</sparkle:minimumSystemVersion>
+		</item>
+        
+		<item>
+			<title>Version 0.5</title>
+			<sparkle:releaseNotesLink>http://www.kiadsoftware.com/apps/plexer/release-notes.html#version-0.5</sparkle:releaseNotesLink>
+			<pubDate>Thu, 16 Jul 2009 23:08:17 -0700</pubDate>
+			<enclosure
+				url="http://www.kiadsoftware.com/apps/plexer/files/Plexer 0.5.zip"
+				sparkle:version="1025"
+				sparkle:shortVersionString="0.5"
+				type="application/octet-stream"
+				length="2472258"
+				sparkle:dsaSignature="MC0CFQChSiXhoxKkGunPxqBhGLRBVZCrdwIURUY58bNRXe+S+zmmD/Gih5iUUK8="
+			/>
+			<sparkle:minimumSystemVersion>10.5.0</sparkle:minimumSystemVersion>
+		</item>
+
+		<item>
 			<title>Version 0.4.1</title>
 			<sparkle:releaseNotesLink>http://www.kiadsoftware.com/apps/plexer/release-notes.html#version-0.4.1</sparkle:releaseNotesLink>
 			<pubDate>Wed, 01 Jul 2009 23:28:40 -0700</pubDate>

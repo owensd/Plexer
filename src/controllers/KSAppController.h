@@ -11,6 +11,7 @@
 #import <Sparkle/Sparkle.h>
 #import "KSUserSettings.h"
 #import "KSConfigurationSettingsController.h"
+#import <Carbon/Carbon.h>
 
 
 @interface KSAppController : NSObject {
