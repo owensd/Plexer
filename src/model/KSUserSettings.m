@@ -20,6 +20,8 @@ NSString* ShowInMenuBar = @"ShowInMenuBar";
 NSString* Configurations = @"Configurations";
 NSString* KeyCode = @"KeyCode";
 NSString* Modifiers = @"Modifiers";
+NSString* SerialNumber = @"SerialNumber";
+NSString* UserName = @"UserName";
 
 -(id)init {
     if (self = [super init]) {
@@ -122,6 +124,22 @@ NSString* Modifiers = @"Modifiers";
 
 -(NSDictionary*)configurations {
     return configurations;
+}
+
+-(NSString*)userName {
+    return [[[NSUserDefaults standardUserDefaults] stringForKey:UserName] retain];
+}
+-(void)setUserName:(NSString*)name {
+    [[NSUserDefaults standardUserDefaults] setString:name forKey:UserName];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(NSString*)serialNumber {
+    return [[[NSUserDefaults standardUserDefaults] stringForKey:SerialNumber] retain];
+}
+-(void)setSerialNumber:(NSString*)serial {
+    [[NSUserDefaults standardUserDefaults] setString:serial forKey:SerialNumber];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 -(void)load {

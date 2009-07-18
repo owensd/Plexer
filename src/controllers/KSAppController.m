@@ -12,7 +12,22 @@
 static OSStatus AddApplicationEventHandler(EventHandlerCallRef inRef, EventRef inEvent, void* inRefcon);
 void KSFocusFirstWindowOfPid(pid_t pid);
 
+
+// Valid key is taken from the date: 10.28.2008
+// 0x7D8 -> 2008 (12 bits)
+// 0x1C  -> 28   (6 bits)
+// 0x0A  -> 10   (4 bits)
+// 0x1F670A  -> 2057994
+// Basically, the first 22 bits MUST match the above in order to be a valid response.
+#define IsValidSerial(x) ((((x) & (~((~0) << 22))) & 0x1F670A) == 0x1F670A)
+
+// Valid key is taken from the data: 8.6.2004
+// 0x1F5188 -> 2052488
+#define IsInTrialMode(x) ((((x) & (~((~0) << 22))) & 0x1F5188) == 0x1F5188)
+
 @implementation KSAppController
+
+BOOL isTrialExpired = NO;
 
 CFMachPortRef keyEventTapRef = NULL;
 CFRunLoopSourceRef runLoopSourceRef = NULL;
@@ -33,6 +48,28 @@ pid_t currentPID = -1;
 
 
 @synthesize broadcasting, applications, configurationsController;
+
++ (id)stringWithMachineSerialNumber
+{
+    NSString* result = nil;
+    CFStringRef serialNumber = NULL;
+    
+    io_service_t platformExpert = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching("IOPlatformExpertDevice"));
+    
+    if (platformExpert) {
+        CFTypeRef serialNumberAsCFString = IORegistryEntryCreateCFProperty(platformExpert, CFSTR(kIOPlatformSerialNumberKey), kCFAllocatorDefault, 0);
+        serialNumber = (CFStringRef)serialNumberAsCFString;
+        IOObjectRelease(platformExpert);
+    }
+    
+    if (serialNumber)
+        result = [(NSString*)serialNumber autorelease];
+    else
+        result = @"unknown";
+    
+    return result;
+}
+
 -(void)setBroadcasting:(BOOL)broadcast {
     broadcasting = broadcast;
     if (broadcasting == YES)
@@ -68,16 +105,102 @@ pid_t currentPID = -1;
     SystemEventsDockPreferencesObject* dockPreferences = [systemEventsApplication dockPreferences];
     dockAutoHide = [dockPreferences autohide];
     
-    // Sparkle doesn't automatically check for updates on startup so we manually do it here.
-    if ([userSettings automaticallyCheckForUpdates] == YES)
-        [updater checkForUpdatesInBackground];
-
     self.broadcasting = false;
     
     [configurationsController loadConfigurations];
 
     [self createStatusItemWithPathForImage:@"Plexer_ON.png" pathForOffImage:@"Plexer_OFF.png"];
     [self registerEventTaps];    
+}
+
+-(void)applicationDidFinishLaunching:(NSNotification*)aNotification {
+    // Let's assume they are not until 'proven' they are... =)
+    BOOL attemptingToPirate = NO;
+    
+    // First step to validating the serial number is to ensure that the
+    // server is not being redirected to a different IP.
+    NSHost* host1 = [NSHost hostWithName:@"kiadsoftware.com"];
+    NSHost* host2 = [NSHost hostWithName:@"kiad.nfshost.com"];
+    
+    if (host1 == nil && host2 == nil && [NSHost hostWithName:@"worldofwarcraft.com"] == nil) {
+        // OK... it appears we cannot actually get to the internet...
+        // TODO: Do we want to allow users to continue to run the program?
+    }
+    else {    
+        NSArray* hostIP1 = [[host1 address] componentsSeparatedByString:@"."];
+        NSArray* hostIP2 = [[host2 address] componentsSeparatedByString:@"."];
+        NSLog(@"host1 = %@ (%@)", [host1 name], [host1 address]);
+        NSLog(@"host2 = %@ (%@)", [host2 name], [host2 address]);
+        
+        // Validate that first two components of the IPs match.
+        if ([[hostIP1 objectAtIndex:0] isEqualToString:[hostIP2 objectAtIndex:0]] == NO &&
+            [[hostIP1 objectAtIndex:1] isEqualToString:[hostIP2 objectAtIndex:1]] == NO)
+        {
+            // Hmm... we have some suspicious behavior...
+            if ([[host1 address] isEqualToString:@"127.0.0.1"] == YES ||
+                [[host1 address] hasSuffix:@"nearlyfreespeech.net"] == NO)
+            {
+                // This is most definitly an attempt to pirate our software.
+                attemptingToPirate = YES;
+            }
+        }
+    }
+    
+    // ok, so here we send our serial key and our computer's serial number
+    NSLog(@"computer serial number: %@", [KSAppController stringWithMachineSerialNumber]);
+    
+    // this will be the string response from the server
+    NSString* serialNumber = @"1679779593";
+    NSString* inTrialMode = @"20524889";
+    
+    // TODO: Validate the user's serial number.
+    if (IsValidSerial([serialNumber intValue])) {
+        [demoImage setHidden:YES];
+        [registerPlexerMenuItem setHidden:YES];
+    }
+    else if (!IsInTrialMode([inTrialMode intValue])) {
+        NSLog(@"Serial number: %@", [userSettings serialNumber]);
+        if ([userSettings serialNumber] == nil || [[userSettings serialNumber] isEqualToString:@""] == YES) {
+            // Trial mode has expired, you need to register.
+            isTrialExpired = YES;
+            [infoPanelController showPanelWithTitle:@"Trial Expired"
+                                            message:@"Your trial of Plexer has expired. If you wish to continue to use Plexer, you must purchase it."
+                                         buttonText:@"OK"
+                                           delegate:self
+                                     didEndSelector:@selector(trialExpiredSheetDidEnd:code:context:)
+                                        contextInfo:nil];
+        }
+        else {
+            isTrialExpired = YES;
+            // hmm... invalid serial number. possible pirate attempt?
+            [infoPanelController showPanelWithTitle:@"Invalid Serial Number"
+                                            message:@"The serial number is invalid. Please enter a valid serial number."
+                                         buttonText:@"OK"
+                                           delegate:self
+                                     didEndSelector:@selector(invalidSerialNumberOnLoadSheetDidEnd:code:context:)
+                                        contextInfo:nil];
+        }
+        
+    }
+    
+    if (attemptingToPirate == YES) {
+        // TODO: Notify the main server?
+        exit(-911);
+    }
+    
+    // Sparkle doesn't automatically check for updates on startup so we manually do it here.
+    if ([userSettings automaticallyCheckForUpdates] == YES)
+        [updater checkForUpdatesInBackground];
+}
+
+-(void)invalidSerialNumberOnLoadSheetDidEnd:(NSPanel*)sheet code:(int)choice context:(void*)v {
+    [sheet orderOut:[infoPanelController window]];
+    // TODO: Show the registration information page.
+}
+
+-(void)trialExpiredSheetDidEnd:(NSPanel*)sheet code:(int)choice context:(void*)v {
+    [sheet orderOut:[infoPanelController window]];
+    // TODO: Show the registration information page.
 }
 
 -(void)applicationWillTerminate:(NSNotification*)aNotification {
@@ -95,10 +218,14 @@ pid_t currentPID = -1;
 }
 
 -(IBAction)startBroadcasting:(id)sender {
+    if (isTrialExpired) return;
+    
     self.broadcasting = !self.broadcasting;
 }
 
 -(IBAction)stopBroadcasting:(id)sender {
+    if (isTrialExpired) return;
+
     self.broadcasting = !self.broadcasting;
 }
 
@@ -149,6 +276,8 @@ pid_t currentPID = -1;
 
 
 CGEventRef KeyEventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon) {
+    if (isTrialExpired) return event;
+
     KSAppController* controller = (KSAppController*)refcon;
     
     CGKeyCode keyCode = (CGKeyCode)CGEventGetIntegerValueField(event, kCGKeyboardEventKeycode);

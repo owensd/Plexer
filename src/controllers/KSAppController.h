@@ -12,6 +12,7 @@
 #import "KSUserSettings.h"
 #import "KSConfigurationSettingsController.h"
 #import <Carbon/Carbon.h>
+#import "KSInfoPanelController.h"
 
 
 @interface KSAppController : NSObject {
@@ -20,6 +21,9 @@
     IBOutlet KSUserSettings* userSettings;
     IBOutlet SUUpdater* updater;
     IBOutlet KSConfigurationSettingsController* configurationsController;
+    IBOutlet NSImageView* demoImage;
+    IBOutlet KSInfoPanelController* infoPanelController;
+    IBOutlet NSMenuItem* registerPlexerMenuItem;
     
     BOOL broadcasting;
     NSArray* applications;

@@ -16,6 +16,8 @@
     NSInteger switchBetweenAppsKeyCode;
     NSInteger switchToAppKeyCode;
     NSMutableDictionary* configurations;
+    NSString* serialNumber;
+    NSString* userName;
 }
 
 @property (assign) NSInteger toggleBroadcastingKeyCode;
@@ -24,6 +26,8 @@
 @property (assign) NSInteger switchToAppKeyCode;
 @property (assign) BOOL automaticallyCheckForUpdates;
 @property (assign) BOOL showInMenuBar;
+@property (retain) NSString* serialNumber;
+@property (retain) NSString* userName;
 
 -(void)addConfigurationWithName:(NSString*)name;
 -(void)removeConfigurationWithName:(NSString*)name;

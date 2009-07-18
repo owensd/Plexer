@@ -35,6 +35,7 @@
     [infoPanel setTitle:title];
     [infoPanelTextField setStringValue:message];
     [infoPanelButton setTitle:buttonText];
+    
     [NSApp beginSheet:infoPanel
        modalForWindow:parentWindow
         modalDelegate:delegate

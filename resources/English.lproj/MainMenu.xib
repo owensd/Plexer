@@ -8,8 +8,9 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="628"/>
-			<integer value="496"/>
+			<integer value="1153"/>
+			<integer value="899"/>
+			<integer value="627"/>
 			<integer value="454"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -167,6 +168,14 @@
 								<object class="NSMenuItem" id="504129994">
 									<reference key="NSMenu" ref="221301890"/>
 									<string key="NSTitle">Check For Updates...</string>
+									<string key="NSKeyEquiv"/>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="743316579"/>
+									<reference key="NSMixedImage" ref="820313031"/>
+								</object>
+								<object class="NSMenuItem" id="508999233">
+									<reference key="NSMenu" ref="221301890"/>
+									<string key="NSTitle">Register Plexer...</string>
 									<string key="NSKeyEquiv"/>
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="743316579"/>
@@ -1352,7 +1361,7 @@
 						<object class="NSTextField" id="423255230">
 							<reference key="NSNextResponder" ref="328619837"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{362, 184}, {76, 14}}</string>
+							<string key="NSFrame">{{363, 184}, {76, 14}}</string>
 							<reference key="NSSuperview" ref="328619837"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="BWTransparentTextFieldCell" key="NSCell" id="728937262">
@@ -2175,13 +2184,13 @@
 				<int key="NSWindowStyleMask">8215</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{196, 405}, {366, 105}}</string>
-				<int key="NSWTFlags">603979776</int>
+				<int key="NSWTFlags">1677721600</int>
 				<string key="NSWindowTitle">Info Panel</string>
 				<string key="NSWindowClass">NSPanel</string>
 				<nil key="NSViewClass"/>
 				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
 				<object class="NSView" key="NSWindowView" id="841141279">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2223,6 +2232,7 @@
 						</object>
 					</object>
 					<string key="NSFrameSize">{366, 105}</string>
+					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
 				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
@@ -3071,6 +3081,30 @@
 					</object>
 					<int key="connectionID">1147</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">demoImage</string>
+						<reference key="source" ref="72426231"/>
+						<reference key="destination" ref="394270176"/>
+					</object>
+					<int key="connectionID">1150</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">infoPanelController</string>
+						<reference key="source" ref="72426231"/>
+						<reference key="destination" ref="438216521"/>
+					</object>
+					<int key="connectionID">1152</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">registerPlexerMenuItem</string>
+						<reference key="source" ref="72426231"/>
+						<reference key="destination" ref="508999233"/>
+					</object>
+					<int key="connectionID">1154</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -3239,6 +3273,7 @@
 							<reference ref="763617966"/>
 							<reference ref="728238840"/>
 							<reference ref="504129994"/>
+							<reference ref="508999233"/>
 						</object>
 						<reference key="parent" ref="134455774"/>
 					</object>
@@ -3374,7 +3409,6 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 							<reference ref="785539626"/>
 							<reference ref="503628120"/>
 							<reference ref="753650197"/>
-							<reference ref="423255230"/>
 							<reference ref="747643274"/>
 							<reference ref="739828423"/>
 							<reference ref="692343744"/>
@@ -3388,6 +3422,7 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 							<reference ref="226661986"/>
 							<reference ref="789549677"/>
 							<reference ref="394270176"/>
+							<reference ref="423255230"/>
 						</object>
 						<reference key="parent" ref="227348696"/>
 					</object>
@@ -4519,6 +4554,11 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 						<reference key="object" ref="404388050"/>
 						<reference key="parent" ref="394270176"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1153</int>
+						<reference key="object" ref="508999233"/>
+						<reference key="parent" ref="221301890"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -4537,6 +4577,7 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 					<string>1142.IBPluginDependency</string>
 					<string>1148.IBPluginDependency</string>
 					<string>1149.IBPluginDependency</string>
+					<string>1153.IBPluginDependency</string>
 					<string>420.IBPluginDependency</string>
 					<string>454.IBEditorWindowLastContentRect</string>
 					<string>454.IBPluginDependency</string>
@@ -4792,6 +4833,7 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{493, 481}, {234, 103}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -4818,7 +4860,7 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 					<string>{{596, 852}, {216, 23}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
-					<string>{{350, 548}, {234, 203}}</string>
+					<string>{{350, 528}, {234, 223}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>{{23, 794}, {245, 183}}</string>
@@ -4852,8 +4894,8 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{1190, 119}, {596, 319}}</string>
-					<string>{{1190, 119}, {596, 319}}</string>
+					<string>{{1230, 115}, {596, 319}}</string>
+					<string>{{1230, 115}, {596, 319}}</string>
 					<reference ref="5"/>
 					<reference ref="5"/>
 					<boolean value="NO" id="6"/>
@@ -5054,7 +5096,7 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1149</int>
+			<int key="maxID">1154</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -5082,7 +5124,10 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>configurationsController</string>
+							<string>demoImage</string>
+							<string>infoPanelController</string>
 							<string>preferencesWindow</string>
+							<string>registerPlexerMenuItem</string>
 							<string>statusItemMenu</string>
 							<string>updater</string>
 							<string>userSettings</string>
@@ -5090,7 +5135,10 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moNA2guTg2Qqo5KGhg</bytes>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>KSConfigurationSettingsController</string>
+							<string>NSImageView</string>
+							<string>KSInfoPanelController</string>
 							<string>NSWindow</string>
+							<string>NSMenuItem</string>
 							<string>NSMenu</string>
 							<string>SUUpdater</string>
 							<string>KSUserSettings</string>
