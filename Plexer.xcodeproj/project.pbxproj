@@ -43,6 +43,8 @@
 		7D8D33570FEF77A800912722 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D8D33560FEF77A800912722 /* Sparkle.framework */; };
 		7D8D33C90FEF8C2B00912722 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D8D33560FEF77A800912722 /* Sparkle.framework */; };
 		7D91321B10032F3700F24C41 /* KSInfoPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D91321A10032F3700F24C41 /* KSInfoPanelController.m */; };
+		7D913F6110158208009E1320 /* KSRegistrationInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D913F6010158208009E1320 /* KSRegistrationInfoController.m */; };
+		7D913FC0101589A9009E1320 /* KSRegistration.c in Sources */ = {isa = PBXBuildFile; fileRef = 7D913FBF101589A9009E1320 /* KSRegistration.c */; };
 		7DA0A82D0FF0A00D006503FC /* PreferencePanes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DA0A82C0FF0A00D006503FC /* PreferencePanes.framework */; };
 		7DA6EB560FF619C50028CA3B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7DA6EB550FF619C50028CA3B /* InfoPlist.strings */; };
 		7DA6EB5E0FF61A5F0028CA3B /* KSAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DA6EB5D0FF61A5F0028CA3B /* KSAppController.m */; };
@@ -116,6 +118,11 @@
 		7D90C6CE0FF2087E0042969C /* Plexer_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plexer_Prefix.pch; sourceTree = "<group>"; };
 		7D91321910032F3700F24C41 /* KSInfoPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSInfoPanelController.h; sourceTree = "<group>"; };
 		7D91321A10032F3700F24C41 /* KSInfoPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSInfoPanelController.m; sourceTree = "<group>"; };
+		7D913F5F10158208009E1320 /* KSRegistrationInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSRegistrationInfoController.h; sourceTree = "<group>"; };
+		7D913F6010158208009E1320 /* KSRegistrationInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSRegistrationInfoController.m; sourceTree = "<group>"; };
+		7D913FBE101589A9009E1320 /* KSRegistration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSRegistration.h; sourceTree = "<group>"; };
+		7D913FBF101589A9009E1320 /* KSRegistration.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = KSRegistration.c; sourceTree = "<group>"; };
+		7D91C7EF10251C360021EA9C /* keygen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = keygen.c; sourceTree = "<group>"; };
 		7DA0A82C0FF0A00D006503FC /* PreferencePanes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PreferencePanes.framework; path = /System/Library/Frameworks/PreferencePanes.framework; sourceTree = "<absolute>"; };
 		7DA6EB5C0FF61A5F0028CA3B /* KSAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSAppController.h; sourceTree = "<group>"; };
 		7DA6EB5D0FF61A5F0028CA3B /* KSAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSAppController.m; sourceTree = "<group>"; };
@@ -236,6 +243,8 @@
 				7D1D67460FF602640013EEB0 /* KSUserSettings.m */,
 				7D1D67510FF60B410013EEB0 /* KSConfiguration.h */,
 				7D1D67520FF60B410013EEB0 /* KSConfiguration.m */,
+				7D913FBE101589A9009E1320 /* KSRegistration.h */,
+				7D913FBF101589A9009E1320 /* KSRegistration.c */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -255,13 +264,24 @@
 				7D7B312E100479ED00AF62EF /* KSApplicationsDataSource.m */,
 				7D2776B71005E4D90040C050 /* KSKeyOptionsDataSource.h */,
 				7D2776B81005E4D90040C050 /* KSKeyOptionsDataSource.m */,
+				7D913F5F10158208009E1320 /* KSRegistrationInfoController.h */,
+				7D913F6010158208009E1320 /* KSRegistrationInfoController.m */,
 			);
 			path = controllers;
+			sourceTree = "<group>";
+		};
+		7D91C7EE10251C170021EA9C /* key generator */ = {
+			isa = PBXGroup;
+			children = (
+				7D91C7EF10251C360021EA9C /* keygen.c */,
+			);
+			name = "key generator";
 			sourceTree = "<group>";
 		};
 		7DA6EB600FF61B150028CA3B /* src */ = {
 			isa = PBXGroup;
 			children = (
+				7D91C7EE10251C170021EA9C /* key generator */,
 				7D1D67560FF60DD40013EEB0 /* controllers */,
 				7D1D67440FF600EB0013EEB0 /* model */,
 				7D90C6CE0FF2087E0042969C /* Plexer_Prefix.pch */,
@@ -387,6 +407,8 @@
 				7D91321B10032F3700F24C41 /* KSInfoPanelController.m in Sources */,
 				7D7B312F100479ED00AF62EF /* KSApplicationsDataSource.m in Sources */,
 				7D2776B91005E4D90040C050 /* KSKeyOptionsDataSource.m in Sources */,
+				7D913F6110158208009E1320 /* KSRegistrationInfoController.m in Sources */,
+				7D913FC0101589A9009E1320 /* KSRegistration.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,6 +18,7 @@
     NSMutableDictionary* configurations;
     NSString* serialNumber;
     NSString* userName;
+    NSString* firstLaunch;
 }
 
 @property (assign) NSInteger toggleBroadcastingKeyCode;
@@ -28,6 +29,7 @@
 @property (assign) BOOL showInMenuBar;
 @property (retain) NSString* serialNumber;
 @property (retain) NSString* userName;
+@property (retain) NSString* firstLaunch;
 
 -(void)addConfigurationWithName:(NSString*)name;
 -(void)removeConfigurationWithName:(NSString*)name;

@@ -22,6 +22,7 @@ NSString* KeyCode = @"KeyCode";
 NSString* Modifiers = @"Modifiers";
 NSString* SerialNumber = @"SerialNumber";
 NSString* UserName = @"UserName";
+NSString* FirstLaunch = @"FirstLaunch";
 
 -(id)init {
     if (self = [super init]) {
@@ -35,7 +36,7 @@ NSString* UserName = @"UserName";
 }
 
 -(NSInteger)toggleBroadcastingKeyCode {
-    if (toggleBroadcastingKeyCode == -1)
+    if (toggleBroadcastingKeyCode == -1 && [[NSUserDefaults standardUserDefaults] objectForKey:ToggleBroadcastingKeyCode] != nil)
         toggleBroadcastingKeyCode = [[NSUserDefaults standardUserDefaults] integerForKey:ToggleBroadcastingKeyCode];
     return toggleBroadcastingKeyCode;
 }
@@ -46,7 +47,7 @@ NSString* UserName = @"UserName";
 }
 
 -(NSInteger)quitAppKeyCode {
-    if (quitAppKeyCode == -1)
+    if (quitAppKeyCode == -1 && [[NSUserDefaults standardUserDefaults] objectForKey:QuitAppKeyCode] != nil)
         quitAppKeyCode = [[NSUserDefaults standardUserDefaults] integerForKey:QuitAppKeyCode];
     return quitAppKeyCode;
 }
@@ -57,7 +58,7 @@ NSString* UserName = @"UserName";
 }
 
 -(NSInteger)switchBetweenAppsKeyCode {
-    if (switchBetweenAppsKeyCode == -1)
+    if (switchBetweenAppsKeyCode == -1 && [[NSUserDefaults standardUserDefaults] objectForKey:SwitchBetweenAppsKeyCode] != nil)
         switchBetweenAppsKeyCode = [[NSUserDefaults standardUserDefaults] integerForKey:SwitchBetweenAppsKeyCode];
     return switchBetweenAppsKeyCode;
 }
@@ -68,7 +69,7 @@ NSString* UserName = @"UserName";
 }
 
 -(NSInteger)switchToAppKeyCode {
-    if (switchToAppKeyCode == -1)
+    if (switchToAppKeyCode == -1 && [[NSUserDefaults standardUserDefaults] objectForKey:SwitchToAppKeyCode] != nil)
         switchToAppKeyCode = [[NSUserDefaults standardUserDefaults] integerForKey:SwitchToAppKeyCode];
     return switchToAppKeyCode;
 }
@@ -91,6 +92,14 @@ NSString* UserName = @"UserName";
 }
 -(void)setShowInMenuBar:(BOOL)showInMenu {
     [[NSUserDefaults standardUserDefaults] setBool:showInMenu forKey:ShowInMenuBar];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(NSString*)firstLaunch {
+    return [[NSUserDefaults standardUserDefaults] valueForKey:FirstLaunch];
+}
+-(void)setFirstLaunch:(NSString*)date {
+    [[NSUserDefaults standardUserDefaults] setValue:date forKey:FirstLaunch];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -127,18 +136,18 @@ NSString* UserName = @"UserName";
 }
 
 -(NSString*)userName {
-    return [[[NSUserDefaults standardUserDefaults] stringForKey:UserName] retain];
+    return [[[NSUserDefaults standardUserDefaults] stringForKey:UserName] autorelease];
 }
 -(void)setUserName:(NSString*)name {
-    [[NSUserDefaults standardUserDefaults] setString:name forKey:UserName];
+    [[NSUserDefaults standardUserDefaults] setValue:name forKey:UserName];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 -(NSString*)serialNumber {
-    return [[[NSUserDefaults standardUserDefaults] stringForKey:SerialNumber] retain];
+    return [[[NSUserDefaults standardUserDefaults] stringForKey:SerialNumber] autorelease];
 }
 -(void)setSerialNumber:(NSString*)serial {
-    [[NSUserDefaults standardUserDefaults] setString:serial forKey:SerialNumber];
+    [[NSUserDefaults standardUserDefaults] setValue:serial forKey:SerialNumber];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

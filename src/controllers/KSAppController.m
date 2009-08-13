@@ -8,22 +8,11 @@
 
 #import "KSAppController.h"
 #import "System Events.h"
+#import "KSRegistration.h"
 
 static OSStatus AddApplicationEventHandler(EventHandlerCallRef inRef, EventRef inEvent, void* inRefcon);
 void KSFocusFirstWindowOfPid(pid_t pid);
 
-
-// Valid key is taken from the date: 10.28.2008
-// 0x7D8 -> 2008 (12 bits)
-// 0x1C  -> 28   (6 bits)
-// 0x0A  -> 10   (4 bits)
-// 0x1F670A  -> 2057994
-// Basically, the first 22 bits MUST match the above in order to be a valid response.
-#define IsValidSerial(x) ((((x) & (~((~0) << 22))) & 0x1F670A) == 0x1F670A)
-
-// Valid key is taken from the data: 8.6.2004
-// 0x1F5188 -> 2052488
-#define IsInTrialMode(x) ((((x) & (~((~0) << 22))) & 0x1F5188) == 0x1F5188)
 
 @implementation KSAppController
 
@@ -47,7 +36,7 @@ ProcessSerialNumber currentPSN;
 pid_t currentPID = -1;
 
 
-@synthesize broadcasting, applications, configurationsController;
+@synthesize broadcasting, applications, configurationsController, inTrialMode;
 
 + (id)stringWithMachineSerialNumber
 {
@@ -105,8 +94,12 @@ pid_t currentPID = -1;
     SystemEventsDockPreferencesObject* dockPreferences = [systemEventsApplication dockPreferences];
     dockAutoHide = [dockPreferences autohide];
     
-    self.broadcasting = false;
+    if ([userSettings firstLaunch] == nil)
+        [userSettings setFirstLaunch:[[NSDate date] description]];
     
+    self.broadcasting = false;
+    [demoImage setHidden:NO];
+
     [configurationsController loadConfigurations];
 
     [self createStatusItemWithPathForImage:@"Plexer_ON.png" pathForOffImage:@"Plexer_OFF.png"];
@@ -119,50 +112,76 @@ pid_t currentPID = -1;
     
     // First step to validating the serial number is to ensure that the
     // server is not being redirected to a different IP.
-    NSHost* host1 = [NSHost hostWithName:@"kiadsoftware.com"];
-    NSHost* host2 = [NSHost hostWithName:@"kiad.nfshost.com"];
+    //NSHost* host1 = [NSHost hostWithName:@"kiadsoftware.com"];
+//    NSHost* host2 = [NSHost hostWithName:@"kiad.nfshost.com"];
+//    
+//    if (host1 == nil && host2 == nil && [NSHost hostWithName:@"worldofwarcraft.com"] == nil) {
+//        // OK... it appears we cannot actually get to the internet...
+//        // TODO: Do we want to allow users to continue to run the program?
+//    }
+//    else {    
+//        NSArray* hostIP1 = [[host1 address] componentsSeparatedByString:@"."];
+//        NSArray* hostIP2 = [[host2 address] componentsSeparatedByString:@"."];
+//        NSLog(@"host1 = %@ (%@)", [host1 name], [host1 address]);
+//        NSLog(@"host2 = %@ (%@)", [host2 name], [host2 address]);
+//        
+//        // Validate that first two components of the IPs match.
+//        if ([[hostIP1 objectAtIndex:0] isEqualToString:[hostIP2 objectAtIndex:0]] == NO &&
+//            [[hostIP1 objectAtIndex:1] isEqualToString:[hostIP2 objectAtIndex:1]] == NO)
+//        {
+//            // Hmm... we have some suspicious behavior...
+//            if ([[host1 address] isEqualToString:@"127.0.0.1"] == YES ||
+//                [[host1 address] hasSuffix:@"nearlyfreespeech.net"] == NO)
+//            {
+//                // This is most definitly an attempt to pirate our software.
+//                attemptingToPirate = YES;
+//            }
+//        }
+//    }
+//    
+//    // ok, so here we send our serial key and our computer's serial number
+//    NSLog(@"computer serial number: %@", [KSAppController stringWithMachineSerialNumber]);
+//    
+//    // this will be the string response from the server
+//    NSString* inTrialMode = @"2052488";
     
-    if (host1 == nil && host2 == nil && [NSHost hostWithName:@"worldofwarcraft.com"] == nil) {
-        // OK... it appears we cannot actually get to the internet...
-        // TODO: Do we want to allow users to continue to run the program?
+    NSString* serialNumber = [userSettings serialNumber];
+
+    char serialNumberCString[21];
+    [serialNumber getCString:serialNumberCString maxLength:20 encoding:NSASCIIStringEncoding];
+    if (isValidSerialNumber(serialNumberCString) == 0) {
+        [registerPlexerMenuItem setHidden:YES];
+        inTrialMode = NO;
     }
-    else {    
-        NSArray* hostIP1 = [[host1 address] componentsSeparatedByString:@"."];
-        NSArray* hostIP2 = [[host2 address] componentsSeparatedByString:@"."];
-        NSLog(@"host1 = %@ (%@)", [host1 name], [host1 address]);
-        NSLog(@"host2 = %@ (%@)", [host2 name], [host2 address]);
+    else {
+        NSLog(@"Serial number: %@", [userSettings serialNumber]);
+        inTrialMode = YES;
+        [demoImage setHidden:NO];
+
+        NSDate* firstLaunch = [NSDate dateWithString:[userSettings firstLaunch]];
+        NSTimeInterval interval = [firstLaunch timeIntervalSinceNow];
+        if (-interval > 60.0 /*seconds*/ * 60.0 /*minutes*/ * 24.0 /*hours*/ * 15.0 /*days*/) {
+            isTrialExpired = YES;
         
-        // Validate that first two components of the IPs match.
-        if ([[hostIP1 objectAtIndex:0] isEqualToString:[hostIP2 objectAtIndex:0]] == NO &&
-            [[hostIP1 objectAtIndex:1] isEqualToString:[hostIP2 objectAtIndex:1]] == NO)
-        {
-            // Hmm... we have some suspicious behavior...
-            if ([[host1 address] isEqualToString:@"127.0.0.1"] == YES ||
-                [[host1 address] hasSuffix:@"nearlyfreespeech.net"] == NO)
-            {
-                // This is most definitly an attempt to pirate our software.
-                attemptingToPirate = YES;
+            if ([userSettings serialNumber] == nil || [[userSettings serialNumber] isEqualToString:@""] == YES) {
+                [infoPanelController showPanelWithTitle:@"Trial Expired"
+                                                message:@"Your trial of Plexer has expired. If you wish to continue to use Plexer, you must purchase it."
+                                             buttonText:@"OK"
+                                               delegate:self
+                                         didEndSelector:@selector(trialExpiredSheetDidEnd:code:context:)
+                                            contextInfo:nil];
+            }
+            else {
+                // hmm... invalid serial number. possible pirate attempt?
+                [infoPanelController showPanelWithTitle:@"Invalid Serial Number"
+                                                message:@"The serial number is invalid. Please enter a valid serial number."
+                                             buttonText:@"OK"
+                                               delegate:self
+                                         didEndSelector:@selector(invalidSerialNumberOnLoadSheetDidEnd:code:context:)
+                                            contextInfo:nil];
             }
         }
-    }
-    
-    // ok, so here we send our serial key and our computer's serial number
-    NSLog(@"computer serial number: %@", [KSAppController stringWithMachineSerialNumber]);
-    
-    // this will be the string response from the server
-    NSString* serialNumber = @"1679779593";
-    NSString* inTrialMode = @"20524889";
-    
-    // TODO: Validate the user's serial number.
-    if (IsValidSerial([serialNumber intValue])) {
-        [demoImage setHidden:YES];
-        [registerPlexerMenuItem setHidden:YES];
-    }
-    else if (!IsInTrialMode([inTrialMode intValue])) {
-        NSLog(@"Serial number: %@", [userSettings serialNumber]);
-        if ([userSettings serialNumber] == nil || [[userSettings serialNumber] isEqualToString:@""] == YES) {
-            // Trial mode has expired, you need to register.
-            isTrialExpired = YES;
+        else if (interval > 0) {
             [infoPanelController showPanelWithTitle:@"Trial Expired"
                                             message:@"Your trial of Plexer has expired. If you wish to continue to use Plexer, you must purchase it."
                                          buttonText:@"OK"
@@ -170,17 +189,6 @@ pid_t currentPID = -1;
                                      didEndSelector:@selector(trialExpiredSheetDidEnd:code:context:)
                                         contextInfo:nil];
         }
-        else {
-            isTrialExpired = YES;
-            // hmm... invalid serial number. possible pirate attempt?
-            [infoPanelController showPanelWithTitle:@"Invalid Serial Number"
-                                            message:@"The serial number is invalid. Please enter a valid serial number."
-                                         buttonText:@"OK"
-                                           delegate:self
-                                     didEndSelector:@selector(invalidSerialNumberOnLoadSheetDidEnd:code:context:)
-                                        contextInfo:nil];
-        }
-        
     }
     
     if (attemptingToPirate == YES) {
@@ -238,13 +246,16 @@ pid_t currentPID = -1;
     [statusItem release];
 }
 
+-(IBAction)registerSoftware:(id)sender {
+    [registrationPanelController showRegistrationPanel];
+}
 
 // ------------------------------------------------------
 // Event tap methods
 // ------------------------------------------------------
 
 -(void)registerEventTaps {
-    keyEventTapRef = CGEventTapCreate(kCGSessionEventTap, kCGHeadInsertEventTap, kCGEventTapOptionListenOnly, CGEventMaskBit(kCGEventKeyDown) | CGEventMaskBit(kCGEventKeyUp) | CGEventMaskBit(kCGEventFlagsChanged), KeyEventTapCallback, self);
+    keyEventTapRef = CGEventTapCreate(kCGSessionEventTap, kCGHeadInsertEventTap, kCGEventTapOptionDefault, CGEventMaskBit(kCGEventKeyDown) | CGEventMaskBit(kCGEventKeyUp) | CGEventMaskBit(kCGEventFlagsChanged), KeyEventTapCallback, self);
     
     if (keyEventTapRef == NULL) {
         NSLog(@"There was an error creating the event tap.");
@@ -351,8 +362,11 @@ static OSStatus AddApplicationEventHandler(EventHandlerCallRef inRef, EventRef i
                 currentPID = pid;
             
             if ([apps containsObject:app] == NO) {
-                [apps addObject:app];
-                NSLog(@"Application added on startup: %@", app);
+                // NOTE: Trial mode is limited to two apps that can be plexed.
+                if ([controller isInTrialMode] == NO || [apps count] < 2) {
+                    [apps addObject:app];
+                    NSLog(@"Application added on startup: %@", app);
+                }
                 break;
             }
         }
@@ -404,286 +418,4 @@ void KSFocusFirstWindowOfPid(pid_t pid) {
 
 @end
 
-
-//struct KSApplication {
-//    AXUIElementRef elementRef;
-//    ProcessSerialNumber psn;
-//};
-//
-//enum KSConfigurationNameOptions {
-//    kConfigNew      = 1,
-//    kConfigRename   = 2,
-//    kConfigCancel   = -1,
-//    kConfigAddApp   = -100,
-//};
-//
-//EventHotKeyRef ToggleBroadcastingHotKeyRef;
-//EventHotKeyRef QuitAppHotKeyRef;
-//
-//EventHotKeyID ToggleBroadcastingHotKey = { 'kiad', 1 };
-//EventHotKeyID QuitHotKey = { 'kiad', 2 };
-//
-//EventHandlerRef AddApplicationEventHandlerRef;
-//
-//CFMachPortRef AddKeyEventTap;
-//
-//OSStatus HotKeyEventHandler(EventHandlerCallRef inRef, EventRef inEvent, void* inRefcon) {
-//    AppController* controller = (AppController*)inRefcon;
-//    
-//    EventHotKeyID hotKeyPressed;
-//    GetEventParameter(inEvent, kEventParamDirectObject, typeEventHotKeyID, NULL, sizeof(EventHotKeyID), NULL, &hotKeyPressed);
-//    
-//    switch (hotKeyPressed.id) {
-//        case 1:
-//            if ([controller broadcasting] == YES)
-//                [controller stopPlexing:controller];
-//            else
-//                [controller startPlexing:controller];
-//            break;
-//        case 2:
-//            [[NSApplication sharedApplication] terminate:nil];
-//            break;
-//    }
-//    
-//    return noErr;
-//}
-//
-//CGEventRef AddKeyEventHandler(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon) {
-//    NSLog(@"in the key tap.");
-//    
-//    return NULL;
-//}
-//
-//
-//static OSStatus AddApplicationEventHandler(EventHandlerCallRef inRef, EventRef inEvent, void* inRefcon) {
-//    AppController* controller = (AppController*)inRefcon;
-//
-//    ProcessSerialNumber psn;
-//    CFStringRef processName = NULL;
-//    
-//    GetEventParameter(inEvent, kEventParamProcessID, typeProcessSerialNumber, NULL, sizeof(ProcessSerialNumber), NULL, &psn);
-//    CopyProcessName(&psn, &processName);
-//    
-//    [controller insertApplication:&psn];
-//
-//    return noErr;
-//}
-//
-//@implementation AppController
-//BOOL previousDockState;
-//
-
-//
-//-(IBAction)toggleAutoHideDock:(id)sender {
-//    NSLog(@"Toggling autohide for '%@'", [configurationsPopUp titleOfSelectedItem]);
-//    NSMutableDictionary* settings = [[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"ConfigurationSettings"] mutableCopy];
-//    if (settings == nil)
-//        settings = [[NSMutableDictionary alloc] init];
-//    NSMutableDictionary* config = [[settings objectForKey:[configurationsPopUp titleOfSelectedItem]] mutableCopy];
-//    if (config == nil)
-//        config = [[NSMutableDictionary alloc] init];
-//
-//    [config setValue:[NSNumber numberWithInt:[autoHideDockBox state]] forKey:@"AutoHideDock"];
-//    [settings setValue:config forKey:[configurationsPopUp titleOfSelectedItem]];
-//    [[NSUserDefaults standardUserDefaults] setValue:settings forKey:@"ConfigurationSettings"];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-//    
-//    SystemEventsApplication* systemEventsApplication = [SBApplication applicationWithBundleIdentifier:@"com.apple.systemevents"];
-//    SystemEventsDockPreferencesObject* dockPreferences = [systemEventsApplication dockPreferences];
-//    [dockPreferences setAutohide:[autoHideDockBox state]];
-//}
-//
-//-(IBAction)toggleSaveWindowPositions:(id)sender {
-//    NSLog(@"Toggling save window position for '%@'", [configurationsPopUp titleOfSelectedItem]);
-//    NSMutableDictionary* settings = [[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"ConfigurationSettings"] mutableCopy];
-//    if (settings == nil)
-//        settings = [[NSMutableDictionary alloc] init];
-//    NSMutableDictionary* config = [[settings objectForKey:[configurationsPopUp titleOfSelectedItem]] mutableCopy];
-//    if (config == nil)
-//        config = [[NSMutableDictionary alloc] init];
-//    
-//    [config setValue:[NSNumber numberWithInt:[saveWindowSizeBox state]] forKey:@"SaveWindowPositions"];
-//    [settings setValue:config forKey:[configurationsPopUp titleOfSelectedItem]];
-//    [[NSUserDefaults standardUserDefaults] setValue:settings forKey:@"ConfigurationSettings"];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-//}
-//
-//-(IBAction)toggleMoveWindowNearMenuBar:(id)sender {
-//    NSLog(@"Toggling move window near menu bar for '%@'", [configurationsPopUp titleOfSelectedItem]);
-//    NSMutableDictionary* settings = [[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"ConfigurationSettings"] mutableCopy];
-//    if (settings == nil)
-//        settings = [[NSMutableDictionary alloc] init];
-//    NSMutableDictionary* config = [[settings objectForKey:[configurationsPopUp titleOfSelectedItem]] mutableCopy];
-//    if (config == nil)
-//        config = [[NSMutableDictionary alloc] init];
-//    
-//    [config setValue:[NSNumber numberWithInt:[moveWindowsNearMenuBarBox state]] forKey:@"AdjustWindowsNearMenuBar"];
-//    [settings setValue:config forKey:[configurationsPopUp titleOfSelectedItem]];
-//    [[NSUserDefaults standardUserDefaults] setValue:settings forKey:@"ConfigurationSettings"];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-//}
-//
-//-(IBAction)dismissInfoPanel:(id)sender {
-//    [NSApp endSheet:infoPanel returnCode:0];
-//}
-//
-//-(IBAction)addApplication:(id)sender {
-//    [infoPanelMessage setStringValue:@"Please click on the application(s) you wish to add."];
-//    [infoPanelButton setTitle:@"Done"];
-//    [NSApp beginSheet:infoPanel modalForWindow:plexerPanel modalDelegate:self didEndSelector:@selector(addApplicationDidEnd:code:context:) contextInfo:NULL];
-//    
-//    EventTypeSpec kAppEvents[] = {
-//        { kEventClassApplication, kEventAppFrontSwitched },
-//    };
-//    
-//    InstallApplicationEventHandler(AddApplicationEventHandler, GetEventTypeCount(kAppEvents), kAppEvents, self, &AddApplicationEventHandlerRef);
-//}
-//
-//-(IBAction)removeApplication:(id)sender {
-//    int idx = [applicationsTableView selectedRow];
-//    if (idx >= 0) {
-//        [applications removeObjectAtIndex:idx];
-//        [applicationsTableView reloadData];
-//        
-//        --idx;
-//        if (idx < 0) idx = 0;
-//        [applicationsTableView selectRow:idx byExtendingSelection:NO];
-//        
-//        NSMutableDictionary* settings = [[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"ConfigurationSettings"] mutableCopy];
-//        NSMutableDictionary* config = [[settings objectForKey:[configurationsPopUp titleOfSelectedItem]] mutableCopy];
-//        if (config == nil) config = [[NSMutableDictionary alloc] init];
-//        
-//        NSString* appSetting = [applications componentsJoinedByString:@":"];
-//        [config setValue:appSetting forKey:@"Applications"];
-//        [settings setValue:config forKey:[configurationsPopUp titleOfSelectedItem]];
-//        [[NSUserDefaults standardUserDefaults] setValue:settings forKey:@"ConfigurationSettings"];
-//        [[NSUserDefaults standardUserDefaults] synchronize];
-//    }
-//}
-//
-//-(void)addApplicationDidEnd:(NSPanel*)sheet code:(int)choice context:(void*)v {
-//    [sheet orderOut:self];
-//    RemoveEventHandler(AddApplicationEventHandlerRef);
-//}
-//
-//-(void)insertApplication:(ProcessSerialNumber*)psn {
-//    FSRef fsRef;
-//    GetProcessBundleLocation(psn, &fsRef);
-//    
-//    CFURLRef url = CFURLCreateFromFSRef(kCFAllocatorDefault, &fsRef);
-//    NSString* path = (NSString*)CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
-//    CFRelease(url);
-//    
-//    ProcessSerialNumber currentPSN;
-//    GetCurrentProcess(&currentPSN);
-//    GetProcessBundleLocation(&currentPSN, &fsRef);
-//    url = CFURLCreateFromFSRef(kCFAllocatorDefault, &fsRef);
-//    NSString* currentPath = (NSString*)CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
-//    CFRelease(url);
-//    
-//    // Don't add ourself or any duplicates.
-//    if ([path isEqualToString:currentPath] == YES)
-//        return;
-//    
-//    if (applications == nil)
-//        applications = [[[NSMutableArray alloc] init] retain];
-//    
-//    for (NSString* str in applications) {
-//        if ([str isEqualToString:path] == YES)
-//            return;
-//    }
-//    
-//    [applications addObject:(NSString*)path];
-//    [applicationsTableView reloadData];
-//    
-//    NSMutableDictionary* settings = [[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"ConfigurationSettings"] mutableCopy];
-//    NSMutableDictionary* config = [[settings objectForKey:[configurationsPopUp titleOfSelectedItem]] mutableCopy];
-//    if (config == nil) config = [[NSMutableDictionary alloc] init];
-//    
-//    NSString* appSetting = [applications componentsJoinedByString:@":"];
-//    [config setValue:appSetting forKey:@"Applications"];
-//    [settings setValue:config forKey:[configurationsPopUp titleOfSelectedItem]];
-//    [[NSUserDefaults standardUserDefaults] setValue:settings forKey:@"ConfigurationSettings"];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-//}
-//
-//-(IBAction)addKeys:(id)sender {
-//    [infoPanelMessage setStringValue:@"Press the key with any modifier you wish to add."];
-//    [infoPanelButton setTitle:@"Done"];
-//    [NSApp beginSheet:infoPanel modalForWindow:plexerPanel modalDelegate:self didEndSelector:@selector(addKeyDidEnd:code:context:) contextInfo:NULL];
-//
-//    ProcessSerialNumber psn;
-//    GetCurrentProcess(&psn);
-//    
-//    AddKeyEventTap = CGEventTapCreateForPSN(&psn, kCGHeadInsertEventTap, kCGEventTapOptionListenOnly, kCGEventKeyDown, AddKeyEventHandler, self);
-//}
-//
-//-(void)addKeyDidEnd:(NSPanel*)sheet code:(int)choice context:(void*)v {
-//    [sheet orderOut:self];
-//    CFRelease(AddKeyEventTap);
-//}
-//
-//-(IBAction)removeKeys:(id)sender {
-//}
-//
-//-(IBAction)changeKeyOptionSelected:(id)sender {
-//}
-//
-//
-//// ---------------------------------------------------------------
-//// Data source methods for the table views.
-//
-//-(NSInteger)numberOfRowsInTableView:(NSTableView*)aTableView {
-//    if ([aTableView isEqual:applicationsTableView] == YES) {
-//        return [applications count];
-//    }
-//    
-//    return 0;
-//}
-//
-//-(id)tableView:(NSTableView*)aTableView objectValueForTableColumn:(NSTableColumn*)aTableColumn row:(NSInteger)rowIndex {
-//    if ([aTableView isEqual:applicationsTableView] == YES) {
-//        if ([[aTableColumn identifier] isEqualToString:@"position"] == YES)
-//            return [NSString stringWithFormat:@"%d", (rowIndex + 1)];
-//        else if ([[aTableColumn identifier] isEqualToString:@"title"] == YES) {
-//            NSLog(@"Returning friendly name for '@'", [applications objectAtIndex:rowIndex]);
-//            NSString* str = [[applications objectAtIndex:rowIndex] stringByDeletingPathExtension];            
-//            return  [[str pathComponents] lastObject];
-//        }
-//        else
-//            return [applications objectAtIndex:rowIndex];
-//    }
-//    
-//    return nil;
-//}
-
-//-(BOOL)tableView:(NSTableView*)aTableView writeRowsWithIndexes:(NSIndexSet*)rowIndexes toPasteboard:(NSPasteboard*)pboard {
-//    if ([aTableView isEqual:applicationsTableView] == YES) {
-//        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:rowIndexes];
-//        [pboard declareTypes:[NSArray arrayWithObject:@"NSString"] owner:self];
-//        [pboard setData:data forType:@"NSString"];
-//        
-//        return YES;
-//    }
-//    
-//    return NO;
-//}
-//
-//-(NSDragOperation)tableView:(NSTableView*)tv validateDrop:(id <NSDraggingInfo>)info proposedRow:(int)row proposedDropOperation:(NSTableViewDropOperation)op {
-//    NSLog(@"validate Drop");
-//    return NSDragOperationEvery;
-//}
-//
-//- (BOOL)tableView:(NSTableView *)aTableView acceptDrop:(id <NSDraggingInfo>)info row:(int)row dropOperation:(NSTableViewDropOperation)operation
-//{
-//    NSPasteboard* pboard = [info draggingPasteboard];
-//    NSData* rowData = [pboard dataForType:@"NSString"];
-//    NSIndexSet* rowIndexes = [NSKeyedUnarchiver unarchiveObjectWithData:rowData];
-//    int dragRow = [rowIndexes firstIndex];
-//    
-//    [applications insertObject:(NSString*)rowData atIndex:row];
-//    [aTableView reloadData];
-//    
-//    return YES;
-//}
 

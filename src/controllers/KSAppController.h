@@ -13,6 +13,7 @@
 #import "KSConfigurationSettingsController.h"
 #import <Carbon/Carbon.h>
 #import "KSInfoPanelController.h"
+#import "KSRegistrationInfoController.h"
 
 
 @interface KSAppController : NSObject {
@@ -24,18 +25,23 @@
     IBOutlet NSImageView* demoImage;
     IBOutlet KSInfoPanelController* infoPanelController;
     IBOutlet NSMenuItem* registerPlexerMenuItem;
+    IBOutlet KSRegistrationInfoController* registrationPanelController;
     
     BOOL broadcasting;
+    BOOL inTrialMode;
     NSArray* applications;
 }
 
 @property (assign, getter=isBroadcasting) BOOL broadcasting;
+@property (assign, readonly, getter=isInTrialMode) BOOL inTrialMode;
 @property (retain) NSArray* applications;
 @property (retain) KSConfigurationSettingsController* configurationsController;
 
 -(IBAction)showPreferences:(id)sender;
 -(IBAction)startBroadcasting:(id)sender;
 -(IBAction)stopBroadcasting:(id)sender;
+
+-(IBAction)registerSoftware:(id)sender;
 
 -(void)showStatusItem;
 -(void)hideStatusItem;

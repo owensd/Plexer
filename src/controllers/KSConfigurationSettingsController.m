@@ -10,6 +10,7 @@
 #import "KSConfiguration.h"
 #import <Carbon/Carbon.h>
 #import "System Events.h"
+#import "KSAppController.h"
 
 @implementation KSConfigurationSettingsController
 @synthesize userSettings, configurationName, configurationsPopUp, applicationsTableView, keyOptionsPopUp, keyOptionsTableView;
@@ -35,6 +36,7 @@ CGEventRef ConfigKeyEventTapCallback(CGEventTapProxy proxy, CGEventType type, CG
 
     [self willChangeValueForKey:@"configurationSelected"];
     [self didChangeValueForKey:@"configurationSelected"];
+    [self changeSelectedConfiguration:self];
 
     [applicationsTableView reloadData];
     [keyOptionsTableView reloadData];
@@ -232,8 +234,16 @@ CGEventRef ConfigKeyEventTapCallback(CGEventTapProxy proxy, CGEventType type, CG
 
 -(IBAction)addApplication:(id)sender {
     [self registerApplicationEventHandler];
+    
+    NSString* message;
+    KSAppController* c = (KSAppController*)appController;
+    if ([c isInTrialMode] == YES)
+        message = @"Bring the applications you wish to add to the foreground. When you are finished, press the 'Done' button.\n\nNOTE: The trial is limited to a maximum of two applications.";
+    else
+        message = @"Bring the applications you wish to add to the foreground. When you are finished, press the 'Done' button.";
+    
     [infoPanelController showPanelWithTitle:@"Add Application"
-                                    message:@"Bring the applications you wish to add to the foreground. When you are finished, press the 'Done' button."
+                                    message:message
                                  buttonText:@"Done"
                                    delegate:self
                              didEndSelector:@selector(addApplicationsSheetDidEnd:code:context:)
@@ -276,7 +286,7 @@ CGEventRef ConfigKeyEventTapCallback(CGEventTapProxy proxy, CGEventType type, CG
 }
 
 -(void)registerKeyboardEventTap {
-    configKeyEventTapRef = CGEventTapCreate(kCGSessionEventTap, kCGHeadInsertEventTap, kCGEventTapOptionListenOnly, CGEventMaskBit(kCGEventKeyDown) | CGEventMaskBit(kCGEventKeyUp) | CGEventMaskBit(kCGEventFlagsChanged), ConfigKeyEventTapCallback, self);
+    configKeyEventTapRef = CGEventTapCreate(kCGSessionEventTap, kCGHeadInsertEventTap, kCGEventTapOptionDefault, CGEventMaskBit(kCGEventKeyDown) | CGEventMaskBit(kCGEventKeyUp) | CGEventMaskBit(kCGEventFlagsChanged), ConfigKeyEventTapCallback, self);
     
     if (configKeyEventTapRef == NULL) {
         NSLog(@"There was an error creating the event tap.");
