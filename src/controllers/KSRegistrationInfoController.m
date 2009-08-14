@@ -7,6 +7,7 @@
 //
 
 #import "KSRegistrationInfoController.h"
+#import "KSRegistration.h"
 
 
 @implementation KSRegistrationInfoController
@@ -29,12 +30,28 @@
 
 -(void)registrationPanelDidEnd:(NSPanel*)sheet code:(int)choice context:(void*)context {
     if (choice == 1) {
-        // validate the serial number.
-        
-        [userSettings setSerialNumber:[serialNumberField stringValue]];
+        NSString* serialNumber = [serialNumberField stringValue];
+        if (isValidSerialNumber([serialNumber cStringUsingEncoding:NSASCIIStringEncoding]) == 0) {
+            [userSettings setSerialNumber:[serialNumberField stringValue]];
+            
+            [appController applicationDidFinishLaunching:nil];
+        }
     }
     [sheet orderOut:registrationPanel];
 }
 
+-(void)controlTextDidChange:(NSNotification*)aNotification {
+    NSString* serialNumber = [serialNumberField stringValue];
+    if (isValidSerialNumber([serialNumber cStringUsingEncoding:NSASCIIStringEncoding]) == 0)
+        [okButton setEnabled:YES];
+    else
+        [okButton setEnabled:NO];
+}
+
+// Handle this so that the window isn't actually closed. Errors occur if this isn't handled this way.
+-(BOOL)windowShouldClose:(id)window {
+    [NSApp endSheet:registrationPanel];
+    return NO;
+}
 
 @end

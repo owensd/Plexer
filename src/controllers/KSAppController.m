@@ -98,7 +98,6 @@ pid_t currentPID = -1;
         [userSettings setFirstLaunch:[[NSDate date] description]];
     
     self.broadcasting = false;
-    [demoImage setHidden:NO];
 
     [configurationsController loadConfigurations];
 
@@ -151,6 +150,7 @@ pid_t currentPID = -1;
     [serialNumber getCString:serialNumberCString maxLength:20 encoding:NSASCIIStringEncoding];
     if (isValidSerialNumber(serialNumberCString) == 0) {
         [registerPlexerMenuItem setHidden:YES];
+        [demoImage setHidden:YES];
         inTrialMode = NO;
     }
     else {
@@ -250,12 +250,19 @@ pid_t currentPID = -1;
     [registrationPanelController showRegistrationPanel];
 }
 
+
+// Handle this so that the window isn't actually closed. Errors occur if this isn't handled this way.
+-(BOOL)windowShouldClose:(id)window {
+    [preferencesWindow orderOut:self];
+    return NO;
+}
+
 // ------------------------------------------------------
 // Event tap methods
 // ------------------------------------------------------
 
 -(void)registerEventTaps {
-    keyEventTapRef = CGEventTapCreate(kCGSessionEventTap, kCGHeadInsertEventTap, kCGEventTapOptionDefault, CGEventMaskBit(kCGEventKeyDown) | CGEventMaskBit(kCGEventKeyUp) | CGEventMaskBit(kCGEventFlagsChanged), KeyEventTapCallback, self);
+    keyEventTapRef = CGEventTapCreate(kCGSessionEventTap, kCGHeadInsertEventTap, kCGEventTapOptionListenOnly, CGEventMaskBit(kCGEventKeyDown) | CGEventMaskBit(kCGEventKeyUp) | CGEventMaskBit(kCGEventFlagsChanged), KeyEventTapCallback, self);
     
     if (keyEventTapRef == NULL) {
         NSLog(@"There was an error creating the event tap.");
@@ -304,6 +311,10 @@ CGEventRef KeyEventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventR
             return NULL;
         }
     }
+    
+    // If we're not broadcasting, then bomb out.
+    if ([controller isBroadcasting] == NO)
+        return event;
     
     // We only broadcast keys if one of our apps is focused. Otherwise we'd get silly things like
     // keys being sent to the game when we are typing in skype, for example.

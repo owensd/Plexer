@@ -8,13 +8,17 @@
 
 #import <Cocoa/Cocoa.h>
 #import "KSUserSettings.h"
+#import <BWToolkitFramework/BWToolkitFramework.h>
 
 
 @interface KSRegistrationInfoController : NSObject {
     IBOutlet NSTextField* serialNumberField;
+    IBOutlet BWTransparentButton* okButton;
     IBOutlet NSWindow* registrationPanel;
     IBOutlet NSWindow* parentWindow;
     IBOutlet KSUserSettings* userSettings;
+    
+    IBOutlet id appController;
 }
 
 -(IBAction)okClicked:(id)sender;

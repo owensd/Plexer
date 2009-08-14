@@ -286,7 +286,7 @@ CGEventRef ConfigKeyEventTapCallback(CGEventTapProxy proxy, CGEventType type, CG
 }
 
 -(void)registerKeyboardEventTap {
-    configKeyEventTapRef = CGEventTapCreate(kCGSessionEventTap, kCGHeadInsertEventTap, kCGEventTapOptionDefault, CGEventMaskBit(kCGEventKeyDown) | CGEventMaskBit(kCGEventKeyUp) | CGEventMaskBit(kCGEventFlagsChanged), ConfigKeyEventTapCallback, self);
+    configKeyEventTapRef = CGEventTapCreate(kCGSessionEventTap, kCGHeadInsertEventTap, kCGEventTapOptionListenOnly, CGEventMaskBit(kCGEventKeyDown) | CGEventMaskBit(kCGEventKeyUp) | CGEventMaskBit(kCGEventFlagsChanged), ConfigKeyEventTapCallback, self);
     
     if (configKeyEventTapRef == NULL) {
         NSLog(@"There was an error creating the event tap.");
