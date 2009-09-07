@@ -48,4 +48,7 @@
 -(void)setDockHidingEnabled:(BOOL)enabled forConfiguration:(NSString*)name;
 -(BOOL)dockHidingEnabledForConfiguration:(NSString*)name;
 
+-(void)setKeyOptionMode:(NSString*)mode forConfiguration:(NSString*)name;
+-(NSString*)keyOptionModeForConfiguration:(NSString*)name;
+
 @end

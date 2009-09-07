@@ -15,6 +15,7 @@
     NSArray* blackListKeys;
     NSMutableArray* roundRobinKeys;
     BOOL dockHidingEnabled;
+	NSString* keyOptionMode;
 }
 
 @property (copy) NSString* name;
@@ -22,10 +23,11 @@
 @property (retain) NSArray* blackListKeys;
 @property (retain) NSArray* roundRobinKeys;
 @property (assign) BOOL dockHidingEnabled;
+@property (retain) NSString* keyOptionMode;
 
-+(KSConfiguration*)withName:(NSString*)name;
-+(KSConfiguration*)fromDictionary:(NSDictionary*)data;
++(KSConfiguration*)newWithName:(NSString*)name;
++(KSConfiguration*)copyFromDictionary:(NSDictionary*)data;
 
--(NSDictionary*)configurationAsDictionary;
+-(NSDictionary*)copyConfigurationAsDictionary;
 
 @end

@@ -106,15 +106,20 @@ NSString* FirstLaunch = @"FirstLaunch";
 -(void)serialize {
     NSDictionary* configData = [[NSMutableDictionary alloc] init];
     for (KSConfiguration* config in [configurations allValues]) {
-        [configData setValue:[config configurationAsDictionary] forKey:[config name]];
+		NSDictionary* configDictionary = [config copyConfigurationAsDictionary];
+        [configData setValue:configDictionary forKey:[config name]];
+		[configDictionary release];
     }
     [[NSUserDefaults standardUserDefaults] setObject:configData forKey:Configurations];
-    [[NSUserDefaults standardUserDefaults] synchronize];    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+	[configData release];
 }
 
 -(void)addConfigurationWithName:(NSString*)name {
-    [configurations setValue:[KSConfiguration withName:name] forKey:name];
+	KSConfiguration* config = [KSConfiguration newWithName:name];
+    [configurations setValue:config forKey:name];
     [self serialize];
+	[config release];
 }
 
 -(void)removeConfigurationWithName:(NSString*)name {
@@ -123,11 +128,22 @@ NSString* FirstLaunch = @"FirstLaunch";
 }
 
 -(void)renameConfigurationWithName:(NSString*)oldName toName:(NSString*)newName {
-    KSConfiguration* config = [configurations valueForKey:oldName];
+    KSConfiguration* config = [[configurations valueForKey:oldName] retain];
     [config setName:newName];
     
     [configurations removeObjectForKey:oldName];
     [configurations setValue:config forKey:newName];
+    [self serialize];
+    [config release];
+}
+
+-(NSString*)keyOptionModeForConfiguration:(NSString*)name {
+	KSConfiguration* config = [configurations valueForKey:name];
+    return [config keyOptionMode];
+}
+-(void)setKeyOptionMode:(NSString*)mode forConfiguration:(NSString*)name {
+    KSConfiguration* config = [configurations valueForKey:name];
+    [config setKeyOptionMode:mode];
     [self serialize];
 }
 
@@ -136,7 +152,7 @@ NSString* FirstLaunch = @"FirstLaunch";
 }
 
 -(NSString*)userName {
-    return [[[NSUserDefaults standardUserDefaults] stringForKey:UserName] autorelease];
+    return [[NSUserDefaults standardUserDefaults] stringForKey:UserName];
 }
 -(void)setUserName:(NSString*)name {
     [[NSUserDefaults standardUserDefaults] setValue:name forKey:UserName];
@@ -144,7 +160,7 @@ NSString* FirstLaunch = @"FirstLaunch";
 }
 
 -(NSString*)serialNumber {
-    return [[[NSUserDefaults standardUserDefaults] stringForKey:SerialNumber] autorelease];
+    return [[NSUserDefaults standardUserDefaults] stringForKey:SerialNumber];
 }
 -(void)setSerialNumber:(NSString*)serial {
     [[NSUserDefaults standardUserDefaults] setValue:serial forKey:SerialNumber];
@@ -157,8 +173,9 @@ NSString* FirstLaunch = @"FirstLaunch";
     
     NSDictionary* data = [[NSUserDefaults standardUserDefaults] dictionaryForKey:Configurations];
     for (NSDictionary* configData in [data allValues]) {
-        KSConfiguration* config = [KSConfiguration fromDictionary:configData]; 
+        KSConfiguration* config = [KSConfiguration copyFromDictionary:configData]; 
         [configurations setValue:config forKey:[config name]];
+		[config release];
     }
 }
 
@@ -178,13 +195,19 @@ NSString* FirstLaunch = @"FirstLaunch";
     CFRelease(url);
     
     // Don't add ourself to the list.
-    if ([path isEqualToString:currentPath] == YES)
+    if ([path isEqualToString:currentPath] == YES) {
+		[path release];
+		[currentPath release];
         return;
+	}
     
     KSConfiguration* config = [configurations valueForKey:name];
     for (NSString* appPath in [config applications]) {
-        if ([path isEqualToString:appPath] == YES)
+        if ([path isEqualToString:appPath] == YES) {
+			[path release];
+			[currentPath release];
             return;     // That application already exists - DON'T ADD IT!.
+		}
     }
     NSMutableArray* newApplications = [NSMutableArray arrayWithArray:[config applications]];
     [newApplications addObject:path];
@@ -193,6 +216,8 @@ NSString* FirstLaunch = @"FirstLaunch";
     [self serialize];
     
     NSLog(@"Application '%@' was added.", path);
+	[path release];
+	[currentPath release];
 }
 
 -(void)removeApplicationAtIndex:(NSInteger)idx forConfiguration:(NSString*)name {

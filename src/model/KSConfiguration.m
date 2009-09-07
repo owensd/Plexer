@@ -13,23 +13,25 @@ NSString* BlackListKeys = @"BlackListKeys";
 NSString* RoundRobinKeys = @"RoundRobinKeys";
 NSString* Applications = @"Applications";
 NSString* DockHidingEnabled = @"DockHidingEnabled";
+NSString* KeyOptionMode = @"KeyOptionMode";
 
 @implementation KSConfiguration
 
-@synthesize name, applications, blackListKeys, roundRobinKeys, dockHidingEnabled;
+@synthesize name, applications, blackListKeys, roundRobinKeys, dockHidingEnabled, keyOptionMode;
 
-+(KSConfiguration*)withName:(NSString*)name {
++(KSConfiguration*)newWithName:(NSString*)name {
     KSConfiguration* config = [[KSConfiguration alloc] init];
     config.name = name;
     config.blackListKeys = nil;
     config.roundRobinKeys = nil;
     config.applications = nil;
     config.dockHidingEnabled = NO;
+	config.keyOptionMode = @"Blacklist";
     
     return config;
 }
 
-+(KSConfiguration*)fromDictionary:(NSDictionary*)data {
++(KSConfiguration*)copyFromDictionary:(NSDictionary*)data {
     KSConfiguration* config = [[KSConfiguration alloc] init];
     config.name = [data valueForKey:Name];
     if ([[data valueForKey:BlackListKeys] length] > 0) {
@@ -43,12 +45,13 @@ NSString* DockHidingEnabled = @"DockHidingEnabled";
     config.roundRobinKeys = [[data valueForKey:RoundRobinKeys] componentsSeparatedByString:@":"];
     config.applications = [[data valueForKey:Applications] componentsSeparatedByString:@":"];
     config.dockHidingEnabled = [[data valueForKey:DockHidingEnabled] intValue];
+	config.keyOptionMode = [data valueForKey:KeyOptionMode];
     
     return config;
 }
 
 
--(NSDictionary*)configurationAsDictionary {
+-(NSDictionary*)copyConfigurationAsDictionary {
     NSMutableDictionary* aDictionary = [[NSMutableDictionary alloc] init];
     
     [aDictionary setObject:name forKey:Name];
@@ -58,12 +61,14 @@ NSString* DockHidingEnabled = @"DockHidingEnabled";
             [keys addObject:[NSString stringWithFormat:@"%d,%d", [[keyInfo valueForKey:@"KeyCode"] integerValue], [[keyInfo valueForKey:@"Modifiers"] integerValue]]];
         }
         [aDictionary setValue:[keys componentsJoinedByString:@":"] forKey:BlackListKeys];
+		[keys release];
     }
     if (roundRobinKeys != nil)
         [aDictionary setValue:[roundRobinKeys componentsJoinedByString:@":"] forKey:RoundRobinKeys];
     if (applications != nil)
         [aDictionary setValue:[applications componentsJoinedByString:@":"] forKey:Applications];
     [aDictionary setValue:[NSNumber numberWithInt:dockHidingEnabled] forKey:DockHidingEnabled];
+	[aDictionary setValue:keyOptionMode forKey:KeyOptionMode];
     
     return aDictionary;
 }

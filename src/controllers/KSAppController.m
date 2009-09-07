@@ -9,6 +9,7 @@
 #import "KSAppController.h"
 #import "System Events.h"
 #import "KSRegistration.h"
+#import "AvailabilityMacros.h"
 
 static OSStatus AddApplicationEventHandler(EventHandlerCallRef inRef, EventRef inEvent, void* inRefcon);
 void KSFocusFirstWindowOfPid(pid_t pid);
@@ -199,6 +200,16 @@ pid_t currentPID = -1;
     // Sparkle doesn't automatically check for updates on startup so we manually do it here.
     if ([userSettings automaticallyCheckForUpdates] == YES)
         [updater checkForUpdatesInBackground];
+    
+    // Validate that the user has the proper accessibility options set for us.
+    if (AXAPIEnabled() == FALSE) {
+        [infoPanelController showPanelWithTitle:@"Incorrect Accessibility Options"
+                                        message:@"In order to use Plexer, you must enable 'Enable access for assistive devices' in your System Preferences."
+                                     buttonText:@"OK"
+                                       delegate:self
+                                 didEndSelector:@selector(accessibilitySheetDidEnd:code:context:)
+                                    contextInfo:nil];
+    }
 }
 
 -(void)invalidSerialNumberOnLoadSheetDidEnd:(NSPanel*)sheet code:(int)choice context:(void*)v {
@@ -209,6 +220,10 @@ pid_t currentPID = -1;
 -(void)trialExpiredSheetDidEnd:(NSPanel*)sheet code:(int)choice context:(void*)v {
     [sheet orderOut:[infoPanelController window]];
     // TODO: Show the registration information page.
+}
+
+-(void)accessibilitySheetDidEnd:(NSPanel*)sheet code:(int)choice context:(void*)v {
+    [sheet orderOut:[infoPanelController window]];
 }
 
 -(void)applicationWillTerminate:(NSNotification*)aNotification {
@@ -324,12 +339,21 @@ CGEventRef KeyEventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventR
         return event;
     
     // NOTE: Is this too slow? May need to optimize this section of code.
-    NSArray* blackListKeys = [[[[controller userSettings] configurations] valueForKey:[[[controller configurationsController] configurationsPopUp] titleOfSelectedItem]] blackListKeys];
+    KSConfiguration* config = [[[controller userSettings] configurations] valueForKey:[[[controller configurationsController] configurationsPopUp] titleOfSelectedItem]];
+    NSArray* blackListKeys = [config blackListKeys];
+    BOOL keyFound = NO;
     for (NSDictionary* key in blackListKeys) {
-        if ([[key valueForKey:@"KeyCode"] intValue] == keyCode &&
-            [[key valueForKey:@"Modifiers"] intValue] == flags)
-            return event;
+        if ([[key valueForKey:@"KeyCode"] intValue] == keyCode && [[key valueForKey:@"Modifiers"] intValue] == flags) {
+            keyFound = YES;
+            break;
+        }
     }
+    
+    if ([[config keyOptionMode] isEqualToString:@"Blacklist"] == YES && keyFound == YES)
+        return event;
+    else if ([[config keyOptionMode] isEqualToString:@"Whitelist"] == YES && keyFound == NO)
+        return event;
+    
     
     // Broacast the keys to our apps, but be sure not to send it to ourself!
     for (NSApplication* app in [controller applications]) {
@@ -387,6 +411,7 @@ static OSStatus AddApplicationEventHandler(EventHandlerCallRef inRef, EventRef i
     NSLog(@"There are now %d apps being watched.", [apps count]);
     NSLog(@"The applications are %@", apps);
 
+	[apps release];
     return noErr;
 }
 

@@ -22,7 +22,6 @@
 
 /* Begin PBXBuildFile section */
 		7D1425110FFB504D00708F8B /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1425100FFB504D00708F8B /* BWToolkitFramework.framework */; };
-		7D1425140FFB505A00708F8B /* BWToolkitFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D1425100FFB504D00708F8B /* BWToolkitFramework.framework */; };
 		7D1425640FFB535000708F8B /* release-notes.html in Resources */ = {isa = PBXBuildFile; fileRef = 7D1425630FFB535000708F8B /* release-notes.html */; };
 		7D1D582C0FDFA0CD00EB29CD /* Plexer_OFF.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D1D582A0FDFA0CD00EB29CD /* Plexer_OFF.png */; };
 		7D1D582D0FDFA0CD00EB29CD /* Plexer_ON.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D1D582B0FDFA0CD00EB29CD /* Plexer_ON.png */; };
@@ -35,6 +34,8 @@
 		7D4AA93F1010783E008D33C1 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 7D4AA93E1010783E008D33C1 /* icon.icns */; };
 		7D5DEBB30FF9EB60005AB679 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D5DEBB10FF9EB60005AB679 /* MainMenu.xib */; };
 		7D7B312F100479ED00AF62EF /* KSApplicationsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7B312E100479ED00AF62EF /* KSApplicationsDataSource.m */; };
+		7D7EB7E91054465C00EA517C /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1425100FFB504D00708F8B /* BWToolkitFramework.framework */; };
+		7D7EB7EC1054466D00EA517C /* BWToolkitFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D1425100FFB504D00708F8B /* BWToolkitFramework.framework */; };
 		7D7F9D1810119FEF0059D5DA /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D7F9D1710119FEF0059D5DA /* IOKit.framework */; };
 		7D8D2FCA0FEDFD3200912722 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D8D2FC90FEDFD3200912722 /* ScriptingBridge.framework */; };
 		7D8D300D0FEE045300912722 /* System Events.app in Resources */ = {isa = PBXBuildFile; fileRef = 7D8D300C0FEE045300912722 /* System Events.app */; };
@@ -74,7 +75,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				7D1425140FFB505A00708F8B /* BWToolkitFramework.framework in CopyFiles */,
+				7D7EB7EC1054466D00EA517C /* BWToolkitFramework.framework in CopyFiles */,
 				7D8D33570FEF77A800912722 /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -88,7 +89,7 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		7D1425100FFB504D00708F8B /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = ../../../Library/Frameworks/BWToolkitFramework.framework; sourceTree = SOURCE_ROOT; };
+		7D1425100FFB504D00708F8B /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = "../../Library/Application Support/Developer/Shared/Xcode/Frameworks/BWToolkitFramework.framework"; sourceTree = SOURCE_ROOT; };
 		7D1425630FFB535000708F8B /* release-notes.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "release-notes.html"; sourceTree = "<group>"; };
 		7D1D582A0FDFA0CD00EB29CD /* Plexer_OFF.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Plexer_OFF.png; sourceTree = "<group>"; };
 		7D1D582B0FDFA0CD00EB29CD /* Plexer_ON.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Plexer_ON.png; sourceTree = "<group>"; };
@@ -113,7 +114,7 @@
 		7D8D300C0FEE045300912722 /* System Events.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; name = "System Events.app"; path = "/System/Library/CoreServices/System Events.app"; sourceTree = "<absolute>"; };
 		7D8D321E0FEF48D900912722 /* version.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = version.xcconfig; sourceTree = "<group>"; };
 		7D8D32A80FEF54A000912722 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
-		7D8D33560FEF77A800912722 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = "/Users/owensd/Downloads/Sparkle 1/Sparkle.framework"; sourceTree = "<absolute>"; };
+		7D8D33560FEF77A800912722 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = "/Users/owensd/Library/Application Support/Developer/Shared/Xcode/Frameworks/Sparkle.framework"; sourceTree = "<absolute>"; };
 		7D8D33C60FEF8B3E00912722 /* plexercast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = plexercast.xml; sourceTree = "<group>"; };
 		7D90C6CE0FF2087E0042969C /* Plexer_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plexer_Prefix.pch; sourceTree = "<group>"; };
 		7D91321910032F3700F24C41 /* KSInfoPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSInfoPanelController.h; sourceTree = "<group>"; };
@@ -144,6 +145,7 @@
 				7DA0A82D0FF0A00D006503FC /* PreferencePanes.framework in Frameworks */,
 				7D1425110FFB504D00708F8B /* BWToolkitFramework.framework in Frameworks */,
 				7D7F9D1810119FEF0059D5DA /* IOKit.framework in Frameworks */,
+				7D7EB7E91054465C00EA517C /* BWToolkitFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,6 +468,7 @@
 					"\"$(SRCROOT)/../../../Library/Frameworks\"",
 					"\"$(SRCROOT)/../../../Downloads/Sparkle 1/With Garbage Collection\"",
 					"\"$(SRCROOT)/../../../Downloads/Sparkle 1\"",
+					"\"$(SRCROOT)/../../Library/Application Support/Developer/Shared/Xcode/Frameworks\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -490,6 +493,7 @@
 					"\"$(SRCROOT)/../../../Library/Frameworks\"",
 					"\"$(SRCROOT)/../../../Downloads/Sparkle 1/With Garbage Collection\"",
 					"\"$(SRCROOT)/../../../Downloads/Sparkle 1\"",
+					"\"$(SRCROOT)/../../Library/Application Support/Developer/Shared/Xcode/Frameworks\"",
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -506,11 +510,14 @@
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = macosx10.5;
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
@@ -518,12 +525,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				COPY_PHASE_STRIP = NO;
+				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = macosx10.5;
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};
