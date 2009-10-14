@@ -351,8 +351,11 @@ CGEventRef KeyEventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventR
     
     if ([[config keyOptionMode] isEqualToString:@"Blacklist"] == YES && keyFound == YES)
         return event;
-    else if ([[config keyOptionMode] isEqualToString:@"Whitelist"] == YES && keyFound == NO)
-        return event;
+    else if ([[config keyOptionMode] isEqualToString:@"Whitelist"] == YES && keyFound == NO) {
+        // We still need to pass the control keys across to get the property up/down strokes.
+        if (keyCode != kVK_Control && keyCode != kVK_Shift && keyCode != kVK_Command && keyCode != kVK_Option)
+            return event;
+    }
     
     
     // Broacast the keys to our apps, but be sure not to send it to ourself!
