@@ -102,7 +102,9 @@
     else if (keyCode == kVK_End)
         keyString = @"↘";
     else if (keyCode == kVK_ANSI_KeypadClear)
-        keyString = @"Clear";
+        keyString = @"clear";
+    else if (keyCode == kVK_Space)
+        keyString = @"space";
     else {
         UInt32 deadKeyState = 0;
         UniCharCount actualCount = 0;

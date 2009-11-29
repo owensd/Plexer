@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1050</int>
-		<string key="IBDocument.SystemVersion">10A432</string>
-		<string key="IBDocument.InterfaceBuilderVersion">732</string>
-		<string key="IBDocument.AppKitVersion">1038</string>
-		<string key="IBDocument.HIToolboxVersion">437.00</string>
+		<string key="IBDocument.SystemVersion">10C540</string>
+		<string key="IBDocument.InterfaceBuilderVersion">740</string>
+		<string key="IBDocument.AppKitVersion">1038.25</string>
+		<string key="IBDocument.HIToolboxVersion">458.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSArray" key="dict.sortedKeys">
@@ -15,16 +15,14 @@
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>732</string>
+				<string>740</string>
 				<string>1.2.2</string>
 			</object>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="918"/>
-			<integer value="496"/>
+			<integer value="628"/>
 			<integer value="1155"/>
-			<integer value="454"/>
 			<integer value="899"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -2302,7 +2300,7 @@
 				<string key="NSMaxSize">{1.79769e+308, 1.79769e+308}</string>
 			</object>
 			<object class="NSWindowTemplate" id="388846971">
-				<int key="NSWindowStyleMask">8215</int>
+				<int key="NSWindowStyleMask">8213</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{196, 448}, {366, 107}}</string>
 				<int key="NSWTFlags">1677721600</int>
@@ -5394,9 +5392,9 @@ ZQCUhAEqhIQLe0NHU2l6ZT1kZH2agwAAAABIe2G6gwAAAIBMZVS6hoY</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{709, 722}, {366, 84}}</string>
+					<string>{{709, 675}, {366, 84}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{709, 722}, {366, 84}}</string>
+					<string>{{709, 675}, {366, 84}}</string>
 					<boolean value="NO"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.brandonwalkin.BWToolkit</string>
@@ -5478,9 +5476,9 @@ ZQCUhAEqhIQLe0NHU2l6ZT1kZH2agwAAAABIe2G6gwAAAIBMZVS6hoY</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{1012, 135}, {596, 299}}</string>
+					<string>{{372, 135}, {596, 299}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{1012, 135}, {596, 299}}</string>
+					<string>{{372, 135}, {596, 299}}</string>
 					<boolean value="YES"/>
 					<boolean value="YES"/>
 					<boolean value="NO"/>
@@ -5628,9 +5626,9 @@ ZQCUhAEqhIQLe0NHU2l6ZT1kZH2agwAAAABIe2G6gwAAAIBMZVS6hoY</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.brandonwalkin.BWToolkit</string>
 					<string>com.brandonwalkin.BWToolkit</string>
-					<string>{{812, 523}, {366, 107}}</string>
+					<string>{{602, 523}, {366, 107}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{812, 523}, {366, 107}}</string>
+					<string>{{602, 523}, {366, 107}}</string>
 					<boolean value="NO"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.brandonwalkin.BWToolkit</string>
@@ -5639,7 +5637,7 @@ ZQCUhAEqhIQLe0NHU2l6ZT1kZH2agwAAAABIe2G6gwAAAIBMZVS6hoY</bytes>
 					<string>com.brandonwalkin.BWToolkit</string>
 					<string>com.brandonwalkin.BWToolkit</string>
 					<string>com.brandonwalkin.BWToolkit</string>
-					<string>{{1443, 281}, {143, 54}}</string>
+					<string>{{803, 281}, {143, 54}}</string>
 					<string>com.brandonwalkin.BWToolkit</string>
 					<string>com.brandonwalkin.BWToolkit</string>
 					<string>com.brandonwalkin.BWToolkit</string>

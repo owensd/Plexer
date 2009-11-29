@@ -387,8 +387,8 @@ static OSStatus AddApplicationEventHandler(EventHandlerCallRef inRef, EventRef i
     
     ProcessSerialNumber psn;
     GetEventParameter(inEvent, kEventParamProcessID, typeProcessSerialNumber, NULL, sizeof(ProcessSerialNumber), NULL, &psn);
-    
-    NSMutableArray* apps = ([controller applications] == nil) ? [[NSMutableArray alloc] init] : [[controller applications] mutableCopy];
+
+    NSMutableArray* apps = [[NSMutableArray alloc] init];
     KSConfiguration* config = [[[[controller configurationsController] userSettings] configurations] valueForKey:[[[controller configurationsController] configurationsPopUp] titleOfSelectedItem]];
     for (NSApplication* app in [[NSWorkspace sharedWorkspace] launchedApplications]) {
         NSString* appPath = [app valueForKey:@"NSApplicationPath"];
@@ -399,13 +399,9 @@ static OSStatus AddApplicationEventHandler(EventHandlerCallRef inRef, EventRef i
             if (frontPID == pid)
                 currentPID = pid;
             
-            if ([apps containsObject:app] == NO) {
-                // NOTE: Trial mode is limited to two apps that can be plexed.
-                if ([controller isInTrialMode] == NO || [apps count] < 2) {
-                    [apps addObject:app];
-                    NSLog(@"Application added on startup: %@", app);
-                }
-                break;
+            // NOTE: Trial mode is limited to two apps that can be plexed.
+            if ([controller isInTrialMode] == NO || [apps count] < 2) {
+                [apps addObject:app];
             }
         }
     }

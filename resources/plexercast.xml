@@ -7,6 +7,21 @@
         <language>en</language>
 
 		<item>
+			<title>Version 1.0.4</title>
+			<sparkle:releaseNotesLink>http://www.kiadsoftware.com/apps/plexer/release-notes.html#version-1.0.4</sparkle:releaseNotesLink>
+			<pubDate>Sat, 28 Nov 2009 15:43:50 -0800</pubDate>
+			<enclosure
+				url="http://www.kiadsoftware.com/apps/plexer/files/Plexer 1.0.4.zip"
+				sparkle:version="1308"
+				sparkle:shortVersionString="1.0.4"
+				type="application/octet-stream"
+				length="2506092"
+				sparkle:dsaSignature="MCwCFCY/TM035Otl9lKBlTO8UNGkIzxSAhRr1Xe8vLvXZSCOrLuwANLnWQxO4w=="
+			/>
+			<sparkle:minimumSystemVersion>10.5.0</sparkle:minimumSystemVersion>
+		</item>
+
+		<item>
 			<title>Version 1.0.3</title>
 			<sparkle:releaseNotesLink>http://www.kiadsoftware.com/apps/plexer/release-notes.html#version-1.0.3</sparkle:releaseNotesLink>
 			<pubDate>Wed, 14 Oct 2009 14:02:29 -0700</pubDate>
