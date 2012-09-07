@@ -1,0 +1,510 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6C2088F615F9CA1D009191D7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C2088F515F9CA1D009191D7 /* Cocoa.framework */; };
+		6C20890015F9CA1D009191D7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6C2088FE15F9CA1D009191D7 /* InfoPlist.strings */; };
+		6C20890215F9CA1D009191D7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20890115F9CA1D009191D7 /* main.m */; };
+		6C20890615F9CA1D009191D7 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 6C20890415F9CA1D009191D7 /* Credits.rtf */; };
+		6C20890915F9CA1D009191D7 /* PLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20890815F9CA1D009191D7 /* PLAppDelegate.m */; };
+		6C20890C15F9CA1D009191D7 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C20890A15F9CA1D009191D7 /* MainMenu.xib */; };
+		6C20891415F9CA1D009191D7 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C20891315F9CA1D009191D7 /* SenTestingKit.framework */; };
+		6C20891515F9CA1D009191D7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C2088F515F9CA1D009191D7 /* Cocoa.framework */; };
+		6C20891D15F9CA1D009191D7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6C20891B15F9CA1D009191D7 /* InfoPlist.strings */; };
+		6C20892015F9CA1D009191D7 /* PlexerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20891F15F9CA1D009191D7 /* PlexerTests.m */; };
+		6C20893015F9D0D7009191D7 /* PXTeamListWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20892F15F9D0D7009191D7 /* PXTeamListWindow.m */; };
+		6C20893615F9D7C9009191D7 /* PXTeamListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20893515F9D7C9009191D7 /* PXTeamListController.m */; };
+		6C20893E15F9DB60009191D7 /* PXTeamView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20893D15F9DB60009191D7 /* PXTeamView.m */; };
+		6C20894215F9E414009191D7 /* PXTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20894115F9E414009191D7 /* PXTeam.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6C20891615F9CA1D009191D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6C2088E815F9CA1D009191D7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6C2088F015F9CA1D009191D7;
+			remoteInfo = Plexer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6C2088F115F9CA1D009191D7 /* Plexer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plexer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C2088F515F9CA1D009191D7 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		6C2088F815F9CA1D009191D7 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		6C2088F915F9CA1D009191D7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		6C2088FA15F9CA1D009191D7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6C2088FD15F9CA1D009191D7 /* Plexer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Plexer-Info.plist"; sourceTree = "<group>"; };
+		6C2088FF15F9CA1D009191D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6C20890115F9CA1D009191D7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6C20890315F9CA1D009191D7 /* Plexer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Plexer-Prefix.pch"; sourceTree = "<group>"; };
+		6C20890515F9CA1D009191D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		6C20890715F9CA1D009191D7 /* PXAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PXAppDelegate.h; sourceTree = "<group>"; };
+		6C20890815F9CA1D009191D7 /* PLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PLAppDelegate.m; sourceTree = "<group>"; };
+		6C20890B15F9CA1D009191D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		6C20891215F9CA1D009191D7 /* PlexerTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlexerTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C20891315F9CA1D009191D7 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		6C20891A15F9CA1D009191D7 /* PlexerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlexerTests-Info.plist"; sourceTree = "<group>"; };
+		6C20891C15F9CA1D009191D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6C20891E15F9CA1D009191D7 /* PlexerTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlexerTests.h; sourceTree = "<group>"; };
+		6C20891F15F9CA1D009191D7 /* PlexerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlexerTests.m; sourceTree = "<group>"; };
+		6C20892E15F9D0D7009191D7 /* PXTeamListWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTeamListWindow.h; sourceTree = "<group>"; };
+		6C20892F15F9D0D7009191D7 /* PXTeamListWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTeamListWindow.m; sourceTree = "<group>"; };
+		6C20893415F9D7C9009191D7 /* PXTeamListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTeamListController.h; sourceTree = "<group>"; };
+		6C20893515F9D7C9009191D7 /* PXTeamListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTeamListController.m; sourceTree = "<group>"; };
+		6C20893C15F9DB60009191D7 /* PXTeamView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTeamView.h; sourceTree = "<group>"; };
+		6C20893D15F9DB60009191D7 /* PXTeamView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTeamView.m; sourceTree = "<group>"; };
+		6C20894015F9E414009191D7 /* PXTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTeam.h; sourceTree = "<group>"; };
+		6C20894115F9E414009191D7 /* PXTeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTeam.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6C2088EE15F9CA1D009191D7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6C2088F615F9CA1D009191D7 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6C20890E15F9CA1D009191D7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6C20891415F9CA1D009191D7 /* SenTestingKit.framework in Frameworks */,
+				6C20891515F9CA1D009191D7 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6C2088E615F9CA1D009191D7 = {
+			isa = PBXGroup;
+			children = (
+				6C2088FB15F9CA1D009191D7 /* Source */,
+				6C20891815F9CA1D009191D7 /* Tests */,
+				6C2088F415F9CA1D009191D7 /* Frameworks */,
+				6C2088F215F9CA1D009191D7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6C2088F215F9CA1D009191D7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6C2088F115F9CA1D009191D7 /* Plexer.app */,
+				6C20891215F9CA1D009191D7 /* PlexerTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6C2088F415F9CA1D009191D7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6C2088F515F9CA1D009191D7 /* Cocoa.framework */,
+				6C20891315F9CA1D009191D7 /* SenTestingKit.framework */,
+				6C2088F715F9CA1D009191D7 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6C2088F715F9CA1D009191D7 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6C2088F815F9CA1D009191D7 /* AppKit.framework */,
+				6C2088F915F9CA1D009191D7 /* CoreData.framework */,
+				6C2088FA15F9CA1D009191D7 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		6C2088FB15F9CA1D009191D7 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				6C2088FC15F9CA1D009191D7 /* Supporting Files */,
+				6C20893F15F9E405009191D7 /* Model */,
+				6C20893115F9D16A009191D7 /* Views */,
+				6C20893315F9D7AE009191D7 /* Controllers */,
+				6C20890715F9CA1D009191D7 /* PXAppDelegate.h */,
+				6C20890815F9CA1D009191D7 /* PLAppDelegate.m */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		6C2088FC15F9CA1D009191D7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6C2088FD15F9CA1D009191D7 /* Plexer-Info.plist */,
+				6C2088FE15F9CA1D009191D7 /* InfoPlist.strings */,
+				6C20890115F9CA1D009191D7 /* main.m */,
+				6C20890315F9CA1D009191D7 /* Plexer-Prefix.pch */,
+				6C20890415F9CA1D009191D7 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6C20891815F9CA1D009191D7 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				6C20891E15F9CA1D009191D7 /* PlexerTests.h */,
+				6C20891F15F9CA1D009191D7 /* PlexerTests.m */,
+				6C20891915F9CA1D009191D7 /* Supporting Files */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		6C20891915F9CA1D009191D7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6C20891A15F9CA1D009191D7 /* PlexerTests-Info.plist */,
+				6C20891B15F9CA1D009191D7 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6C20893115F9D16A009191D7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6C20890A15F9CA1D009191D7 /* MainMenu.xib */,
+				6C20892E15F9D0D7009191D7 /* PXTeamListWindow.h */,
+				6C20892F15F9D0D7009191D7 /* PXTeamListWindow.m */,
+				6C20893C15F9DB60009191D7 /* PXTeamView.h */,
+				6C20893D15F9DB60009191D7 /* PXTeamView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		6C20893315F9D7AE009191D7 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6C20893415F9D7C9009191D7 /* PXTeamListController.h */,
+				6C20893515F9D7C9009191D7 /* PXTeamListController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		6C20893F15F9E405009191D7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6C20894015F9E414009191D7 /* PXTeam.h */,
+				6C20894115F9E414009191D7 /* PXTeam.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6C2088F015F9CA1D009191D7 /* Plexer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6C20892315F9CA1D009191D7 /* Build configuration list for PBXNativeTarget "Plexer" */;
+			buildPhases = (
+				6C2088ED15F9CA1D009191D7 /* Sources */,
+				6C2088EE15F9CA1D009191D7 /* Frameworks */,
+				6C2088EF15F9CA1D009191D7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Plexer;
+			productName = Plexer;
+			productReference = 6C2088F115F9CA1D009191D7 /* Plexer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6C20891115F9CA1D009191D7 /* PlexerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6C20892615F9CA1D009191D7 /* Build configuration list for PBXNativeTarget "PlexerTests" */;
+			buildPhases = (
+				6C20890D15F9CA1D009191D7 /* Sources */,
+				6C20890E15F9CA1D009191D7 /* Frameworks */,
+				6C20890F15F9CA1D009191D7 /* Resources */,
+				6C20891015F9CA1D009191D7 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6C20891715F9CA1D009191D7 /* PBXTargetDependency */,
+			);
+			name = PlexerTests;
+			productName = PlexerTests;
+			productReference = 6C20891215F9CA1D009191D7 /* PlexerTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6C2088E815F9CA1D009191D7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = PX;
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = "Kiad Software";
+			};
+			buildConfigurationList = 6C2088EB15F9CA1D009191D7 /* Build configuration list for PBXProject "Plexer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 6C2088E615F9CA1D009191D7;
+			productRefGroup = 6C2088F215F9CA1D009191D7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6C2088F015F9CA1D009191D7 /* Plexer */,
+				6C20891115F9CA1D009191D7 /* PlexerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6C2088EF15F9CA1D009191D7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6C20890015F9CA1D009191D7 /* InfoPlist.strings in Resources */,
+				6C20890615F9CA1D009191D7 /* Credits.rtf in Resources */,
+				6C20890C15F9CA1D009191D7 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6C20890F15F9CA1D009191D7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6C20891D15F9CA1D009191D7 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6C20891015F9CA1D009191D7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6C2088ED15F9CA1D009191D7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6C20890215F9CA1D009191D7 /* main.m in Sources */,
+				6C20890915F9CA1D009191D7 /* PLAppDelegate.m in Sources */,
+				6C20893015F9D0D7009191D7 /* PXTeamListWindow.m in Sources */,
+				6C20893615F9D7C9009191D7 /* PXTeamListController.m in Sources */,
+				6C20893E15F9DB60009191D7 /* PXTeamView.m in Sources */,
+				6C20894215F9E414009191D7 /* PXTeam.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6C20890D15F9CA1D009191D7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6C20892015F9CA1D009191D7 /* PlexerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6C20891715F9CA1D009191D7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6C2088F015F9CA1D009191D7 /* Plexer */;
+			targetProxy = 6C20891615F9CA1D009191D7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6C2088FE15F9CA1D009191D7 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6C2088FF15F9CA1D009191D7 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		6C20890415F9CA1D009191D7 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6C20890515F9CA1D009191D7 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		6C20890A15F9CA1D009191D7 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6C20890B15F9CA1D009191D7 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		6C20891B15F9CA1D009191D7 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6C20891C15F9CA1D009191D7 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6C20892115F9CA1D009191D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		6C20892215F9CA1D009191D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		6C20892415F9CA1D009191D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Source/Plexer-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Plexer-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		6C20892515F9CA1D009191D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Source/Plexer-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Plexer-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		6C20892715F9CA1D009191D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Plexer.app/Contents/MacOS/Plexer";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Source/Plexer-Prefix.pch";
+				INFOPLIST_FILE = "Tests/PlexerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_AFTER_BUILD = YES;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		6C20892815F9CA1D009191D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Plexer.app/Contents/MacOS/Plexer";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Source/Plexer-Prefix.pch";
+				INFOPLIST_FILE = "Tests/PlexerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_AFTER_BUILD = YES;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6C2088EB15F9CA1D009191D7 /* Build configuration list for PBXProject "Plexer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6C20892115F9CA1D009191D7 /* Debug */,
+				6C20892215F9CA1D009191D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6C20892315F9CA1D009191D7 /* Build configuration list for PBXNativeTarget "Plexer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6C20892415F9CA1D009191D7 /* Debug */,
+				6C20892515F9CA1D009191D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6C20892615F9CA1D009191D7 /* Build configuration list for PBXNativeTarget "PlexerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6C20892715F9CA1D009191D7 /* Debug */,
+				6C20892815F9CA1D009191D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6C2088E815F9CA1D009191D7 /* Project object */;
+}
