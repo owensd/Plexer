@@ -11,16 +11,22 @@
 		6C20890015F9CA1D009191D7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6C2088FE15F9CA1D009191D7 /* InfoPlist.strings */; };
 		6C20890215F9CA1D009191D7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20890115F9CA1D009191D7 /* main.m */; };
 		6C20890615F9CA1D009191D7 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 6C20890415F9CA1D009191D7 /* Credits.rtf */; };
-		6C20890915F9CA1D009191D7 /* PLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20890815F9CA1D009191D7 /* PLAppDelegate.m */; };
+		6C20890915F9CA1D009191D7 /* PXAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20890815F9CA1D009191D7 /* PXAppDelegate.m */; };
 		6C20890C15F9CA1D009191D7 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C20890A15F9CA1D009191D7 /* MainMenu.xib */; };
 		6C20891415F9CA1D009191D7 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C20891315F9CA1D009191D7 /* SenTestingKit.framework */; };
 		6C20891515F9CA1D009191D7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C2088F515F9CA1D009191D7 /* Cocoa.framework */; };
 		6C20891D15F9CA1D009191D7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6C20891B15F9CA1D009191D7 /* InfoPlist.strings */; };
 		6C20892015F9CA1D009191D7 /* PlexerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20891F15F9CA1D009191D7 /* PlexerTests.m */; };
 		6C20893015F9D0D7009191D7 /* PXTeamListWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20892F15F9D0D7009191D7 /* PXTeamListWindow.m */; };
-		6C20893615F9D7C9009191D7 /* PXTeamListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20893515F9D7C9009191D7 /* PXTeamListController.m */; };
-		6C20893E15F9DB60009191D7 /* PXTeamView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20893D15F9DB60009191D7 /* PXTeamView.m */; };
+		6C20893615F9D7C9009191D7 /* PXTeamListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20893515F9D7C9009191D7 /* PXTeamListTableViewController.m */; };
+		6C20893E15F9DB60009191D7 /* PXTeamTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20893D15F9DB60009191D7 /* PXTeamTableCellView.m */; };
 		6C20894215F9E414009191D7 /* PXTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20894115F9E414009191D7 /* PXTeam.m */; };
+		6C20894515F9E9C0009191D7 /* PXPlexerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20894415F9E9C0009191D7 /* PXPlexerController.m */; };
+		6C20894C15F9EB75009191D7 /* PXGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20894B15F9EB75009191D7 /* PXGame.m */; };
+		6CA1BC0315FB08840040B610 /* teams.json in Resources */ = {isa = PBXBuildFile; fileRef = 6CA1BC0215FB08840040B610 /* teams.json */; };
+		6CA1BC0515FB09340040B610 /* games.json in Resources */ = {isa = PBXBuildFile; fileRef = 6CA1BC0415FB09340040B610 /* games.json */; };
+		6CA1BC0815FB11040040B610 /* PXGameTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA1BC0715FB11040040B610 /* PXGameTableCellView.m */; };
+		6CA1BC0B15FB14330040B610 /* PXSupportedGamesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA1BC0A15FB14330040B610 /* PXSupportedGamesTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +51,7 @@
 		6C20890315F9CA1D009191D7 /* Plexer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Plexer-Prefix.pch"; sourceTree = "<group>"; };
 		6C20890515F9CA1D009191D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		6C20890715F9CA1D009191D7 /* PXAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PXAppDelegate.h; sourceTree = "<group>"; };
-		6C20890815F9CA1D009191D7 /* PLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PLAppDelegate.m; sourceTree = "<group>"; };
+		6C20890815F9CA1D009191D7 /* PXAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PXAppDelegate.m; sourceTree = "<group>"; };
 		6C20890B15F9CA1D009191D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		6C20891215F9CA1D009191D7 /* PlexerTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlexerTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C20891315F9CA1D009191D7 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -55,12 +61,23 @@
 		6C20891F15F9CA1D009191D7 /* PlexerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlexerTests.m; sourceTree = "<group>"; };
 		6C20892E15F9D0D7009191D7 /* PXTeamListWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTeamListWindow.h; sourceTree = "<group>"; };
 		6C20892F15F9D0D7009191D7 /* PXTeamListWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTeamListWindow.m; sourceTree = "<group>"; };
-		6C20893415F9D7C9009191D7 /* PXTeamListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTeamListController.h; sourceTree = "<group>"; };
-		6C20893515F9D7C9009191D7 /* PXTeamListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTeamListController.m; sourceTree = "<group>"; };
-		6C20893C15F9DB60009191D7 /* PXTeamView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTeamView.h; sourceTree = "<group>"; };
-		6C20893D15F9DB60009191D7 /* PXTeamView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTeamView.m; sourceTree = "<group>"; };
+		6C20893415F9D7C9009191D7 /* PXTeamListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTeamListTableViewController.h; sourceTree = "<group>"; };
+		6C20893515F9D7C9009191D7 /* PXTeamListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTeamListTableViewController.m; sourceTree = "<group>"; };
+		6C20893C15F9DB60009191D7 /* PXTeamTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTeamTableCellView.h; sourceTree = "<group>"; };
+		6C20893D15F9DB60009191D7 /* PXTeamTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTeamTableCellView.m; sourceTree = "<group>"; };
 		6C20894015F9E414009191D7 /* PXTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTeam.h; sourceTree = "<group>"; };
 		6C20894115F9E414009191D7 /* PXTeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTeam.m; sourceTree = "<group>"; };
+		6C20894315F9E9C0009191D7 /* PXPlexerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXPlexerController.h; sourceTree = "<group>"; };
+		6C20894415F9E9C0009191D7 /* PXPlexerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXPlexerController.m; sourceTree = "<group>"; };
+		6C20894615F9EAA3009191D7 /* PXGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXGame.h; sourceTree = "<group>"; };
+		6C20894B15F9EB75009191D7 /* PXGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXGame.m; sourceTree = "<group>"; };
+		6C20894D15F9EEA6009191D7 /* Plexer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Plexer.entitlements; path = Plexer/Plexer.entitlements; sourceTree = "<group>"; };
+		6CA1BC0215FB08840040B610 /* teams.json */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; path = teams.json; sourceTree = "<group>"; };
+		6CA1BC0415FB09340040B610 /* games.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = games.json; sourceTree = "<group>"; };
+		6CA1BC0615FB11040040B610 /* PXGameTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXGameTableCellView.h; sourceTree = "<group>"; };
+		6CA1BC0715FB11040040B610 /* PXGameTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXGameTableCellView.m; sourceTree = "<group>"; };
+		6CA1BC0915FB14330040B610 /* PXSupportedGamesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXSupportedGamesTableViewController.h; sourceTree = "<group>"; };
+		6CA1BC0A15FB14330040B610 /* PXSupportedGamesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXSupportedGamesTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +104,7 @@
 		6C2088E615F9CA1D009191D7 = {
 			isa = PBXGroup;
 			children = (
+				6C20894D15F9EEA6009191D7 /* Plexer.entitlements */,
 				6C2088FB15F9CA1D009191D7 /* Source */,
 				6C20891815F9CA1D009191D7 /* Tests */,
 				6C2088F415F9CA1D009191D7 /* Frameworks */,
@@ -126,12 +144,13 @@
 		6C2088FB15F9CA1D009191D7 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				6CA1BC0115FB08630040B610 /* Developement Data */,
 				6C2088FC15F9CA1D009191D7 /* Supporting Files */,
 				6C20893F15F9E405009191D7 /* Model */,
 				6C20893115F9D16A009191D7 /* Views */,
 				6C20893315F9D7AE009191D7 /* Controllers */,
 				6C20890715F9CA1D009191D7 /* PXAppDelegate.h */,
-				6C20890815F9CA1D009191D7 /* PLAppDelegate.m */,
+				6C20890815F9CA1D009191D7 /* PXAppDelegate.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -173,8 +192,10 @@
 				6C20890A15F9CA1D009191D7 /* MainMenu.xib */,
 				6C20892E15F9D0D7009191D7 /* PXTeamListWindow.h */,
 				6C20892F15F9D0D7009191D7 /* PXTeamListWindow.m */,
-				6C20893C15F9DB60009191D7 /* PXTeamView.h */,
-				6C20893D15F9DB60009191D7 /* PXTeamView.m */,
+				6C20893C15F9DB60009191D7 /* PXTeamTableCellView.h */,
+				6C20893D15F9DB60009191D7 /* PXTeamTableCellView.m */,
+				6CA1BC0615FB11040040B610 /* PXGameTableCellView.h */,
+				6CA1BC0715FB11040040B610 /* PXGameTableCellView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -182,8 +203,12 @@
 		6C20893315F9D7AE009191D7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				6C20893415F9D7C9009191D7 /* PXTeamListController.h */,
-				6C20893515F9D7C9009191D7 /* PXTeamListController.m */,
+				6C20893415F9D7C9009191D7 /* PXTeamListTableViewController.h */,
+				6C20893515F9D7C9009191D7 /* PXTeamListTableViewController.m */,
+				6C20894315F9E9C0009191D7 /* PXPlexerController.h */,
+				6C20894415F9E9C0009191D7 /* PXPlexerController.m */,
+				6CA1BC0915FB14330040B610 /* PXSupportedGamesTableViewController.h */,
+				6CA1BC0A15FB14330040B610 /* PXSupportedGamesTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -193,8 +218,20 @@
 			children = (
 				6C20894015F9E414009191D7 /* PXTeam.h */,
 				6C20894115F9E414009191D7 /* PXTeam.m */,
+				6C20894615F9EAA3009191D7 /* PXGame.h */,
+				6C20894B15F9EB75009191D7 /* PXGame.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		6CA1BC0115FB08630040B610 /* Developement Data */ = {
+			isa = PBXGroup;
+			children = (
+				6CA1BC0215FB08840040B610 /* teams.json */,
+				6CA1BC0415FB09340040B610 /* games.json */,
+			);
+			name = "Developement Data";
+			path = "Development Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,6 +309,8 @@
 				6C20890015F9CA1D009191D7 /* InfoPlist.strings in Resources */,
 				6C20890615F9CA1D009191D7 /* Credits.rtf in Resources */,
 				6C20890C15F9CA1D009191D7 /* MainMenu.xib in Resources */,
+				6CA1BC0315FB08840040B610 /* teams.json in Resources */,
+				6CA1BC0515FB09340040B610 /* games.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,11 +346,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C20890215F9CA1D009191D7 /* main.m in Sources */,
-				6C20890915F9CA1D009191D7 /* PLAppDelegate.m in Sources */,
+				6C20890915F9CA1D009191D7 /* PXAppDelegate.m in Sources */,
 				6C20893015F9D0D7009191D7 /* PXTeamListWindow.m in Sources */,
-				6C20893615F9D7C9009191D7 /* PXTeamListController.m in Sources */,
-				6C20893E15F9DB60009191D7 /* PXTeamView.m in Sources */,
+				6C20893615F9D7C9009191D7 /* PXTeamListTableViewController.m in Sources */,
+				6C20893E15F9DB60009191D7 /* PXTeamTableCellView.m in Sources */,
 				6C20894215F9E414009191D7 /* PXTeam.m in Sources */,
+				6C20894515F9E9C0009191D7 /* PXPlexerController.m in Sources */,
+				6C20894C15F9EB75009191D7 /* PXGame.m in Sources */,
+				6CA1BC0815FB11040040B610 /* PXGameTableCellView.m in Sources */,
+				6CA1BC0B15FB14330040B610 /* PXSupportedGamesTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,11 +464,14 @@
 		6C20892415F9CA1D009191D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Plexer/Plexer.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Source/Plexer-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Source/Plexer-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -433,11 +479,14 @@
 		6C20892515F9CA1D009191D7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Plexer/Plexer.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Source/Plexer-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Source/Plexer-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -452,7 +501,7 @@
 				GCC_PREFIX_HEADER = "Source/Plexer-Prefix.pch";
 				INFOPLIST_FILE = "Tests/PlexerTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_AFTER_BUILD = YES;
+				TEST_AFTER_BUILD = NO;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -468,7 +517,7 @@
 				GCC_PREFIX_HEADER = "Source/Plexer-Prefix.pch";
 				INFOPLIST_FILE = "Tests/PlexerTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_AFTER_BUILD = YES;
+				TEST_AFTER_BUILD = NO;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};

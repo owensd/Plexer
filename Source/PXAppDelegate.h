@@ -7,9 +7,18 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "PXTeamListTableViewController.h"
 
-@interface PXAppDelegate : NSObject <NSApplicationDelegate>
+@interface PXAppDelegate : NSObject <NSApplicationDelegate> {
+    NSMutableArray *_supportedGames;
+}
 
 @property (assign) IBOutlet NSWindow *window;
+
+@property (nonatomic, readonly) NSArray *supportedGames;
+@property (weak) IBOutlet PXTeamListTableViewController *teamListController;
+@property (weak) IBOutlet NSPopover *applicationListPopover;
+
+- (IBAction)createNewTeam:(id)sender;
 
 @end

@@ -1,5 +1,5 @@
 //
-//  PXTeam.h
+//  PXPlexerController.h
 //  Plexer
 //
 //  Created by David Owens II on 9/7/12.
@@ -7,11 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXGame.h"
+#import "PXTeam.h"
 
-@interface PXTeam : NSObject
+@interface PXPlexerController : NSObject
 
-@property (copy) NSString *name;
-@property (weak) PXGame *game;
+- (void)startPlexingWithTeam:(PXTeam *)team;
 
 @end

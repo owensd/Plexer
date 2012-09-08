@@ -1,0 +1,21 @@
+{
+    "applicationsPath" : "/Applications",
+    "games" : [
+        {
+            "name" : "World of Warcraft",
+            "executablePaths" : [ "World of Warcraft/World of Warcraft-64.app", "World of Warcraft/World of Warcraft.app" ]
+        },
+        {
+            "name" : "Diablo III",
+            "executablePaths" : [ "Diablo III/Diablo III.app" ]
+        },
+        {
+            "name" : "Automator",
+            "executablePaths" : [ "Automator.app" ]
+        },
+        {
+            "name" : "Game Center",
+            "executablePaths" : [ "Game Center.app" ]
+        }
+    ]
+}
