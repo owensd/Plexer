@@ -7,10 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXTeam.h"
 
 @interface PXPlexerController : NSObject
 
-- (void)startPlexingWithTeam:(PXTeam *)team;
 
 @end

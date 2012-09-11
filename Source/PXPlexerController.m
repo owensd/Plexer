@@ -10,17 +10,6 @@
 
 @implementation PXPlexerController
 
-- (void)startPlexingWithTeam:(PXTeam *)team
-{
-    //
-    // 1. Virtualize the game instances
-    // 2. Launch all of the games
-    // 3. ... profit!
-    //
-    NSLog(@"Plex baby, plex!");
-}
-
-#pragma mark Helper Methods
 
 
 @end

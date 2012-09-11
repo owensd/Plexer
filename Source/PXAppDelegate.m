@@ -7,24 +7,53 @@
 //
 
 #import "PXAppDelegate.h"
+#import "PXGame.h"
 
 @implementation PXAppDelegate
-@synthesize applicationListPopover = _applicationListPopover;
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+- (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
-    [self.teamListController loadData];
+}
+
+- (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender
+{
+    return NO;
+}
+
+- (NSArray *)teamList
+{
+    if (_teamList == nil) {
+        _teamList = [[NSMutableArray alloc] init];
+
+        
+    }
+    
+    return _teamList;
 }
 
 - (NSArray *)supportedGames
 {
     if (_supportedGames == nil) {
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"supportedApplications" ofType:@"json"];
-        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:NSJSONReadingAllowFragments error:nil];
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"games" ofType:@"json"];
+        NSArray *games = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:NSJSONReadingAllowFragments error:nil];
         
         _supportedGames = [[NSMutableArray alloc] init];
-        for (NSDictionary *game in dict[@"supportedApplications"]) {
+        for (NSDictionary *game in games) {
             [_supportedGames addObject:[PXGame gameWithDictionary:game]];
+        }
+        
+        //
+        // Allow user specified games as well.
+        //
+        NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+        if (searchPaths[0] != nil) {
+            NSString *userPath = [searchPaths[0] stringByAppendingPathComponent:@"Plexer/games.json"];
+            if ([[NSFileManager defaultManager] fileExistsAtPath:userPath]) {
+                NSArray *userGames = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:userPath] options:NSJSONReadingAllowFragments error:nil];
+                for (NSDictionary *game in userGames) {
+                    [_supportedGames addObject:[PXGame gameWithDictionary:game]];
+                }
+            }
         }
     }
     
@@ -33,7 +62,6 @@
 
 - (IBAction)createNewTeam:(id)sender
 {
-    [self.applicationListPopover showRelativeToRect:[sender bounds] ofView:sender preferredEdge:NSMaxXEdge];
 }
 
 @end

@@ -17,16 +17,14 @@
 		6C20891515F9CA1D009191D7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C2088F515F9CA1D009191D7 /* Cocoa.framework */; };
 		6C20891D15F9CA1D009191D7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6C20891B15F9CA1D009191D7 /* InfoPlist.strings */; };
 		6C20892015F9CA1D009191D7 /* PlexerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20891F15F9CA1D009191D7 /* PlexerTests.m */; };
-		6C20893015F9D0D7009191D7 /* PXTeamListWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20892F15F9D0D7009191D7 /* PXTeamListWindow.m */; };
-		6C20893615F9D7C9009191D7 /* PXTeamListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20893515F9D7C9009191D7 /* PXTeamListTableViewController.m */; };
-		6C20893E15F9DB60009191D7 /* PXTeamTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20893D15F9DB60009191D7 /* PXTeamTableCellView.m */; };
-		6C20894215F9E414009191D7 /* PXTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20894115F9E414009191D7 /* PXTeam.m */; };
 		6C20894515F9E9C0009191D7 /* PXPlexerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20894415F9E9C0009191D7 /* PXPlexerController.m */; };
 		6C20894C15F9EB75009191D7 /* PXGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20894B15F9EB75009191D7 /* PXGame.m */; };
-		6CA1BC0315FB08840040B610 /* teams.json in Resources */ = {isa = PBXBuildFile; fileRef = 6CA1BC0215FB08840040B610 /* teams.json */; };
+		6C7E6EE715FDBFFB004C4607 /* PXTeamConfigurationWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C7E6EE615FDBFFB004C4607 /* PXTeamConfigurationWindow.m */; };
 		6CA1BC0515FB09340040B610 /* games.json in Resources */ = {isa = PBXBuildFile; fileRef = 6CA1BC0415FB09340040B610 /* games.json */; };
-		6CA1BC0815FB11040040B610 /* PXGameTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA1BC0715FB11040040B610 /* PXGameTableCellView.m */; };
-		6CA1BC0B15FB14330040B610 /* PXSupportedGamesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA1BC0A15FB14330040B610 /* PXSupportedGamesTableViewController.m */; };
+		6CC4844615FF14DD00B9A110 /* PXTeamDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC4844415FF14DD00B9A110 /* PXTeamDocument.m */; };
+		6CC4844A15FF162D00B9A110 /* PXTeamConfigurationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC4844915FF162D00B9A110 /* PXTeamConfigurationWindowController.m */; };
+		6CC4844D15FF19D600B9A110 /* PXTeamDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC4844C15FF19D600B9A110 /* PXTeamDocumentController.m */; };
+		6CECE9B715FD48F50006A524 /* PXTeamMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CECE9B615FD48F50006A524 /* PXTeamMember.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,25 +57,22 @@
 		6C20891C15F9CA1D009191D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6C20891E15F9CA1D009191D7 /* PlexerTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlexerTests.h; sourceTree = "<group>"; };
 		6C20891F15F9CA1D009191D7 /* PlexerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlexerTests.m; sourceTree = "<group>"; };
-		6C20892E15F9D0D7009191D7 /* PXTeamListWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTeamListWindow.h; sourceTree = "<group>"; };
-		6C20892F15F9D0D7009191D7 /* PXTeamListWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTeamListWindow.m; sourceTree = "<group>"; };
-		6C20893415F9D7C9009191D7 /* PXTeamListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTeamListTableViewController.h; sourceTree = "<group>"; };
-		6C20893515F9D7C9009191D7 /* PXTeamListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTeamListTableViewController.m; sourceTree = "<group>"; };
-		6C20893C15F9DB60009191D7 /* PXTeamTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTeamTableCellView.h; sourceTree = "<group>"; };
-		6C20893D15F9DB60009191D7 /* PXTeamTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTeamTableCellView.m; sourceTree = "<group>"; };
-		6C20894015F9E414009191D7 /* PXTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTeam.h; sourceTree = "<group>"; };
-		6C20894115F9E414009191D7 /* PXTeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTeam.m; sourceTree = "<group>"; };
 		6C20894315F9E9C0009191D7 /* PXPlexerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXPlexerController.h; sourceTree = "<group>"; };
 		6C20894415F9E9C0009191D7 /* PXPlexerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXPlexerController.m; sourceTree = "<group>"; };
 		6C20894615F9EAA3009191D7 /* PXGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXGame.h; sourceTree = "<group>"; };
 		6C20894B15F9EB75009191D7 /* PXGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXGame.m; sourceTree = "<group>"; };
 		6C20894D15F9EEA6009191D7 /* Plexer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Plexer.entitlements; path = Plexer/Plexer.entitlements; sourceTree = "<group>"; };
-		6CA1BC0215FB08840040B610 /* teams.json */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; path = teams.json; sourceTree = "<group>"; };
+		6C7E6EE515FDBFFB004C4607 /* PXTeamConfigurationWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTeamConfigurationWindow.h; sourceTree = "<group>"; };
+		6C7E6EE615FDBFFB004C4607 /* PXTeamConfigurationWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTeamConfigurationWindow.m; sourceTree = "<group>"; };
 		6CA1BC0415FB09340040B610 /* games.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = games.json; sourceTree = "<group>"; };
-		6CA1BC0615FB11040040B610 /* PXGameTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXGameTableCellView.h; sourceTree = "<group>"; };
-		6CA1BC0715FB11040040B610 /* PXGameTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXGameTableCellView.m; sourceTree = "<group>"; };
-		6CA1BC0915FB14330040B610 /* PXSupportedGamesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXSupportedGamesTableViewController.h; sourceTree = "<group>"; };
-		6CA1BC0A15FB14330040B610 /* PXSupportedGamesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXSupportedGamesTableViewController.m; sourceTree = "<group>"; };
+		6CC4844315FF14DD00B9A110 /* PXTeamDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTeamDocument.h; sourceTree = "<group>"; };
+		6CC4844415FF14DD00B9A110 /* PXTeamDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTeamDocument.m; sourceTree = "<group>"; };
+		6CC4844815FF162D00B9A110 /* PXTeamConfigurationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTeamConfigurationWindowController.h; sourceTree = "<group>"; };
+		6CC4844915FF162D00B9A110 /* PXTeamConfigurationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTeamConfigurationWindowController.m; sourceTree = "<group>"; };
+		6CC4844B15FF19D600B9A110 /* PXTeamDocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTeamDocumentController.h; sourceTree = "<group>"; };
+		6CC4844C15FF19D600B9A110 /* PXTeamDocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTeamDocumentController.m; sourceTree = "<group>"; };
+		6CECE9B515FD48F50006A524 /* PXTeamMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTeamMember.h; sourceTree = "<group>"; };
+		6CECE9B615FD48F50006A524 /* PXTeamMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTeamMember.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,7 +139,7 @@
 		6C2088FB15F9CA1D009191D7 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				6CA1BC0115FB08630040B610 /* Developement Data */,
+				6CECE9B915FD49020006A524 /* Application Data */,
 				6C2088FC15F9CA1D009191D7 /* Supporting Files */,
 				6C20893F15F9E405009191D7 /* Model */,
 				6C20893115F9D16A009191D7 /* Views */,
@@ -190,12 +185,8 @@
 			isa = PBXGroup;
 			children = (
 				6C20890A15F9CA1D009191D7 /* MainMenu.xib */,
-				6C20892E15F9D0D7009191D7 /* PXTeamListWindow.h */,
-				6C20892F15F9D0D7009191D7 /* PXTeamListWindow.m */,
-				6C20893C15F9DB60009191D7 /* PXTeamTableCellView.h */,
-				6C20893D15F9DB60009191D7 /* PXTeamTableCellView.m */,
-				6CA1BC0615FB11040040B610 /* PXGameTableCellView.h */,
-				6CA1BC0715FB11040040B610 /* PXGameTableCellView.m */,
+				6C7E6EE515FDBFFB004C4607 /* PXTeamConfigurationWindow.h */,
+				6C7E6EE615FDBFFB004C4607 /* PXTeamConfigurationWindow.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -203,12 +194,12 @@
 		6C20893315F9D7AE009191D7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				6C20893415F9D7C9009191D7 /* PXTeamListTableViewController.h */,
-				6C20893515F9D7C9009191D7 /* PXTeamListTableViewController.m */,
 				6C20894315F9E9C0009191D7 /* PXPlexerController.h */,
 				6C20894415F9E9C0009191D7 /* PXPlexerController.m */,
-				6CA1BC0915FB14330040B610 /* PXSupportedGamesTableViewController.h */,
-				6CA1BC0A15FB14330040B610 /* PXSupportedGamesTableViewController.m */,
+				6CC4844815FF162D00B9A110 /* PXTeamConfigurationWindowController.h */,
+				6CC4844915FF162D00B9A110 /* PXTeamConfigurationWindowController.m */,
+				6CC4844B15FF19D600B9A110 /* PXTeamDocumentController.h */,
+				6CC4844C15FF19D600B9A110 /* PXTeamDocumentController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -216,22 +207,22 @@
 		6C20893F15F9E405009191D7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				6C20894015F9E414009191D7 /* PXTeam.h */,
-				6C20894115F9E414009191D7 /* PXTeam.m */,
 				6C20894615F9EAA3009191D7 /* PXGame.h */,
 				6C20894B15F9EB75009191D7 /* PXGame.m */,
+				6CECE9B515FD48F50006A524 /* PXTeamMember.h */,
+				6CECE9B615FD48F50006A524 /* PXTeamMember.m */,
+				6CC4844315FF14DD00B9A110 /* PXTeamDocument.h */,
+				6CC4844415FF14DD00B9A110 /* PXTeamDocument.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
 		};
-		6CA1BC0115FB08630040B610 /* Developement Data */ = {
+		6CECE9B915FD49020006A524 /* Application Data */ = {
 			isa = PBXGroup;
 			children = (
-				6CA1BC0215FB08840040B610 /* teams.json */,
 				6CA1BC0415FB09340040B610 /* games.json */,
 			);
-			name = "Developement Data";
-			path = "Development Data";
+			path = "Application Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,7 +300,6 @@
 				6C20890015F9CA1D009191D7 /* InfoPlist.strings in Resources */,
 				6C20890615F9CA1D009191D7 /* Credits.rtf in Resources */,
 				6C20890C15F9CA1D009191D7 /* MainMenu.xib in Resources */,
-				6CA1BC0315FB08840040B610 /* teams.json in Resources */,
 				6CA1BC0515FB09340040B610 /* games.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -347,14 +337,13 @@
 			files = (
 				6C20890215F9CA1D009191D7 /* main.m in Sources */,
 				6C20890915F9CA1D009191D7 /* PXAppDelegate.m in Sources */,
-				6C20893015F9D0D7009191D7 /* PXTeamListWindow.m in Sources */,
-				6C20893615F9D7C9009191D7 /* PXTeamListTableViewController.m in Sources */,
-				6C20893E15F9DB60009191D7 /* PXTeamTableCellView.m in Sources */,
-				6C20894215F9E414009191D7 /* PXTeam.m in Sources */,
 				6C20894515F9E9C0009191D7 /* PXPlexerController.m in Sources */,
 				6C20894C15F9EB75009191D7 /* PXGame.m in Sources */,
-				6CA1BC0815FB11040040B610 /* PXGameTableCellView.m in Sources */,
-				6CA1BC0B15FB14330040B610 /* PXSupportedGamesTableViewController.m in Sources */,
+				6CECE9B715FD48F50006A524 /* PXTeamMember.m in Sources */,
+				6C7E6EE715FDBFFB004C4607 /* PXTeamConfigurationWindow.m in Sources */,
+				6CC4844615FF14DD00B9A110 /* PXTeamDocument.m in Sources */,
+				6CC4844A15FF162D00B9A110 /* PXTeamConfigurationWindowController.m in Sources */,
+				6CC4844D15FF19D600B9A110 /* PXTeamDocumentController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

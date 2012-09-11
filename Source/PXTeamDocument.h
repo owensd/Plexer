@@ -1,13 +1,13 @@
 //
-//  PXTeamListWindow.h
+//  PXTeamDocument.h
 //  Plexer
 //
-//  Created by David Owens II on 9/6/12.
+//  Created by David Owens II on 9/10/12.
 //  Copyright (c) 2012 Kiad Software. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
 
-@interface PXTeamListWindow : NSWindow
+@interface PXTeamDocument : NSDocument
 
 @end

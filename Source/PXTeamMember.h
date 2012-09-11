@@ -1,17 +1,15 @@
 //
-//  PXTeam.h
+//  PXTeamMember.h
 //  Plexer
 //
-//  Created by David Owens II on 9/7/12.
+//  Created by David Owens II on 9/9/12.
 //  Copyright (c) 2012 Kiad Software. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "PXGame.h"
 
-@interface PXTeam : NSObject
+@interface PXTeamMember : NSObject
 
 @property (copy) NSString *name;
-@property (weak) PXGame *game;
 
 @end
