@@ -20,7 +20,8 @@
 		6C20894515F9E9C0009191D7 /* PXPlexerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20894415F9E9C0009191D7 /* PXPlexerController.m */; };
 		6C20894C15F9EB75009191D7 /* PXGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20894B15F9EB75009191D7 /* PXGame.m */; };
 		6C7E6EE715FDBFFB004C4607 /* PXTeamConfigurationWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C7E6EE615FDBFFB004C4607 /* PXTeamConfigurationWindow.m */; };
-		6CA1BC0515FB09340040B610 /* games.json in Resources */ = {isa = PBXBuildFile; fileRef = 6CA1BC0415FB09340040B610 /* games.json */; };
+		6C93E8C91616DBFE005A5593 /* PXBroadcastingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C93E8C81616DBFE005A5593 /* PXBroadcastingController.m */; };
+		6C93E8CC1616DCFE005A5593 /* DefaultSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C93E8CB1616DCFE005A5593 /* DefaultSettings.plist */; };
 		6CB0A3FF161021C400B926D3 /* PXTeamMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB0A3FD161021C400B926D3 /* PXTeamMemberViewController.m */; };
 		6CB0A400161021C400B926D3 /* PXTeamMemberViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CB0A3FE161021C400B926D3 /* PXTeamMemberViewController.xib */; };
 		6CC4844615FF14DD00B9A110 /* PXTeamDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC4844415FF14DD00B9A110 /* PXTeamDocument.m */; };
@@ -63,11 +64,12 @@
 		6C20894415F9E9C0009191D7 /* PXPlexerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXPlexerController.m; sourceTree = "<group>"; };
 		6C20894615F9EAA3009191D7 /* PXGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXGame.h; sourceTree = "<group>"; };
 		6C20894B15F9EB75009191D7 /* PXGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXGame.m; sourceTree = "<group>"; };
-		6C20894D15F9EEA6009191D7 /* Plexer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Plexer.entitlements; sourceTree = "<group>"; };
 		6C7E6EE515FDBFFB004C4607 /* PXTeamConfigurationWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTeamConfigurationWindow.h; sourceTree = "<group>"; };
 		6C7E6EE615FDBFFB004C4607 /* PXTeamConfigurationWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTeamConfigurationWindow.m; sourceTree = "<group>"; };
 		6C8655CC1616AA4000DBEAA3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		6CA1BC0415FB09340040B610 /* games.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = games.json; sourceTree = "<group>"; };
+		6C93E8C71616DBFE005A5593 /* PXBroadcastingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXBroadcastingController.h; sourceTree = "<group>"; };
+		6C93E8C81616DBFE005A5593 /* PXBroadcastingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXBroadcastingController.m; sourceTree = "<group>"; };
+		6C93E8CB1616DCFE005A5593 /* DefaultSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultSettings.plist; sourceTree = "<group>"; };
 		6CB0A3FC161021C400B926D3 /* PXTeamMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTeamMemberViewController.h; sourceTree = "<group>"; };
 		6CB0A3FD161021C400B926D3 /* PXTeamMemberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTeamMemberViewController.m; sourceTree = "<group>"; };
 		6CB0A3FE161021C400B926D3 /* PXTeamMemberViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PXTeamMemberViewController.xib; sourceTree = "<group>"; };
@@ -105,7 +107,6 @@
 		6C2088E615F9CA1D009191D7 = {
 			isa = PBXGroup;
 			children = (
-				6C20894D15F9EEA6009191D7 /* Plexer.entitlements */,
 				6C2088FB15F9CA1D009191D7 /* Source */,
 				6C20891815F9CA1D009191D7 /* Tests */,
 				6C2088F415F9CA1D009191D7 /* Frameworks */,
@@ -202,6 +203,8 @@
 		6C20893315F9D7AE009191D7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6C93E8C71616DBFE005A5593 /* PXBroadcastingController.h */,
+				6C93E8C81616DBFE005A5593 /* PXBroadcastingController.m */,
 				6C20894315F9E9C0009191D7 /* PXPlexerController.h */,
 				6C20894415F9E9C0009191D7 /* PXPlexerController.m */,
 				6CC4844815FF162D00B9A110 /* PXTeamConfigurationWindowController.h */,
@@ -230,7 +233,7 @@
 		6CECE9B915FD49020006A524 /* Application Data */ = {
 			isa = PBXGroup;
 			children = (
-				6CA1BC0415FB09340040B610 /* games.json */,
+				6C93E8CB1616DCFE005A5593 /* DefaultSettings.plist */,
 			);
 			path = "Application Data";
 			sourceTree = "<group>";
@@ -310,8 +313,8 @@
 				6C20890015F9CA1D009191D7 /* InfoPlist.strings in Resources */,
 				6C20890615F9CA1D009191D7 /* Credits.rtf in Resources */,
 				6C20890C15F9CA1D009191D7 /* MainMenu.xib in Resources */,
-				6CA1BC0515FB09340040B610 /* games.json in Resources */,
 				6CB0A400161021C400B926D3 /* PXTeamMemberViewController.xib in Resources */,
+				6C93E8CC1616DCFE005A5593 /* DefaultSettings.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +359,7 @@
 				6CC4844A15FF162D00B9A110 /* PXTeamConfigurationWindowController.m in Sources */,
 				6CC4844D15FF19D600B9A110 /* PXTeamDocumentController.m in Sources */,
 				6CB0A3FF161021C400B926D3 /* PXTeamMemberViewController.m in Sources */,
+				6C93E8C91616DBFE005A5593 /* PXBroadcastingController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,7 +469,6 @@
 		6C20892415F9CA1D009191D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = Plexer/Plexer.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -480,7 +483,6 @@
 		6C20892515F9CA1D009191D7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = Plexer/Plexer.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

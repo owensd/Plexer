@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PXKeyForBroadcastingKey</key>
+	<string>F9</string>
+	<key>PXKeyForBroadcastingMappedKeysKey</key>
+	<string>F10</string>
+	<key>PXSupportedGamesKey</key>
+	<dict>
+		<key>World of Warcraft</key>
+		<dict>
+			<key>PXSupportGameInstallPathKey</key>
+			<string>/Applications/World of Warcraft</string>
+			<key>PXVirtualizeFileItemsKey</key>
+			<array>
+				<string>Cache</string>
+				<string>Data</string>
+				<string>Interface</string>
+				<string>Launcher.db</string>
+				<string>SetupOSX.mpq</string>
+				<string>Updates</string>
+				<string>World of Warcraft Launcher.app</string>
+			</array>
+			<key>PXCopyFileItemsKey</key>
+			<array>
+				<string>World of Warcraft-64.app</string>
+				<string>World of Warcraft.app</string>
+			</array>
+		</dict>
+	</dict>
+</dict>
+</plist>

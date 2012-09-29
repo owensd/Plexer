@@ -8,17 +8,33 @@
 
 #import <Cocoa/Cocoa.h>
 #import "PXTeamConfigurationWindowController.h"
+#import "PXBroadcastingController.h"
 
-@interface PXAppDelegate : NSObject <NSApplicationDelegate> {
-    NSMutableArray *_supportedGames;
-    NSMutableArray *_teamList;
-}
+@interface PXAppDelegate : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
 @property (weak) IBOutlet PXTeamConfigurationWindowController *teamConfigurationWindowController;
 
-@property (nonatomic, readonly) NSArray *teamList;
-@property (nonatomic, readonly) NSArray *supportedGames;
+@property (assign) IBOutlet NSMenu *statusItemMenu;
+@property (assign) IBOutlet NSMenuItem *toggleBroadcastingStatusMenuItem;
+@property (assign) IBOutlet NSMenuItem *toggleBroadcastingMappedKeysStatusMenuItem;
+@property (assign) IBOutlet NSMenuItem *showDebugLogMenuItem;
+
+@property (assign) IBOutlet NSWindow *debugLogWindow;
+@property (assign) IBOutlet NSArrayController *debugLogController;
+
+@property (strong) NSImage *statusOnImage;
+@property (strong) NSImage *statusOffImage;
+@property (strong) NSImage *statusMixedImage;
+@property (strong) NSStatusItem *statusItem;
+
+@property (strong) PXBroadcastingController *broadcastingController;
+
+- (IBAction)togglePlexingStatus:(id)sender;
+- (IBAction)togglePlexingMappedKeysStatus:(id)sender;
+- (IBAction)quit:(id)sender;
+- (IBAction)showPreferences:(id)sender;
+- (IBAction)showDebugLog:(id)sender;
 
 - (IBAction)createNewTeam:(id)sender;
 

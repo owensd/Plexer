@@ -1,0 +1,54 @@
+{
+    "teamMembers" : {
+        "numberOfTeamMembers" : 5,
+        "slot1" : {
+            "characterName" : "Player1",
+            "pathToApplication" : "/Applications/World of Warcraft/World of Warcraft-64.app"
+        },
+        "slot2" : {
+            "characterName" : "Player2",
+            "virtualizedApplication" : true,
+            "pathToBaseApplication" : "/Applications/World of Warcraft/World of Warcraft-64.app"
+        },
+        "slot3" : {
+            "characterName" : "Player3",
+            "virtualizedApplication" : true,
+            "pathToBaseApplication" : "/Applications/World of Warcraft/World of Warcraft-64.app"
+        },
+        "slot4" : {
+            "characterName" : "Player4",
+            "virtualizedApplication" : true,
+            "pathToBaseApplication" : "/Applications/World of Warcraft/World of Warcraft-64.app"
+        },
+        "slot5" : {
+            "characterName" : "Player5",
+            "virtualizedApplication" : true,
+            "pathToBaseApplication" : "/Applications/World of Warcraft/World of Warcraft-64.app"
+        }
+    },
+    "windowLocations" : {
+        "slot1" : {
+            "origin" : { "x" : 0, "y" : 0 },
+            "size" : { "width" : 0, "height" : 0 }
+        },
+        "slot2" : {
+            "origin" : { "x" : 0, "y" : 0 },
+            "size" : { "width" : 0, "height" : 0 }
+        },
+        "slot3" : {
+            "origin" : { "x" : 0, "y" : 0 },
+            "size" : { "width" : 0, "height" : 0 }
+        },
+        "slot4" : {
+            "origin" : { "x" : 0, "y" : 0 },
+            "size" : { "width" : 0, "height" : 0 }
+        },
+        "slot5" : {
+            "origin" : { "x" : 0, "y" : 0 },
+            "size" : { "width" : 0, "height" : 0 }
+        }
+    },
+    "keyMappings" : {
+        
+    }
+}

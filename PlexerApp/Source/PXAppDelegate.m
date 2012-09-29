@@ -7,57 +7,119 @@
 //
 
 #import "PXAppDelegate.h"
-#import "PXGame.h"
+
+NSString * const PXKeyForBroadcastingKey = @"PXKeyForBroadcastingKey";
+NSString * const PXKeyForBroadcastingMappedKeysKey = @"PXKeyForBroadcastingMappedKeysKey";
+
+NSString * const PXSupportedGamesKey = @"PXSupportedGamesKey";
+NSString * const PXSupportGameInstallPathKey = @"PXSupportGameInstallPathKey";
+NSString * const PXVirtualizeFileItemsKey = @"PXVirtualizeFileItemsKey";
+NSString * const PXCopyFileItemsKey = @"PXCopyFileItemsKey";
+
+
+NSImage *PXLoadNamedImageForStatusBar(NSString *imageName)
+{
+    static CGFloat thickness = -1;
+    static CGFloat padding = -1;
+    static CGSize statusItemSize;
+    
+    if (thickness < 0) {
+        thickness = [NSStatusBar systemStatusBar].thickness;
+        padding = 2.0;
+        statusItemSize = CGSizeMake(thickness - padding * 2, thickness - padding * 2);
+    }
+    
+    NSImage *image = [NSImage imageNamed:imageName];
+    image.size = statusItemSize;
+    
+    return image;
+}
 
 @implementation PXAppDelegate
-
-- (void)applicationDidFinishLaunching:(NSNotification *)notification
-{
-}
 
 - (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender
 {
     return NO;
 }
 
-- (NSArray *)teamList
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    if (_teamList == nil) {
-        _teamList = [[NSMutableArray alloc] init];
-
-        
-    }
+    NSString *pathToDefaults = [[NSBundle mainBundle] pathForResource:@"DefaultSettings" ofType:@"plist"];
+    NSDictionary *defaults = [NSDictionary dictionaryWithContentsOfFile:pathToDefaults];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     
-    return _teamList;
+    self.statusOnImage = PXLoadNamedImageForStatusBar(NSImageNameEveryone);
+    self.statusOffImage = PXLoadNamedImageForStatusBar(NSImageNameUser);
+    self.statusMixedImage = PXLoadNamedImageForStatusBar(NSImageNameUserGroup);
+    
+    self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength];
+    self.statusItem.image = self.statusOffImage;
+    self.statusItem.menu = self.statusItemMenu;
+    self.statusItem.highlightMode = YES;
+    
+    self.broadcastingController = [[PXBroadcastingController alloc] init];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(broadcastingStateDidChange:)
+                                                 name:PXBroadcastingDidChangeNotification
+                                               object:self.broadcastingController];
+    
+    self.broadcastingController.broadcasting = NO;
+    self.broadcastingController.broadcastingMappedKeys = NO;
+    
+#ifdef DEBUG
+    self.showDebugLogMenuItem.hidden = NO;
+    [self.debugLogWindow makeKeyAndOrderFront:self];
+    self.debugLogWindow.level = NSPopUpMenuWindowLevel;
+#endif
 }
 
-- (NSArray *)supportedGames
+- (void)broadcastingStateDidChange:(NSNotification *)notification
 {
-    if (_supportedGames == nil) {
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"games" ofType:@"json"];
-        NSArray *games = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:NSJSONReadingAllowFragments error:nil];
+    self.toggleBroadcastingMappedKeysStatusMenuItem.state = self.broadcastingController.broadcastingMappedKeys ? NSOnState : NSOffState;
+    
+    if (self.broadcastingController.broadcasting == NO) {
+        self.statusItem.image = self.statusOffImage;
+        self.toggleBroadcastingStatusMenuItem.title = @"Start Plexing";
+    }
+    else {
+        self.toggleBroadcastingStatusMenuItem.title = @"Stop Plexing";
         
-        _supportedGames = [[NSMutableArray alloc] init];
-        for (NSDictionary *game in games) {
-            [_supportedGames addObject:[PXGame gameWithDictionary:game]];
+        if (self.broadcastingController.broadcastingMappedKeys == NO) {
+            self.statusItem.image = self.statusOnImage;
         }
-        
-        //
-        // Allow user specified games as well.
-        //
-        NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
-        if (searchPaths[0] != nil) {
-            NSString *userPath = [searchPaths[0] stringByAppendingPathComponent:@"Plexer/games.json"];
-            if ([[NSFileManager defaultManager] fileExistsAtPath:userPath]) {
-                NSArray *userGames = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:userPath] options:NSJSONReadingAllowFragments error:nil];
-                for (NSDictionary *game in userGames) {
-                    [_supportedGames addObject:[PXGame gameWithDictionary:game]];
-                }
-            }
+        else {
+            self.statusItem.image = self.statusMixedImage;
         }
     }
+}
+
+#pragma - Status Menu Item Actions
+
+- (IBAction)togglePlexingStatus:(id)sender
+{
+    self.broadcastingController.broadcasting = !self.broadcastingController.broadcasting;
+    [self.debugLogController addObject:@"Toggle Plexing Status"];
+}
+
+- (IBAction)togglePlexingMappedKeysStatus:(id)sender
+{
+    self.broadcastingController.broadcastingMappedKeys = !self.broadcastingController.broadcastingMappedKeys;
+}
+
+- (IBAction)quit:(id)sender
+{
+    [[NSApplication sharedApplication] terminate:sender];
+}
+
+- (IBAction)showPreferences:(id)sender
+{
     
-    return _supportedGames;
+}
+
+- (IBAction)showDebugLog:(id)sender
+{
+    [self.debugLogWindow makeKeyAndOrderFront:sender];
 }
 
 - (IBAction)createNewTeam:(id)sender
