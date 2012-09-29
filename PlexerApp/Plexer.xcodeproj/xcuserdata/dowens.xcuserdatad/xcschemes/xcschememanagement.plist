@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Plexer.xcscheme</key>
+		<key>PlexerApp.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -18,6 +18,11 @@
 			<true/>
 		</dict>
 		<key>6C20891115F9CA1D009191D7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6C8655CA1616AA4000DBEAA3</key>
 		<dict>
 			<key>primary</key>
 			<true/>

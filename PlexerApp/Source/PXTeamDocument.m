@@ -55,16 +55,22 @@
 
 - (void)showWindows
 {
-    static const CGFloat windowWidth = 640;
-    static const CGFloat windowHeight = 60;
+    static CGFloat initialWindowWidth = 0;
+    static CGFloat initialWindowHeight = 0;
     
     CGFloat menuBarHeight = [[[NSApplication sharedApplication] mainMenu] menuBarHeight];
     CGFloat screenHeight = [NSScreen mainScreen].frame.size.height;
     CGFloat screenWidth = [NSScreen mainScreen].frame.size.width;
 
-    CGRect rect = NSMakeRect(screenWidth / 2 - windowWidth / 2, screenHeight - menuBarHeight - windowHeight, windowWidth, windowHeight);
-
     PXTeamConfigurationWindowController *teamConfigurationWindowController = self.windowControllers[0];
+    if (initialWindowWidth == 0) {
+        initialWindowWidth = teamConfigurationWindowController.window.frame.size.width;
+    }
+    if (initialWindowHeight == 0) {
+        initialWindowHeight = teamConfigurationWindowController.window.frame.size.height;
+    }
+    
+    CGRect rect = NSMakeRect(screenWidth / 2 - initialWindowWidth / 2, screenHeight - menuBarHeight - initialWindowHeight, initialWindowWidth, initialWindowHeight);
 
     [teamConfigurationWindowController.window setFrame:rect display:YES];
     [teamConfigurationWindowController.window makeKeyAndOrderFront:self];

@@ -21,6 +21,8 @@
 		6C20894C15F9EB75009191D7 /* PXGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20894B15F9EB75009191D7 /* PXGame.m */; };
 		6C7E6EE715FDBFFB004C4607 /* PXTeamConfigurationWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C7E6EE615FDBFFB004C4607 /* PXTeamConfigurationWindow.m */; };
 		6CA1BC0515FB09340040B610 /* games.json in Resources */ = {isa = PBXBuildFile; fileRef = 6CA1BC0415FB09340040B610 /* games.json */; };
+		6CB0A3FF161021C400B926D3 /* PXTeamMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB0A3FD161021C400B926D3 /* PXTeamMemberViewController.m */; };
+		6CB0A400161021C400B926D3 /* PXTeamMemberViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CB0A3FE161021C400B926D3 /* PXTeamMemberViewController.xib */; };
 		6CC4844615FF14DD00B9A110 /* PXTeamDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC4844415FF14DD00B9A110 /* PXTeamDocument.m */; };
 		6CC4844A15FF162D00B9A110 /* PXTeamConfigurationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC4844915FF162D00B9A110 /* PXTeamConfigurationWindowController.m */; };
 		6CC4844D15FF19D600B9A110 /* PXTeamDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC4844C15FF19D600B9A110 /* PXTeamDocumentController.m */; };
@@ -61,10 +63,14 @@
 		6C20894415F9E9C0009191D7 /* PXPlexerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXPlexerController.m; sourceTree = "<group>"; };
 		6C20894615F9EAA3009191D7 /* PXGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXGame.h; sourceTree = "<group>"; };
 		6C20894B15F9EB75009191D7 /* PXGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXGame.m; sourceTree = "<group>"; };
-		6C20894D15F9EEA6009191D7 /* Plexer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Plexer.entitlements; path = Plexer/Plexer.entitlements; sourceTree = "<group>"; };
+		6C20894D15F9EEA6009191D7 /* Plexer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Plexer.entitlements; sourceTree = "<group>"; };
 		6C7E6EE515FDBFFB004C4607 /* PXTeamConfigurationWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTeamConfigurationWindow.h; sourceTree = "<group>"; };
 		6C7E6EE615FDBFFB004C4607 /* PXTeamConfigurationWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTeamConfigurationWindow.m; sourceTree = "<group>"; };
+		6C8655CC1616AA4000DBEAA3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6CA1BC0415FB09340040B610 /* games.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = games.json; sourceTree = "<group>"; };
+		6CB0A3FC161021C400B926D3 /* PXTeamMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTeamMemberViewController.h; sourceTree = "<group>"; };
+		6CB0A3FD161021C400B926D3 /* PXTeamMemberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTeamMemberViewController.m; sourceTree = "<group>"; };
+		6CB0A3FE161021C400B926D3 /* PXTeamMemberViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PXTeamMemberViewController.xib; sourceTree = "<group>"; };
 		6CC4844315FF14DD00B9A110 /* PXTeamDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTeamDocument.h; sourceTree = "<group>"; };
 		6CC4844415FF14DD00B9A110 /* PXTeamDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTeamDocument.m; sourceTree = "<group>"; };
 		6CC4844815FF162D00B9A110 /* PXTeamConfigurationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTeamConfigurationWindowController.h; sourceTree = "<group>"; };
@@ -121,6 +127,7 @@
 			children = (
 				6C2088F515F9CA1D009191D7 /* Cocoa.framework */,
 				6C20891315F9CA1D009191D7 /* SenTestingKit.framework */,
+				6C8655CC1616AA4000DBEAA3 /* Foundation.framework */,
 				6C2088F715F9CA1D009191D7 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -185,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				6C20890A15F9CA1D009191D7 /* MainMenu.xib */,
+				6CB0A3FE161021C400B926D3 /* PXTeamMemberViewController.xib */,
 				6C7E6EE515FDBFFB004C4607 /* PXTeamConfigurationWindow.h */,
 				6C7E6EE615FDBFFB004C4607 /* PXTeamConfigurationWindow.m */,
 			);
@@ -200,6 +208,8 @@
 				6CC4844915FF162D00B9A110 /* PXTeamConfigurationWindowController.m */,
 				6CC4844B15FF19D600B9A110 /* PXTeamDocumentController.h */,
 				6CC4844C15FF19D600B9A110 /* PXTeamDocumentController.m */,
+				6CB0A3FC161021C400B926D3 /* PXTeamMemberViewController.h */,
+				6CB0A3FD161021C400B926D3 /* PXTeamMemberViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -301,6 +311,7 @@
 				6C20890615F9CA1D009191D7 /* Credits.rtf in Resources */,
 				6C20890C15F9CA1D009191D7 /* MainMenu.xib in Resources */,
 				6CA1BC0515FB09340040B610 /* games.json in Resources */,
+				6CB0A400161021C400B926D3 /* PXTeamMemberViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +355,7 @@
 				6CC4844615FF14DD00B9A110 /* PXTeamDocument.m in Sources */,
 				6CC4844A15FF162D00B9A110 /* PXTeamConfigurationWindowController.m in Sources */,
 				6CC4844D15FF19D600B9A110 /* PXTeamDocumentController.m in Sources */,
+				6CB0A3FF161021C400B926D3 /* PXTeamMemberViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
