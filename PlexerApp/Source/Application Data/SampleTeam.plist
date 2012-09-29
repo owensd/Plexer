@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PXApplicationNameKey</key>
+	<string>World of Warcraft</string>
+	<key>PXPathToApplicationKey</key>
+	<string>/Applications/World of Warcraft/World of Warcraft-64.app</string>
+	<key>PXTeamMembersKey</key>
+	<array>
+		<dict>
+			<key>PXCharacterNameKey</key>
+			<string>Player1</string>
+		</dict>
+		<dict>
+			<key>PXCharacterNameKey</key>
+			<string>Player2</string>
+			<key>PXVirtualizeApplicationKey</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>PXCharacterNameKey</key>
+			<string>Player3</string>
+			<key>PXVirtualizeApplicationKey</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>PXCharacterNameKey</key>
+			<string>Player4</string>
+			<key>PXVirtualizeApplicationKey</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>PXCharacterNameKey</key>
+			<string>Player5</string>
+			<key>PXVirtualizeApplicationKey</key>
+			<true/>
+		</dict>
+	</array>
+	<key>PXApplicationWindowLocationsKey</key>
+	<array>
+		<dict>
+			<key>PXWindowOriginKey</key>
+			<string>0,0</string>
+			<key>PXWindowSizeKey</key>
+			<string>0,0</string>
+		</dict>
+		<dict>
+			<key>PXWindowOriginKey</key>
+			<string>0,0</string>
+			<key>PXWindowSizeKey</key>
+			<string>0,0</string>
+		</dict>
+		<dict>
+			<key>PXWindowOriginKey</key>
+			<string>0,0</string>
+			<key>PXWindowSizeKey</key>
+			<string>0,0</string>
+		</dict>
+		<dict>
+			<key>PXWindowOriginKey</key>
+			<string>0,0</string>
+			<key>PXWindowSizeKey</key>
+			<string>0,0</string>
+		</dict>
+		<dict>
+			<key>PXWindowOriginKey</key>
+			<string>0,0</string>
+			<key>PXWindowSizeKey</key>
+			<string>0,0</string>
+		</dict>
+	</array>
+	<key>PXMappedKeysKey</key>
+	<dict/>
+</dict>
+</plist>

@@ -9,6 +9,17 @@
 #import <Cocoa/Cocoa.h>
 #import "PXTeamConfigurationWindowController.h"
 #import "PXBroadcastingController.h"
+#import "PXGameController.h"
+
+#ifdef DEBUG
+    #define PXLog(MESSAGE)\
+    do{\
+    [[(PXAppDelegate *)[[NSApplication sharedApplication] delegate] debugLogController] addObject:MESSAGE];\
+    }while(0);
+#else
+    #define PXLog(MESSAGE)
+#endif
+
 
 @interface PXAppDelegate : NSObject <NSApplicationDelegate>
 
@@ -29,6 +40,7 @@
 @property (strong) NSStatusItem *statusItem;
 
 @property (strong) PXBroadcastingController *broadcastingController;
+@property (strong) PXGameController *gameController;
 
 - (IBAction)togglePlexingStatus:(id)sender;
 - (IBAction)togglePlexingMappedKeysStatus:(id)sender;

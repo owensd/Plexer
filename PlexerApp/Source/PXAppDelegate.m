@@ -8,15 +8,6 @@
 
 #import "PXAppDelegate.h"
 
-NSString * const PXKeyForBroadcastingKey = @"PXKeyForBroadcastingKey";
-NSString * const PXKeyForBroadcastingMappedKeysKey = @"PXKeyForBroadcastingMappedKeysKey";
-
-NSString * const PXSupportedGamesKey = @"PXSupportedGamesKey";
-NSString * const PXSupportGameInstallPathKey = @"PXSupportGameInstallPathKey";
-NSString * const PXVirtualizeFileItemsKey = @"PXVirtualizeFileItemsKey";
-NSString * const PXCopyFileItemsKey = @"PXCopyFileItemsKey";
-
-
 NSImage *PXLoadNamedImageForStatusBar(NSString *imageName)
 {
     static CGFloat thickness = -1;
@@ -67,6 +58,13 @@ NSImage *PXLoadNamedImageForStatusBar(NSString *imageName)
     self.broadcastingController.broadcasting = NO;
     self.broadcastingController.broadcastingMappedKeys = NO;
     
+    self.gameController = [[PXGameController alloc] init];
+
+#ifdef DEBUG
+    NSString *pathToSampleTeamConfiguration = [[NSBundle mainBundle] pathForResource:@"SampleTeam" ofType:@"plist"];
+    self.gameController.teamConfiguration = [NSDictionary dictionaryWithContentsOfFile:pathToSampleTeamConfiguration];
+#endif
+    
 #ifdef DEBUG
     self.showDebugLogMenuItem.hidden = NO;
     [self.debugLogWindow makeKeyAndOrderFront:self];
@@ -98,8 +96,11 @@ NSImage *PXLoadNamedImageForStatusBar(NSString *imageName)
 
 - (IBAction)togglePlexingStatus:(id)sender
 {
+    
     self.broadcastingController.broadcasting = !self.broadcastingController.broadcasting;
-    [self.debugLogController addObject:@"Toggle Plexing Status"];
+    if (self.broadcastingController.broadcasting == YES) {
+        [self.gameController launch];
+    }
 }
 
 - (IBAction)togglePlexingMappedKeysStatus:(id)sender
