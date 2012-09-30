@@ -10,11 +10,12 @@
 	<dict>
 		<key>World of Warcraft</key>
 		<dict>
-			<key>PXSupportGameInstallPathKey</key>
+			<key>PXSupportedGameInstallPathKey</key>
 			<string>/Applications/World of Warcraft</string>
+			<key>PXSupportedGamePreferencePathKey</key>
+			<string>~/Library/Preferences/com.blizzard.World of Warcraft.prefs</string>
 			<key>PXVirtualizeFileItemsKey</key>
 			<array>
-				<string>Cache</string>
 				<string>Data</string>
 				<string>Interface</string>
 				<string>Launcher.db</string>

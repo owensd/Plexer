@@ -10,12 +10,21 @@
 
 OBJC_EXPORT NSString * const PXBroadcastingDidChangeNotification;
 
-@interface PXBroadcastingController : NSObject
+typedef enum {
+    PXBroadcastingDisabled = 0,
+    PXBroadcastingMappedKeys,
+    PXBroadcastingAllKeys
+} PXBroadcastingState;
+
+@interface PXBroadcastingController : NSObject {
+    CFRunLoopSourceRef _keybindRunLoopSourceRef;
+    CFMachPortRef _keybindEventTapRef;
+    
+}
 
 @property (strong) NSDictionary *settings;
 
-@property (nonatomic, assign, getter=isBroadcasting) BOOL broadcasting;
-@property (nonatomic, assign, getter=isBroadcastingMappedKeys) BOOL broadcastingMappedKeys;
+@property (nonatomic, assign) PXBroadcastingState broadcastingState;
 
 
 @end

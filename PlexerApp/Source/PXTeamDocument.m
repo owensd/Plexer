@@ -22,7 +22,7 @@
 
 - (void)makeWindowControllers
 {
-    PXAppDelegate *appDelegate = [[NSApplication sharedApplication] delegate];
+    PXAppDelegate *appDelegate = (PXAppDelegate *)[[NSApplication sharedApplication] delegate];
     [self addWindowController:[appDelegate teamConfigurationWindowController]];
 }
 

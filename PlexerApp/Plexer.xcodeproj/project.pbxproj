@@ -18,6 +18,7 @@
 		6C20891D15F9CA1D009191D7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6C20891B15F9CA1D009191D7 /* InfoPlist.strings */; };
 		6C20892015F9CA1D009191D7 /* PlexerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20891F15F9CA1D009191D7 /* PlexerTests.m */; };
 		6C20894C15F9EB75009191D7 /* PXGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20894B15F9EB75009191D7 /* PXGame.m */; };
+		6C2110491617FF7D008E46A4 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C2110481617FF7D008E46A4 /* Carbon.framework */; };
 		6C7E6EE715FDBFFB004C4607 /* PXTeamConfigurationWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C7E6EE615FDBFFB004C4607 /* PXTeamConfigurationWindow.m */; };
 		6C93E8C91616DBFE005A5593 /* PXBroadcastingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C93E8C81616DBFE005A5593 /* PXBroadcastingController.m */; };
 		6C93E8CC1616DCFE005A5593 /* DefaultSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C93E8CB1616DCFE005A5593 /* DefaultSettings.plist */; };
@@ -63,6 +64,7 @@
 		6C20891F15F9CA1D009191D7 /* PlexerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlexerTests.m; sourceTree = "<group>"; };
 		6C20894615F9EAA3009191D7 /* PXGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXGame.h; sourceTree = "<group>"; };
 		6C20894B15F9EB75009191D7 /* PXGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXGame.m; sourceTree = "<group>"; };
+		6C2110481617FF7D008E46A4 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		6C7E6EE515FDBFFB004C4607 /* PXTeamConfigurationWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTeamConfigurationWindow.h; sourceTree = "<group>"; };
 		6C7E6EE615FDBFFB004C4607 /* PXTeamConfigurationWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTeamConfigurationWindow.m; sourceTree = "<group>"; };
 		6C8655CC1616AA4000DBEAA3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -90,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C2110491617FF7D008E46A4 /* Carbon.framework in Frameworks */,
 				6C2088F615F9CA1D009191D7 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -128,6 +131,7 @@
 		6C2088F415F9CA1D009191D7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6C2110481617FF7D008E46A4 /* Carbon.framework */,
 				6C2088F515F9CA1D009191D7 /* Cocoa.framework */,
 				6C20891315F9CA1D009191D7 /* SenTestingKit.framework */,
 				6C8655CC1616AA4000DBEAA3 /* Foundation.framework */,

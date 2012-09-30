@@ -11,66 +11,58 @@
 		<dict>
 			<key>PXCharacterNameKey</key>
 			<string>Player1</string>
+			<key>PXApplicationWindowBoundsKey</key>
+			<string>216,88,2682,1630</string>
 		</dict>
 		<dict>
 			<key>PXCharacterNameKey</key>
 			<string>Player2</string>
 			<key>PXVirtualizeApplicationKey</key>
 			<true/>
+			<key>PXApplicationWindowBoundsKey</key>
+			<string>0,88,1292,892</string>
 		</dict>
 		<dict>
 			<key>PXCharacterNameKey</key>
 			<string>Player3</string>
 			<key>PXVirtualizeApplicationKey</key>
 			<true/>
+			<key>PXApplicationWindowBoundsKey</key>
+			<string>1300,88,2592,892</string>
 		</dict>
 		<dict>
 			<key>PXCharacterNameKey</key>
 			<string>Player4</string>
 			<key>PXVirtualizeApplicationKey</key>
 			<true/>
+			<key>PXApplicationWindowBoundsKey</key>
+			<string>0,892,1292,1696</string>
 		</dict>
 		<dict>
 			<key>PXCharacterNameKey</key>
 			<string>Player5</string>
 			<key>PXVirtualizeApplicationKey</key>
 			<true/>
-		</dict>
-	</array>
-	<key>PXApplicationWindowLocationsKey</key>
-	<array>
-		<dict>
-			<key>PXWindowOriginKey</key>
-			<string>0,0</string>
-			<key>PXWindowSizeKey</key>
-			<string>0,0</string>
-		</dict>
-		<dict>
-			<key>PXWindowOriginKey</key>
-			<string>0,0</string>
-			<key>PXWindowSizeKey</key>
-			<string>0,0</string>
-		</dict>
-		<dict>
-			<key>PXWindowOriginKey</key>
-			<string>0,0</string>
-			<key>PXWindowSizeKey</key>
-			<string>0,0</string>
-		</dict>
-		<dict>
-			<key>PXWindowOriginKey</key>
-			<string>0,0</string>
-			<key>PXWindowSizeKey</key>
-			<string>0,0</string>
-		</dict>
-		<dict>
-			<key>PXWindowOriginKey</key>
-			<string>0,0</string>
-			<key>PXWindowSizeKey</key>
-			<string>0,0</string>
+			<key>PXApplicationWindowBoundsKey</key>
+			<string>1300,892,2592,1696</string>
 		</dict>
 	</array>
 	<key>PXMappedKeysKey</key>
-	<dict/>
+	<dict>
+		<key>SPACE</key>
+		<dict>
+			<key>PXMappedKeyTitleKey</key>
+			<string>Jump</string>
+			<key>PXMappedKeyBroadcastTargetKey</key>
+			<string>PXBroadcastToAllWindows</string>
+		</dict>
+		<key>CTRL+SHIFT+I</key>
+		<dict>
+			<key>PXMappedKeyTitleKey</key>
+			<string>Follow-The-Leader</string>
+			<key>PXMappedKeyBroadcastTargetKey</key>
+			<string>PXBroadcastToAllWindowsButCurrent</string>
+		</dict>
+	</dict>
 </dict>
 </plist>

@@ -12,7 +12,7 @@ NSString * const PXKeyForBroadcastingKey = @"PXKeyForBroadcastingKey";
 NSString * const PXKeyForBroadcastingMappedKeysKey = @"PXKeyForBroadcastingMappedKeysKey";
 
 NSString * const PXSupportedGamesKey = @"PXSupportedGamesKey";
-NSString * const PXSupportGameInstallPathKey = @"PXSupportGameInstallPathKey";
+NSString * const PXSupportedGameInstallPathKey = @"PXSupportedGameInstallPathKey";
 NSString * const PXVirtualizeFileItemsKey = @"PXVirtualizeFileItemsKey";
 NSString * const PXCopyFileItemsKey = @"PXCopyFileItemsKey";
 
@@ -20,6 +20,10 @@ NSString * const PXApplicationNameKey = @"PXApplicationNameKey";
 NSString * const PXPathToApplicationKey = @"PXPathToApplicationKey";
 NSString * const PXTeamMembersKey = @"PXTeamMembersKey";
 NSString * const PXVirtualizeApplicationKey = @"PXVirtualizeApplicationKey";
+
+NSString * const PXApplicationWindowBoundsKey = @"PXApplicationWindowBoundsKey";
+
+NSString * const PXSupportedGamePreferencePathKey = @"PXSupportedGamePreferencePathKey";
 
 
 NSArray *PXFilesToVirtualizeForApplication(NSString *applicationName)
@@ -32,10 +36,16 @@ NSArray *PXFilesToCopyForApplication(NSString *applicationName)
     return [[NSUserDefaults standardUserDefaults] valueForKey:PXSupportedGamesKey][applicationName][PXCopyFileItemsKey];
 }
 
-void PXVirtualizeApplication(NSString *applicationName, NSString *pathToVirtualizationRoot, NSString *pathToApplication, NSUInteger playerSlot)
+NSString *PXPathToPreferencesFileForApplication(NSString *applicationName)
 {
-    NSLog(@"Attempting to virtualize application for slot #%lu", playerSlot);
-    NSString *pathToVirtualizedApplicationFolder = [pathToVirtualizationRoot stringByAppendingPathComponent:[NSString stringWithFormat:@"Slot%lu", playerSlot]];
+    return [[[NSUserDefaults standardUserDefaults] valueForKey:PXSupportedGamesKey][applicationName][PXSupportedGamePreferencePathKey] stringByStandardizingPath];
+}
+
+void PXVirtualizeApplication(NSString *applicationName, NSString *pathToVirtualizedApplicationFolder, NSString *pathToApplication, BOOL removeExisting)
+{
+    if (removeExisting == YES) {
+        [[NSFileManager defaultManager] removeItemAtPath:pathToVirtualizedApplicationFolder error:nil];
+    }
     
     [[NSFileManager defaultManager] createDirectoryAtPath:pathToVirtualizedApplicationFolder withIntermediateDirectories:YES attributes:nil error:nil];
         
@@ -55,6 +65,30 @@ void PXVirtualizeApplication(NSString *applicationName, NSString *pathToVirtuali
     }
 }
 
+void PXSetupDesiredWindowLocationAndSizeForApplication(NSString *windowBounds, NSString *applicationName)
+{
+    //
+    // UNDONE: This ONLY works for World of Warcraft!!
+    //
+
+    NSString *pathToPreferencesFile = PXPathToPreferencesFileForApplication(applicationName);
+
+    NSMutableString *newFileContents = [[NSMutableString alloc] init];
+    NSString *contentsOfFile = [NSString stringWithContentsOfFile:pathToPreferencesFile encoding:NSUTF8StringEncoding error:nil];
+    NSArray *lines = [contentsOfFile componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    for (NSUInteger lineNumber = 0; lineNumber < lines.count; lineNumber++) {
+        NSString *line = lines[lineNumber];
+        [newFileContents appendFormat:@"%@\n", line];
+        
+        if ([line isEqualToString:@"$Current User\\World of Warcraft\\Client\\WindowBounds"]) {
+            [newFileContents appendFormat:@"%@\n", windowBounds];
+            lineNumber++;
+        }
+    }
+
+    [newFileContents writeToFile:pathToPreferencesFile atomically:YES encoding:NSUTF8StringEncoding error:nil];
+}
+
 
 @implementation PXGameController
 
@@ -62,6 +96,7 @@ void PXVirtualizeApplication(NSString *applicationName, NSString *pathToVirtuali
 {
     PXLog(@"Launching applications");
 
+    NSString *applicationName = self.teamConfiguration[PXApplicationNameKey];
     NSString *pathToApplication = self.teamConfiguration[PXPathToApplicationKey];
     if ([[NSFileManager defaultManager] fileExistsAtPath:pathToApplication] == NO) {
         PXLog(@"Game is not installed!");
@@ -75,11 +110,23 @@ void PXVirtualizeApplication(NSString *applicationName, NSString *pathToVirtuali
     
     NSArray *teamMembers = self.teamConfiguration[PXTeamMembersKey];
     for (NSUInteger slot = 0; slot < teamMembers.count; slot++) {
+        NSString *pathToVirtualizedApplicationFolder = [pathToVirtualizationRoot stringByAppendingPathComponent:[NSString stringWithFormat:@"Slot%lu", slot]];
+
+        NSString *applicationLaunchPath;
+
         NSNumber *virtualizeApplication = [teamMembers[slot] valueForKey:PXVirtualizeApplicationKey];
         if ([virtualizeApplication boolValue] == YES) {
-            PXVirtualizeApplication(self.teamConfiguration[PXApplicationNameKey], pathToVirtualizationRoot, pathToApplication, slot);
+            PXVirtualizeApplication(self.teamConfiguration[PXApplicationNameKey], pathToVirtualizedApplicationFolder, pathToApplication, NO);
+            applicationLaunchPath = [pathToVirtualizedApplicationFolder stringByAppendingPathComponent:[pathToApplication lastPathComponent]];
+        }
+        else {
+            applicationLaunchPath = pathToApplication;
         }
         
+        PXSetupDesiredWindowLocationAndSizeForApplication(teamMembers[slot][PXApplicationWindowBoundsKey]   , applicationName);
+        
+        NSTask *launchedApplicationTask = [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[ applicationLaunchPath ]];
+        [launchedApplicationTask waitUntilExit];
     }
 }
 

@@ -12,41 +12,27 @@
 #import "PXGameController.h"
 
 #ifdef DEBUG
-    #define PXLog(MESSAGE)\
-    do{\
-    [[(PXAppDelegate *)[[NSApplication sharedApplication] delegate] debugLogController] addObject:MESSAGE];\
+    #define PXLog(MESSAGE, ...) do{\
+        NSString *__message = [NSString stringWithFormat:MESSAGE, ##__VA_ARGS__];\
+        [[(PXAppDelegate *)[[NSApplication sharedApplication] delegate] debugLogController] addObject:__message];\
     }while(0);
 #else
     #define PXLog(MESSAGE)
 #endif
 
 
-@interface PXAppDelegate : NSObject <NSApplicationDelegate>
+@interface PXAppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
 @property (weak) IBOutlet PXTeamConfigurationWindowController *teamConfigurationWindowController;
 
-@property (assign) IBOutlet NSMenu *statusItemMenu;
-@property (assign) IBOutlet NSMenuItem *toggleBroadcastingStatusMenuItem;
-@property (assign) IBOutlet NSMenuItem *toggleBroadcastingMappedKeysStatusMenuItem;
-@property (assign) IBOutlet NSMenuItem *showDebugLogMenuItem;
-
 @property (assign) IBOutlet NSWindow *debugLogWindow;
 @property (assign) IBOutlet NSArrayController *debugLogController;
-
-@property (strong) NSImage *statusOnImage;
-@property (strong) NSImage *statusOffImage;
-@property (strong) NSImage *statusMixedImage;
-@property (strong) NSStatusItem *statusItem;
 
 @property (strong) PXBroadcastingController *broadcastingController;
 @property (strong) PXGameController *gameController;
 
-- (IBAction)togglePlexingStatus:(id)sender;
-- (IBAction)togglePlexingMappedKeysStatus:(id)sender;
-- (IBAction)quit:(id)sender;
-- (IBAction)showPreferences:(id)sender;
-- (IBAction)showDebugLog:(id)sender;
+- (IBAction)launchApplications:(id)sender;
 
 - (IBAction)createNewTeam:(id)sender;
 
