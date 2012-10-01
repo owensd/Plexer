@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'PlexerLib' target in the 'PlexerLib' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif

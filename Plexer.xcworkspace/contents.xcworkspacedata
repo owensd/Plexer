@@ -4,4 +4,7 @@
    <FileRef
       location = "container:PlexerApp/Plexer.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:PlexerApp/../WorldOfWarcraft/WorldOfWarcraft.xcodeproj">
+   </FileRef>
 </Workspace>
