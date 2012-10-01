@@ -7,6 +7,7 @@
 //
 
 #import "PXTeamDocumentController.h"
+#import "PXTeamDocument.h"
 
 @implementation PXTeamDocumentController
 

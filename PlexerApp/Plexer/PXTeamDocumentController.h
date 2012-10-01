@@ -7,7 +7,6 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "PXSupportedApplicationsController.h"
 
 @interface PXTeamDocumentController : NSDocumentController
 

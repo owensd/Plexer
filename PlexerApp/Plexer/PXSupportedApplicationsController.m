@@ -11,6 +11,14 @@
 
 @implementation PXSupportedApplicationsController
 
+- (IBAction)didSelectRowForSupportedApplicationsTableView:(id)sender
+{
+    PXApplication *application = [PXApplication supportedApplications][self.supportedApplicationsTableView.selectedRow];
+    [self.teamConfigurationWindowController changeApplicationForTeam:application];
+    
+    [self.supportedApplicationsPopover close];
+    [self.supportedApplicationsTableView deselectAll:self];
+}
 
 #pragma mark - NSTableViewDataSource methods
 
@@ -35,12 +43,6 @@
     cellView.imageView.image = [[NSWorkspace sharedWorkspace] iconForFile:application.launchPath];
     
     return cellView;
-}
-
-- (void)tableViewSelectionDidChange:(NSNotification *)notification
-{
-    [self.supportedApplicationsPopover close];
-    [self.supportedApplicationsTableView deselectAll:self];
 }
 
 @end

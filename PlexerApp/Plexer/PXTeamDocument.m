@@ -31,12 +31,6 @@ NSString * const PXTeamKey = @"Team";
     [self addWindowController:[appDelegate teamConfigurationWindowController]];
 }
 
-- (void)windowControllerDidLoadNib:(NSWindowController *)controller
-{
-
-    // Add any code here that needs to be executed once the windowController has loaded the document's window.
-}
-
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
 {
     if ([typeName isEqualToString:PXPlexerTeamDocumentTypeName] == NO) {
@@ -107,6 +101,10 @@ NSString * const PXTeamKey = @"Team";
     [teamConfigurationWindowController.window makeKeyAndOrderFront:self];
 }
 
+- (void)restoreStateWithCoder:(NSCoder *)coder
+{
+    [self.windowControllers[0] updateWithTeam:self.team];
+}
 
 + (BOOL)autosavesInPlace
 {

@@ -33,8 +33,7 @@
 		6CCAE05616190ED90085BBD7 /* PXTeamMember.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CCAE05416190ED90085BBD7 /* PXTeamMember.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		6CCAE05716190ED90085BBD7 /* PXTeamMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAE05516190ED90085BBD7 /* PXTeamMember.m */; };
 		6CCAE05816191A560085BBD7 /* PlexerLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CF934D61618FA6400325A8A /* PlexerLib.framework */; };
-		6CCAE065161959100085BBD7 /* PXTeamConfigurationWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CCAE063161959100085BBD7 /* PXTeamConfigurationWindowController.h */; };
-		6CCAE066161959100085BBD7 /* PXTeamConfigurationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAE064161959100085BBD7 /* PXTeamConfigurationWindowController.m */; };
+		6CCAE06716195DDB0085BBD7 /* PXTeamConfigurationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAE064161959100085BBD7 /* PXTeamConfigurationWindowController.m */; };
 		6CF934D71618FA6400325A8A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C2088F515F9CA1D009191D7 /* Cocoa.framework */; };
 		6CF934DD1618FA6400325A8A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6CF934DB1618FA6400325A8A /* InfoPlist.strings */; };
 		6CF934E81618FA6400325A8A /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C20891315F9CA1D009191D7 /* SenTestingKit.framework */; };
@@ -362,7 +361,6 @@
 				6CCAE0441618FB8C0085BBD7 /* PXApplication.h in Headers */,
 				6CCAE05216190E2A0085BBD7 /* PXTeam.h in Headers */,
 				6CCAE05616190ED90085BBD7 /* PXTeamMember.h in Headers */,
-				6CCAE065161959100085BBD7 /* PXTeamConfigurationWindowController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -553,6 +551,7 @@
 				6CC4844D15FF19D600B9A110 /* PXTeamDocumentController.m in Sources */,
 				6C93E8C91616DBFE005A5593 /* PXBroadcastingController.m in Sources */,
 				6C89B8591618E2BA00AD8612 /* PXSupportedApplicationsController.m in Sources */,
+				6CCAE06716195DDB0085BBD7 /* PXTeamConfigurationWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,7 +570,6 @@
 				6CCAE0451618FB8C0085BBD7 /* PXApplication.m in Sources */,
 				6CCAE05316190E2A0085BBD7 /* PXTeam.m in Sources */,
 				6CCAE05716190ED90085BBD7 /* PXTeamMember.m in Sources */,
-				6CCAE066161959100085BBD7 /* PXTeamConfigurationWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,10 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PXTeamConfigurationWindowController.h"
 
 @interface PXSupportedApplicationsController : NSObject<NSTableViewDataSource, NSTableViewDelegate>
 
 @property (assign) IBOutlet NSTableView *supportedApplicationsTableView;
 @property (assign) IBOutlet NSPopover *supportedApplicationsPopover;
+
+@property (assign) IBOutlet PXTeamConfigurationWindowController *teamConfigurationWindowController;
+
+- (IBAction)didSelectRowForSupportedApplicationsTableView:(id)sender;
 
 @end

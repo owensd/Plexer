@@ -8,12 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "PXTeamMember.h"
+#import "PXApplication.h"
 
 @interface PXTeam : NSObject<NSCoding> {
     NSMutableArray *_teamMembers;
 }
 
-@property (weak) NSApplication *application;
+@property (weak) PXApplication *application;
 @property (strong) NSArray *teamMembers;
 
 - (void)addTeamMember:(PXTeamMember *)teamMember;
