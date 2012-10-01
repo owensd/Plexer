@@ -18,6 +18,8 @@
 @property (strong) NSArray *teamMembers;
 
 - (void)addTeamMember:(PXTeamMember *)teamMember;
+
 - (void)removeTeamMember:(PXTeamMember *)teamMember;
+- (void)removeTeamMemberWithName:(NSString *)name;
 
 @end

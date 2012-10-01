@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-OBJC_EXPORT NSString const * PXTeamMemberSlotNumberKey;
 
+@interface PXTeamMember : NSObject<NSCoding>
 
-@interface PXTeamMember : NSObject
+@property (copy) NSString *characterName;
+@property (assign) BOOL virtualizeGameInstance;
+@property (strong) NSImage *characterPortrait;
+@property (assign) NSInteger slotNumber;
 
 @end

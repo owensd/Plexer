@@ -13,8 +13,14 @@ NSString * const PXTeamMembersKey = @"PXTeamMembersKey";
 
 @implementation PXTeam
 
+@synthesize teamMembers = _teamMembers;
+
 - (void)addTeamMember:(PXTeamMember *)teamMember
 {
+    if (_teamMembers == nil) {
+        _teamMembers = [[NSMutableArray alloc] init];
+    }
+    
     if ([_teamMembers containsObject:teamMember] == NO) {
         [_teamMembers addObject:teamMember];
     }
@@ -23,6 +29,17 @@ NSString * const PXTeamMembersKey = @"PXTeamMembersKey";
 - (void)removeTeamMember:(PXTeamMember *)teamMember
 {
     [_teamMembers removeObject:teamMember];
+}
+
+- (void)removeTeamMemberWithName:(NSString *)name
+{
+    for (NSUInteger idx = 0; idx < self.teamMembers.count; idx++) {
+        PXTeamMember *teamMember = self.teamMembers[idx];
+        if ([teamMember.characterName isEqualToString:name] == YES) {
+            [_teamMembers removeObjectAtIndex:idx];
+            break;
+        }
+    }
 }
 
 
