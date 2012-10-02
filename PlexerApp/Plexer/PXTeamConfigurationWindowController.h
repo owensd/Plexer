@@ -11,7 +11,7 @@
 #import "PXApplication.h"
 #import "PXTeam.h"
 
-@interface PXTeamConfigurationWindowController : NSWindowController
+@interface PXTeamConfigurationWindowController : NSWindowController<NSWindowDelegate>
 
 @property (assign) IBOutlet NSPopover *applicationListPopover;
 @property (assign) IBOutlet NSPopover *characterSettingsPopover;

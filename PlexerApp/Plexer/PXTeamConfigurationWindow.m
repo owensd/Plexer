@@ -17,7 +17,7 @@
         [self setExcludedFromWindowsMenu:NO];
         [self setLevel:NSPopUpMenuWindowLevel];
     }
-
+    
     return self;
 }
 

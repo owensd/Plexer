@@ -77,9 +77,11 @@
         teamMember.slotNumber = team.teamMembers.count + 1;
         
         [team addTeamMember:teamMember];
+        [self.teamDocumentController.currentDocument updateChangeCount:NSChangeDone];
     }
     else {
         [team removeTeamMemberWithName:self.characterNameField.stringValue];
+        [self.teamDocumentController.currentDocument updateChangeCount:NSChangeDone];
     }
     
     [self.characterSettingsPopover close];
@@ -92,6 +94,7 @@
     PXTeam *team = [(PXTeamDocument *)self.teamDocumentController.currentDocument team];
     team.application = application;
     [self updateApplicationButtonWithTeam:team];
+    [self.teamDocumentController.currentDocument updateChangeCount:NSChangeDone];
 }
 
 - (void)updateCharacterSlotsWithTeam:(PXTeam *)team
@@ -110,6 +113,7 @@
         PXTeam *team = [(PXTeamDocument *)self.teamDocumentController.currentDocument team];
         if (tag < team.teamMembers.count) {
             [(PXTeamMember *)team.teamMembers[tag] setVirtualizeGameInstance:([sender state] == NSOnState)];
+            [self.teamDocumentController.currentDocument updateChangeCount:NSChangeDone];
         }
     }
 }
@@ -122,6 +126,7 @@
         if (tag < team.teamMembers.count) {
             [(PXTeamMember *)team.teamMembers[tag] setCharacterName:[sender stringValue]];
             [self updateCharacterSlotsWithTeam:team];
+            [self.teamDocumentController.currentDocument updateChangeCount:NSChangeDone];
         }
     }
 }
@@ -143,5 +148,31 @@
     [self updateApplicationButtonWithTeam:team];
     [self updateCharacterSlotsWithTeam:team];
 }
+
+
+#pragma mark - NSWindowDelegate methods
+
+//
+// These are necessary because of the HACK! in PXTeamConfigurationWindow and the performClose: action handler.
+// If this is not done, then the document is never saved when a team is closed.
+//
+- (BOOL)windowShouldClose:(id)sender
+{
+    [self.teamDocumentController.currentDocument canCloseDocumentWithDelegate:self
+                                                          shouldCloseSelector:@selector(document:shouldClose:contextInfo:)
+                                                                  contextInfo:nil];
+    
+    // Always return NO as the window will be closed in the document:shouldClose:contextInfo: selector, when appropriate.
+    return NO;
+}
+
+- (void)document:(NSDocument *)doc shouldClose:(BOOL)shouldClose contextInfo:(void *)contextInfo
+{
+    if (shouldClose) {
+        [self close];
+    }
+}
+
+
 
 @end

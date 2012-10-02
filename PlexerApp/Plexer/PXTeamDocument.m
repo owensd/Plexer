@@ -21,6 +21,7 @@ NSString * const PXTeamKey = @"Team";
     self = [super init];
     if (self) {
         self.team = [[PXTeam alloc] init];
+        self.undoManager = NO;
     }
     return self;
 }
@@ -99,11 +100,22 @@ NSString * const PXTeamKey = @"Team";
 
     [teamConfigurationWindowController.window setFrame:rect display:YES];
     [teamConfigurationWindowController.window makeKeyAndOrderFront:self];
+    [teamConfigurationWindowController updateWithTeam:self.team];
 }
 
 - (void)restoreStateWithCoder:(NSCoder *)coder
 {
     [self.windowControllers[0] updateWithTeam:self.team];
+}
+
+- (void)close
+{
+    NSLog(@"closing with changes: %@", self.hasUnautosavedChanges ? @"YES" : @"NO");
+    if (self.hasUnautosavedChanges == YES) {
+        [self saveDocument:self];
+    }
+    
+    [super close];
 }
 
 + (BOOL)autosavesInPlace
