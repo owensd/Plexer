@@ -20,6 +20,6 @@
 - (void)addTeamMember:(PXTeamMember *)teamMember;
 
 - (void)removeTeamMember:(PXTeamMember *)teamMember;
-- (void)removeTeamMemberWithName:(NSString *)name;
+- (void)removeTeamMemberAtIndex:(NSInteger)index;
 
 @end

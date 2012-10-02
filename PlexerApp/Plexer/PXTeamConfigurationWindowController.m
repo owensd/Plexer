@@ -80,8 +80,14 @@
         [self.teamDocumentController.currentDocument updateChangeCount:NSChangeDone];
     }
     else {
-        [team removeTeamMemberWithName:self.characterNameField.stringValue];
+        [team removeTeamMemberAtIndex:self.characterNameField.tag];
         [self.teamDocumentController.currentDocument updateChangeCount:NSChangeDone];
+        
+        //
+        // Invalidate the tag for the character name field so that the name doesn't get
+        // updated on us when the popover closes.
+        //
+        self.characterNameField.tag = -1;
     }
     
     [self.characterSettingsPopover close];

@@ -8,12 +8,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "PlexerApp/Plexer/PXTeamConfigurationWindowController.m"
-         timestampString = "370770110.296834"
+         timestampString = "370856633.685686"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "71"
-         endingLineNumber = "71"
-         landmarkName = "-characterSettingsAction:"
+         startingLineNumber = "108"
+         endingLineNumber = "108"
+         landmarkName = "-updateCharacterSlotsWithTeam:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

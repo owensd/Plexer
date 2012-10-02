@@ -31,14 +31,10 @@ NSString * const PXTeamMembersKey = @"PXTeamMembersKey";
     [_teamMembers removeObject:teamMember];
 }
 
-- (void)removeTeamMemberWithName:(NSString *)name
+- (void)removeTeamMemberAtIndex:(NSInteger)index
 {
-    for (NSUInteger idx = 0; idx < self.teamMembers.count; idx++) {
-        PXTeamMember *teamMember = self.teamMembers[idx];
-        if ([teamMember.characterName isEqualToString:name] == YES) {
-            [_teamMembers removeObjectAtIndex:idx];
-            break;
-        }
+    if (_teamMembers.count > index) {
+        [_teamMembers removeObjectAtIndex:index];
     }
 }
 
