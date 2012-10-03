@@ -76,6 +76,20 @@
                ReferencedContainer = "container:PlexerApp/Plexer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C2BB8F8161C1EAE001C48A1"
+               BuildableName = "Playground.app"
+               BlueprintName = "Playground"
+               ReferencedContainer = "container:Playground/Playground.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

@@ -3,95 +3,89 @@
 <plist version="1.0">
 <dict>
 	<key>PXApplicationKey</key>
-	<dict>
-		<key>PXApplicationNameKey</key>
-		<string>World of Warcraft</string>
-		<key>PXPathToApplicationKey</key>
-		<string>/Applications/World of Warcraft/World of Warcraft-64.app</string>
-	</dict>
+	<string>Playground</string>
 	<key>PXTeamMembersKey</key>
-	<dict>
-		<key>Player1</key>
+	<array>
 		<dict>
-			<key>PXTeamMemberSlotNumberKey</key>
-			<integer>1</integer>
+			<key>PXTeamMemberNameKey</key>
+			<string>Player 1</string>
 			<key>PXApplicationLaunchOptionsKey</key>
 			<dict>
 				<key>PXApplicationWindowBoundsKey</key>
 				<string>216,88,2682,1630</string>
 			</dict>
+			<key>PXTeamMemberMappedKeysKey</key>
+			<dict>
+				<key>Follow the Leader</key>
+				<dict/>
+			</dict>
 		</dict>
-		<key>Player2</key>
 		<dict>
-			<key>PXTeamMemberSlotNumberKey</key>
-			<integer>2</integer>
+			<key>PXTeamMemberNameKey</key>
+			<string>Player 2</string>
 			<key>PXApplicationLaunchOptionsKey</key>
 			<dict>
 				<key>PXApplicationWindowBoundsKey</key>
 				<string>0,88,1292,892</string>
-				<key>PXShouldVirtualizeApplicationKey</key>
-				<true/>
-				<key>PXVirtualizedApplicationLaunchPathKey</key>
-				<string>~/Library/Application Support/Plexer/World of Warcraft/Slot2/World of Warcraft-64.app</string>
+			</dict>
+			<key>PXTeamMemberMappedKeysKey</key>
+			<dict>
+				<key>Follow the Leader</key>
+				<dict/>
 			</dict>
 		</dict>
-		<key>Player3</key>
 		<dict>
-			<key>PXTeamMemberSlotNumberKey</key>
-			<integer>3</integer>
+			<key>PXTeamMemberNameKey</key>
+			<string>Player 3</string>
 			<key>PXApplicationLaunchOptionsKey</key>
 			<dict>
 				<key>PXApplicationWindowBoundsKey</key>
 				<string>1300,88,2592,892</string>
-				<key>PXShouldVirtualizeApplicationKey</key>
-				<true/>
-				<key>PXVirtualizedApplicationLaunchPathKey</key>
-				<string>~/Library/Application Support/Plexer/World of Warcraft/Slot3/World of Warcraft-64.app</string>
+			</dict>
+			<key>PXTeamMemberMappedKeysKey</key>
+			<dict>
+				<key>Follow the Leader</key>
+				<dict/>
 			</dict>
 		</dict>
-		<key>Player4</key>
 		<dict>
-			<key>PXTeamMemberSlotNumberKey</key>
-			<integer>4</integer>
+			<key>PXTeamMemberNameKey</key>
+			<string>Player 4</string>
 			<key>PXApplicationLaunchOptionsKey</key>
 			<dict>
 				<key>PXApplicationWindowBoundsKey</key>
 				<string>0,892,1292,1696</string>
-				<key>PXShouldVirtualizeApplicationKey</key>
-				<true/>
-				<key>PXVirtualizedApplicationLaunchPathKey</key>
-				<string>~/Library/Application Support/Plexer/World of Warcraft/Slot4/World of Warcraft-64.app</string>
+			</dict>
+			<key>PXTeamMemberMappedKeysKey</key>
+			<dict>
+				<key>Follow the Leader</key>
+				<dict/>
 			</dict>
 		</dict>
-		<key>Player5</key>
 		<dict>
-			<key>PXTeamMemberSlotNumberKey</key>
-			<integer>5</integer>
+			<key>PXTeamMemberNameKey</key>
+			<string>Player 5</string>
 			<key>PXApplicationLaunchOptionsKey</key>
 			<dict>
 				<key>PXApplicationWindowBoundsKey</key>
 				<string>1300,892,2592,1696</string>
-				<key>PXShouldVirtualizeApplicationKey</key>
-				<true/>
-				<key>PXVirtualizedApplicationLaunchPathKey</key>
-				<string>~/Library/Application Support/Plexer/World of Warcraft/Slot5/World of Warcraft-64.app</string>
+			</dict>
+			<key>PXTeamMemberMappedKeysKey</key>
+			<dict>
+				<key>Follow the Leader</key>
+				<dict/>
 			</dict>
 		</dict>
-	</dict>
+	</array>
 	<key>PXMappedKeysKey</key>
 	<dict>
-		<key>SPACE</key>
+		<key>Follow the Leader</key>
 		<dict>
-			<key>PXMappedKeyTitleKey</key>
-			<string>Jump</string>
-			<key>PXMappedKeyBroadcastTargetKey</key>
-			<string>PXBroadcastToAllWindows</string>
-		</dict>
-		<key>CTRL+SHIFT+I</key>
-		<dict>
-			<key>PXMappedKeyTitleKey</key>
-			<string>Follow-The-Leader</string>
-			<key>PXMappedKeyBroadcastTargetKey</key>
+			<key>PXMappedKeyInputKey</key>
+			<string>0x39</string>
+			<key>PXMappedKeyDestintationKey</key>
+			<string>0x39</string>
+			<key>PXMappedKeyTargetWindowKey</key>
 			<string>PXBroadcastToAllWindowsButCurrent</string>
 		</dict>
 	</dict>

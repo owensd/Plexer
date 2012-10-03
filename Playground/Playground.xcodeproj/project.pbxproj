@@ -1,0 +1,316 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6C2BB8FE161C1EAE001C48A1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C2BB8FD161C1EAE001C48A1 /* Cocoa.framework */; };
+		6C2BB908161C1EAE001C48A1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6C2BB906161C1EAE001C48A1 /* InfoPlist.strings */; };
+		6C2BB90A161C1EAE001C48A1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2BB909161C1EAE001C48A1 /* main.m */; };
+		6C2BB90E161C1EAE001C48A1 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 6C2BB90C161C1EAE001C48A1 /* Credits.rtf */; };
+		6C2BB911161C1EAE001C48A1 /* PXAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2BB910161C1EAE001C48A1 /* PXAppDelegate.m */; };
+		6C2BB914161C1EAE001C48A1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C2BB912161C1EAE001C48A1 /* MainMenu.xib */; };
+		6C2BB91C161C1FE9001C48A1 /* PXMainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2BB91B161C1FE9001C48A1 /* PXMainWindow.m */; };
+		6C7C72EA161C270D00A4DE6B /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C7C72E9161C270D00A4DE6B /* Carbon.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		6C2BB8F9161C1EAE001C48A1 /* Playground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Playground.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C2BB8FD161C1EAE001C48A1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		6C2BB900161C1EAE001C48A1 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		6C2BB901161C1EAE001C48A1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		6C2BB902161C1EAE001C48A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6C2BB905161C1EAE001C48A1 /* Playground-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Playground-Info.plist"; sourceTree = "<group>"; };
+		6C2BB907161C1EAE001C48A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6C2BB909161C1EAE001C48A1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6C2BB90B161C1EAE001C48A1 /* Playground-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Playground-Prefix.pch"; sourceTree = "<group>"; };
+		6C2BB90D161C1EAE001C48A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		6C2BB90F161C1EAE001C48A1 /* PXAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PXAppDelegate.h; sourceTree = "<group>"; };
+		6C2BB910161C1EAE001C48A1 /* PXAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PXAppDelegate.m; sourceTree = "<group>"; };
+		6C2BB913161C1EAE001C48A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		6C2BB91A161C1FE9001C48A1 /* PXMainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXMainWindow.h; sourceTree = "<group>"; };
+		6C2BB91B161C1FE9001C48A1 /* PXMainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXMainWindow.m; sourceTree = "<group>"; };
+		6C7C72E9161C270D00A4DE6B /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6C2BB8F6161C1EAE001C48A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6C7C72EA161C270D00A4DE6B /* Carbon.framework in Frameworks */,
+				6C2BB8FE161C1EAE001C48A1 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6C2BB8EE161C1EAE001C48A1 = {
+			isa = PBXGroup;
+			children = (
+				6C2BB903161C1EAE001C48A1 /* Playground */,
+				6C2BB8FC161C1EAE001C48A1 /* Frameworks */,
+				6C2BB8FA161C1EAE001C48A1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6C2BB8FA161C1EAE001C48A1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6C2BB8F9161C1EAE001C48A1 /* Playground.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6C2BB8FC161C1EAE001C48A1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6C7C72E9161C270D00A4DE6B /* Carbon.framework */,
+				6C2BB8FD161C1EAE001C48A1 /* Cocoa.framework */,
+				6C2BB8FF161C1EAE001C48A1 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6C2BB8FF161C1EAE001C48A1 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6C2BB900161C1EAE001C48A1 /* AppKit.framework */,
+				6C2BB901161C1EAE001C48A1 /* CoreData.framework */,
+				6C2BB902161C1EAE001C48A1 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		6C2BB903161C1EAE001C48A1 /* Playground */ = {
+			isa = PBXGroup;
+			children = (
+				6C2BB90F161C1EAE001C48A1 /* PXAppDelegate.h */,
+				6C2BB910161C1EAE001C48A1 /* PXAppDelegate.m */,
+				6C2BB912161C1EAE001C48A1 /* MainMenu.xib */,
+				6C2BB91A161C1FE9001C48A1 /* PXMainWindow.h */,
+				6C2BB91B161C1FE9001C48A1 /* PXMainWindow.m */,
+				6C2BB904161C1EAE001C48A1 /* Supporting Files */,
+			);
+			path = Playground;
+			sourceTree = "<group>";
+		};
+		6C2BB904161C1EAE001C48A1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6C2BB905161C1EAE001C48A1 /* Playground-Info.plist */,
+				6C2BB906161C1EAE001C48A1 /* InfoPlist.strings */,
+				6C2BB909161C1EAE001C48A1 /* main.m */,
+				6C2BB90B161C1EAE001C48A1 /* Playground-Prefix.pch */,
+				6C2BB90C161C1EAE001C48A1 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6C2BB8F8161C1EAE001C48A1 /* Playground */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6C2BB917161C1EAE001C48A1 /* Build configuration list for PBXNativeTarget "Playground" */;
+			buildPhases = (
+				6C2BB8F5161C1EAE001C48A1 /* Sources */,
+				6C2BB8F6161C1EAE001C48A1 /* Frameworks */,
+				6C2BB8F7161C1EAE001C48A1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Playground;
+			productName = Playground;
+			productReference = 6C2BB8F9161C1EAE001C48A1 /* Playground.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6C2BB8F0161C1EAE001C48A1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = PX;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Kiad Software";
+			};
+			buildConfigurationList = 6C2BB8F3161C1EAE001C48A1 /* Build configuration list for PBXProject "Playground" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 6C2BB8EE161C1EAE001C48A1;
+			productRefGroup = 6C2BB8FA161C1EAE001C48A1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6C2BB8F8161C1EAE001C48A1 /* Playground */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6C2BB8F7161C1EAE001C48A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6C2BB908161C1EAE001C48A1 /* InfoPlist.strings in Resources */,
+				6C2BB90E161C1EAE001C48A1 /* Credits.rtf in Resources */,
+				6C2BB914161C1EAE001C48A1 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6C2BB8F5161C1EAE001C48A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6C2BB90A161C1EAE001C48A1 /* main.m in Sources */,
+				6C2BB911161C1EAE001C48A1 /* PXAppDelegate.m in Sources */,
+				6C2BB91C161C1FE9001C48A1 /* PXMainWindow.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		6C2BB906161C1EAE001C48A1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6C2BB907161C1EAE001C48A1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		6C2BB90C161C1EAE001C48A1 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6C2BB90D161C1EAE001C48A1 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		6C2BB912161C1EAE001C48A1 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6C2BB913161C1EAE001C48A1 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6C2BB915161C1EAE001C48A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		6C2BB916161C1EAE001C48A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		6C2BB918161C1EAE001C48A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Playground/Playground-Prefix.pch";
+				INFOPLIST_FILE = "Playground/Playground-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		6C2BB919161C1EAE001C48A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Playground/Playground-Prefix.pch";
+				INFOPLIST_FILE = "Playground/Playground-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6C2BB8F3161C1EAE001C48A1 /* Build configuration list for PBXProject "Playground" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6C2BB915161C1EAE001C48A1 /* Debug */,
+				6C2BB916161C1EAE001C48A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6C2BB917161C1EAE001C48A1 /* Build configuration list for PBXNativeTarget "Playground" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6C2BB918161C1EAE001C48A1 /* Debug */,
+				6C2BB919161C1EAE001C48A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6C2BB8F0161C1EAE001C48A1 /* Project object */;
+}
