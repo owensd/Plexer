@@ -42,34 +42,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6CF934D51618FA6400325A8A"
-               BuildableName = "PlexerLib.framework"
-               BlueprintName = "PlexerLib"
-               ReferencedContainer = "container:PlexerApp/Plexer.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6CF934E61618FA6400325A8A"
-               BuildableName = "PlexerLibTests.octest"
-               BlueprintName = "PlexerLibTests"
-               ReferencedContainer = "container:PlexerApp/Plexer.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "6C20891115F9CA1D009191D7"
                BuildableName = "PlexerTests.octest"
                BlueprintName = "PlexerTests"

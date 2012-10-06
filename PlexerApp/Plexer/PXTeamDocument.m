@@ -29,7 +29,7 @@ NSString * const PXTeamKey = @"Team";
 - (void)makeWindowControllers
 {
     PXAppDelegate *appDelegate = (PXAppDelegate *)[[NSApplication sharedApplication] delegate];
-    [self addWindowController:[appDelegate teamConfigurationWindowController]];
+    [self addWindowController:appDelegate.teamDocumentWindowController];
 }
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
@@ -79,43 +79,10 @@ NSString * const PXTeamKey = @"Team";
     return YES;
 }
 
-- (void)showWindows
-{
-    static CGFloat initialWindowWidth = 0;
-    static CGFloat initialWindowHeight = 0;
-    
-    CGFloat menuBarHeight = [[[NSApplication sharedApplication] mainMenu] menuBarHeight];
-    CGFloat screenHeight = [NSScreen mainScreen].frame.size.height;
-    CGFloat screenWidth = [NSScreen mainScreen].frame.size.width;
-
-    PXTeamConfigurationWindowController *teamConfigurationWindowController = self.windowControllers[0];
-    if (initialWindowWidth == 0) {
-        initialWindowWidth = teamConfigurationWindowController.window.frame.size.width;
-    }
-    if (initialWindowHeight == 0) {
-        initialWindowHeight = teamConfigurationWindowController.window.frame.size.height;
-    }
-    
-    CGRect rect = NSMakeRect(screenWidth / 2 - initialWindowWidth / 2, screenHeight - menuBarHeight - initialWindowHeight, initialWindowWidth, initialWindowHeight);
-
-    [teamConfigurationWindowController.window setFrame:rect display:YES];
-    [teamConfigurationWindowController.window makeKeyAndOrderFront:self];
-    [teamConfigurationWindowController updateWithTeam:self.team];
-}
-
 - (void)restoreStateWithCoder:(NSCoder *)coder
 {
-    [self.windowControllers[0] updateWithTeam:self.team];
-}
-
-- (void)close
-{
-    NSLog(@"closing with changes: %@", self.hasUnautosavedChanges ? @"YES" : @"NO");
-    if (self.hasUnautosavedChanges == YES) {
-        [self saveDocument:self];
-    }
-    
-    [super close];
+    //[self.windowControllers[0] updateWithTeam:self.team];
+    [super restoreStateWithCoder:coder];
 }
 
 + (BOOL)autosavesInPlace

@@ -12,6 +12,79 @@
 			<key>PXApplicationLaunchOptionsKey</key>
 			<dict>
 				<key>PXApplicationWindowBoundsKey</key>
+				<string>0,440,500,1044</string>
+			</dict>
+			<key>PXTeamMemberMappedKeysKey</key>
+			<dict>
+				<key>Follow the Leader</key>
+				<dict/>
+			</dict>
+		</dict>
+		<dict>
+			<key>PXTeamMemberNameKey</key>
+			<string>Player 2</string>
+			<key>PXApplicationLaunchOptionsKey</key>
+			<dict>
+				<key>PXApplicationWindowBoundsKey</key>
+				<string>500,440,1000,1044</string>
+			</dict>
+			<key>PXTeamMemberMappedKeysKey</key>
+			<dict>
+				<key>Follow the Leader</key>
+				<dict/>
+			</dict>
+		</dict>
+		<dict>
+			<key>PXTeamMemberNameKey</key>
+			<string>Player 3</string>
+			<key>PXApplicationLaunchOptionsKey</key>
+			<dict>
+				<key>PXApplicationWindowBoundsKey</key>
+				<string>1000,440,1500,1044</string>
+			</dict>
+			<key>PXTeamMemberMappedKeysKey</key>
+			<dict>
+				<key>Follow the Leader</key>
+				<dict/>
+			</dict>
+		</dict>
+		<dict>
+			<key>PXTeamMemberNameKey</key>
+			<string>Player 4</string>
+			<key>PXApplicationLaunchOptionsKey</key>
+			<dict>
+				<key>PXApplicationWindowBoundsKey</key>
+				<string>1500,440,2000,1044</string>
+			</dict>
+			<key>PXTeamMemberMappedKeysKey</key>
+			<dict>
+				<key>Follow the Leader</key>
+				<dict/>
+			</dict>
+		</dict>
+		<dict>
+			<key>PXTeamMemberNameKey</key>
+			<string>Player 5</string>
+			<key>PXApplicationLaunchOptionsKey</key>
+			<dict>
+				<key>PXApplicationWindowBoundsKey</key>
+				<string>2000,440,2500,1044</string>
+			</dict>
+			<key>PXTeamMemberMappedKeysKey</key>
+			<dict>
+				<key>Follow the Leader</key>
+				<dict/>
+			</dict>
+		</dict>
+	</array>
+	<key>PXTeamMembersKey_orig</key>
+	<array>
+		<dict>
+			<key>PXTeamMemberNameKey</key>
+			<string>Player 1</string>
+			<key>PXApplicationLaunchOptionsKey</key>
+			<dict>
+				<key>PXApplicationWindowBoundsKey</key>
 				<string>216,88,2682,1630</string>
 			</dict>
 			<key>PXTeamMemberMappedKeysKey</key>
@@ -81,12 +154,12 @@
 	<dict>
 		<key>Follow the Leader</key>
 		<dict>
-			<key>PXMappedKeyInputKey</key>
-			<string>0x39</string>
-			<key>PXMappedKeyDestintationKey</key>
-			<string>0x39</string>
-			<key>PXMappedKeyTargetWindowKey</key>
-			<string>PXBroadcastToAllWindowsButCurrent</string>
+			<key>PXMappedKeyInputKeyCodeKey</key>
+			<integer>0</integer>
+			<key>PXMappedKeyOutputKeyCodeKey</key>
+			<integer>0</integer>
+			<key>PXMappedKeyBroadcastTypeKey</key>
+			<integer>1</integer>
 		</dict>
 	</dict>
 </dict>

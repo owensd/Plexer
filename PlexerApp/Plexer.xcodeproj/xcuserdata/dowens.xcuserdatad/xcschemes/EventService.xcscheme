@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6C2BB8F8161C1EAE001C48A1"
-               BuildableName = "Playground.app"
-               BlueprintName = "Playground"
-               ReferencedContainer = "container:Playground.xcodeproj">
+               BlueprintIdentifier = "6C39D8F2161E96340094A387"
+               BuildableName = "com.kiadsoftware.plexer.EventService.xpc"
+               BlueprintName = "EventService"
+               ReferencedContainer = "container:Plexer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,15 +29,6 @@
       buildConfiguration = "Debug">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6C2BB8F8161C1EAE001C48A1"
-            BuildableName = "Playground.app"
-            BlueprintName = "Playground"
-            ReferencedContainer = "container:Playground.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -48,21 +39,6 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6C2BB8F8161C1EAE001C48A1"
-            BuildableName = "Playground.app"
-            BlueprintName = "Playground"
-            ReferencedContainer = "container:Playground.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "-windowBounds &quot;216,88,2682,1630&quot;"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -72,15 +48,6 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6C2BB8F8161C1EAE001C48A1"
-            BuildableName = "Playground.app"
-            BlueprintName = "Playground"
-            ReferencedContainer = "container:Playground.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

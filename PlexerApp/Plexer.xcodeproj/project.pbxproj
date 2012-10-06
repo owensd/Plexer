@@ -18,13 +18,17 @@
 		6C20891D15F9CA1D009191D7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6C20891B15F9CA1D009191D7 /* InfoPlist.strings */; };
 		6C20892015F9CA1D009191D7 /* PlexerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20891F15F9CA1D009191D7 /* PlexerTests.m */; };
 		6C2110491617FF7D008E46A4 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C2110481617FF7D008E46A4 /* Carbon.framework */; };
-		6C7E6EE715FDBFFB004C4607 /* PXTeamConfigurationWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C7E6EE615FDBFFB004C4607 /* PXTeamConfigurationWindow.m */; };
-		6C89B8591618E2BA00AD8612 /* PXSupportedApplicationsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C89B8581618E2BA00AD8612 /* PXSupportedApplicationsController.m */; };
-		6C93E8C91616DBFE005A5593 /* PXBroadcastingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C93E8C81616DBFE005A5593 /* PXBroadcastingController.m */; };
+		6C39283F161F9C100088617A /* PXMappedKeyStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C39283E161F9C100088617A /* PXMappedKeyStore.m */; };
+		6C392841161FA5DF0088617A /* PXBroadcastController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C39D92D161EB3EC0094A387 /* PXBroadcastController.m */; };
+		6C39D907161E99D70094A387 /* PXTeamDocumentWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C39D906161E99D70094A387 /* PXTeamDocumentWindowController.m */; };
+		6C39D922161EB3770094A387 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6C39D920161EB3770094A387 /* InfoPlist.strings */; };
+		6C39D925161EB3770094A387 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C39D924161EB3770094A387 /* main.m */; };
+		6C39D92B161EB3970094A387 /* com.kiadsoftware.PlexerHelper.xpc in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6C39D91B161EB3770094A387 /* com.kiadsoftware.PlexerHelper.xpc */; };
+		6C39D92F161EBA480094A387 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C2110481617FF7D008E46A4 /* Carbon.framework */; };
+		6C39D930161EBA4F0094A387 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C2088F515F9CA1D009191D7 /* Cocoa.framework */; };
 		6C93E8CC1616DCFE005A5593 /* DefaultSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C93E8CB1616DCFE005A5593 /* DefaultSettings.plist */; };
 		6C93E8D21616E17E005A5593 /* SampleTeam.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C93E8D11616E14E005A5593 /* SampleTeam.plist */; };
 		6CC4844615FF14DD00B9A110 /* PXTeamDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC4844415FF14DD00B9A110 /* PXTeamDocument.m */; };
-		6CC4844D15FF19D600B9A110 /* PXTeamDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC4844C15FF19D600B9A110 /* PXTeamDocumentController.m */; };
 		6CCAE0441618FB8C0085BBD7 /* PXApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CCAE0421618FB8C0085BBD7 /* PXApplication.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		6CCAE0451618FB8C0085BBD7 /* PXApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAE0431618FB8C0085BBD7 /* PXApplication.m */; };
 		6CCAE04F161905A20085BBD7 /* PlexerLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CCAE04E1619056F0085BBD7 /* PlexerLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -33,7 +37,6 @@
 		6CCAE05616190ED90085BBD7 /* PXTeamMember.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CCAE05416190ED90085BBD7 /* PXTeamMember.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		6CCAE05716190ED90085BBD7 /* PXTeamMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAE05516190ED90085BBD7 /* PXTeamMember.m */; };
 		6CCAE05816191A560085BBD7 /* PlexerLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CF934D61618FA6400325A8A /* PlexerLib.framework */; };
-		6CCAE06716195DDB0085BBD7 /* PXTeamConfigurationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAE064161959100085BBD7 /* PXTeamConfigurationWindowController.m */; };
 		6CF934D71618FA6400325A8A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C2088F515F9CA1D009191D7 /* Cocoa.framework */; };
 		6CF934DD1618FA6400325A8A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6CF934DB1618FA6400325A8A /* InfoPlist.strings */; };
 		6CF934E81618FA6400325A8A /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C20891315F9CA1D009191D7 /* SenTestingKit.framework */; };
@@ -51,12 +54,12 @@
 			remoteGlobalIDString = 6C2088F015F9CA1D009191D7;
 			remoteInfo = Plexer;
 		};
-		6CCAE05916191A5C0085BBD7 /* PBXContainerItemProxy */ = {
+		6C39D929161EB38F0094A387 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6C2088E815F9CA1D009191D7 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 6CF934D51618FA6400325A8A;
-			remoteInfo = PlexerLib;
+			remoteGlobalIDString = 6C39D91A161EB3770094A387;
+			remoteInfo = PlexerHelper;
 		};
 		6CF934EA1618FA6400325A8A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -66,6 +69,19 @@
 			remoteInfo = PlexerLib;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6C39D901161E96430094A387 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/XPCServices;
+			dstSubfolderSpec = 1;
+			files = (
+				6C39D92B161EB3970094A387 /* com.kiadsoftware.PlexerHelper.xpc in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6C2088F115F9CA1D009191D7 /* Plexer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plexer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,19 +104,23 @@
 		6C20891E15F9CA1D009191D7 /* PlexerTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlexerTests.h; sourceTree = "<group>"; };
 		6C20891F15F9CA1D009191D7 /* PlexerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlexerTests.m; sourceTree = "<group>"; };
 		6C2110481617FF7D008E46A4 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
-		6C7E6EE515FDBFFB004C4607 /* PXTeamConfigurationWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTeamConfigurationWindow.h; sourceTree = "<group>"; };
-		6C7E6EE615FDBFFB004C4607 /* PXTeamConfigurationWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTeamConfigurationWindow.m; sourceTree = "<group>"; };
+		6C39283D161F9C100088617A /* PXMappedKeyStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXMappedKeyStore.h; sourceTree = "<group>"; };
+		6C39283E161F9C100088617A /* PXMappedKeyStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXMappedKeyStore.m; sourceTree = "<group>"; };
+		6C39D905161E99D70094A387 /* PXTeamDocumentWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTeamDocumentWindowController.h; sourceTree = "<group>"; };
+		6C39D906161E99D70094A387 /* PXTeamDocumentWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTeamDocumentWindowController.m; sourceTree = "<group>"; };
+		6C39D91B161EB3770094A387 /* com.kiadsoftware.PlexerHelper.xpc */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = com.kiadsoftware.PlexerHelper.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C39D91F161EB3770094A387 /* PlexerHelper-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlexerHelper-Info.plist"; sourceTree = "<group>"; };
+		6C39D921161EB3770094A387 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6C39D923161EB3770094A387 /* PlexerHelper-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PlexerHelper-Prefix.pch"; sourceTree = "<group>"; };
+		6C39D924161EB3770094A387 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6C39D92C161EB3EC0094A387 /* PXBroadcastController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXBroadcastController.h; sourceTree = "<group>"; };
+		6C39D92D161EB3EC0094A387 /* PXBroadcastController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXBroadcastController.m; sourceTree = "<group>"; };
 		6C8655CC1616AA4000DBEAA3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		6C89B8571618E2BA00AD8612 /* PXSupportedApplicationsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXSupportedApplicationsController.h; sourceTree = "<group>"; };
-		6C89B8581618E2BA00AD8612 /* PXSupportedApplicationsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXSupportedApplicationsController.m; sourceTree = "<group>"; };
-		6C93E8C71616DBFE005A5593 /* PXBroadcastingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXBroadcastingController.h; sourceTree = "<group>"; };
-		6C93E8C81616DBFE005A5593 /* PXBroadcastingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXBroadcastingController.m; sourceTree = "<group>"; };
 		6C93E8CB1616DCFE005A5593 /* DefaultSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultSettings.plist; sourceTree = "<group>"; };
 		6C93E8D11616E14E005A5593 /* SampleTeam.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SampleTeam.plist; sourceTree = "<group>"; };
+		6CBC90B3161CF91F0082AC56 /* Plexer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Plexer.entitlements; sourceTree = "<group>"; };
 		6CC4844315FF14DD00B9A110 /* PXTeamDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTeamDocument.h; sourceTree = "<group>"; };
 		6CC4844415FF14DD00B9A110 /* PXTeamDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTeamDocument.m; sourceTree = "<group>"; };
-		6CC4844B15FF19D600B9A110 /* PXTeamDocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTeamDocumentController.h; sourceTree = "<group>"; };
-		6CC4844C15FF19D600B9A110 /* PXTeamDocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTeamDocumentController.m; sourceTree = "<group>"; };
 		6CCAE0421618FB8C0085BBD7 /* PXApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXApplication.h; sourceTree = "<group>"; };
 		6CCAE0431618FB8C0085BBD7 /* PXApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXApplication.m; sourceTree = "<group>"; };
 		6CCAE04E1619056F0085BBD7 /* PlexerLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlexerLib.h; sourceTree = "<group>"; };
@@ -108,8 +128,6 @@
 		6CCAE05116190E290085BBD7 /* PXTeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTeam.m; sourceTree = "<group>"; };
 		6CCAE05416190ED90085BBD7 /* PXTeamMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTeamMember.h; sourceTree = "<group>"; };
 		6CCAE05516190ED90085BBD7 /* PXTeamMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTeamMember.m; sourceTree = "<group>"; };
-		6CCAE063161959100085BBD7 /* PXTeamConfigurationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTeamConfigurationWindowController.h; sourceTree = "<group>"; };
-		6CCAE064161959100085BBD7 /* PXTeamConfigurationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTeamConfigurationWindowController.m; sourceTree = "<group>"; };
 		6CF934A31618F91100325A8A /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		6CF934D61618FA6400325A8A /* PlexerLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PlexerLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CF934DA1618FA6400325A8A /* PlexerLib-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlexerLib-Info.plist"; sourceTree = "<group>"; };
@@ -142,6 +160,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6C39D918161EB3770094A387 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6C39D930161EBA4F0094A387 /* Cocoa.framework in Frameworks */,
+				6C39D92F161EBA480094A387 /* Carbon.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6CF934D21618FA6400325A8A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -167,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				6C2088FB15F9CA1D009191D7 /* PlexerApp */,
+				6C39D91D161EB3770094A387 /* PlexerHelper */,
 				6CF934D81618FA6400325A8A /* PlexerLib */,
 				6C20891815F9CA1D009191D7 /* PlexerTests */,
 				6CF934ED1618FA6400325A8A /* PlexerLibTests */,
@@ -182,6 +210,7 @@
 				6C20891215F9CA1D009191D7 /* PlexerTests.octest */,
 				6CF934D61618FA6400325A8A /* PlexerLib.framework */,
 				6CF934E71618FA6400325A8A /* PlexerLibTests.octest */,
+				6C39D91B161EB3770094A387 /* com.kiadsoftware.PlexerHelper.xpc */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -227,6 +256,7 @@
 		6C2088FC15F9CA1D009191D7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6CBC90B3161CF91F0082AC56 /* Plexer.entitlements */,
 				6C2088FD15F9CA1D009191D7 /* Plexer-Info.plist */,
 				6C2088FE15F9CA1D009191D7 /* InfoPlist.strings */,
 				6C20890115F9CA1D009191D7 /* main.m */,
@@ -259,8 +289,6 @@
 			isa = PBXGroup;
 			children = (
 				6C20890A15F9CA1D009191D7 /* MainMenu.xib */,
-				6C7E6EE515FDBFFB004C4607 /* PXTeamConfigurationWindow.h */,
-				6C7E6EE615FDBFFB004C4607 /* PXTeamConfigurationWindow.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -269,10 +297,6 @@
 			isa = PBXGroup;
 			children = (
 				6C93E8CD1616DFB1005A5593 /* UI */,
-				6C93E8C71616DBFE005A5593 /* PXBroadcastingController.h */,
-				6C93E8C81616DBFE005A5593 /* PXBroadcastingController.m */,
-				6C89B8571618E2BA00AD8612 /* PXSupportedApplicationsController.h */,
-				6C89B8581618E2BA00AD8612 /* PXSupportedApplicationsController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -286,13 +310,34 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		6C39D91D161EB3770094A387 /* PlexerHelper */ = {
+			isa = PBXGroup;
+			children = (
+				6C39D91E161EB3770094A387 /* Supporting Files */,
+				6C39D924161EB3770094A387 /* main.m */,
+				6C39D92C161EB3EC0094A387 /* PXBroadcastController.h */,
+				6C39D92D161EB3EC0094A387 /* PXBroadcastController.m */,
+				6C39283D161F9C100088617A /* PXMappedKeyStore.h */,
+				6C39283E161F9C100088617A /* PXMappedKeyStore.m */,
+			);
+			path = PlexerHelper;
+			sourceTree = "<group>";
+		};
+		6C39D91E161EB3770094A387 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6C39D91F161EB3770094A387 /* PlexerHelper-Info.plist */,
+				6C39D920161EB3770094A387 /* InfoPlist.strings */,
+				6C39D923161EB3770094A387 /* PlexerHelper-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		6C93E8CD1616DFB1005A5593 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				6CCAE063161959100085BBD7 /* PXTeamConfigurationWindowController.h */,
-				6CCAE064161959100085BBD7 /* PXTeamConfigurationWindowController.m */,
-				6CC4844B15FF19D600B9A110 /* PXTeamDocumentController.h */,
-				6CC4844C15FF19D600B9A110 /* PXTeamDocumentController.m */,
+				6C39D905161E99D70094A387 /* PXTeamDocumentWindowController.h */,
+				6C39D906161E99D70094A387 /* PXTeamDocumentWindowController.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -374,11 +419,12 @@
 				6C2088ED15F9CA1D009191D7 /* Sources */,
 				6C2088EE15F9CA1D009191D7 /* Frameworks */,
 				6C2088EF15F9CA1D009191D7 /* Resources */,
+				6C39D901161E96430094A387 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				6CCAE05A16191A5C0085BBD7 /* PBXTargetDependency */,
+				6C39D92A161EB38F0094A387 /* PBXTargetDependency */,
 			);
 			name = Plexer;
 			productName = Plexer;
@@ -402,6 +448,23 @@
 			name = PlexerTests;
 			productName = PlexerTests;
 			productReference = 6C20891215F9CA1D009191D7 /* PlexerTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+		6C39D91A161EB3770094A387 /* PlexerHelper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6C39D926161EB3770094A387 /* Build configuration list for PBXNativeTarget "PlexerHelper" */;
+			buildPhases = (
+				6C39D917161EB3770094A387 /* Sources */,
+				6C39D918161EB3770094A387 /* Frameworks */,
+				6C39D919161EB3770094A387 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PlexerHelper;
+			productName = PlexerHelper;
+			productReference = 6C39D91B161EB3770094A387 /* com.kiadsoftware.PlexerHelper.xpc */;
 			productType = "com.apple.product-type.bundle";
 		};
 		6CF934D51618FA6400325A8A /* PlexerLib */ = {
@@ -464,6 +527,7 @@
 			projectRoot = "";
 			targets = (
 				6C2088F015F9CA1D009191D7 /* Plexer */,
+				6C39D91A161EB3770094A387 /* PlexerHelper */,
 				6CF934D51618FA6400325A8A /* PlexerLib */,
 				6C20891115F9CA1D009191D7 /* PlexerTests */,
 				6CF934E61618FA6400325A8A /* PlexerLibTests */,
@@ -489,6 +553,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C20891D15F9CA1D009191D7 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6C39D919161EB3770094A387 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6C39D922161EB3770094A387 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,12 +618,8 @@
 			files = (
 				6C20890215F9CA1D009191D7 /* main.m in Sources */,
 				6C20890915F9CA1D009191D7 /* PXAppDelegate.m in Sources */,
-				6C7E6EE715FDBFFB004C4607 /* PXTeamConfigurationWindow.m in Sources */,
 				6CC4844615FF14DD00B9A110 /* PXTeamDocument.m in Sources */,
-				6CC4844D15FF19D600B9A110 /* PXTeamDocumentController.m in Sources */,
-				6C93E8C91616DBFE005A5593 /* PXBroadcastingController.m in Sources */,
-				6C89B8591618E2BA00AD8612 /* PXSupportedApplicationsController.m in Sources */,
-				6CCAE06716195DDB0085BBD7 /* PXTeamConfigurationWindowController.m in Sources */,
+				6C39D907161E99D70094A387 /* PXTeamDocumentWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,6 +628,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C20892015F9CA1D009191D7 /* PlexerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6C39D917161EB3770094A387 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6C39D925161EB3770094A387 /* main.m in Sources */,
+				6C39283F161F9C100088617A /* PXMappedKeyStore.m in Sources */,
+				6C392841161FA5DF0088617A /* PXBroadcastController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -589,10 +667,10 @@
 			target = 6C2088F015F9CA1D009191D7 /* Plexer */;
 			targetProxy = 6C20891615F9CA1D009191D7 /* PBXContainerItemProxy */;
 		};
-		6CCAE05A16191A5C0085BBD7 /* PBXTargetDependency */ = {
+		6C39D92A161EB38F0094A387 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 6CF934D51618FA6400325A8A /* PlexerLib */;
-			targetProxy = 6CCAE05916191A5C0085BBD7 /* PBXContainerItemProxy */;
+			target = 6C39D91A161EB3770094A387 /* PlexerHelper */;
+			targetProxy = 6C39D929161EB38F0094A387 /* PBXContainerItemProxy */;
 		};
 		6CF934EB1618FA6400325A8A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -630,6 +708,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				6C20891C15F9CA1D009191D7 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		6C39D920161EB3770094A387 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6C39D921161EB3770094A387 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -705,6 +791,7 @@
 		6C20892415F9CA1D009191D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Plexer/Plexer.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -720,6 +807,7 @@
 		6C20892515F9CA1D009191D7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Plexer/Plexer.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -761,6 +849,36 @@
 				TEST_AFTER_BUILD = NO;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+		6C39D927161EB3770094A387 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PlexerHelper/PlexerHelper-Prefix.pch";
+				INFOPLIST_FILE = "PlexerHelper/PlexerHelper-Info.plist";
+				MACH_O_TYPE = mh_execute;
+				PRODUCT_NAME = "com.kiadsoftware.$(TARGET_NAME:rfc1034identifier)";
+				WRAPPER_EXTENSION = xpc;
+			};
+			name = Debug;
+		};
+		6C39D928161EB3770094A387 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PlexerHelper/PlexerHelper-Prefix.pch";
+				INFOPLIST_FILE = "PlexerHelper/PlexerHelper-Info.plist";
+				MACH_O_TYPE = mh_execute;
+				PRODUCT_NAME = "com.kiadsoftware.$(TARGET_NAME:rfc1034identifier)";
+				WRAPPER_EXTENSION = xpc;
 			};
 			name = Release;
 		};
@@ -854,6 +972,15 @@
 			buildConfigurations = (
 				6C20892715F9CA1D009191D7 /* Debug */,
 				6C20892815F9CA1D009191D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6C39D926161EB3770094A387 /* Build configuration list for PBXNativeTarget "PlexerHelper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6C39D927161EB3770094A387 /* Debug */,
+				6C39D928161EB3770094A387 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
