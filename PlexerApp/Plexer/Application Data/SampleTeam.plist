@@ -31,7 +31,12 @@
 			<key>PXTeamMemberMappedKeysKey</key>
 			<dict>
 				<key>Follow the Leader</key>
-				<dict/>
+				<dict>
+					<key>PXMappedKeyKeyCodeKey</key>
+					<integer>0</integer>
+					<key>PXMappedKeyFlagsKey</key>
+					<integer>256</integer>
+				</dict>
 			</dict>
 		</dict>
 		<dict>
@@ -44,8 +49,15 @@
 			</dict>
 			<key>PXTeamMemberMappedKeysKey</key>
 			<dict>
-				<key>Follow the Leader</key>
+				<key>Heal ME!</key>
 				<dict/>
+				<key>Follow the Leader</key>
+				<dict>
+					<key>PXMappedKeyKeyCodeKey</key>
+					<integer>0</integer>
+					<key>PXMappedKeyFlagsKey</key>
+					<integer>256</integer>
+				</dict>
 			</dict>
 		</dict>
 		<dict>
@@ -58,8 +70,15 @@
 			</dict>
 			<key>PXTeamMemberMappedKeysKey</key>
 			<dict>
-				<key>Follow the Leader</key>
+				<key>Heal ME!</key>
 				<dict/>
+				<key>Follow the Leader</key>
+				<dict>
+					<key>PXMappedKeyKeyCodeKey</key>
+					<integer>0</integer>
+					<key>PXMappedKeyFlagsKey</key>
+					<integer>256</integer>
+				</dict>
 			</dict>
 		</dict>
 		<dict>
@@ -72,8 +91,15 @@
 			</dict>
 			<key>PXTeamMemberMappedKeysKey</key>
 			<dict>
-				<key>Follow the Leader</key>
+				<key>Heal ME!</key>
 				<dict/>
+				<key>Follow the Leader</key>
+				<dict>
+					<key>PXMappedKeyKeyCodeKey</key>
+					<integer>1</integer>
+					<key>PXMappedKeyFlagsKey</key>
+					<integer>256</integer>
+				</dict>
 			</dict>
 		</dict>
 	</array>
@@ -154,12 +180,21 @@
 	<dict>
 		<key>Follow the Leader</key>
 		<dict>
-			<key>PXMappedKeyInputKeyCodeKey</key>
+			<key>PXMappedKeyKeyCodeKey</key>
 			<integer>0</integer>
-			<key>PXMappedKeyOutputKeyCodeKey</key>
-			<integer>0</integer>
+			<key>PXMappedKeyFlagsKey</key>
+			<integer>256</integer>
 			<key>PXMappedKeyBroadcastTypeKey</key>
 			<integer>1</integer>
+		</dict>
+		<key>Heal ME!</key>
+		<dict>
+			<key>PXMappedKeyKeyCodeKey</key>
+			<integer>12</integer>
+			<key>PXMappedKeyFlagsKey</key>
+			<integer>256</integer>
+			<key>PXMappedKeyBroadcastTypeKey</key>
+			<integer>2</integer>
 		</dict>
 	</dict>
 </dict>

@@ -7,98 +7,99 @@
 //
 
 #import "PXMappedKeyStore.h"
+#import <PlexerLib/PlexerLib.h>
+
 #import <Carbon/Carbon.h>
 
-const NSUInteger PXNumberOfKeyCodes = 1 << (sizeof(uint16_t) * 8);
-const NSUInteger PXNumberOfFlags    = 1 << (sizeof(uint8_t) * 8);
 
-typedef enum {
-    PXAllWindows                = 0,
-    PXAllWindowsButCurrent      = 1,
-    PXRoundRobin                = 2
-} PXMappedKeyBroadastType;
-
-typedef struct {
-    BOOL hasOverrides;
-    CGKeyCode keyCode;
-    CGEventFlags flags;
-} PXMappedKeyTarget;
-
-typedef struct {
-    PXMappedKeyTarget **targets;
-    NSUInteger numberOfTargets;
-    
-    PXMappedKeyBroadastType broadcastType;
-    NSInteger lastTargetIndex;              // used for the round-robin broadcast type
-    
-} PXMappedKeyTargetInfoCache;
-
-typedef struct {
-    PXMappedKeyTargetInfoCache *targetInfoCache[PXNumberOfFlags];
-} PXMappedKeyFlagCacheTable;
-
-PXMappedKeyTarget *PXMappedKeyTargetCreate()
+NSString *CGEventToNSString(CGEventRef event)
 {
-    PXMappedKeyTarget *target = malloc(sizeof(PXMappedKeyTarget));
-    target->flags = 0;
-    target->keyCode = 0;
-    target->hasOverrides = NO;
-    
-    return target;
+    CGKeyCode keyCode = CGEventGetIntegerValueField(event, kCGKeyboardEventKeycode);
+    CGEventFlags flags = CGEventGetFlags(event);
+
+    return [NSString stringWithFormat:@"%d_%llu", keyCode, flags];
 }
 
-PXMappedKeyFlagCacheTable *PXMappedKeyFlagCacheTableCreate()
+
+@interface PXMappedKeyStoreTeamMember : NSObject
+
+- (id)initWithMappedKey:(PXMappedKey *)mappedKey;
+
+@property (assign) NSInteger playerIndex;
+@property (strong) PXMappedKey *mappedKey;
+
+@end
+
+@implementation PXMappedKeyStoreTeamMember
+
+- (id)initWithMappedKey:(PXMappedKey *)mappedKey
 {
-    PXMappedKeyFlagCacheTable *table = malloc(sizeof(PXMappedKeyFlagCacheTable));
-    for (NSUInteger idx = 0; idx < PXNumberOfFlags; idx++) {
-        table->targetInfoCache[idx] = 0;
+    self = [super init];
+    if (self) {
+        self.mappedKey = mappedKey;
     }
-    
-    return table;
+    return self;
 }
 
-PXMappedKeyTargetInfoCache *PXMappedKeyTargetInfoCacheCreate(NSUInteger numberOfTeamMembers)
+- (NSString *)description
 {
-    PXMappedKeyTargetInfoCache *cache = malloc(sizeof(PXMappedKeyTargetInfoCache));
-    cache->numberOfTargets = numberOfTeamMembers;
-    cache->lastTargetIndex = 0;
-    cache->targets = malloc(sizeof(PXMappedKeyTarget) * numberOfTeamMembers);
-    memset(cache->targets, 0, sizeof(PXMappedKeyTarget) * numberOfTeamMembers);
-    
-    return cache;
+    return [NSString stringWithFormat:@"index: %ld, mapped key: %@", self.playerIndex, self.mappedKey];
 }
 
-uint8_t PXEventFlagsToFlagIndex(CGEventFlags flags)
+@end
+
+
+@interface PXMappedKeyCache : NSObject
+
+- (id)initWithMappedKey:(PXMappedKey *)mappedKey;
+
+- (NSString *)key;
+
+@property (strong) PXMappedKey *mappedKey;
+@property (strong) NSMutableArray *teamMembers;
+@property (assign) NSUInteger nextIndexInTeamMembers;
+
+@end
+
+@implementation PXMappedKeyCache
+
+- (id)init
 {
-    // There are 25 different possibilites for flags; 4! + 1. (shift, cmd, alt/option, ctrl)
-    // However, we can optimize lookup for memory but giving each a slot in a bit-field;
-    // this requires 4 bits.
-    
-    static uint8_t shiftMask = 0x1;
-    static uint8_t cmdMask = (0x1 << 1);
-    static uint8_t optionMask = (0x1 << 2);
-    static uint8_t ctrlMask = (0x1 << 3);
-    
-    uint8_t index = 0;
-    if ((kCGEventFlagMaskAlternate & flags) == kCGEventFlagMaskAlternate) {
-        index |= optionMask;
+    self = [super init];
+    if (self) {
+        _teamMembers = [[NSMutableArray alloc] init];
+        self.nextIndexInTeamMembers = 0;
     }
-    if ((kCGEventFlagMaskCommand & flags) == kCGEventFlagMaskCommand) {
-        index |= cmdMask;
-    }
-    if ((kCGEventFlagMaskControl & flags) == kCGEventFlagMaskControl) {
-        index |= ctrlMask;
-    }
-    if ((kCGEventFlagMaskShift & flags) == kCGEventFlagMaskShift) {
-        index |= shiftMask;
-    }
-    
-    return index;
+    return self;
 }
+
+- (id)initWithMappedKey:(PXMappedKey *)mappedKey
+{
+    self = [self init];
+    if (self) {
+        self.mappedKey = mappedKey;
+    }
+    return self;
+}
+
+- (NSString *)key
+{
+    return [NSString stringWithFormat:@"%d_%llu", self.mappedKey.keyCode, self.mappedKey.flags];
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"key: %@, mapped key: %@, team: %@", self.key, self.mappedKey, self.teamMembers];
+}
+
+@end
+
+
 
 @implementation PXMappedKeyStore {
-    PXMappedKeyFlagCacheTable *_keyCodeLookup[PXNumberOfKeyCodes];
-    NSMutableArray *_playerList;
+    NSMutableDictionary *_mappedKeyKeyCodeLookup;
+    NSMutableDictionary *_mappedKeyNameLookup;
+    NSUInteger _numberOfTeamMembers;
 }
 
 - (id)initWithDictionary:(NSDictionary *)teamConfiguration
@@ -106,61 +107,89 @@ uint8_t PXEventFlagsToFlagIndex(CGEventFlags flags)
     self = [super init];
     if (self) {
         [self buildMappedKeyStoreCacheWithDictionary:teamConfiguration];
-        _playerList = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
-- (void)dealloc
+- (CGEventRef)handleMappedKeyEvent:(CGEventRef)event applications:(NSArray *)runningApplications
 {
-    for (NSUInteger keyCodeIdx = 0; keyCodeIdx < PXNumberOfKeyCodes; keyCodeIdx++) {
-        PXMappedKeyFlagCacheTable * flagCacheTable = _keyCodeLookup[keyCodeIdx];
-        if (flagCacheTable != 0) {
-            for (NSUInteger flagIdx = 0; flagIdx < PXNumberOfFlags; flagIdx++) {
-                PXMappedKeyTargetInfoCache *targetInfoCache = flagCacheTable->targetInfoCache[flagIdx];
-                if (targetInfoCache != 0) {
-                    for (NSUInteger targetIdx = 0; targetIdx < targetInfoCache->numberOfTargets; targetIdx++) {
-                        PXMappedKeyTarget *mappedKeyTarget = targetInfoCache->targets[targetIdx];
-                        if (mappedKeyTarget != 0) {
-                            free(mappedKeyTarget);
-                        }
+    PXMappedKeyCache *mappedKeyCache = [self mappedKeyCacheForEvent:event];
+    if (mappedKeyCache == nil) {
+        NSLog(@"no mappedKeyCache for event: %@", CGEventToNSString(event));
+        return event;
+    }
+    
+    NSLog(@"mapped key cache: %@", mappedKeyCache);
+    
+    switch (mappedKeyCache.mappedKey.broadcastType) {
+        case PXAllWindows:
+        case PXAllWindowsButCurrent: {
+            ProcessSerialNumber currentPSN;
+            GetFrontProcess(&currentPSN);
+
+            //
+            // UNDONE: There is not good correlation between team member and the running application.
+            //
+            NSUInteger teamMemberIndex = 0;
+            for (NSRunningApplication *application in runningApplications) {
+                ProcessSerialNumber teamMemberPSN;
+                GetProcessForPID(application.processIdentifier, &teamMemberPSN);
+                
+                BOOL samePSN = (currentPSN.highLongOfPSN == teamMemberPSN.highLongOfPSN && currentPSN.lowLongOfPSN == teamMemberPSN.lowLongOfPSN);
+                if (mappedKeyCache.mappedKey.broadcastType == PXAllWindowsButCurrent && samePSN == YES) { teamMemberIndex++; continue; }
+                
+                CGEventRef eventToSend = [self eventFromMappedKeyCache:mappedKeyCache forPlayerIndex:teamMemberIndex fromEvent:event];
+                if (eventToSend != NULL) {
+                    CGEventPostToPSN(&teamMemberPSN, eventToSend);
+                }
+                
+                teamMemberIndex++;
+            }
+        }
+            
+        case PXRoundRobin:
+            for (PXMappedKeyStoreTeamMember *teamMember in mappedKeyCache.teamMembers) {
+                if (teamMember.playerIndex == [mappedKeyCache.teamMembers[mappedKeyCache.nextIndexInTeamMembers] playerIndex]) {
+                    ProcessSerialNumber teamMemberPSN;
+                    GetProcessForPID([runningApplications[teamMember.playerIndex] processIdentifier], &teamMemberPSN);
+                    
+                    CGEventRef eventToSend = [self eventFromMappedKeyCache:mappedKeyCache forPlayerIndex:teamMember.playerIndex fromEvent:event];
+                    if (eventToSend != NULL) {
+                        CGEventPostToPSN(&teamMemberPSN, eventToSend);
                     }
-                    free(targetInfoCache->targets);
-                    free(targetInfoCache);
+                    
+                    mappedKeyCache.nextIndexInTeamMembers = (mappedKeyCache.nextIndexInTeamMembers + 1) % mappedKeyCache.teamMembers.count;
+                    
+                    break;
                 }
             }
-            free(flagCacheTable->targetInfoCache);
-            free(flagCacheTable);
+            break;
+    }
+    
+    return NULL;
+}
+
+- (CGEventRef)eventFromMappedKeyCache:(PXMappedKeyCache *)mappedKeyCache forPlayerIndex:(NSUInteger)playerIndex fromEvent:(CGEventRef)event
+{
+    for (PXMappedKeyStoreTeamMember *teamMember in mappedKeyCache.teamMembers) {
+        if (teamMember.playerIndex == playerIndex) {
+            CGEventRef copyOfEvent = CGEventCreateCopy(event);
+            CGEventSetIntegerValueField(copyOfEvent, kCGKeyboardEventKeycode, teamMember.mappedKey.keyCode);
+            CGEventSetFlags(copyOfEvent, teamMember.mappedKey.flags);
+            
+            return copyOfEvent;
         }
     }
     
-    free(_keyCodeLookup);
+    return NULL;
 }
 
-- (CGEventRef)processEvent:(CGEventRef)event forPlayerAtIndex:(NSUInteger)index currentPSN:(ProcessSerialNumber *)currentPSN playerPSN:(ProcessSerialNumber *)playerPSN
+- (PXMappedKeyCache *)mappedKeyCacheForEvent:(CGEventRef)event
 {
-    assert(currentPSN != NULL);
-    assert(playerPSN != NULL);
-    
     CGKeyCode keyCode = CGEventGetIntegerValueField(event, kCGKeyboardEventKeycode);
-    CGEventFlags eventFlags = CGEventGetFlags(event);
-    uint8_t flagIndex = PXEventFlagsToFlagIndex(eventFlags);
-    
-    BOOL samePSN = (currentPSN->highLongOfPSN == playerPSN->highLongOfPSN && currentPSN->lowLongOfPSN == playerPSN->lowLongOfPSN);
-    NSLog(@"same PSN? : %@", samePSN ? @"YES" : @"NO");
-    
-    PXMappedKeyFlagCacheTable *flagTableCache = _keyCodeLookup[keyCode];
-    if (flagTableCache == NULL) {
-        return (samePSN == YES) ? event : NULL;
-    }
-    
-    NSLog(@"flagIndex: %d", flagIndex);
-    PXMappedKeyTargetInfoCache *targetInfoCache = flagTableCache->targetInfoCache[flagIndex];
-    if (targetInfoCache == NULL) {
-        return (samePSN == YES) ? event : NULL;
-    }
+    CGEventFlags flags = CGEventGetFlags(event);
 
-    return event;
+    return _mappedKeyKeyCodeLookup[[NSString stringWithFormat:@"%d_%llu", keyCode, flags]];
 }
 
 
@@ -168,65 +197,36 @@ uint8_t PXEventFlagsToFlagIndex(CGEventFlags flags)
 
 - (void)buildMappedKeyStoreCacheWithDictionary:(NSDictionary *)teamConfiguration
 {
-    NSLog(@"number of keycodes: %lu", PXNumberOfKeyCodes);
-    NSLog(@"number of flags: %lu", PXNumberOfFlags);
+    _mappedKeyKeyCodeLookup = [[NSMutableDictionary alloc] init];
+    _mappedKeyNameLookup = [[NSMutableDictionary alloc] init];
     
-    for (NSUInteger idx = 0; idx < PXNumberOfKeyCodes; idx++) {
-        _keyCodeLookup[idx] = 0;
-    }
-    
-    NSMutableDictionary *mappedKeyNameToKeyCodeLookup = [[NSMutableDictionary alloc] init];
-    
-    NSArray *teamMembers = teamConfiguration[@"PXTeamMembersKey"];
     NSDictionary *mappedKeys = teamConfiguration[@"PXMappedKeysKey"];
     
     for (NSString *key in mappedKeys.keyEnumerator) {
-        NSDictionary *mappedKeyDict = mappedKeys[key];
-
-        CGKeyCode inputKeyCode = [mappedKeyDict[@"PXMappedKeyInputKeyCodeKey"] unsignedShortValue];
-        CGEventFlags inputEventFlags = [mappedKeyDict[@"PXMappedKeyInputFlagsKey"] unsignedIntegerValue];
-// Potentially not going to be used...
-//        CGKeyCode outputKeyCode = [mappedKeyDict[@"PXMappedKeyOutputKeyCodeKey"] unsignedShortValue];
-//        CGEventFlags outputEventFlags = [mappedKeyDict[@"PXMappedKeyOutputFlagsKey"] unsignedIntegerValue];
-        PXMappedKeyBroadastType broadcastType = (PXMappedKeyBroadastType)[mappedKeyDict[@"PXMappedKeyBroadcastTypeKey"] integerValue];
-
-        if (_keyCodeLookup[inputKeyCode] == NULL) {
-            PXMappedKeyFlagCacheTable *table = PXMappedKeyFlagCacheTableCreate();
-            uint8_t flagIndex = PXEventFlagsToFlagIndex(inputEventFlags);
-            
-            PXMappedKeyTargetInfoCache *targetInfoCache = PXMappedKeyTargetInfoCacheCreate(teamMembers.count);
-            targetInfoCache->broadcastType = broadcastType;
-            table->targetInfoCache[flagIndex] = targetInfoCache;
-
-            _keyCodeLookup[inputKeyCode] = table;
-            mappedKeyNameToKeyCodeLookup[key] = @{ @"keyCode" : @(inputKeyCode), @"flagIndex" : @(flagIndex) };
-        }
-        else {
-            NSLog(@"A mapped key already exists for keyCode: %d", inputKeyCode);
-        }
+        PXMappedKey *mappedKey = [[PXMappedKey alloc] initWithDictionary:mappedKeys[key]];
+        PXMappedKeyCache *mappedKeyCache = [[PXMappedKeyCache alloc] initWithMappedKey:mappedKey];
+        _mappedKeyKeyCodeLookup[mappedKeyCache.key] = mappedKeyCache;
+        _mappedKeyNameLookup[key] = mappedKeyCache;
     }
     
+    NSArray *teamMembers = teamConfiguration[@"PXTeamMembersKey"];
+    _numberOfTeamMembers = teamMembers.count;
+
     NSUInteger teamMemberIndex = 0;
     for (NSDictionary *teamMember in teamMembers) {
         NSDictionary *teamMemberMappedKeys = teamMember[@"PXTeamMemberMappedKeysKey"];
         
         for (NSString *key in teamMemberMappedKeys.keyEnumerator) {
-            NSDictionary *teamMemberMappedKey = teamMemberMappedKeys[key];
+            PXMappedKeyCache *mappedKeyCache = _mappedKeyNameLookup[key];
             
-            NSDictionary *mappedKeyLookup = mappedKeyNameToKeyCodeLookup[key];
-            if (mappedKeyLookup != nil) {
-                CGKeyCode keyCode = [mappedKeyLookup[@"keyCode"] unsignedShortValue];
-                uint8_t flagIndex = [mappedKeyLookup[@"flagIndex"] unsignedCharValue];
+            PXMappedKey *teamMemberMappedKey = [[PXMappedKey alloc] initWithMappedKey:mappedKeyCache.mappedKey overrides:teamMemberMappedKeys[key]];
+            
+            PXMappedKeyStoreTeamMember *mappedKeyTeamMember = [[PXMappedKeyStoreTeamMember alloc] initWithMappedKey:teamMemberMappedKey];
+            mappedKeyTeamMember.playerIndex = teamMemberIndex;
 
-                PXMappedKeyTarget *target = PXMappedKeyTargetCreate();
-                NSNumber *overrideKeyCode = teamMemberMappedKey[@"PXMappedKeyInputKeyCodeKey"];
-                if (overrideKeyCode != nil) {
-                    target->keyCode = [overrideKeyCode unsignedShortValue];
-                    target->flags = [teamMemberMappedKey[@"PXMappedKeyInputFlagsKey"] unsignedIntegerValue];
-                }
-                _keyCodeLookup[keyCode]->targetInfoCache[flagIndex]->targets[teamMemberIndex] = target;
-            }
+            [mappedKeyCache.teamMembers addObject:mappedKeyTeamMember];
         }
+        
         teamMemberIndex++;
     }
 }

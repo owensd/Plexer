@@ -62,6 +62,34 @@
                ReferencedContainer = "container:Playground/Playground.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C39D91A161EB3770094A387"
+               BuildableName = "com.kiadsoftware.PlexerHelper.xpc"
+               BlueprintName = "PlexerHelper"
+               ReferencedContainer = "container:PlexerApp/Plexer.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6CF934D51618FA6400325A8A"
+               BuildableName = "PlexerLib.framework"
+               BlueprintName = "PlexerLib"
+               ReferencedContainer = "container:PlexerApp/Plexer.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

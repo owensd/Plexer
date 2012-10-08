@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C170C321622C1270071AC32 /* PXMappedKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C170C311622C1270071AC32 /* PXMappedKey.m */; };
+		6C170C331622CAEC0071AC32 /* PlexerLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CF934D61618FA6400325A8A /* PlexerLib.framework */; };
+		6C170C341622CB570071AC32 /* PXMappedKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C170C301622C1270071AC32 /* PXMappedKey.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		6C2088F615F9CA1D009191D7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C2088F515F9CA1D009191D7 /* Cocoa.framework */; };
 		6C20890015F9CA1D009191D7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6C2088FE15F9CA1D009191D7 /* InfoPlist.strings */; };
 		6C20890215F9CA1D009191D7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20890115F9CA1D009191D7 /* main.m */; };
@@ -36,7 +39,6 @@
 		6CCAE05316190E2A0085BBD7 /* PXTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAE05116190E290085BBD7 /* PXTeam.m */; };
 		6CCAE05616190ED90085BBD7 /* PXTeamMember.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CCAE05416190ED90085BBD7 /* PXTeamMember.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		6CCAE05716190ED90085BBD7 /* PXTeamMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAE05516190ED90085BBD7 /* PXTeamMember.m */; };
-		6CCAE05816191A560085BBD7 /* PlexerLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CF934D61618FA6400325A8A /* PlexerLib.framework */; };
 		6CF934D71618FA6400325A8A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C2088F515F9CA1D009191D7 /* Cocoa.framework */; };
 		6CF934DD1618FA6400325A8A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6CF934DB1618FA6400325A8A /* InfoPlist.strings */; };
 		6CF934E81618FA6400325A8A /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C20891315F9CA1D009191D7 /* SenTestingKit.framework */; };
@@ -84,6 +86,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6C170C301622C1270071AC32 /* PXMappedKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXMappedKey.h; sourceTree = "<group>"; };
+		6C170C311622C1270071AC32 /* PXMappedKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXMappedKey.m; sourceTree = "<group>"; };
 		6C2088F115F9CA1D009191D7 /* Plexer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plexer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C2088F515F9CA1D009191D7 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6C2088F815F9CA1D009191D7 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -145,7 +149,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6CCAE05816191A560085BBD7 /* PlexerLib.framework in Frameworks */,
 				6C2110491617FF7D008E46A4 /* Carbon.framework in Frameworks */,
 				6C2088F615F9CA1D009191D7 /* Cocoa.framework in Frameworks */,
 			);
@@ -164,6 +167,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C170C331622CAEC0071AC32 /* PlexerLib.framework in Frameworks */,
 				6C39D930161EBA4F0094A387 /* Cocoa.framework in Frameworks */,
 				6C39D92F161EBA480094A387 /* Carbon.framework in Frameworks */,
 			);
@@ -362,6 +366,8 @@
 				6CCAE05116190E290085BBD7 /* PXTeam.m */,
 				6CCAE05416190ED90085BBD7 /* PXTeamMember.h */,
 				6CCAE05516190ED90085BBD7 /* PXTeamMember.m */,
+				6C170C301622C1270071AC32 /* PXMappedKey.h */,
+				6C170C311622C1270071AC32 /* PXMappedKey.m */,
 			);
 			path = PlexerLib;
 			sourceTree = "<group>";
@@ -405,6 +411,7 @@
 				6CCAE04F161905A20085BBD7 /* PlexerLib.h in Headers */,
 				6CCAE0441618FB8C0085BBD7 /* PXApplication.h in Headers */,
 				6CCAE05216190E2A0085BBD7 /* PXTeam.h in Headers */,
+				6C170C341622CB570071AC32 /* PXMappedKey.h in Headers */,
 				6CCAE05616190ED90085BBD7 /* PXTeamMember.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -638,6 +645,7 @@
 				6C39D925161EB3770094A387 /* main.m in Sources */,
 				6C39283F161F9C100088617A /* PXMappedKeyStore.m in Sources */,
 				6C392841161FA5DF0088617A /* PXBroadcastController.m in Sources */,
+				6C170C321622C1270071AC32 /* PXMappedKey.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,3 +9,4 @@
 #import <PlexerLib/PXApplication.h>
 #import <PlexerLib/PXTeam.h>
 #import <PlexerLib/PXTeamMember.h>
+#import <PlexerLib/PXMappedKey.h>

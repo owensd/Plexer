@@ -22,6 +22,8 @@
 	<string>1</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2012 Kiad Software. All rights reserved.</string>
+	<key>LSBackgroundOnly</key>
+	<true/>
 	<key>XPCService</key>
 	<dict>
 		<key>ServiceType</key>

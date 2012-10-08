@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
 
 OBJC_EXPORT NSString * const PXApplicationDisplayNameKey;
 OBJC_EXPORT NSString * const PXApplicationLaunchPathKey;

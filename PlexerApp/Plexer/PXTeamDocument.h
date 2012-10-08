@@ -11,6 +11,6 @@
 
 @interface PXTeamDocument : NSDocument
 
-@property (strong) PXTeam *team;
+//@property (strong) PXTeam *team;
 
 @end

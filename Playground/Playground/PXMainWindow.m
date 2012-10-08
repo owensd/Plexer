@@ -114,7 +114,6 @@ NSString *NSStringFromKeyboardEvent(NSEvent *event)
                                              maxStringLength,
                                              &actualStringLength, unicodeString);
             
-            NSLog(@"deadKeyState = %d", deadKeyState);
             if (actualStringLength == 0 && deadKeyState) {
                 status = UCKeyTranslate(keyboardLayout,
                                         kVK_Space, kUCKeyActionDown, 0,

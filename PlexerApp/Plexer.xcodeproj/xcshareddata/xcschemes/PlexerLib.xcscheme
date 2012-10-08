@@ -14,9 +14,23 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6C39D90E161EB3620094A387"
-               BuildableName = "com.kiadsoftware.plexer.EventService-copy.xpc"
-               BlueprintName = "EventService copy"
+               BlueprintIdentifier = "6CF934D51618FA6400325A8A"
+               BuildableName = "PlexerLib.framework"
+               BlueprintName = "PlexerLib"
+               ReferencedContainer = "container:Plexer.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6CF934E61618FA6400325A8A"
+               BuildableName = "PlexerLibTests.octest"
+               BlueprintName = "PlexerLibTests"
                ReferencedContainer = "container:Plexer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

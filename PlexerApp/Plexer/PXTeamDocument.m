@@ -20,7 +20,7 @@ NSString * const PXTeamKey = @"Team";
 {
     self = [super init];
     if (self) {
-        self.team = [[PXTeam alloc] init];
+//        self.team = [[PXTeam alloc] init];
         self.undoManager = NO;
     }
     return self;
@@ -41,7 +41,7 @@ NSString * const PXTeamKey = @"Team";
         }
     }
     else {
-        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.team];
+        NSData *data = nil; //[NSKeyedArchiver archivedDataWithRootObject:self.team];
         if (data == nil) {
             if (outError != nil) {
                 NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : @"Error persisting data." };
@@ -66,14 +66,14 @@ NSString * const PXTeamKey = @"Team";
         return NO;
     }
     else {
-        self.team = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-        if (self.team == nil) {
-            if (outError) {
-                *outError = [NSError errorWithDomain:PXTeamDocumentErrorDomain code:3 userInfo:@{ NSLocalizedDescriptionKey : @"Unable to load document" }];
-            }
-            
-            return NO;
-        }
+//        self.team = = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+//        if (self.team == nil) {
+//            if (outError) {
+//                *outError = [NSError errorWithDomain:PXTeamDocumentErrorDomain code:3 userInfo:@{ NSLocalizedDescriptionKey : @"Unable to load document" }];
+//            }
+//            
+//            return NO;
+//        }
     }
     
     return YES;

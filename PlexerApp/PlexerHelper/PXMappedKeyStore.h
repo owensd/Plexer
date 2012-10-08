@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface PXMappedKeyStore : NSObject
 
 - (id)initWithDictionary:(NSDictionary *)teamConfiguration;
-- (CGEventRef)processEvent:(CGEventRef)event forPlayerAtIndex:(NSUInteger)index currentPSN:(ProcessSerialNumber *)currentPSN playerPSN:(ProcessSerialNumber *)playerPSN;
+- (CGEventRef)handleMappedKeyEvent:(CGEventRef)event applications:(NSArray *)runningApplications;
 
 @end

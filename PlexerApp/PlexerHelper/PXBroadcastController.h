@@ -28,7 +28,7 @@ typedef enum {
 
 @interface PXBroadcastController : NSObject<PXBroadcastController>
 
-@property (nonatomic, assign) PXBroadcastingState broadcastingState;
+@property (assign) PXBroadcastingState broadcastingState;
 @property (weak) NSXPCConnection *xpcConnection;
 
 @end

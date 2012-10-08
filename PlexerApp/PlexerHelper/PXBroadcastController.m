@@ -54,7 +54,7 @@ CGEventRef KeyBindEventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEv
 - (void)dealloc
 {
     if (_keybindEventTapRef != NULL) { CFRelease(_keybindEventTapRef); }
-    if (_keybindRunLoopSourceRef != NULL) { CFRelease(_keybindRunLoopSourceRef); }    
+    if (_keybindRunLoopSourceRef != NULL) { CFRelease(_keybindRunLoopSourceRef); }
 }
 
 - (void)playTeam:(NSDictionary *)team
@@ -80,7 +80,7 @@ CGEventRef KeyBindEventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEv
                                        CGEventMaskBit(kCGEventRightMouseDown) | CGEventMaskBit(kCGEventRightMouseUp) |
                                        CGEventMaskBit(kCGEventOtherMouseDown) | CGEventMaskBit(kCGEventOtherMouseUp) |
                                        CGEventMaskBit(kCGEventKeyDown)        | CGEventMaskBit(kCGEventKeyUp)        |
-                                       CGEventMaskBit(kCGEventScrollWheel);
+                                       CGEventMaskBit(kCGEventFlagsChanged)   | CGEventMaskBit(kCGEventScrollWheel);
         
         _keybindEventTapRef = CGEventTapCreate(kCGHIDEventTap,
                                                kCGHeadInsertEventTap,
@@ -123,104 +123,87 @@ CGEventRef KeyBindEventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEv
     }
 }
 
-- (void)setBroadcastingState:(PXBroadcastingState)broadcastingState
-{
-    _broadcastingState = broadcastingState;
-//    [[NSNotificationCenter defaultCenter] postNotificationName:PXBroadcastingDidChangeNotification object:self userInfo:nil];
-}
 
 #pragma mark - Re-routed event handlers
 
-- (BOOL)handleMouseEvent:(CGEventRef)event ofType:(CGEventType)type
+- (CGEventRef)handleMouseEvent:(CGEventRef)event ofType:(CGEventType)type
 {
-    return YES;
+    return event;
 }
 
-- (BOOL)handleKeyboardEvent:(CGEventRef)event ofType:(CGEventType)type
+- (CGEventRef)handleKeyboardEvent:(CGEventRef)event ofType:(CGEventType)type
 {
+    NSRunningApplication *frontMostApplication = [[NSWorkspace sharedWorkspace] frontmostApplication];
+
     //
     // UNDONE: Need to get the proper application name to be looking for.
     //
-    NSRunningApplication *frontMostApplication = [[NSWorkspace sharedWorkspace] frontmostApplication];
-//    if ([frontMostApplication.bundleURL.lastPathComponent isEqualToString:@"World of Warcraft-64.app"] == NO) {
-    if ([frontMostApplication.bundleURL.lastPathComponent isEqualToString:@"Playground.app"] == NO) {
-        return YES;
-    }
+    if ([frontMostApplication.bundleURL.lastPathComponent isEqualToString:@"Playground.app"] == NO) { return event; }
+    if ([self handleSpecialApplicationFunctionalityForEvent:event ofType:type] == NULL) { return NULL; }
+    if (self.broadcastingState == PXBroadcastingDisabled) { return event; }
     
-    //
-    // Handle special key's for the application.
-    //
+    switch (self.broadcastingState) {
+        case PXBroadcastingDisabled:
+            return event;
+            
+        case PXBroadcastingAllKeys:
+            for (NSRunningApplication *application in _runningApplications) {
+                ProcessSerialNumber teamMemberPSN;
+                GetProcessForPID(application.processIdentifier, &teamMemberPSN);
+                CGEventPostToPSN(&teamMemberPSN, event);
+            }
+            return NULL;
+            
+        case PXBroadcastingMappedKeys:
+            return [_mappedKeyStore handleMappedKeyEvent:event applications:_runningApplications];
+            break;
+            
+        default:
+            NSLog(@"Invalidate broadcasting state: %d", self.broadcastingState);
+    }
+
+    return NULL;
+}
+
+- (CGEventRef)handleSpecialApplicationFunctionalityForEvent:(CGEventRef)event ofType:(CGEventType)type
+{
+    CGKeyCode keyCode = (CGKeyCode)CGEventGetIntegerValueField(event, kCGKeyboardEventKeycode);
+
     if (type == kCGEventKeyDown) {
-        CGKeyCode keyCode = (CGKeyCode)CGEventGetIntegerValueField(event, kCGKeyboardEventKeycode);
-        NSLog(@"keyDown, keyCode: %d", keyCode);
+    #ifdef DEBUG
+        // Fail safe if I ever screw up the event handling so that I can always kill Plexer.
+        CGEventFlags __eventFlags = CGEventGetFlags(event);
+        
+        if (keyCode == kVK_F10 && (__eventFlags & (kCGEventFlagMaskShift | kCGEventFlagMaskCommand)) == (kCGEventFlagMaskShift | kCGEventFlagMaskCommand)) {
+            exit(911);
+        }
+    #endif
         
         if (keyCode == kVK_F10) {
-            switch (self.broadcastingState) {
-                case PXBroadcastingDisabled:
-                    self.broadcastingState = PXBroadcastingAllKeys;
-                    NSLog(@"now broadcasting all keys");
-                    break;
-                    
-                case PXBroadcastingAllKeys:
-                    self.broadcastingState = PXBroadcastingMappedKeys;
-                    NSLog(@"now broadcasting mapped keys only");
-                    break;
-                    
-                case PXBroadcastingMappedKeys:
-                    self.broadcastingState = PXBroadcastingDisabled;
-                    NSLog(@"broadcasting disabled");
-                    break;
+            if (self.broadcastingState == PXBroadcastingDisabled) {
+                self.broadcastingState = PXBroadcastingAllKeys;
+                NSLog(@"now broadcasting all keys");
+            }
+            else if (self.broadcastingState == PXBroadcastingAllKeys) {
+                self.broadcastingState = PXBroadcastingMappedKeys;
+                NSLog(@"now broadcasting mapped keys only");
+            }
+            else if (self.broadcastingState == PXBroadcastingMappedKeys) {
+                self.broadcastingState = PXBroadcastingDisabled;
+                NSLog(@"broadcasting disabled");
             }
             
-            return NO;
+            return NULL;
         }
-        
     }
     
-    if (self.broadcastingState == PXBroadcastingDisabled) {
-        return YES;
-    }
-    
-
-    ProcessSerialNumber currentPSN;
-    GetFrontProcess(&currentPSN);
-    
-    //
-    // Pass through as appropriate.
-    //
-    NSUInteger idx = 0;
-    for (NSRunningApplication *application in _runningApplications) {
-        ProcessSerialNumber psn;
-        GetProcessForPID(application.processIdentifier, &psn);
-
-        CGEventRef eventToSend = event;
-        if (self.broadcastingState == PXBroadcastingMappedKeys) {
-            eventToSend = [_mappedKeyStore processEvent:event forPlayerAtIndex:idx currentPSN:&currentPSN playerPSN:&psn];
-        }
-        
-        if (eventToSend != NULL) {
-            CGEventPostToPSN(&psn, eventToSend);
-        }
-
-        idx++;
-    }
-    
-    return NO;
+    return event;
 }
 
 @end
 
 CGEventRef KeyBindEventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon)
 {
-#ifdef DEBUG
-    // Fail safe if I ever screw up the event handling so that I can always kill Plexer.
-    CGKeyCode __keyCode = CGEventGetIntegerValueField(event, kCGKeyboardEventKeycode);
-    CGEventFlags __eventFlags = CGEventGetFlags(event);
-    
-    if (__keyCode == kVK_F10 && (__eventFlags & (kCGEventFlagMaskShift | kCGEventFlagMaskCommand)) == (kCGEventFlagMaskShift | kCGEventFlagMaskCommand)) {
-        exit(911);
-    }
-#endif
     PXBroadcastController *controller = (__bridge PXBroadcastController *)refcon;
     
     switch (type) {
@@ -231,11 +214,11 @@ CGEventRef KeyBindEventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEv
         case kCGEventOtherMouseDown:
         case kCGEventOtherMouseUp:
         case kCGEventScrollWheel:
-            return ([controller handleMouseEvent:event ofType:type] == YES) ? event : NULL;
+            return [controller handleMouseEvent:event ofType:type];
             
         case kCGEventKeyDown:
         case kCGEventKeyUp:
-            return ([controller handleKeyboardEvent:event ofType:type] == YES) ? event : NULL;
+            return [controller handleKeyboardEvent:event ofType:type];
             
         default:
             NSLog(@"Unknown event type: %u", type);

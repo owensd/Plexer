@@ -20,6 +20,20 @@
                ReferencedContainer = "container:Plexer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6CF934D51618FA6400325A8A"
+               BuildableName = "PlexerLib.framework"
+               BlueprintName = "PlexerLib"
+               ReferencedContainer = "container:Plexer.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
