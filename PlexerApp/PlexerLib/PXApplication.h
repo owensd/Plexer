@@ -10,19 +10,22 @@
 #import <Cocoa/Cocoa.h>
 
 OBJC_EXPORT NSString * const PXApplicationDisplayNameKey;
+OBJC_EXPORT NSString * const PXApplicationClassNameKey;
 OBJC_EXPORT NSString * const PXApplicationLaunchPathKey;
 OBJC_EXPORT NSString * const PXApplicationInstallPathKey;
 OBJC_EXPORT NSString * const PXApplicationFilesToVirtualizeKey;
 OBJC_EXPORT NSString * const PXApplicationFilesToCopyKey;
 
 OBJC_EXPORT NSString const * PXApplicationWindowBoundsKey;
-OBJC_EXPORT NSString const * PXShouldVirtualizeApplicationKey;
 OBJC_EXPORT NSString const * PXVirtualizedApplicationLaunchPathKey;
 
 
 @interface PXApplication : NSObject<NSCoding>
 
+- (id)initWithDictionary:(NSDictionary *)dictionary;
+
 + (NSArray *)supportedApplications;
++ (PXApplication *)applicationWithName:(NSString *)name;
 
 - (NSRunningApplication *)launchWithOptions:(NSDictionary *)options;
 

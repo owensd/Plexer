@@ -14,24 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6CF934B91618F96C00325A8A"
-               BuildableName = "WorldOfWarcraft.bundle"
-               BlueprintName = "WorldOfWarcraft"
-               ReferencedContainer = "container:WorldOfWarcraft.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6CF934D51618FA6400325A8A"
-               BuildableName = "PlexerLib.framework"
-               BlueprintName = "PlexerLib"
-               ReferencedContainer = "container:../PlexerApp/Plexer.xcodeproj">
+               BlueprintIdentifier = "6C7F7FA21623D41200091202"
+               BuildableName = "Playground.app"
+               BlueprintName = "Playground"
+               ReferencedContainer = "container:Plexer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -43,6 +29,15 @@
       buildConfiguration = "Debug">
       <Testables>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "6C7F7FA21623D41200091202"
+            BuildableName = "Playground.app"
+            BlueprintName = "Playground"
+            ReferencedContainer = "container:Plexer.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -53,6 +48,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "6C7F7FA21623D41200091202"
+            BuildableName = "Playground.app"
+            BlueprintName = "Playground"
+            ReferencedContainer = "container:Plexer.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -62,6 +66,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "6C7F7FA21623D41200091202"
+            BuildableName = "Playground.app"
+            BlueprintName = "Playground"
+            ReferencedContainer = "container:Plexer.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

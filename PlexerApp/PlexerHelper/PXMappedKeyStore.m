@@ -158,7 +158,13 @@ NSString *CGEventToNSString(CGEventRef event)
                         CGEventPostToPSN(&teamMemberPSN, eventToSend);
                     }
                     
-                    mappedKeyCache.nextIndexInTeamMembers = (mappedKeyCache.nextIndexInTeamMembers + 1) % mappedKeyCache.teamMembers.count;
+                    //
+                    // Need to make sure that the round-robin target gets both the key-down AND the key-up.
+                    //
+                    CGEventType eventType = CGEventGetType(event);
+                    if (eventType == kCGEventKeyUp) {
+                        mappedKeyCache.nextIndexInTeamMembers = (mappedKeyCache.nextIndexInTeamMembers + 1) % mappedKeyCache.teamMembers.count;
+                    }
                     
                     break;
                 }

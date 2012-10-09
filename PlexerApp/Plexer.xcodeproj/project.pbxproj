@@ -26,9 +26,25 @@
 		6C39D907161E99D70094A387 /* PXTeamDocumentWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C39D906161E99D70094A387 /* PXTeamDocumentWindowController.m */; };
 		6C39D922161EB3770094A387 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6C39D920161EB3770094A387 /* InfoPlist.strings */; };
 		6C39D925161EB3770094A387 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C39D924161EB3770094A387 /* main.m */; };
-		6C39D92B161EB3970094A387 /* com.kiadsoftware.PlexerHelper.xpc in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6C39D91B161EB3770094A387 /* com.kiadsoftware.PlexerHelper.xpc */; };
+		6C39D92B161EB3970094A387 /* com.kiadsoftware.PlexerHelper.xpc in Copy XPC Service */ = {isa = PBXBuildFile; fileRef = 6C39D91B161EB3770094A387 /* com.kiadsoftware.PlexerHelper.xpc */; };
 		6C39D92F161EBA480094A387 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C2110481617FF7D008E46A4 /* Carbon.framework */; };
 		6C39D930161EBA4F0094A387 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C2088F515F9CA1D009191D7 /* Cocoa.framework */; };
+		6C7F7FA51623D41200091202 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C2088F515F9CA1D009191D7 /* Cocoa.framework */; };
+		6C7F7FAB1623D41200091202 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6C7F7FA91623D41200091202 /* InfoPlist.strings */; };
+		6C7F7FAD1623D41200091202 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C7F7FAC1623D41200091202 /* main.m */; };
+		6C7F7FB11623D41200091202 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 6C7F7FAF1623D41200091202 /* Credits.rtf */; };
+		6C7F7FC11623D43300091202 /* PXAppDelegate.h in Resources */ = {isa = PBXBuildFile; fileRef = 6C7F7FBB1623D43300091202 /* PXAppDelegate.h */; };
+		6C7F7FC21623D43300091202 /* PXAppDelegate.m in Resources */ = {isa = PBXBuildFile; fileRef = 6C7F7FBC1623D43300091202 /* PXAppDelegate.m */; };
+		6C7F7FC41623D43300091202 /* PXMainWindow.h in Resources */ = {isa = PBXBuildFile; fileRef = 6C7F7FBF1623D43300091202 /* PXMainWindow.h */; };
+		6C7F7FC51623D43300091202 /* PXMainWindow.m in Resources */ = {isa = PBXBuildFile; fileRef = 6C7F7FC01623D43300091202 /* PXMainWindow.m */; };
+		6C7F7FC81623D49300091202 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C7F7FC61623D49300091202 /* MainMenu.xib */; };
+		6C7F7FC91623D4C000091202 /* Playground.app in Copy Configuration App */ = {isa = PBXBuildFile; fileRef = 6C7F7FA31623D41200091202 /* Playground.app */; };
+		6C7F7FCA1623D87F00091202 /* DefaultSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C93E8CB1616DCFE005A5593 /* DefaultSettings.plist */; };
+		6C7F7FCE1623EA1800091202 /* PXWorldOfWarcraftApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C7F7FCC1623EA1800091202 /* PXWorldOfWarcraftApplication.h */; };
+		6C7F7FCF1623EA1800091202 /* PXWorldOfWarcraftApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C7F7FCD1623EA1800091202 /* PXWorldOfWarcraftApplication.m */; };
+		6C7F7FD51623F2BC00091202 /* PlexerLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CF934D61618FA6400325A8A /* PlexerLib.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		6C7F7FDA1623F4D300091202 /* PlexerLib.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 6CF934D61618FA6400325A8A /* PlexerLib.framework */; };
+		6C7F7FDC1623FA5E00091202 /* PlexerLib.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 6CF934D61618FA6400325A8A /* PlexerLib.framework */; };
 		6C93E8CC1616DCFE005A5593 /* DefaultSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C93E8CB1616DCFE005A5593 /* DefaultSettings.plist */; };
 		6C93E8D21616E17E005A5593 /* SampleTeam.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C93E8D11616E14E005A5593 /* SampleTeam.plist */; };
 		6CC4844615FF14DD00B9A110 /* PXTeamDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC4844415FF14DD00B9A110 /* PXTeamDocument.m */; };
@@ -63,6 +79,27 @@
 			remoteGlobalIDString = 6C39D91A161EB3770094A387;
 			remoteInfo = PlexerHelper;
 		};
+		6C7F7FD11623F2A000091202 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6C2088E815F9CA1D009191D7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6CF934D51618FA6400325A8A;
+			remoteInfo = PlexerLib;
+		};
+		6C7F7FD31623F2A300091202 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6C2088E815F9CA1D009191D7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6C7F7FA21623D41200091202;
+			remoteInfo = Playground;
+		};
+		6C7F7FD61623F32300091202 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6C2088E815F9CA1D009191D7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6CF934D51618FA6400325A8A;
+			remoteInfo = PlexerLib;
+		};
 		6CF934EA1618FA6400325A8A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6C2088E815F9CA1D009191D7 /* Project object */;
@@ -73,14 +110,48 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		6C39D901161E96430094A387 /* CopyFiles */ = {
+		6C39D901161E96430094A387 /* Copy XPC Service */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = Contents/XPCServices;
 			dstSubfolderSpec = 1;
 			files = (
-				6C39D92B161EB3970094A387 /* com.kiadsoftware.PlexerHelper.xpc in CopyFiles */,
+				6C39D92B161EB3970094A387 /* com.kiadsoftware.PlexerHelper.xpc in Copy XPC Service */,
 			);
+			name = "Copy XPC Service";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6C7F7F9A1623D35A00091202 /* Copy Configuration App */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Playground;
+			dstSubfolderSpec = 1;
+			files = (
+				6C7F7FC91623D4C000091202 /* Playground.app in Copy Configuration App */,
+			);
+			name = "Copy Configuration App";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6C7F7FD91623F4C400091202 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				6C7F7FDA1623F4D300091202 /* PlexerLib.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6C7F7FDB1623FA4E00091202 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				6C7F7FDC1623FA5E00091202 /* PlexerLib.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -119,6 +190,19 @@
 		6C39D924161EB3770094A387 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6C39D92C161EB3EC0094A387 /* PXBroadcastController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXBroadcastController.h; sourceTree = "<group>"; };
 		6C39D92D161EB3EC0094A387 /* PXBroadcastController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXBroadcastController.m; sourceTree = "<group>"; };
+		6C7F7FA31623D41200091202 /* Playground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Playground.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C7F7FA81623D41200091202 /* Playground-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Playground-Info.plist"; sourceTree = "<group>"; };
+		6C7F7FAA1623D41200091202 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6C7F7FAC1623D41200091202 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6C7F7FAE1623D41200091202 /* Playground-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Playground-Prefix.pch"; sourceTree = "<group>"; };
+		6C7F7FB01623D41200091202 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		6C7F7FBB1623D43300091202 /* PXAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PXAppDelegate.h; sourceTree = "<group>"; };
+		6C7F7FBC1623D43300091202 /* PXAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PXAppDelegate.m; sourceTree = "<group>"; };
+		6C7F7FBF1623D43300091202 /* PXMainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXMainWindow.h; sourceTree = "<group>"; };
+		6C7F7FC01623D43300091202 /* PXMainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXMainWindow.m; sourceTree = "<group>"; };
+		6C7F7FC71623D49300091202 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		6C7F7FCC1623EA1800091202 /* PXWorldOfWarcraftApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXWorldOfWarcraftApplication.h; sourceTree = "<group>"; };
+		6C7F7FCD1623EA1800091202 /* PXWorldOfWarcraftApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXWorldOfWarcraftApplication.m; sourceTree = "<group>"; };
 		6C8655CC1616AA4000DBEAA3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6C93E8CB1616DCFE005A5593 /* DefaultSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultSettings.plist; sourceTree = "<group>"; };
 		6C93E8D11616E14E005A5593 /* SampleTeam.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SampleTeam.plist; sourceTree = "<group>"; };
@@ -149,6 +233,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C7F7FD51623F2BC00091202 /* PlexerLib.framework in Frameworks */,
 				6C2110491617FF7D008E46A4 /* Carbon.framework in Frameworks */,
 				6C2088F615F9CA1D009191D7 /* Cocoa.framework in Frameworks */,
 			);
@@ -170,6 +255,14 @@
 				6C170C331622CAEC0071AC32 /* PlexerLib.framework in Frameworks */,
 				6C39D930161EBA4F0094A387 /* Cocoa.framework in Frameworks */,
 				6C39D92F161EBA480094A387 /* Carbon.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6C7F7FA01623D41200091202 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6C7F7FA51623D41200091202 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,6 +295,7 @@
 				6CF934D81618FA6400325A8A /* PlexerLib */,
 				6C20891815F9CA1D009191D7 /* PlexerTests */,
 				6CF934ED1618FA6400325A8A /* PlexerLibTests */,
+				6C7F7FA61623D41200091202 /* Playground */,
 				6C2088F415F9CA1D009191D7 /* Frameworks */,
 				6C2088F215F9CA1D009191D7 /* Products */,
 			);
@@ -215,6 +309,7 @@
 				6CF934D61618FA6400325A8A /* PlexerLib.framework */,
 				6CF934E71618FA6400325A8A /* PlexerLibTests.octest */,
 				6C39D91B161EB3770094A387 /* com.kiadsoftware.PlexerHelper.xpc */,
+				6C7F7FA31623D41200091202 /* Playground.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -337,6 +432,40 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		6C7F7FA61623D41200091202 /* Playground */ = {
+			isa = PBXGroup;
+			children = (
+				6C7F7FC61623D49300091202 /* MainMenu.xib */,
+				6C7F7FBB1623D43300091202 /* PXAppDelegate.h */,
+				6C7F7FBC1623D43300091202 /* PXAppDelegate.m */,
+				6C7F7FBF1623D43300091202 /* PXMainWindow.h */,
+				6C7F7FC01623D43300091202 /* PXMainWindow.m */,
+				6C7F7FA71623D41200091202 /* Supporting Files */,
+			);
+			path = Playground;
+			sourceTree = "<group>";
+		};
+		6C7F7FA71623D41200091202 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6C7F7FA81623D41200091202 /* Playground-Info.plist */,
+				6C7F7FA91623D41200091202 /* InfoPlist.strings */,
+				6C7F7FAC1623D41200091202 /* main.m */,
+				6C7F7FAE1623D41200091202 /* Playground-Prefix.pch */,
+				6C7F7FAF1623D41200091202 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6C7F7FD01623EA1A00091202 /* Supported Games */ = {
+			isa = PBXGroup;
+			children = (
+				6C7F7FCC1623EA1800091202 /* PXWorldOfWarcraftApplication.h */,
+				6C7F7FCD1623EA1800091202 /* PXWorldOfWarcraftApplication.m */,
+			);
+			name = "Supported Games";
+			sourceTree = "<group>";
+		};
 		6C93E8CD1616DFB1005A5593 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -359,6 +488,7 @@
 			isa = PBXGroup;
 			children = (
 				6CF934D91618FA6400325A8A /* Supporting Files */,
+				6C7F7FD01623EA1A00091202 /* Supported Games */,
 				6CCAE04E1619056F0085BBD7 /* PlexerLib.h */,
 				6CCAE0421618FB8C0085BBD7 /* PXApplication.h */,
 				6CCAE0431618FB8C0085BBD7 /* PXApplication.m */,
@@ -413,6 +543,7 @@
 				6CCAE05216190E2A0085BBD7 /* PXTeam.h in Headers */,
 				6C170C341622CB570071AC32 /* PXMappedKey.h in Headers */,
 				6CCAE05616190ED90085BBD7 /* PXTeamMember.h in Headers */,
+				6C7F7FCE1623EA1800091202 /* PXWorldOfWarcraftApplication.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,11 +557,15 @@
 				6C2088ED15F9CA1D009191D7 /* Sources */,
 				6C2088EE15F9CA1D009191D7 /* Frameworks */,
 				6C2088EF15F9CA1D009191D7 /* Resources */,
-				6C39D901161E96430094A387 /* CopyFiles */,
+				6C39D901161E96430094A387 /* Copy XPC Service */,
+				6C7F7F9A1623D35A00091202 /* Copy Configuration App */,
+				6C7F7FD91623F4C400091202 /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				6C7F7FD41623F2A300091202 /* PBXTargetDependency */,
+				6C7F7FD21623F2A000091202 /* PBXTargetDependency */,
 				6C39D92A161EB38F0094A387 /* PBXTargetDependency */,
 			);
 			name = Plexer;
@@ -464,15 +599,34 @@
 				6C39D917161EB3770094A387 /* Sources */,
 				6C39D918161EB3770094A387 /* Frameworks */,
 				6C39D919161EB3770094A387 /* Resources */,
+				6C7F7FDB1623FA4E00091202 /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				6C7F7FD71623F32300091202 /* PBXTargetDependency */,
 			);
 			name = PlexerHelper;
 			productName = PlexerHelper;
 			productReference = 6C39D91B161EB3770094A387 /* com.kiadsoftware.PlexerHelper.xpc */;
 			productType = "com.apple.product-type.bundle";
+		};
+		6C7F7FA21623D41200091202 /* Playground */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6C7F7FB81623D41200091202 /* Build configuration list for PBXNativeTarget "Playground" */;
+			buildPhases = (
+				6C7F7F9F1623D41200091202 /* Sources */,
+				6C7F7FA01623D41200091202 /* Frameworks */,
+				6C7F7FA11623D41200091202 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Playground;
+			productName = Playground;
+			productReference = 6C7F7FA31623D41200091202 /* Playground.app */;
+			productType = "com.apple.product-type.application";
 		};
 		6CF934D51618FA6400325A8A /* PlexerLib */ = {
 			isa = PBXNativeTarget;
@@ -538,6 +692,7 @@
 				6CF934D51618FA6400325A8A /* PlexerLib */,
 				6C20891115F9CA1D009191D7 /* PlexerTests */,
 				6CF934E61618FA6400325A8A /* PlexerLibTests */,
+				6C7F7FA21623D41200091202 /* Playground */,
 			);
 		};
 /* End PBXProject section */
@@ -567,7 +722,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C7F7FCA1623D87F00091202 /* DefaultSettings.plist in Resources */,
 				6C39D922161EB3770094A387 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6C7F7FA11623D41200091202 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6C7F7FAB1623D41200091202 /* InfoPlist.strings in Resources */,
+				6C7F7FB11623D41200091202 /* Credits.rtf in Resources */,
+				6C7F7FC11623D43300091202 /* PXAppDelegate.h in Resources */,
+				6C7F7FC21623D43300091202 /* PXAppDelegate.m in Resources */,
+				6C7F7FC41623D43300091202 /* PXMainWindow.h in Resources */,
+				6C7F7FC51623D43300091202 /* PXMainWindow.m in Resources */,
+				6C7F7FC81623D49300091202 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -649,6 +819,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6C7F7F9F1623D41200091202 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6C7F7FAD1623D41200091202 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6CF934D11618FA6400325A8A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -656,6 +834,7 @@
 				6CCAE0451618FB8C0085BBD7 /* PXApplication.m in Sources */,
 				6CCAE05316190E2A0085BBD7 /* PXTeam.m in Sources */,
 				6CCAE05716190ED90085BBD7 /* PXTeamMember.m in Sources */,
+				6C7F7FCF1623EA1800091202 /* PXWorldOfWarcraftApplication.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,6 +858,21 @@
 			isa = PBXTargetDependency;
 			target = 6C39D91A161EB3770094A387 /* PlexerHelper */;
 			targetProxy = 6C39D929161EB38F0094A387 /* PBXContainerItemProxy */;
+		};
+		6C7F7FD21623F2A000091202 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6CF934D51618FA6400325A8A /* PlexerLib */;
+			targetProxy = 6C7F7FD11623F2A000091202 /* PBXContainerItemProxy */;
+		};
+		6C7F7FD41623F2A300091202 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6C7F7FA21623D41200091202 /* Playground */;
+			targetProxy = 6C7F7FD31623F2A300091202 /* PBXContainerItemProxy */;
+		};
+		6C7F7FD71623F32300091202 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6CF934D51618FA6400325A8A /* PlexerLib */;
+			targetProxy = 6C7F7FD61623F32300091202 /* PBXContainerItemProxy */;
 		};
 		6CF934EB1618FA6400325A8A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -726,6 +920,30 @@
 				6C39D921161EB3770094A387 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		6C7F7FA91623D41200091202 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6C7F7FAA1623D41200091202 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		6C7F7FAF1623D41200091202 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6C7F7FB01623D41200091202 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		6C7F7FC61623D49300091202 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6C7F7FC71623D49300091202 /* en */,
+			);
+			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 		6CF934DB1618FA6400325A8A /* InfoPlist.strings */ = {
@@ -890,6 +1108,34 @@
 			};
 			name = Release;
 		};
+		6C7F7FB91623D41200091202 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Playground/Playground-Prefix.pch";
+				INFOPLIST_FILE = "Playground/Playground-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		6C7F7FBA1623D41200091202 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Playground/Playground-Prefix.pch";
+				INFOPLIST_FILE = "Playground/Playground-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		6CF934F71618FA6400325A8A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -902,6 +1148,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PlexerLib/PlexerLib-Prefix.pch";
 				INFOPLIST_FILE = "PlexerLib/PlexerLib-Info.plist";
+				INSTALL_PATH = "@executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
@@ -919,6 +1166,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PlexerLib/PlexerLib-Prefix.pch";
 				INFOPLIST_FILE = "PlexerLib/PlexerLib-Info.plist";
+				INSTALL_PATH = "@executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
@@ -992,6 +1240,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		6C7F7FB81623D41200091202 /* Build configuration list for PBXNativeTarget "Playground" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6C7F7FB91623D41200091202 /* Debug */,
+				6C7F7FBA1623D41200091202 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		6CF934F61618FA6400325A8A /* Build configuration list for PBXNativeTarget "PlexerLib" */ = {
 			isa = XCConfigurationList;

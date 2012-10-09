@@ -11,9 +11,13 @@
 		<dict>
 			<key>PXApplicationDisplayNameKey</key>
 			<string>World of Warcraft</string>
+			<key>PXApplicationClassNameKey</key>
+			<string>PXWorldOfWarcraftApplication</string>
 			<key>PXApplicationLaunchPathKey</key>
 			<string>/Applications/World of Warcraft/World of Warcraft-64.app</string>
-			<key>PXVirtualizeFileItemsKey</key>
+			<key>PXApplicationInstallPathKey</key>
+			<string>/Applications/World of Warcraft</string>
+			<key>PXApplicationFilesToVirtualizeKey</key>
 			<array>
 				<string>Data</string>
 				<string>Interface</string>
@@ -22,11 +26,15 @@
 				<string>Updates</string>
 				<string>World of Warcraft Launcher.app</string>
 			</array>
-			<key>PXCopyFileItemsKey</key>
+			<key>PXApplicationFilesToCopyKey</key>
 			<array>
 				<string>World of Warcraft-64.app</string>
 				<string>World of Warcraft.app</string>
 			</array>
+		</dict>
+		<dict>
+			<key>PXApplicationDisplayNameKey</key>
+			<string>Playground</string>
 		</dict>
 	</array>
 </dict>

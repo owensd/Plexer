@@ -8,6 +8,7 @@
 
 #import "PXTeamDocumentWindowController.h"
 #import "PXBroadcastController.h"
+#import <PlexerLib/PlexerLib.h>
 
 
 @implementation PXTeamDocumentWindowController

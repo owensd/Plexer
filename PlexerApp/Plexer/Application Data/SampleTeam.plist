@@ -3,107 +3,8 @@
 <plist version="1.0">
 <dict>
 	<key>PXApplicationKey</key>
-	<string>Playground</string>
+	<string>World of Warcraft</string>
 	<key>PXTeamMembersKey</key>
-	<array>
-		<dict>
-			<key>PXTeamMemberNameKey</key>
-			<string>Player 1</string>
-			<key>PXApplicationLaunchOptionsKey</key>
-			<dict>
-				<key>PXApplicationWindowBoundsKey</key>
-				<string>0,440,500,1044</string>
-			</dict>
-			<key>PXTeamMemberMappedKeysKey</key>
-			<dict>
-				<key>Follow the Leader</key>
-				<dict/>
-			</dict>
-		</dict>
-		<dict>
-			<key>PXTeamMemberNameKey</key>
-			<string>Player 2</string>
-			<key>PXApplicationLaunchOptionsKey</key>
-			<dict>
-				<key>PXApplicationWindowBoundsKey</key>
-				<string>500,440,1000,1044</string>
-			</dict>
-			<key>PXTeamMemberMappedKeysKey</key>
-			<dict>
-				<key>Follow the Leader</key>
-				<dict>
-					<key>PXMappedKeyKeyCodeKey</key>
-					<integer>0</integer>
-					<key>PXMappedKeyFlagsKey</key>
-					<integer>256</integer>
-				</dict>
-			</dict>
-		</dict>
-		<dict>
-			<key>PXTeamMemberNameKey</key>
-			<string>Player 3</string>
-			<key>PXApplicationLaunchOptionsKey</key>
-			<dict>
-				<key>PXApplicationWindowBoundsKey</key>
-				<string>1000,440,1500,1044</string>
-			</dict>
-			<key>PXTeamMemberMappedKeysKey</key>
-			<dict>
-				<key>Heal ME!</key>
-				<dict/>
-				<key>Follow the Leader</key>
-				<dict>
-					<key>PXMappedKeyKeyCodeKey</key>
-					<integer>0</integer>
-					<key>PXMappedKeyFlagsKey</key>
-					<integer>256</integer>
-				</dict>
-			</dict>
-		</dict>
-		<dict>
-			<key>PXTeamMemberNameKey</key>
-			<string>Player 4</string>
-			<key>PXApplicationLaunchOptionsKey</key>
-			<dict>
-				<key>PXApplicationWindowBoundsKey</key>
-				<string>1500,440,2000,1044</string>
-			</dict>
-			<key>PXTeamMemberMappedKeysKey</key>
-			<dict>
-				<key>Heal ME!</key>
-				<dict/>
-				<key>Follow the Leader</key>
-				<dict>
-					<key>PXMappedKeyKeyCodeKey</key>
-					<integer>0</integer>
-					<key>PXMappedKeyFlagsKey</key>
-					<integer>256</integer>
-				</dict>
-			</dict>
-		</dict>
-		<dict>
-			<key>PXTeamMemberNameKey</key>
-			<string>Player 5</string>
-			<key>PXApplicationLaunchOptionsKey</key>
-			<dict>
-				<key>PXApplicationWindowBoundsKey</key>
-				<string>2000,440,2500,1044</string>
-			</dict>
-			<key>PXTeamMemberMappedKeysKey</key>
-			<dict>
-				<key>Heal ME!</key>
-				<dict/>
-				<key>Follow the Leader</key>
-				<dict>
-					<key>PXMappedKeyKeyCodeKey</key>
-					<integer>1</integer>
-					<key>PXMappedKeyFlagsKey</key>
-					<integer>256</integer>
-				</dict>
-			</dict>
-		</dict>
-	</array>
-	<key>PXTeamMembersKey_orig</key>
 	<array>
 		<dict>
 			<key>PXTeamMemberNameKey</key>
@@ -126,11 +27,18 @@
 			<dict>
 				<key>PXApplicationWindowBoundsKey</key>
 				<string>0,88,1292,892</string>
+				<key>PXVirtualizedApplicationLaunchPathKey</key>
+				<string>~/Library/Application Support/Plexer/World of Warcraft/Slot2/World of Warcraft-64.app</string>
 			</dict>
 			<key>PXTeamMemberMappedKeysKey</key>
 			<dict>
 				<key>Follow the Leader</key>
-				<dict/>
+				<dict>
+					<key>PXMappedKeyKeyCodeKey</key>
+					<integer>0</integer>
+					<key>PXMappedKeyFlagsKey</key>
+					<integer>256</integer>
+				</dict>
 			</dict>
 		</dict>
 		<dict>
@@ -140,11 +48,20 @@
 			<dict>
 				<key>PXApplicationWindowBoundsKey</key>
 				<string>1300,88,2592,892</string>
+				<key>PXVirtualizedApplicationLaunchPathKey</key>
+				<string>~/Library/Application Support/Plexer/World of Warcraft/Slot3/World of Warcraft-64.app</string>
 			</dict>
 			<key>PXTeamMemberMappedKeysKey</key>
 			<dict>
-				<key>Follow the Leader</key>
+				<key>Heal ME!</key>
 				<dict/>
+				<key>Follow the Leader</key>
+				<dict>
+					<key>PXMappedKeyKeyCodeKey</key>
+					<integer>0</integer>
+					<key>PXMappedKeyFlagsKey</key>
+					<integer>256</integer>
+				</dict>
 			</dict>
 		</dict>
 		<dict>
@@ -154,11 +71,20 @@
 			<dict>
 				<key>PXApplicationWindowBoundsKey</key>
 				<string>0,892,1292,1696</string>
+				<key>PXVirtualizedApplicationLaunchPathKey</key>
+				<string>~/Library/Application Support/Plexer/World of Warcraft/Slot4/World of Warcraft-64.app</string>
 			</dict>
 			<key>PXTeamMemberMappedKeysKey</key>
 			<dict>
-				<key>Follow the Leader</key>
+				<key>Heal ME!</key>
 				<dict/>
+				<key>Follow the Leader</key>
+				<dict>
+					<key>PXMappedKeyKeyCodeKey</key>
+					<integer>0</integer>
+					<key>PXMappedKeyFlagsKey</key>
+					<integer>256</integer>
+				</dict>
 			</dict>
 		</dict>
 		<dict>
@@ -168,11 +94,20 @@
 			<dict>
 				<key>PXApplicationWindowBoundsKey</key>
 				<string>1300,892,2592,1696</string>
+				<key>PXVirtualizedApplicationLaunchPathKey</key>
+				<string>~/Library/Application Support/Plexer/World of Warcraft/Slot5/World of Warcraft-64.app</string>
 			</dict>
 			<key>PXTeamMemberMappedKeysKey</key>
 			<dict>
-				<key>Follow the Leader</key>
+				<key>Heal ME!</key>
 				<dict/>
+				<key>Follow the Leader</key>
+				<dict>
+					<key>PXMappedKeyKeyCodeKey</key>
+					<integer>1</integer>
+					<key>PXMappedKeyFlagsKey</key>
+					<integer>256</integer>
+				</dict>
 			</dict>
 		</dict>
 	</array>

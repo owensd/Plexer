@@ -8,15 +8,16 @@
 
 #import "PXApplication.h"
 #import "PXTeamMember.h"
+#import "PXWorldOfWarcraftApplication.h"
 
 NSString * const PXApplicationDisplayNameKey                = @"PXApplicationDisplayNameKey";
+NSString * const PXApplicationClassNameKey                  = @"PXApplicationClassNameKey";
 NSString * const PXApplicationLaunchPathKey                 = @"PXApplicationLaunchPathKey";
 NSString * const PXApplicationInstallPathKey                = @"PXApplicationInstallPathKey";
 NSString * const PXApplicationFilesToVirtualizeKey          = @"PXApplicationFilesToVirtualizeKey";
 NSString * const PXApplicationFilesToCopyKey                = @"PXApplicationFilesToCopyKey";
 
 NSString const * PXApplicationWindowBoundsKey               = @"PXApplicationWindowBoundsKey";
-NSString const * PXShouldVirtualizeApplicationKey           = @"PXShouldVirtualizeApplicationKey";
 NSString const * PXVirtualizedApplicationLaunchPathKey      = @"PXVirtualizedApplicationLaunchPathKey";
 
 
@@ -28,11 +29,28 @@ NSString const * PXVirtualizedApplicationLaunchPathKey      = @"PXVirtualizedApp
         applications = [[NSMutableArray alloc] init];
         
         for (NSDictionary *dict in [[NSUserDefaults standardUserDefaults] arrayForKey:@"PXSupportedGamesKey"]) {
-            [applications addObject:[[PXApplication alloc] initWithDictionary:dict]];
+            NSString *className = dict[PXApplicationClassNameKey];
+            if (className != nil) {
+                [applications addObject:[[NSClassFromString(className) alloc] initWithDictionary:dict]];
+            }
+            else {
+                [applications addObject:[[PXApplication alloc] initWithDictionary:dict]];
+            }
         }
     }
     
     return applications;
+}
+
++ (PXApplication *)applicationWithName:(NSString *)name
+{
+    for (PXApplication *application in [PXApplication supportedApplications]) {
+        if ([application.displayName isEqualToString:name] == YES) {
+            return application;
+        }
+    }
+    
+    return nil;
 }
 
 - (id)initWithDictionary:(NSDictionary *)dictionary
@@ -53,14 +71,15 @@ NSString const * PXVirtualizedApplicationLaunchPathKey      = @"PXVirtualizedApp
 {
     NSString *applicationLaunchPath = [self.launchPath stringByStandardizingPath];
     
-    NSNumber *shouldVirtualizeApplication = options[PXShouldVirtualizeApplicationKey];
-    if (shouldVirtualizeApplication != nil && [shouldVirtualizeApplication boolValue] == YES) {
+    NSString *virtualizedPath = options[PXVirtualizedApplicationLaunchPathKey];
+    if (virtualizedPath != nil) {
         [self virtualizeApplicationWithOptions:options removeExisting:NO];
-        applicationLaunchPath = [options[PXVirtualizedApplicationLaunchPathKey] stringByStandardizingPath];
+        applicationLaunchPath = [virtualizedPath stringByStandardizingPath];
     }
     
     if ([self findRunningApplicationAtPath:applicationLaunchPath] == nil) {
         [[NSWorkspace sharedWorkspace] launchApplication:applicationLaunchPath];
+        [NSThread sleepForTimeInterval:2];
     }
     
     //
@@ -86,7 +105,7 @@ NSString const * PXVirtualizedApplicationLaunchPathKey      = @"PXVirtualizedApp
 
 - (void)virtualizeApplicationWithOptions:(NSDictionary *)options removeExisting:(BOOL)removeExisting
 {
-    NSString *pathToVirtualizedApplicationDirectory = [options[PXVirtualizedApplicationLaunchPathKey] stringByDeletingLastPathComponent];
+    NSString *pathToVirtualizedApplicationDirectory = [[options[PXVirtualizedApplicationLaunchPathKey] stringByDeletingLastPathComponent] stringByStandardizingPath];
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:pathToVirtualizedApplicationDirectory] == NO) {
         [[NSFileManager defaultManager] createDirectoryAtPath:pathToVirtualizedApplicationDirectory withIntermediateDirectories:YES attributes:nil error:nil];

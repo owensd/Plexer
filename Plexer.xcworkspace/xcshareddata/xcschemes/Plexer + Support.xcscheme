@@ -28,38 +28,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6CF934B91618F96C00325A8A"
-               BuildableName = "WorldOfWarcraft.bundle"
-               BlueprintName = "WorldOfWarcraft"
-               ReferencedContainer = "container:WorldOfWarcraft/WorldOfWarcraft.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "6C20891115F9CA1D009191D7"
                BuildableName = "PlexerTests.octest"
                BlueprintName = "PlexerTests"
                ReferencedContainer = "container:PlexerApp/Plexer.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6C2BB8F8161C1EAE001C48A1"
-               BuildableName = "Playground.app"
-               BlueprintName = "Playground"
-               ReferencedContainer = "container:Playground/Playground.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -87,6 +59,20 @@
                BlueprintIdentifier = "6CF934D51618FA6400325A8A"
                BuildableName = "PlexerLib.framework"
                BlueprintName = "PlexerLib"
+               ReferencedContainer = "container:PlexerApp/Plexer.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C7F7FA21623D41200091202"
+               BuildableName = "Playground.app"
+               BlueprintName = "Playground"
                ReferencedContainer = "container:PlexerApp/Plexer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

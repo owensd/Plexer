@@ -13,6 +13,10 @@
 
 int main(int argc, const char *argv[])
 {
+    NSString *pathToDefaults = [[NSBundle mainBundle] pathForResource:@"DefaultSettings" ofType:@"plist"];
+    NSDictionary *defaults = [NSDictionary dictionaryWithContentsOfFile:pathToDefaults];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
+
     // Get the singleton service listener and configure it with our delegate.
     NSXPCListener *listener = [NSXPCListener serviceListener];
     

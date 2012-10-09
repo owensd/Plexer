@@ -7,9 +7,11 @@
 //
 
 #import "PXBroadcastController.h"
+#import "PXMappedKeyStore.h"
+#import <PlexerLib/PlexerLib.h>
+
 #import <Carbon/Carbon.h>
 #import <Cocoa/Cocoa.h>
-#import "PXMappedKeyStore.h"
 
 
 NSString * const PXBroadcastingDidChangeNotification = @"PXBroadcastingDidChangeNotification";
@@ -69,7 +71,7 @@ CGEventRef KeyBindEventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEv
 - (void)closeApplications
 {
     for (NSRunningApplication *app in _runningApplications) {
-        [app forceTerminate];
+        [app terminate];
     }
 }
 
@@ -105,22 +107,30 @@ CGEventRef KeyBindEventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEv
 - (void)launchApplications
 {
     NSLog(@"launching applications");
-
-    NSString *path = @"/Users/dowens/Library/Developer/Xcode/DerivedData/Plexer-dukidxnvzvpnsocmqemwyegjsswa/Build/Products/Debug/Playground.app";
+    
+    NSString *applicationName = _teamConfiguration[@"PXApplicationKey"];
+    PXApplication *application = [PXApplication applicationWithName:applicationName];
+    if (application == nil) {
+        NSLog(@"Unable to find application.");
+    }
 
     NSArray *teamMembers = _teamConfiguration[@"PXTeamMembersKey"];
     for (NSDictionary *player in teamMembers) {
-        NSString *windowBounds = player[@"PXApplicationLaunchOptionsKey"][@"PXApplicationWindowBoundsKey"];
-        [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[ @"-n", path, @"--args", @"-windowBounds", windowBounds ]];
-    }
-    
-    [NSThread sleepForTimeInterval:1];
-    
-    for (NSRunningApplication *runningApplication in [[NSWorkspace sharedWorkspace] runningApplications]) {
-        if ([runningApplication.bundleIdentifier isEqualToString:@"com.kiadsoftware.plexer.Playground"] == YES) {
+        NSRunningApplication *runningApplication = [application launchWithOptions:player[@"PXApplicationLaunchOptionsKey"]];
+        if (runningApplication != nil) {
             [_runningApplications addObject:runningApplication];
         }
+//        NSString *windowBounds = player[@"PXApplicationLaunchOptionsKey"][@"PXApplicationWindowBoundsKey"];
+//        [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[ @"-n", path, @"--args", @"-windowBounds", windowBounds ]];
     }
+//    
+//    [NSThread sleepForTimeInterval:1];
+//    
+//    for (NSRunningApplication *runningApplication in [[NSWorkspace sharedWorkspace] runningApplications]) {
+//        if ([runningApplication.bundleIdentifier isEqualToString:@"com.kiadsoftware.plexer.Playground"] == YES) {
+//            [_runningApplications addObject:runningApplication];
+//        }
+//    }
 }
 
 
@@ -138,7 +148,7 @@ CGEventRef KeyBindEventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEv
     //
     // UNDONE: Need to get the proper application name to be looking for.
     //
-    if ([frontMostApplication.bundleURL.lastPathComponent isEqualToString:@"Playground.app"] == NO) { return event; }
+    if ([frontMostApplication.bundleURL.lastPathComponent isEqualToString:[_runningApplications[0] bundleURL].lastPathComponent] == NO) { return event; }
     if ([self handleSpecialApplicationFunctionalityForEvent:event ofType:type] == NULL) { return NULL; }
     if (self.broadcastingState == PXBroadcastingDisabled) { return event; }
     
