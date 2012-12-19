@@ -149,48 +149,48 @@ pid_t currentPID = -1;
 
     char serialNumberCString[21];
     [serialNumber getCString:serialNumberCString maxLength:20 encoding:NSASCIIStringEncoding];
-    if (isValidSerialNumber(serialNumberCString) == 0) {
+//    if (isValidSerialNumber(serialNumberCString) == 0) {
         [registerPlexerMenuItem setHidden:YES];
         [demoImage setHidden:YES];
         inTrialMode = NO;
-    }
-    else {
-        NSLog(@"Serial number: %@", [userSettings serialNumber]);
-        inTrialMode = YES;
-        [demoImage setHidden:NO];
-
-        NSDate* firstLaunch = [NSDate dateWithString:[userSettings firstLaunch]];
-        NSTimeInterval interval = [firstLaunch timeIntervalSinceNow];
-        if (-interval > 60.0 /*seconds*/ * 60.0 /*minutes*/ * 24.0 /*hours*/ * 15.0 /*days*/) {
-            isTrialExpired = YES;
-        
-            if ([userSettings serialNumber] == nil || [[userSettings serialNumber] isEqualToString:@""] == YES) {
-                [infoPanelController showPanelWithTitle:@"Trial Expired"
-                                                message:@"Your trial of Plexer has expired. If you wish to continue to use Plexer, you must purchase it."
-                                             buttonText:@"OK"
-                                               delegate:self
-                                         didEndSelector:@selector(trialExpiredSheetDidEnd:code:context:)
-                                            contextInfo:nil];
-            }
-            else {
-                // hmm... invalid serial number. possible pirate attempt?
-                [infoPanelController showPanelWithTitle:@"Invalid Serial Number"
-                                                message:@"The serial number is invalid. Please enter a valid serial number."
-                                             buttonText:@"OK"
-                                               delegate:self
-                                         didEndSelector:@selector(invalidSerialNumberOnLoadSheetDidEnd:code:context:)
-                                            contextInfo:nil];
-            }
-        }
-        else if (interval > 0) {
-            [infoPanelController showPanelWithTitle:@"Trial Expired"
-                                            message:@"Your trial of Plexer has expired. If you wish to continue to use Plexer, you must purchase it."
-                                         buttonText:@"OK"
-                                           delegate:self
-                                     didEndSelector:@selector(trialExpiredSheetDidEnd:code:context:)
-                                        contextInfo:nil];
-        }
-    }
+//    }
+//    else {
+//        NSLog(@"Serial number: %@", [userSettings serialNumber]);
+//        inTrialMode = YES;
+//        [demoImage setHidden:NO];
+//
+//        NSDate* firstLaunch = [NSDate dateWithString:[userSettings firstLaunch]];
+//        NSTimeInterval interval = [firstLaunch timeIntervalSinceNow];
+//        if (-interval > 60.0 /*seconds*/ * 60.0 /*minutes*/ * 24.0 /*hours*/ * 15.0 /*days*/) {
+//            isTrialExpired = YES;
+//        
+//            if ([userSettings serialNumber] == nil || [[userSettings serialNumber] isEqualToString:@""] == YES) {
+//                [infoPanelController showPanelWithTitle:@"Trial Expired"
+//                                                message:@"Your trial of Plexer has expired. If you wish to continue to use Plexer, you must purchase it."
+//                                             buttonText:@"OK"
+//                                               delegate:self
+//                                         didEndSelector:@selector(trialExpiredSheetDidEnd:code:context:)
+//                                            contextInfo:nil];
+//            }
+//            else {
+//                // hmm... invalid serial number. possible pirate attempt?
+//                [infoPanelController showPanelWithTitle:@"Invalid Serial Number"
+//                                                message:@"The serial number is invalid. Please enter a valid serial number."
+//                                             buttonText:@"OK"
+//                                               delegate:self
+//                                         didEndSelector:@selector(invalidSerialNumberOnLoadSheetDidEnd:code:context:)
+//                                            contextInfo:nil];
+//            }
+//        }
+//        else if (interval > 0) {
+//            [infoPanelController showPanelWithTitle:@"Trial Expired"
+//                                            message:@"Your trial of Plexer has expired. If you wish to continue to use Plexer, you must purchase it."
+//                                         buttonText:@"OK"
+//                                           delegate:self
+//                                     didEndSelector:@selector(trialExpiredSheetDidEnd:code:context:)
+//                                        contextInfo:nil];
+//        }
+//    }
     
     if (attemptingToPirate == YES) {
         // TODO: Notify the main server?
